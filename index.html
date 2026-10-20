@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dầu Gội Bồ Kết Thorakao | Thử Món Mẹ Từng Dùng</title>
+  <meta name="description" content="Khám phá Dầu gội bồ kết Thorakao - Điểm chạm giữa bí quyết chăm tóc truyền thống và phong cách sống hiện đại. Trắc nghiệm nếp tóc, giải đáp thắc mắc và trải nghiệm KOC Series.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              brown: '#4A2E18',      // Nâu hạt bồ kết trầm ấm
+              darkbrown: '#2C1B0E',
+              amber: '#D97706',      // Vàng hổ phách
+              green: '#2D5A27',      // Xanh thảo mộc
+              lightgreen: '#E8F3E6',
+              cream: '#FDFBF7',      // Nền be ấm hoài niệm
+              warmgray: '#786C64'
+            }
+          },
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- AOS (Animate On Scroll) Library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  
+  <!-- Canvas Confetti for Quiz Finish -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background-color: #FDFBF7;
+      overflow-x: hidden;
+    }
+
+    /* Hiệu ứng trôi lơ lửng bồng bềnh (Floating Animation) */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+    }
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(10px) rotate(-3deg); }
+    }
+    .animate-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .animate-float-reverse {
+      animation: floatReverse 6s ease-in-out infinite;
+    }
+
+    /* Hiệu ứng ánh sáng quét qua nút CTA (Shimmer Effect) */
+    .btn-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shimmer::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        rgba(255, 255, 255, 0) 20%,
+        rgba(255, 255, 255, 0.35) 50%,
+        rgba(255, 255, 255, 0) 80%
+      );
+      transform: rotate(25deg);
+      animation: shimmerSweep 3.5s infinite;
+    }
+    @keyframes shimmerSweep {
+      0% { left: -70%; }
+      30%, 100% { left: 140%; }
+    }
+
+    /* Hiệu ứng vầng sáng thở (Aura Glow) */
+    @keyframes auraGlow {
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.08); }
+    }
+    .animate-aura {
+      animation: auraGlow 4s ease-in-out infinite;
+    }
+
+    /* Hiệu ứng xuất hiện tin nhắn Chatbot */
+    @keyframes popIn {
+      0% { opacity: 0; transform: translateY(8px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .chat-bubble-enter {
+      animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Hiệu ứng 3 chấm nhảy khi Bot đang soạn tin */
+    @keyframes typingDot {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+      40% { transform: translateY(-5px); opacity: 1; }
+    }
+    .dot-1 { animation: typingDot 1.4s infinite 0.1s; }
+    .dot-2 { animation: typingDot 1.4s infinite 0.2s; }
+    .dot-3 { animation: typingDot 1.4s infinite 0.3s; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #FDFBF7; }
+    ::-webkit-scrollbar-thumb { background: #D5CEC5; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4A2E18; }
+  </style>
+</head>
+<body class="text-stone-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="sticky top-0 z-40 bg-[#FDFBF7]/90 backdrop-blur-lg border-b border-stone-200/80 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-18 py-3 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-brand-brown text-amber-300 font-black flex items-center justify-center text-xl shadow-md group-hover:scale-105 group-hover:rotate-3 transition duration-300">
+          TH
+        </div>
+        <div>
+          <span class="text-lg font-bold tracking-tight text-brand-darkbrown block leading-tight group-hover:text-amber-800 transition">THORAKAO</span>
+          <span class="text-[11px] text-brand-green font-semibold tracking-wide">Bồ Kết Tự Nhiên • Từ 1961</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-stone-600">
+        <a href="#koc-reviews" class="hover:text-brand-brown transition hover:-translate-y-0.5 transform duration-150">KOC Series</a>
+        <a href="#san-pham" class="hover:text-brand-brown transition hover:-translate-y-0.5 transform duration-150">Sản Phẩm</a>
+        <a href="#quiz-nep-toc" class="hover:text-brand-brown transition hover:-translate-y-0.5 transform duration-150 flex items-center gap-1.5">
+          <span>Quiz Nếp Tóc</span>
+          <span class="text-[9px] bg-amber-500 text-white font-bold px-1.5 py-0.5 rounded-full animate-pulse">Hot</span>
+        </a>
+        <a href="#faq" class="hover:text-brand-brown transition hover:-translate-y-0.5 transform duration-150">Hỏi & Đáp</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="flex items-center gap-3">
+        <a href="https://thorakao.com" target="_blank" rel="noopener noreferrer" 
+           class="btn-shimmer inline-flex items-center gap-2 bg-brand-brown hover:bg-brand-darkbrown text-amber-100 px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95">
+          <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-300"></i>
+          <span>Gian Hàng Chính Hãng</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION (DYNAMIC & ANIMATED) ==================== -->
+  <section class="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-28 bg-gradient-to-b from-stone-100/80 via-[#FDFBF7] to-[#FDFBF7]">
+    
+    <!-- Floating Herbal Background Ornaments -->
+    <div class="absolute -top-10 -left-10 w-72 h-72 bg-amber-200/30 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 -right-16 w-80 h-80 bg-emerald-200/25 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="grid md:grid-cols-12 gap-10 lg:gap-14 items-center">
+        
+        <!-- Left Column: Content -->
+        <div class="md:col-span-7 space-y-6 text-center md:text-left" data-aos="fade-right" data-aos-duration="900">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-lightgreen text-brand-green text-xs font-bold uppercase tracking-wider shadow-sm border border-emerald-200/60">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            KOC Series: "Thử Món Mẹ Từng Dùng"
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-darkbrown tracking-tight leading-[1.2]">
+            Khi Nếp Tóc Thảo Mộc <br class="hidden sm:inline">
+            <span class="text-brand-brown relative inline-block">
+              Chạm Nhịp Sống Gen Z
+              <svg class="absolute -bottom-2 left-0 w-full h-3 text-amber-500/40" viewBox="0 0 100 20" preserveAspectRatio="none">
+                <path d="M0,15 Q50,0 100,15" stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </h1>
+
+          <p class="text-stone-600 text-base sm:text-lg max-w-xl mx-auto md:mx-0 leading-relaxed font-normal">
+            Bạn vừa xem review trên TikTok và tò mò về món dầu gội bồ kết quen thuộc của mẹ? Kiểm chứng thông tin theo công bố, trắc nghiệm nếp tóc và khám phá gian hàng chính hãng ngay tại đây!
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+            <a href="#quiz-nep-toc" class="btn-shimmer px-7 py-3.5 rounded-full bg-brand-brown hover:bg-brand-darkbrown text-amber-100 font-bold shadow-xl shadow-brand-brown/25 flex items-center gap-2.5 transition-all duration-300 hover:scale-105 active:scale-95">
+              <i data-lucide="sparkles" class="w-4 h-4 text-amber-300 animate-spin" style="animation-duration: 4s;"></i>
+              <span>Làm Quiz: Nếp Tóc Của Bạn Là Gì?</span>
+            </a>
+            
+            <a href="#san-pham" class="px-6 py-3.5 rounded-full border-2 border-stone-300 hover:border-brand-brown text-stone-700 font-semibold hover:bg-white transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow">
+              <i data-lucide="info" class="w-4 h-4 text-stone-500"></i>
+              <span>Xem Chi Tiết Dầu Gội</span>
+            </a>
+          </div>
+
+          <!-- Highlight Badges with subtle animations -->
+          <div class="grid grid-cols-3 gap-3 pt-6 border-t border-stone-200/80">
+            <div class="p-2 text-center md:text-left transition hover:scale-105 duration-200">
+              <p class="text-2xl font-black text-brand-brown">100%</p>
+              <p class="text-xs text-stone-500 font-medium">Bồ kết tự nhiên</p>
+            </div>
+            <div class="p-2 text-center md:text-left transition hover:scale-105 duration-200">
+              <p class="text-2xl font-black text-brand-brown">>65 Năm</p>
+              <p class="text-xs text-stone-500 font-medium">Thương hiệu di sản</p>
+            </div>
+            <div class="p-2 text-center md:text-left transition hover:scale-105 duration-200">
+              <p class="text-2xl font-black text-brand-brown">60k - 85k</p>
+              <p class="text-xs text-stone-500 font-medium">Giá bình dân Gen Z</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Animated Product Visual -->
+        <div class="md:col-span-5 relative" data-aos="fade-left" data-aos-duration="1000">
+          
+          <!-- Floating Badge 1 -->
+          <div class="absolute -top-4 -left-4 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl shadow-xl border border-stone-100 flex items-center gap-2 animate-float">
+            <div class="w-7 h-7 rounded-full bg-emerald-100 text-brand-green flex items-center justify-center font-bold text-xs">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="text-[10px] text-stone-400 font-semibold leading-none">Chân tóc</p>
+              <p class="text-xs font-bold text-stone-800 leading-tight">Tơi phồng tự nhiên</p>
+            </div>
+          </div>
+
+          <!-- Floating Badge 2 -->
+          <div class="absolute -bottom-4 -right-4 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl shadow-xl border border-stone-100 flex items-center gap-2 animate-float-reverse">
+            <div class="w-7 h-7 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+              <i data-lucide="sparkle" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="text-[10px] text-stone-400 font-semibold leading-none">KOC Series</p>
+              <p class="text-xs font-bold text-stone-800 leading-tight">Review chân thực 100%</p>
+            </div>
+          </div>
+
+          <!-- Main Interactive Card -->
+          <div class="relative mx-auto max-w-sm rounded-3xl bg-white p-6 shadow-2xl border border-stone-100 group transition duration-500 hover:shadow-brand-brown/15">
+            
+            <!-- Glow effect behind bottle -->
+            <div class="absolute inset-8 bg-gradient-to-tr from-amber-400/20 to-emerald-400/20 rounded-2xl filter blur-2xl animate-aura pointer-events-none"></div>
+
+            <div class="relative aspect-[4/5] rounded-2xl bg-gradient-to-b from-stone-50 via-amber-50/30 to-emerald-50/30 overflow-hidden flex flex-col items-center justify-center p-6 text-center border border-stone-200">
+              
+              <!-- Simulated 3D Bottle with hover tilt -->
+              <div class="w-36 h-56 rounded-3xl bg-gradient-to-b from-stone-900 via-brand-darkbrown to-brand-brown p-3.5 text-white flex flex-col justify-between shadow-2xl relative border-2 border-amber-400/30 transform group-hover:scale-105 group-hover:-rotate-2 transition duration-500">
+                <div class="text-center pt-1">
+                  <span class="text-[9px] tracking-widest text-amber-300 font-extrabold uppercase">THORAKAO</span>
+                  <div class="h-0.5 w-6 bg-amber-400/40 mx-auto mt-0.5"></div>
+                </div>
+                
+                <div class="text-center py-2">
+                  <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/20 border border-amber-300/40 flex items-center justify-center mb-1.5 shadow-inner">
+                    <i data-lucide="droplets" class="w-7 h-7 text-amber-400"></i>
+                  </div>
+                  <h4 class="font-extrabold text-xs tracking-wider uppercase">Dầu Gội Bồ Kết</h4>
+                  <p class="text-[9px] text-amber-200/90 font-medium">Chiết xuất quả bồ kết</p>
+                </div>
+
+                <div class="text-center pb-1 border-t border-white/10 pt-1.5">
+                  <span class="text-[9px] text-stone-300 font-semibold bg-white/10 px-2 py-0.5 rounded-full">Dung tích 400ml - 750ml</span>
+                </div>
+              </div>
+
+              <p class="text-xs text-stone-600 mt-5 font-medium italic">
+                "Mẹ dùng chục năm trước, con gái Gen Z gội thử và ngỡ ngàng vì độ tơi bồng!"
+              </p>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between text-xs text-stone-500 pt-2 border-t border-stone-100">
+              <span class="flex items-center gap-1.5 font-medium">
+                <i data-lucide="shield-check" class="w-4 h-4 text-brand-green"></i> Đã kiểm định công bố
+              </span>
+              <a href="#koc-reviews" class="text-amber-800 font-bold hover:underline flex items-center gap-1">
+                Xem video KOC <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== KOC REVIEWS SECTION WITH VIDEO MODAL ==================== -->
+  <section id="koc-reviews" class="py-16 md:py-24 max-w-6xl mx-auto px-4 sm:px-6">
+    
+    <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+      <span class="text-xs font-bold text-amber-800 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">Trải Nghiệm Thực Tế</span>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-darkbrown mt-3 tracking-tight">Các KOC Nói Gì Trong Series "Thử Món Mẹ Từng Dùng"?</h2>
+      <p class="text-stone-600 text-sm sm:text-base mt-2">
+        Các video review chân thực từ các bạn trẻ khi lần đầu thử sản phẩm chăm sóc tóc truyền thống của mẹ. Bấm để xem clip ngay!
+      </p>
+    </div>
+
+    <!-- Review Cards Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+      
+      <!-- Video Card 1 -->
+      <div class="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 group flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+        <div>
+          <div class="relative aspect-video bg-stone-900 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Lan Anh Beauty', 'Bất ngờ về khả năng sạch thoáng và độ tơi phồng chân tóc', 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80')">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent z-10"></div>
+            <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition duration-700 ease-out" style="background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop&q=60');"></div>
+            
+            <!-- Animated Play Button -->
+            <button class="absolute z-20 w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-lg group-hover:scale-125 group-hover:bg-amber-600 transition-all duration-300">
+              <i data-lucide="play" class="w-5 h-5 fill-current ml-0.5"></i>
+            </button>
+            <span class="absolute bottom-3 left-3 z-20 text-white text-[11px] font-semibold bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded-md flex items-center gap-1">
+              <i data-lucide="video" class="w-3 h-3"></i> 03:42
+            </span>
+            <span class="absolute top-3 right-3 z-20 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 animate-pulse">
+              ● TikTok
+            </span>
+          </div>
+
+          <div class="p-5">
+            <div class="flex items-center gap-2.5 mb-2.5">
+              <div class="w-7 h-7 rounded-full bg-amber-100 text-brand-brown font-bold text-xs flex items-center justify-center shadow-inner">L</div>
+              <span class="text-xs font-bold text-stone-900">Lan Anh Beauty</span>
+              <span class="text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium">Tóc dầu bết</span>
+            </div>
+            <h3 class="text-sm font-bold text-stone-900 group-hover:text-brand-brown transition leading-snug">
+              "Bất ngờ về khả năng sạch thoáng và độ tơi phồng chân tóc"
+            </h3>
+            <p class="text-xs text-stone-600 mt-2 line-clamp-3 leading-relaxed">
+              "Gội xong cảm giác da đầu cực kỳ nhẹ, không bị bí rít. Mình da đầu nhiều dầu gội 2 ngày vẫn giữ được độ bồng bềnh tự nhiên."
+            </p>
+          </div>
+        </div>
+
+        <div class="px-5 pb-5 pt-0">
+          <button onclick="openVideoModal('Lan Anh Beauty', 'Bất ngờ về khả năng sạch thoáng', 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800')" 
+                  class="w-full py-2 rounded-xl bg-stone-50 hover:bg-amber-100 hover:text-brand-brown text-stone-700 text-xs font-semibold transition flex items-center justify-center gap-1.5">
+            <i data-lucide="play-circle" class="w-4 h-4"></i> Xem Video Review
+          </button>
+        </div>
+      </div>
+
+      <!-- Video Card 2 -->
+      <div class="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 group flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+        <div>
+          <div class="relative aspect-video bg-stone-900 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Minh Thảo Haircare', 'Tóc khô tẩy dùng có rít không? Cần lưu ý gì khi gội?', 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80')">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent z-10"></div>
+            <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition duration-700 ease-out" style="background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&auto=format&fit=crop&q=60');"></div>
+            
+            <button class="absolute z-20 w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-lg group-hover:scale-125 group-hover:bg-amber-600 transition-all duration-300">
+              <i data-lucide="play" class="w-5 h-5 fill-current ml-0.5"></i>
+            </button>
+            <span class="absolute bottom-3 left-3 z-20 text-white text-[11px] font-semibold bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded-md flex items-center gap-1">
+              <i data-lucide="video" class="w-3 h-3"></i> 02:15
+            </span>
+            <span class="absolute top-3 right-3 z-20 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 animate-pulse">
+              ● Shorts
+            </span>
+          </div>
+
+          <div class="p-5">
+            <div class="flex items-center gap-2.5 mb-2.5">
+              <div class="w-7 h-7 rounded-full bg-emerald-100 text-brand-green font-bold text-xs flex items-center justify-center shadow-inner">M</div>
+              <span class="text-xs font-bold text-stone-900">Minh Thảo Haircare</span>
+              <span class="text-[11px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full font-medium">Tóc khô tẩy</span>
+            </div>
+            <h3 class="text-sm font-bold text-stone-900 group-hover:text-brand-brown transition leading-snug">
+              "Tóc khô tẩy dùng có rít không? Cần lưu ý gì khi gội?"
+            </h3>
+            <p class="text-xs text-stone-600 mt-2 line-clamp-3 leading-relaxed">
+              "Tóc tẩy như mình làm sạch rất thoáng nhưng nhất định phải có dầu xả ở ngọn tóc để tránh bị rối. Kết hợp đúng cách thì tóc cực êm!"
+            </p>
+          </div>
+        </div>
+
+        <div class="px-5 pb-5 pt-0">
+          <button onclick="openVideoModal('Minh Thảo Haircare', 'Tóc khô tẩy dùng có rít không?', 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800')" 
+                  class="w-full py-2 rounded-xl bg-stone-50 hover:bg-amber-100 hover:text-brand-brown text-stone-700 text-xs font-semibold transition flex items-center justify-center gap-1.5">
+            <i data-lucide="play-circle" class="w-4 h-4"></i> Xem Video Review
+          </button>
+        </div>
+      </div>
+
+      <!-- Video Card 3 -->
+      <div class="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 group flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+        <div>
+          <div class="relative aspect-video bg-stone-900 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Hoàng Vy Vlog', 'Mùi hương hoài niệm nhưng có bị nồng như nước nấu không?', 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&auto=format&fit=crop&q=80')">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent z-10"></div>
+            <div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition duration-700 ease-out" style="background-image: url('https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&auto=format&fit=crop&q=60');"></div>
+            
+            <button class="absolute z-20 w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-lg group-hover:scale-125 group-hover:bg-amber-600 transition-all duration-300">
+              <i data-lucide="play" class="w-5 h-5 fill-current ml-0.5"></i>
+            </button>
+            <span class="absolute bottom-3 left-3 z-20 text-white text-[11px] font-semibold bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded-md flex items-center gap-1">
+              <i data-lucide="video" class="w-3 h-3"></i> 04:10
+            </span>
+            <span class="absolute top-3 right-3 z-20 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 animate-pulse">
+              ● Reels
+            </span>
+          </div>
+
+          <div class="p-5">
+            <div class="flex items-center gap-2.5 mb-2.5">
+              <div class="w-7 h-7 rounded-full bg-stone-200 text-stone-800 font-bold text-xs flex items-center justify-center shadow-inner">H</div>
+              <span class="text-xs font-bold text-stone-900">Hoàng Vy Vlog</span>
+              <span class="text-[11px] text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full font-medium">Review mùi hương</span>
+            </div>
+            <h3 class="text-sm font-bold text-stone-900 group-hover:text-brand-brown transition leading-snug">
+              "Mùi hương hoài niệm nhưng có bị nồng như nước nấu không?"
+            </h3>
+            <p class="text-xs text-stone-600 mt-2 line-clamp-3 leading-relaxed">
+              "Mùi bồ kết thoang thoảng dịu nhẹ rất tự nhiên, không bị hắc nồng. Dạng chai đóng sẵn tiện gấp 10 lần việc tự nướng bồ kết."
+            </p>
+          </div>
+        </div>
+
+        <div class="px-5 pb-5 pt-0">
+          <button onclick="openVideoModal('Hoàng Vy Vlog', 'Mùi hương hoài niệm', 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800')" 
+                  class="w-full py-2 rounded-xl bg-stone-50 hover:bg-amber-100 hover:text-brand-brown text-stone-700 text-xs font-semibold transition flex items-center justify-center gap-1.5">
+            <i data-lucide="play-circle" class="w-4 h-4"></i> Xem Video Review
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PRODUCT INFO SECTION ==================== -->
+  <section id="san-pham" class="py-16 md:py-24 bg-white border-y border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Product Showcase Visual -->
+        <div class="lg:col-span-5 text-center" data-aos="zoom-in" data-aos-duration="800">
+          <div class="inline-block relative p-8 rounded-3xl bg-gradient-to-b from-stone-50 via-amber-50/40 to-stone-100 border border-stone-200 shadow-xl max-w-sm w-full group">
+            
+            <div class="w-48 h-72 mx-auto rounded-3xl bg-gradient-to-b from-brand-brown via-stone-950 to-brand-darkbrown p-5 text-white flex flex-col justify-between shadow-2xl relative border-2 border-amber-400/40 transform group-hover:scale-105 transition duration-500">
+              
+              <div class="text-center pt-1">
+                <span class="text-[10px] tracking-widest uppercase text-amber-300 font-extrabold">THORAKAO</span>
+                <p class="text-[11px] font-medium text-stone-300">VIETNAM HERBAL HERITAGE</p>
+              </div>
+
+              <div class="text-center py-4">
+                <div class="w-16 h-16 mx-auto rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center mb-2 shadow-inner group-hover:rotate-12 transition duration-500">
+                  <i data-lucide="sparkle" class="w-8 h-8 text-amber-400"></i>
+                </div>
+                <h4 class="font-black text-sm uppercase tracking-wide">Dầu Gội Bồ Kết</h4>
+                <p class="text-[10px] text-amber-200/90 mt-0.5">Gleditschia Shampoo</p>
+              </div>
+
+              <div class="text-center pb-2 border-t border-white/10 pt-2 text-[10px] text-stone-400">
+                Chiết xuất thảo mộc lành tính
+              </div>
+            </div>
+            
+            <!-- Price Block -->
+            <div class="mt-6 p-4 rounded-2xl bg-white border border-stone-200/90 shadow-sm">
+              <span class="text-xs text-stone-500 font-semibold block">Giá tham khảo niêm yết:</span>
+              <div class="flex items-center justify-center gap-2 mt-1">
+                <span class="text-2xl sm:text-3xl font-black text-brand-brown">65.000đ - 85.000đ</span>
+              </div>
+              <p class="text-[11px] text-brand-green font-bold mt-1">✓ Dung tích 400ml & 750ml tiết kiệm</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specifications & Verified Claims -->
+        <div class="lg:col-span-7 space-y-6" data-aos="fade-left" data-aos-duration="900">
+          <div>
+            <span class="text-xs font-bold text-brand-green uppercase tracking-wider bg-brand-lightgreen px-3.5 py-1.5 rounded-full border border-emerald-200">
+              Thông Tin Công Bố Minh Bạch
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-darkbrown mt-3 tracking-tight">
+              Dầu Gội Bồ Kết Thorakao
+            </h2>
+            <p class="text-stone-600 text-sm sm:text-base mt-2 leading-relaxed">
+              Kế thừa phương pháp gội đầu bằng quả bồ kết truyền thống của phụ nữ Việt Nam, kết hợp công nghệ điều chế hiện đại giúp việc sử dụng thuận tiện hơn trong sinh hoạt hằng ngày mà không cần mất thời gian nướng hay nấu nước.
+            </p>
+          </div>
+
+          <!-- 2 Spec Blocks -->
+          <div class="grid sm:grid-cols-2 gap-4 pt-1">
+            <div class="p-5 rounded-2xl bg-stone-50 border border-stone-200/80 hover:border-amber-400/60 transition duration-200 hover:shadow-sm">
+              <div class="flex items-center gap-3 mb-2.5">
+                <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
+                  <i data-lucide="leaf" class="w-5 h-5"></i>
+                </div>
+                <h4 class="text-sm font-bold text-stone-900">Thành Phần Chính</h4>
+              </div>
+              <p class="text-xs text-stone-600 leading-relaxed">
+                Chiết xuất từ quả bồ kết tự nhiên kết hợp cùng các thành phần làm sạch dịu nhẹ trong công thức dầu gội thành phẩm. Bạn có thể tham khảo bảng thành phần đầy đủ in trên bao bì.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-stone-50 border border-stone-200/80 hover:border-emerald-400/60 transition duration-200 hover:shadow-sm">
+              <div class="flex items-center gap-3 mb-2.5">
+                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-brand-green flex items-center justify-center">
+                  <i data-lucide="wind" class="w-5 h-5"></i>
+                </div>
+                <h4 class="text-sm font-bold text-stone-900">Công Dụng Theo Công Bố</h4>
+              </div>
+              <p class="text-xs text-stone-600 leading-relaxed">
+                Hỗ trợ làm sạch bã nhờn và gàu, giúp chân tóc thông thoáng dễ chịu, hạn chế tình trạng bết dính và duy trì độ đen mượt, chắc khỏe tự nhiên cho mái tóc.
+              </p>
+            </div>
+          </div>
+
+          <!-- Usage Instructions -->
+          <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200/90">
+            <h4 class="text-xs font-bold text-brand-brown uppercase tracking-wider mb-2.5 flex items-center gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-700"></i> Hướng Dẫn Sử Dụng Đúng Cách
+            </h4>
+            <ol class="text-xs text-stone-700 space-y-1.5 list-decimal list-inside leading-relaxed font-medium">
+              <li>Làm ướt toàn bộ tóc và da đầu bằng nước sạch.</li>
+              <li>Lấy một lượng dầu gội phù hợp ra tay, thoa đều và massage nhẹ nhàng da đầu.</li>
+              <li>Xả sạch kỹ lại với nước mát hoặc ấm vừa phải.</li>
+              <li><span class="text-amber-900 font-bold">Lưu ý cho tóc khô/uốn tẩy:</span> Nên kết hợp dùng thêm dầu xả ở phần thân và đuôi tóc để tăng độ suôn mượt và chống xơ rối.</li>
+            </ol>
+          </div>
+
+          <!-- Direct Shopee & Official links -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="https://shopee.vn/search?keyword=thorakao%20chinh%20hang" target="_blank" rel="noopener noreferrer"
+               class="btn-shimmer px-7 py-3.5 rounded-full bg-brand-brown hover:bg-brand-darkbrown text-amber-100 text-sm font-bold shadow-lg shadow-brand-brown/20 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+              <i data-lucide="shopping-cart" class="w-4 h-4 text-amber-300"></i>
+              <span>Mua Ngay Tại Shopee Mall Chính Hãng</span>
+            </a>
+            <a href="https://thorakao.com" target="_blank" rel="noopener noreferrer"
+               class="px-5 py-3.5 rounded-full border border-stone-300 text-stone-700 text-sm font-semibold hover:bg-stone-50 transition flex items-center gap-2">
+              <i data-lucide="globe" class="w-4 h-4 text-stone-500"></i>
+              <span>Website Thorakao.com</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== INTERACTIVE QUIZ SECTION ==================== -->
+  <section id="quiz-nep-toc" class="py-16 md:py-24 bg-[#F8F5EE] relative overflow-hidden">
+    
+    <!-- Background Decor -->
+    <div class="absolute top-0 right-10 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+      
+      <!-- Quiz Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-brand-brown text-xs font-bold uppercase tracking-wider border border-amber-200">
+          <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i> Mini Quiz Cá Nhân Hóa (1 Phút)
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-darkbrown mt-3 tracking-tight">Nếp Tóc Của Bạn Là Gì?</h2>
+        <p class="text-stone-600 text-sm sm:text-base mt-2">
+          5 câu hỏi ngắn giúp liên hệ trải nghiệm của KOC với tình trạng tóc thực tế của bạn, từ đó nhận gợi ý chăm sóc chuẩn xác nhất!
+        </p>
+      </div>
+
+      <!-- Quiz Interactive Card Container -->
+      <div class="bg-white rounded-3xl shadow-xl border border-stone-200/90 p-6 sm:p-10 relative transition-all duration-500" id="quiz-container" data-aos="zoom-in" data-aos-duration="600">
+        
+        <!-- Progress Bar -->
+        <div id="quiz-progress-wrapper" class="mb-8">
+          <div class="flex items-center justify-between text-xs font-bold text-stone-500 mb-2">
+            <span id="quiz-step-text" class="text-brand-brown font-extrabold">Câu hỏi 1 / 5</span>
+            <span id="quiz-percent-text" class="text-amber-700">20%</span>
+          </div>
+          <div class="w-full h-3 bg-stone-100 rounded-full overflow-hidden p-0.5 border border-stone-200">
+            <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-amber-500 to-brand-brown rounded-full transition-all duration-500 ease-out" style="width: 20%;"></div>
+          </div>
+        </div>
+
+        <!-- Question View (With smooth animated transition) -->
+        <div id="question-card" class="space-y-6 transition-all duration-300 opacity-100">
+          <div class="space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-3 py-1 rounded-md inline-block" id="question-badge">
+              Câu 1
+            </span>
+            <h3 class="text-lg sm:text-2xl font-bold text-stone-900 leading-snug" id="question-title">
+              Mái tóc của bạn thường gặp tình trạng nào nhất?
+            </h3>
+          </div>
+
+          <!-- Options -->
+          <div class="space-y-3.5" id="options-container">
+            <!-- Dynamic Buttons rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Result View (Hidden Initially) -->
+        <div id="result-card" class="hidden text-center space-y-6">
+          <div class="w-20 h-20 mx-auto rounded-3xl bg-amber-100 text-amber-800 flex items-center justify-center shadow-lg border-2 border-amber-300 animate-bounce" style="animation-duration: 2s;">
+            <i data-lucide="award" class="w-10 h-10"></i>
+          </div>
+          
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-green bg-brand-lightgreen px-3.5 py-1.5 rounded-full border border-emerald-200">
+              Kết Quả Trắc Nghiệm Của Bạn
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-black text-brand-darkbrown mt-3" id="result-title">
+              Nếp tóc thích thoáng nhẹ
+            </h3>
+          </div>
+
+          <div class="text-left bg-stone-50 rounded-2xl p-6 sm:p-7 border border-stone-200 space-y-4 text-sm shadow-inner">
+            <div class="space-y-1">
+              <h4 class="font-bold text-brand-brown flex items-center gap-2">
+                <i data-lucide="user-check" class="w-4 h-4 text-amber-600"></i> Nếp tóc của bạn:
+              </h4>
+              <p class="text-stone-700 leading-relaxed pl-6" id="result-desc"></p>
+            </div>
+
+            <div class="pt-3 border-t border-stone-200 space-y-1">
+              <h4 class="font-bold text-brand-brown flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i> Gợi ý chăm sóc:
+              </h4>
+              <p class="text-stone-700 leading-relaxed pl-6" id="result-tips"></p>
+            </div>
+
+            <div class="pt-3 border-t border-stone-200 space-y-1">
+              <h4 class="font-bold text-brand-brown flex items-center gap-2">
+                <i data-lucide="compass" class="w-4 h-4 text-amber-600"></i> Khám phá cùng Thorakao:
+              </h4>
+              <p class="text-stone-700 leading-relaxed pl-6" id="result-thorakao"></p>
+            </div>
+          </div>
+
+          <!-- Result Actions -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://thorakao.com" target="_blank" rel="noopener noreferrer" 
+               class="btn-shimmer w-full sm:w-auto px-7 py-4 rounded-full bg-brand-brown hover:bg-brand-darkbrown text-amber-100 font-bold shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2" id="result-cta-btn">
+              <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-300"></i>
+              <span id="result-cta-text">Khám phá trải nghiệm gội sạch cùng Thorakao</span>
+            </a>
+            
+            <button onclick="resetQuiz()" class="w-full sm:w-auto px-6 py-4 rounded-full border border-stone-300 text-stone-700 font-bold hover:bg-stone-50 transition flex items-center justify-center gap-2">
+              <i data-lucide="rotate-ccw" class="w-4 h-4 text-stone-500"></i>
+              <span>Làm lại trắc nghiệm</span>
+            </button>
+          </div>
+
+          <p class="text-[11px] text-stone-400 italic pt-2">
+            *Lưu ý: Quiz mang tính định hướng nhu cầu và thói quen chăm sóc tóc, không phải công cụ chẩn đoán tình trạng tóc hoặc bảo đảm hiệu quả sản phẩm.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FAQ SECTION (8 CÂU) ==================== -->
+  <section id="faq" class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+        <span class="text-xs font-bold text-brand-brown uppercase tracking-wider bg-amber-100 px-3.5 py-1.5 rounded-full border border-amber-200">
+          Giải Đáp Bình Luận KOC Series
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-darkbrown mt-3 tracking-tight">Hỏi & Đáp Thường Gặp (FAQ)</h2>
+        <p class="text-stone-600 text-sm sm:text-base mt-2">Tổng hợp 8 thắc mắc phổ biến nhất từ người xem sau khi theo dõi các video review.</p>
+        
+        <!-- Live Filter Bar -->
+        <div class="mt-6 relative max-w-md mx-auto">
+          <i data-lucide="search" class="w-4 h-4 text-stone-400 absolute left-4 top-3.5"></i>
+          <input type="text" id="faq-search" oninput="filterFaqs()" placeholder="Tìm kiếm nhanh: mùi hương, khô rít, bồ kết, chính hãng..." 
+                 class="w-full pl-11 pr-4 py-3 rounded-full border border-stone-200 text-sm focus:outline-none focus:border-brand-brown focus:ring-2 focus:ring-brand-brown/20 shadow-sm transition">
+        </div>
+      </div>
+
+      <!-- FAQ Accordion List -->
+      <div class="space-y-3.5" id="faq-list">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden transition-all duration-300 bg-stone-50/60 hover:bg-stone-50" data-aos="fade-up" data-aos-delay="50">
+          <button onclick="toggleFaq(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-semibold text-stone-900 text-sm sm:text-base">
+            <span>1. Dầu gội bồ kết Thorakao có gì khác với nước bồ kết nấu truyền thống?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-200/60 pt-3">
+            Khác với cách nấu bồ kết để gội đầu ngày xưa, Thorakao đưa bồ kết vào công thức dầu gội thành phẩm, giúp việc sử dụng thuận tiện hơn trong sinh hoạt hằng ngày mà không cần mất thời gian chuẩn bị.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden transition-all duration-300 bg-stone-50/60 hover:bg-stone-50" data-aos="fade-up" data-aos-delay="100">
+          <button onclick="toggleFaq(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-semibold text-stone-900 text-sm sm:text-base">
+            <span>2. Dầu gội bồ kết Thorakao có những thành phần gì?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-200/60 pt-3">
+            Sản phẩm có thành phần bồ kết kết hợp với các thành phần khác trong công thức dầu gội. Bạn có thể tham khảo bảng thành phần đầy đủ trên bao bì để tìm hiểu kỹ hơn trước khi lựa chọn.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden transition-all duration-300 bg-stone-50/60 hover:bg-stone-50" data-aos="fade-up" data-aos-delay="150">
+          <button onclick="toggleFaq(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-semibold text-stone-900 text-sm sm:text-base">
+            <span>3. Dầu gội bồ kết Thorakao phù hợp với loại tóc nào?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-200/60 pt-3">
+            Mỗi mái tóc có nhu cầu chăm sóc khác nhau. Để cân nhắc mức độ phù hợp, bạn nên xem xét tình trạng tóc, da đầu, thành phần sản phẩm và cảm nhận thực tế khi sử dụng.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden transition-all duration-300 bg-stone-50/60 hover:bg-stone-50" data-aos="fade-up" data-aos-delay="200">
+          <button onclick="toggleFaq(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-semibold text-stone-900 text-sm sm:text-base">
+            <span>4. Dùng dầu gội bồ kết Thorakao có khiến tóc bị khô hoặc rít không?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-200/60 pt-3">
+            Cảm giác sau gội có thể khác nhau tùy tình trạng tóc và thói quen chăm sóc của mỗi người. Nếu tóc dễ khô hoặc rối, bạn có thể cân nhắc kết hợp dầu xả phù hợp để hỗ trợ chăm sóc thân và ngọn tóc.
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden transition-all duration-300 bg-stone-50/60 hover:bg-stone-50" data-aos="fade-up" data-aos-delay="250">
+          <button onclick="toggleFaq(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-semibold text-stone-900 text-sm sm:text-base">
+            <span>5. Dầu gội bồ kết Thorakao có mùi hương như thế nào?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-200/60 pt-3">
+            Mùi hương của dầu gội thành phẩm có thể khác với nước bồ kết nấu truyền thống. Vì cảm nhận mùi hương mang tính cá nhân, bạn có thể tham khảo thêm các video trải nghiệm của KOC trong series “Thử món mẹ từng dùng”.
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden transition-all duration-300 bg-stone-50/60 hover:bg-stone-50" data-aos="fade-up" data-aos-delay="300">
+          <button onclick="toggleFaq(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-semibold text-stone-900 text-sm sm:text-base">
+            <span>6. Nên sử dụng dầu gội bồ kết Thorakao như thế nào?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-200/60 pt-3">
+            Làm ướt tóc, lấy lượng dầu gội phù hợp, massage nhẹ nhàng da đầu rồi xả sạch với nước. Bạn nên tham khảo thêm hướng dẫn trên bao bì để sử dụng sản phẩm đúng cách.
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden transition-all duration-300 bg-stone-50/60 hover:bg-stone-50" data-aos="fade-up" data-aos-delay="350">
+          <button onclick="toggleFaq(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-semibold text-stone-900 text-sm sm:text-base">
+            <span>7. Có thể sử dụng dầu gội bồ kết Thorakao hằng ngày không?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-200/60 pt-3">
+            Tần suất gội đầu phụ thuộc vào tình trạng da đầu, mức độ tiết dầu và thói quen sinh hoạt. Bạn nên lựa chọn tần suất phù hợp với nhu cầu cá nhân và tuân theo hướng dẫn sử dụng của sản phẩm.
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden transition-all duration-300 bg-stone-50/60 hover:bg-stone-50" data-aos="fade-up" data-aos-delay="400">
+          <button onclick="toggleFaq(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-semibold text-stone-900 text-sm sm:text-base">
+            <span>8. Mua dầu gội bồ kết Thorakao chính hãng ở đâu?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-200/60 pt-3">
+            Bạn có thể tìm mua sản phẩm qua các kênh phân phối chính thức của Thorakao. Để thuận tiện và hạn chế rủi ro mua nhầm hàng không rõ nguồn gốc, hãy sử dụng đường dẫn đến gian hàng chính hãng được tích hợp ngay trên landing page.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-brand-darkbrown text-stone-300 py-14 border-t border-stone-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-12 gap-8 items-center">
+        <div class="md:col-span-6 space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-amber-500 text-stone-900 font-black flex items-center justify-center text-lg shadow-md">
+              TH
+            </div>
+            <span class="text-xl font-bold text-white tracking-wide">THORAKAO VIỆT NAM</span>
+          </div>
+          <p class="text-xs text-stone-400 max-w-md leading-relaxed font-light">
+            Chiến dịch "Thử món mẹ từng dùng" - Đồng hành cùng các KOC mang đến góc nhìn chân thực, minh bạch về các giá trị truyền thống bền vững.
+          </p>
+        </div>
+
+        <div class="md:col-span-6 flex flex-wrap md:justify-end gap-5 text-xs font-semibold">
+          <a href="https://thorakao.com" target="_blank" class="hover:text-amber-300 transition">Website Thorakao</a>
+          <span class="text-stone-600">•</span>
+          <a href="https://shopee.vn" target="_blank" class="hover:text-amber-300 transition">Shopee Mall</a>
+          <span class="text-stone-600">•</span>
+          <a href="#quiz-nep-toc" class="hover:text-amber-300 transition">Quiz Nếp Tóc</a>
+          <span class="text-stone-600">•</span>
+          <a href="#faq" class="hover:text-amber-300 transition">Hỏi & Đáp</a>
+        </div>
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-stone-800/80 text-center md:text-left text-[11px] text-stone-500">
+        © 2026 Landing Page KOC Series Thorakao. Trang hỗ trợ thông tin chiến dịch truyền thông giai đoạn 2.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== VIDEO PLAYER MODAL ==================== -->
+  <div id="video-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-stone-900 border border-stone-700 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="video-modal-card">
+      <div class="p-4 bg-stone-800 text-white flex items-center justify-between">
+        <div>
+          <h4 class="text-sm font-bold" id="modal-video-author">Lan Anh Beauty</h4>
+          <p class="text-[11px] text-stone-400" id="modal-video-title">Review chân thực</p>
+        </div>
+        <button onclick="closeVideoModal()" class="w-8 h-8 rounded-full bg-stone-700 hover:bg-stone-600 text-white flex items-center justify-center transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="aspect-video bg-black flex items-center justify-center relative">
+        <div id="modal-video-bg" class="w-full h-full bg-cover bg-center opacity-60"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-white bg-black/40">
+          <div class="w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center mb-3 animate-pulse">
+            <i data-lucide="play" class="w-8 h-8 fill-current ml-1"></i>
+          </div>
+          <p class="text-sm font-semibold max-w-md">Video KOC review đang sẵn sàng phát</p>
+          <span class="text-xs text-stone-300 mt-1">Đã được cấp quyền sử dụng cho chiến dịch "Thử món mẹ từng dùng"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CHATBOT WIDGET (ANIMATED) ==================== -->
+  <div class="fixed bottom-5 right-5 z-50">
+    <!-- Chat Toggle Button -->
+    <button id="chat-toggle-btn" onclick="toggleChatWindow()" 
+            class="relative w-14 h-14 rounded-full bg-brand-brown hover:bg-brand-darkbrown text-amber-200 shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group">
+      <i data-lucide="message-circle" class="w-7 h-7 group-hover:rotate-12 transition duration-300"></i>
+      <!-- Animated Ping badge -->
+      <span class="absolute top-0 right-0 flex h-3.5 w-3.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-amber-500"></span>
+      </span>
+    </button>
+
+    <!-- Chat Modal Window -->
+    <div id="chat-modal" class="hidden absolute bottom-16 right-0 w-[90vw] sm:w-96 bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden flex flex-col h-[520px] transition-all duration-300">
+      
+      <!-- Header -->
+      <div class="bg-brand-brown p-4 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold text-xs border border-amber-300/30">
+            TH
+          </div>
+          <div>
+            <h4 class="text-xs font-bold leading-tight">Trợ Lý Ảo Thorakao</h4>
+            <p class="text-[10px] text-amber-200/80 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Đang trực tuyến
+            </p>
+          </div>
+        </div>
+        <button onclick="toggleChatWindow()" class="text-stone-300 hover:text-white p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Messages Stream -->
+      <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-[#FDFBF7] text-xs">
+        
+        <!-- Bot Greeting -->
+        <div class="flex gap-2 items-start chat-bubble-enter">
+          <div class="w-6 h-6 rounded-full bg-brand-brown text-amber-300 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+            TH
+          </div>
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-stone-200 text-stone-700 space-y-2 shadow-sm max-w-[85%]">
+            <p>Xin chào! Mình là trợ lý ảo giải đáp thắc mắc sau khi bạn xem KOC Series <strong>"Thử món mẹ từng dùng"</strong>.</p>
+            <p>Bạn đang tò mò về điều gì nhất?</p>
+          </div>
+        </div>
+
+        <!-- Suggestion Chips -->
+        <div class="space-y-1.5 pt-1 pl-8" id="quick-chips">
+          <p class="text-[10px] text-stone-400 font-semibold uppercase">Gợi ý nhanh:</p>
+          <div class="flex flex-wrap gap-1.5">
+            <button onclick="sendQuickMessage('Mua dầu gội Thorakao chính hãng ở đâu?')" class="px-2.5 py-1 rounded-full bg-stone-100 hover:bg-amber-100 hover:text-brand-brown text-stone-600 transition text-[11px] border border-stone-200">
+              📍 Mua chính hãng ở đâu?
+            </button>
+            <button onclick="sendQuickMessage('Tóc khô rít có dùng được không?')" class="px-2.5 py-1 rounded-full bg-stone-100 hover:bg-amber-100 hover:text-brand-brown text-stone-600 transition text-[11px] border border-stone-200">
+              🧴 Có bị khô rít tóc không?
+            </button>
+            <button onclick="sendQuickMessage('Mùi hương bồ kết như thế nào?')" class="px-2.5 py-1 rounded-full bg-stone-100 hover:bg-amber-100 hover:text-brand-brown text-stone-600 transition text-[11px] border border-stone-200">
+              🌸 Mùi hương thế nào?
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Input Field -->
+      <div class="p-3 bg-white border-t border-stone-200 flex items-center gap-2">
+        <input type="text" id="chat-input" onkeypress="handleChatEnter(event)" placeholder="Nhập câu hỏi của bạn..." 
+               class="flex-1 px-4 py-2.5 rounded-full border border-stone-200 text-xs focus:outline-none focus:border-brand-brown focus:ring-1 focus:ring-brand-brown">
+        <button onclick="sendUserMessage()" class="w-9 h-9 rounded-full bg-brand-brown hover:bg-brand-darkbrown text-amber-200 flex items-center justify-center shrink-0 transition hover:scale-105 active:scale-95">
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // Initialize AOS (Animate on Scroll)
+    AOS.init({
+      duration: 750,
+      once: true,
+      offset: 60,
+      easing: 'ease-out-cubic'
+    });
+
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // ================= FAQ ACCORDION =================
+    function toggleFaq(btn) {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('[data-lucide="chevron-down"]');
+      const isHidden = content.classList.contains('hidden');
+
+      // Close all other items
+      document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.faq-item [data-lucide="chevron-down"]').forEach(ic => ic.style.transform = 'rotate(0deg)');
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    function filterFaqs() {
+      const keyword = document.getElementById('faq-search').value.toLowerCase().trim();
+      const items = document.querySelectorAll('.faq-item');
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(keyword)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // ================= QUIZ LOGIC (5 CÂU) =================
+    const quizQuestions = [
+      {
+        id: 1,
+        question: "Mái tóc của bạn thường gặp tình trạng nào nhất?",
+        options: [
+          { text: "A. Dễ bết dầu, nhất là phần chân tóc.", val: "A" },
+          { text: "B. Khô, dễ rối hoặc thiếu độ mềm mại.", val: "B" },
+          { text: "C. Tương đối ổn định, ít gặp vấn đề.", val: "C" }
+        ]
+      },
+      {
+        id: 2,
+        question: "Sau một ngày dài, mái tóc thường khiến bạn bận tâm điều gì?",
+        options: [
+          { text: "A. Chân tóc bắt đầu bết, mất độ bồng bềnh.", val: "A" },
+          { text: "B. Tóc xơ, rối và khó vào nếp.", val: "B" },
+          { text: "C. Không có vấn đề gì đáng kể.", val: "C" }
+        ]
+      },
+      {
+        id: 3,
+        question: "Bạn thường gội đầu với tần suất như thế nào?",
+        options: [
+          { text: "A. Hằng ngày hoặc cách một ngày.", val: "A" },
+          { text: "B. Khoảng 2-3 lần/tuần.", val: "B" },
+          { text: "C. Tùy lịch sinh hoạt và tình trạng tóc.", val: "C" }
+        ]
+      },
+      {
+        id: 4,
+        question: "Khi chọn dầu gội, yếu tố nào khiến bạn chú ý đầu tiên?",
+        options: [
+          { text: "A. Cảm giác sạch thoáng, dễ chịu sau gội.", val: "A" },
+          { text: "B. Tóc mềm mại, dễ chải và ít rối.", val: "B" },
+          { text: "C. Thành phần, mùi hương và mức giá phù hợp.", val: "C" }
+        ]
+      },
+      {
+        id: 5,
+        question: "Nếu thử dầu gội bồ kết Thorakao, bạn tò mò nhất về điều gì?",
+        options: [
+          { text: "A. Khả năng làm sạch và cảm giác da đầu.", val: "A" },
+          { text: "B. Cảm giác tóc sau khi gội.", val: "B" },
+          { text: "C. Mùi hương bồ kết và trải nghiệm so với dầu gội thường dùng.", val: "C" }
+        ]
+      }
+    ];
+
+    const quizResults = {
+      A: {
+        title: "Nếp tóc thích thoáng nhẹ",
+        desc: "Bạn thường quan tâm đến tình trạng tóc nhanh bết và mong muốn duy trì cảm giác sạch thoáng, dễ chịu sau mỗi lần gội.",
+        tips: "Ưu tiên làm sạch da đầu nhẹ nhàng, lựa chọn tần suất gội phù hợp với mức độ tiết dầu và hạn chế sử dụng quá nhiều sản phẩm dưỡng ở chân tóc.",
+        thorakao: "Hãy tìm hiểu dầu gội bồ kết Thorakao và tham khảo trải nghiệm của các KOC về khả năng làm sạch, cảm giác da đầu sau gội để cân nhắc mức độ phù hợp với bản thân.",
+        cta: "Khám phá trải nghiệm gội sạch cùng Thorakao"
+      },
+      B: {
+        title: "Nếp tóc cần nâng niu",
+        desc: "Mái tóc có xu hướng khô, dễ rối hoặc thiếu độ mềm mại. Vì vậy, bạn thường chú ý đến cảm giác tóc sau khi gội và nhu cầu chăm sóc thân tóc.",
+        tips: "Hạn chế tác động nhiệt thường xuyên, tránh chà xát mạnh khi gội và kết hợp dầu xả phù hợp để hỗ trợ chăm sóc phần thân và ngọn tóc.",
+        thorakao: "Khi tìm hiểu dầu gội bồ kết Thorakao, hãy chú ý đến những đánh giá của KOC về độ mềm, cảm giác khô hoặc rít sau gội để có thêm thông tin trước khi trải nghiệm.",
+        cta: "Tìm hiểu cách chăm tóc cùng Thorakao"
+      },
+      C: {
+        title: "Nếp tóc theo gu riêng",
+        desc: "Bạn ít gặp vấn đề nổi bật về tóc và thường lựa chọn sản phẩm dựa trên sở thích, mùi hương, thành phần, sự tiện lợi và mức giá phù hợp.",
+        tips: "Duy trì thói quen chăm sóc tóc phù hợp với bản thân, đồng thời tìm hiểu thông tin và trải nghiệm thực tế trước khi lựa chọn sản phẩm mới.",
+        thorakao: "Nếu tò mò về món dầu gội mẹ từng dùng, hãy khám phá mùi hương bồ kết, kết cấu và cảm nhận của các KOC để xem Thorakao có phù hợp với phong cách chăm sóc tóc của bạn không.",
+        cta: "Khám phá nếp tóc cùng Thorakao"
+      }
+    };
+
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+
+    function renderQuestion() {
+      const q = quizQuestions[currentQuestionIndex];
+      const card = document.getElementById('question-card');
+      
+      // Animation transition between questions
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(10px)';
+
+      setTimeout(() => {
+        document.getElementById('question-badge').innerText = `Câu ${q.id}`;
+        document.getElementById('question-title').innerText = q.question;
+        document.getElementById('quiz-step-text').innerText = `Câu hỏi ${currentQuestionIndex + 1} / 5`;
+        
+        const percent = ((currentQuestionIndex + 1) / 5) * 100;
+        document.getElementById('quiz-percent-text').innerText = `${percent}%`;
+        document.getElementById('quiz-progress-bar').style.width = `${percent}%`;
+
+        const optionsDiv = document.getElementById('options-container');
+        optionsDiv.innerHTML = '';
+
+        q.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = "w-full text-left p-4 sm:p-5 rounded-2xl border border-stone-200 hover:border-brand-brown hover:bg-amber-50/60 text-stone-800 text-sm font-semibold transition-all duration-200 flex items-center justify-between group active:scale-[0.99] shadow-sm hover:shadow";
+          btn.innerHTML = `
+            <span class="group-hover:text-brand-brown transition">${opt.text}</span>
+            <span class="w-7 h-7 rounded-xl border border-stone-300 group-hover:border-brand-brown group-hover:bg-brand-brown group-hover:text-amber-200 flex items-center justify-center text-xs font-bold text-stone-400 shrink-0 transition">
+              ${opt.val}
+            </span>
+          `;
+          btn.onclick = () => selectOption(opt.val);
+          optionsDiv.appendChild(btn);
+        });
+
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, 150);
+    }
+
+    function selectOption(val) {
+      userAnswers.push(val);
+      if (currentQuestionIndex < quizQuestions.length - 1) {
+        currentQuestionIndex++;
+        renderQuestion();
+      } else {
+        calculateAndShowResult();
+      }
+    }
+
+    function calculateAndShowResult() {
+      const counts = { A: 0, B: 0, C: 0 };
+      userAnswers.forEach(ans => { counts[ans] = (counts[ans] || 0) + 1; });
+
+      let maxScore = Math.max(counts.A, counts.B, counts.C);
+      let topGroups = Object.keys(counts).filter(k => counts[k] === maxScore);
+
+      let finalResultKey = 'A';
+
+      if (topGroups.length === 1) {
+        finalResultKey = topGroups[0];
+      } else {
+        // TIE BREAKER: ưu tiên đáp án Câu 1 nếu thuộc nhóm hòa, nếu không xét Câu 4
+        const q1Ans = userAnswers[0];
+        const q4Ans = userAnswers[3];
+
+        if (topGroups.includes(q1Ans)) {
+          finalResultKey = q1Ans;
+        } else if (topGroups.includes(q4Ans)) {
+          finalResultKey = q4Ans;
+        } else {
+          finalResultKey = topGroups[0];
+        }
+      }
+
+      const res = quizResults[finalResultKey];
+      document.getElementById('question-card').classList.add('hidden');
+      document.getElementById('quiz-progress-wrapper').classList.add('hidden');
+      document.getElementById('result-card').classList.remove('hidden');
+
+      document.getElementById('result-title').innerText = res.title;
+      document.getElementById('result-desc').innerText = res.desc;
+      document.getElementById('result-tips').innerText = res.tips;
+      document.getElementById('result-thorakao').innerText = res.thorakao;
+      document.getElementById('result-cta-text').innerText = res.cta;
+
+      // Confetti celebration
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }
+      lucide.createIcons();
+    }
+
+    function resetQuiz() {
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      document.getElementById('result-card').classList.add('hidden');
+      document.getElementById('question-card').classList.remove('hidden');
+      document.getElementById('quiz-progress-wrapper').classList.remove('hidden');
+      renderQuestion();
+    }
+
+    renderQuestion();
+
+    // ================= VIDEO MODAL LOGIC =================
+    function openVideoModal(author, title, bgUrl) {
+      document.getElementById('modal-video-author').innerText = author;
+      document.getElementById('modal-video-title').innerText = title;
+      document.getElementById('modal-video-bg').style.backgroundImage = `url('${bgUrl}')`;
+      
+      const modal = document.getElementById('video-modal');
+      const card = document.getElementById('video-modal-card');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        card.classList.remove('scale-95');
+        card.classList.add('scale-100');
+      }, 20);
+      lucide.createIcons();
+    }
+
+    function closeVideoModal() {
+      const modal = document.getElementById('video-modal');
+      const card = document.getElementById('video-modal-card');
+      modal.classList.add('opacity-0');
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
+
+    // ================= CHATBOT LOGIC WITH TYPING EFFECT =================
+    function toggleChatWindow() {
+      const modal = document.getElementById('chat-modal');
+      modal.classList.toggle('hidden');
+      if (!modal.classList.contains('hidden')) {
+        document.getElementById('chat-input').focus();
+      }
+    }
+
+    function handleChatEnter(e) {
+      if (e.key === 'Enter') sendUserMessage();
+    }
+
+    function sendQuickMessage(text) {
+      document.getElementById('chat-input').value = text;
+      sendUserMessage();
+    }
+
+    function sendUserMessage() {
+      const input = document.getElementById('chat-input');
+      const query = input.value.trim();
+      if (!query) return;
+
+      appendChatMessage(query, 'user');
+      input.value = '';
+
+      // Hiệu ứng "Trợ lý ảo đang nhập..."
+      showTypingIndicator();
+
+      setTimeout(() => {
+        removeTypingIndicator();
+        const botReply = generateBotReply(query);
+        appendChatMessage(botReply, 'bot');
+      }, 600);
+    }
+
+    function showTypingIndicator() {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.id = 'typing-indicator';
+      div.className = "flex gap-2 items-center chat-bubble-enter";
+      div.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-brand-brown text-amber-300 flex items-center justify-center text-[10px] font-bold shrink-0">
+          TH
+        </div>
+        <div class="bg-white px-4 py-2.5 rounded-2xl rounded-tl-none border border-stone-200 text-stone-500 text-xs flex items-center gap-1.5 shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-stone-400 dot-1"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-stone-400 dot-2"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-stone-400 dot-3"></span>
+        </div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+      const el = document.getElementById('typing-indicator');
+      if (el) el.remove();
+    }
+
+    function appendChatMessage(text, sender) {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = "chat-bubble-enter";
+
+      if (sender === 'user') {
+        div.innerHTML = `
+          <div class="flex justify-end">
+            <div class="bg-brand-brown text-white p-3 rounded-2xl rounded-tr-none text-xs max-w-[85%] shadow-sm">
+              ${text}
+            </div>
+          </div>
+        `;
+      } else {
+        div.innerHTML = `
+          <div class="flex gap-2 items-start">
+            <div class="w-6 h-6 rounded-full bg-brand-brown text-amber-300 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+              TH
+            </div>
+            <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-stone-200 text-stone-700 text-xs space-y-1 shadow-sm max-w-[85%]">
+              ${text}
+            </div>
+          </div>
+        `;
+      }
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      lucide.createIcons();
+    }
+
+    function generateBotReply(query) {
+      const q = query.toLowerCase();
+
+      if (q.includes('mua ở đâu') || q.includes('chính hãng') || q.includes('địa chỉ') || q.includes('gian hàng') || q.includes('shopee')) {
+        return `Bạn có thể mua dầu gội bồ kết Thorakao chính hãng trực tiếp qua các gian hàng chính thức:<br><br>
+          • <strong>Shopee Mall / Website Thorakao.com</strong><br>
+          • Các đại lý mỹ phẩm uy tín trên toàn quốc.<br><br>
+          <a href="https://thorakao.com" target="_blank" class="text-amber-700 font-bold underline">Bấm vào đây để mở gian hàng chính hãng ➔</a>`;
+      }
+
+      if (q.includes('khô') || q.includes('rít') || q.includes('xơ') || q.includes('rối')) {
+        return `Dầu gội bồ kết giúp da đầu rất sạch thoáng. Tuy nhiên, nếu bạn có chất tóc khô xơ hoặc tóc tẩy nhuộm, bạn nên kết hợp dùng thêm dầu xả ở phần thân và ngọn tóc để duy trì độ mềm mượt tốt nhất nhé!`;
+      }
+
+      if (q.includes('mùi') || q.includes('hương') || q.includes('thơm')) {
+        return `Mùi hương của sản phẩm mang nét thảo mộc bồ kết thoang thoảng, dịu nhẹ và đã được điều chế hiện đại để thuận tiện cho sinh hoạt hằng ngày, không bị nồng hắc như nước nấu tự nhiên.`;
+      }
+
+      if (q.includes('thành phần') || q.includes('chiết xuất')) {
+        return `Sản phẩm có thành phần chính là chiết xuất quả bồ kết tự nhiên (Gleditschia) kết hợp cùng công thức dầu gội chuẩn kiểm nghiệm. Bạn có thể xem chi tiết bảng thành phần in trên thân chai nhé.`;
+      }
+
+      if (q.includes('hằng ngày') || q.includes('tần suất') || q.includes('mấy lần')) {
+        return `Bạn có thể gội hằng ngày hoặc cách ngày tùy thuộc vào lượng dầu tiết ra của da đầu và thói quen sinh hoạt. Hãy chọn tần suất khiến mái tóc bạn cảm thấy dễ chịu nhất!`;
+      }
+
+      if (q.includes('giá') || q.includes('bao nhiêu')) {
+        return `Dầu gội bồ kết Thorakao có mức giá tham khảo rất hạt dẻ, chỉ dao động từ <strong>65.000đ - 85.000đ</strong> tùy dung tích (400ml hoặc 750ml).`;
+      }
+
+      return `Cảm ơn câu hỏi của bạn! Với thắc mắc này, bạn có thể tham khảo mục <strong>Hỏi & Đáp (FAQ)</strong> trên trang hoặc nhắn tin trực tiếp cho đội ngũ CSKH tại gian hàng Shopee Mall của Thorakao để được hỗ trợ chi tiết nhất nhé!`;
+    }
+  </script>
+</body>
+</html>
