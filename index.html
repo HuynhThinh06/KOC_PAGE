@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LOKCOK - Type Your Vibe | Bàn Phím Cơ & Phụ Kiện Custom Thế Hệ Mới</title>
-  <meta name="description" content="LOKCOK - Thương hiệu bàn phím cơ và phụ kiện custom dành cho thế hệ trẻ Việt Nam. Nơi công nghệ gắn liền với phong cách sống, cảm hứng sáng tạo và dấu ấn cá nhân.">
+  <title>Home | LOKCOK - Type your vibe</title>
+  <meta name="description" content="LOKCOK - Type your vibe. Bàn phím cơ, Keycap, Switch chính hãng dành cho thế hệ trẻ Việt Nam.">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,376 +13,415 @@
       theme: {
         extend: {
           colors: {
-            lokcok: {
-              black: '#121214',
-              dark: '#1A1A1E',
-              gray: '#27272E',
-              lightgray: '#F4F4F6',
-              purple: '#7C3AED',
-              pink: '#EC4899',
-              sakura: '#F472B6',
-              mint: '#10B981',
-              matcha: '#84CC16',
-              gold: '#F59E0B',
-              cream: '#FAF9F6'
+            wix: {
+              black: '#000000',
+              dark: '#1A1A1A',
+              text: '#2B2B2B',
+              muted: '#5F6360',
+              border: '#E3E3E3',
+              lightbg: '#F9F9F9',
+              accent: '#B8860B'
             }
           },
           fontFamily: {
-            sans: ['"Be Vietnam Pro"', 'Inter', 'sans-serif']
+            sans: ['"Avenir Next"', '"Helvetica Neue"', 'Helvetica', 'Arial', '"Be Vietnam Pro"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif']
           }
         }
       }
     }
   </script>
 
-  <!-- Google Fonts & Lucide Icons -->
+  <!-- Google Fonts: Be Vietnam Pro & Playfair for authentic Wix look -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
     body {
-      font-family: 'Be Vietnam Pro', sans-serif;
-      background-color: #FAF9F6;
-      color: #1A1A1E;
-      overflow-x: hidden;
-    }
-    
-    /* Hiệu ứng trôi lơ lửng */
-    @keyframes floatSoft {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .animate-float {
-      animation: floatSoft 4s ease-in-out infinite;
+      font-family: 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, 'Be Vietnam Pro', sans-serif;
+      color: #000000;
+      background-color: #FFFFFF;
+      letter-spacing: 0.02em;
     }
 
-    /* Hiệu ứng quét sáng shimmer trên nút */
-    .btn-glow {
+    /* Phong cách nút bấm đặc trưng của template Wix */
+    .wix-btn-black {
+      background-color: #000000;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      padding: 12px 28px;
+      transition: all 0.2s ease;
+      display: inline-block;
+      text-align: center;
+    }
+    .wix-btn-black:hover {
+      background-color: #333333;
+    }
+
+    .wix-btn-outline {
+      border: 1px solid #000000;
+      color: #000000;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      padding: 11px 26px;
+      transition: all 0.2s ease;
+      display: inline-block;
+      text-align: center;
+    }
+    .wix-btn-outline:hover {
+      background-color: #000000;
+      color: #FFFFFF;
+    }
+
+    /* Hiệu ứng hover sản phẩm */
+    .product-image-container {
       position: relative;
       overflow: hidden;
+      background-color: #F8F8F8;
     }
-    .btn-glow::after {
-      content: '';
+    .product-image-container img {
+      transition: transform 0.4s ease;
+    }
+    .product-image-container:hover img {
+      transform: scale(1.04);
+    }
+    .product-overlay-btn {
       position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 40%;
-      height: 200%;
-      background: linear-gradient(60deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 80%);
-      transform: rotate(25deg);
-      animation: shimmer 3.5s infinite;
+      bottom: -40px;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      color: #000;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+      padding: 10px 0;
+      transition: bottom 0.3s ease;
     }
-    @keyframes shimmer {
-      0% { left: -70%; }
-      30%, 100% { left: 140%; }
+    .product-image-container:hover .product-overlay-btn {
+      bottom: 0;
     }
 
-    /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #FAF9F6; }
-    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+    /* Đường kẻ ngăn cách mảnh chuẩn Wix */
+    .wix-divider {
+      height: 1px;
+      background-color: #EBEBEB;
+    }
+
+    /* Style menu dropdown */
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition: all 0.2s ease;
+    }
+    .dropdown-trigger:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
   </style>
 </head>
-<body class="selection:bg-lokcok-pink/20 selection:text-lokcok-pink">
+<body>
 
-  <!-- ==================== 1. TOP ANNOUNCEMENT BAR ==================== -->
-  <div class="bg-gradient-to-r from-lokcok-black via-lokcok-dark to-lokcok-black text-white text-xs font-semibold py-2.5 px-4 text-center border-b border-white/10 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto flex items-center justify-center gap-2 flex-wrap">
-      <span class="inline-flex items-center gap-1 bg-red-500/20 text-red-400 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full border border-red-500/30 animate-pulse">
-        GIẢM SỐC!
-      </span>
-      <span>GIẢM 20% toàn bộ sản phẩm khi nhập mã:</span>
-      <span class="font-extrabold text-amber-300 bg-white/10 px-2 py-0.5 rounded tracking-wider border border-amber-300/30 cursor-pointer" onclick="copyCoupon('GIAMGIAHE2026')">GIAMGIAHE2026</span>
-      <span class="text-stone-400 text-[11px]">(Áp dụng từ 1/7 - 15/7)</span>
-    </div>
+  <!-- ==================== 1. WIX TOP STRIP ==================== -->
+  <div class="bg-white border-b border-stone-200/80 py-2.5 px-4 text-center">
+    <p class="text-xs sm:text-sm font-medium tracking-[0.2em] uppercase text-stone-800">
+      LOKCOK - Type your vibe
+    </p>
   </div>
 
-  <!-- ==================== 2. MAIN HEADER & NAVBAR ==================== -->
-  <header class="bg-white/95 backdrop-blur-md border-b border-stone-200 sticky top-8 z-40 transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+  <!-- ==================== 2. MAIN HEADER & NAVIGATION ==================== -->
+  <header class="bg-white border-b border-stone-200 sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
       
-      <!-- Brand Logo (Direct from Wix) -->
-      <a href="#home" class="flex items-center gap-3 group">
-        <img src="images/logo.png" alt="LOKCOK - Type your vibe" class="h-10 sm:h-12 w-auto object-contain transition duration-300 group-hover:scale-105">
-      </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-stone-700">
-        <a href="#home" class="hover:text-lokcok-purple transition">Home</a>
+      <!-- Top Row: Logo in Center, Actions on Right -->
+      <div class="relative py-6 flex items-center justify-between">
         
-        <!-- Shop Dropdown Trigger -->
-        <div class="relative group py-2">
-          <a href="#shop" class="hover:text-lokcok-purple transition flex items-center gap-1">
-            <span>Shop</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+        <!-- Placeholder for left alignment balance -->
+        <div class="w-24 hidden sm:block"></div>
+
+        <!-- Center Brand Logo -->
+        <div class="mx-auto text-center">
+          <a href="#home" class="inline-block">
+            <img src="images/logo.png" alt="LOKCOK Logo" class="h-12 sm:h-16 w-auto object-contain mx-auto">
           </a>
-          <!-- Dropdown menu -->
-          <div class="absolute top-full left-0 w-48 bg-white rounded-2xl shadow-xl border border-stone-100 p-2 hidden group-hover:block transition">
-            <a href="#shop" onclick="filterCategory('chic')" class="block px-3 py-2 rounded-xl text-xs hover:bg-stone-50 font-medium">✨ Chic &amp; Cute</a>
-            <a href="#shop" onclick="filterCategory('basic')" class="block px-3 py-2 rounded-xl text-xs hover:bg-stone-50 font-medium">🖤 Basic &amp; Classic</a>
-            <a href="#shop" onclick="filterCategory('game')" class="block px-3 py-2 rounded-xl text-xs hover:bg-stone-50 font-medium">⚡ Game &amp; Tech</a>
-            <a href="#shop" onclick="filterCategory('custom')" class="block px-3 py-2 rounded-xl text-xs hover:bg-stone-50 font-medium">🛠️ Custom &amp; Phụ kiện</a>
+        </div>
+
+        <!-- Right Side: Login & Cart (Exact from Wix) -->
+        <div class="flex items-center gap-5 text-xs tracking-wider">
+          <button onclick="openModal('login-modal')" class="hidden sm:flex items-center gap-1.5 text-stone-700 hover:text-black transition">
+            <i data-lucide="user" class="w-4 h-4"></i>
+            <span>Đăng nhập</span>
+          </button>
+          
+          <button onclick="openModal('cart-modal')" class="flex items-center gap-1.5 text-stone-700 hover:text-black transition relative">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span>Giỏ hàng (<span id="cart-qty-display">0</span>)</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Navigation Row (Exact menu order from Wix) -->
+      <nav class="hidden md:flex items-center justify-center gap-8 py-3 text-xs tracking-[0.12em] uppercase font-medium text-stone-800 border-t border-stone-100">
+        <a href="#home" class="hover:text-stone-500 transition py-1">Home</a>
+        
+        <!-- Shop with Dropdown -->
+        <div class="relative dropdown-trigger py-1">
+          <a href="#shop" class="hover:text-stone-500 transition flex items-center gap-1">
+            <span>Shop</span>
+            <i data-lucide="chevron-down" class="w-3 h-3"></i>
+          </a>
+          <div class="dropdown-menu absolute top-full left-0 w-44 bg-white border border-stone-200 shadow-lg py-2 z-50">
+            <a href="#shop" onclick="filterWixCategory('chic')" class="block px-4 py-2 text-[11px] text-stone-700 hover:bg-stone-50 hover:text-black">Chic &amp; Cute</a>
+            <a href="#shop" onclick="filterWixCategory('basic')" class="block px-4 py-2 text-[11px] text-stone-700 hover:bg-stone-50 hover:text-black">Basic</a>
+            <a href="#shop" onclick="filterWixCategory('game')" class="block px-4 py-2 text-[11px] text-stone-700 hover:bg-stone-50 hover:text-black">Game &amp; Tech</a>
+            <a href="#shop" onclick="filterWixCategory('custom')" class="block px-4 py-2 text-[11px] text-stone-700 hover:bg-stone-50 hover:text-black">Custom</a>
           </div>
         </div>
 
-        <!-- Highlighted Vibe Check (Quiz) -->
-        <a href="#vibe-check" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-lokcok-pink/10 to-lokcok-purple/10 text-lokcok-purple hover:text-lokcok-pink font-bold border border-lokcok-purple/20 transition">
-          <i data-lucide="sparkles" class="w-4 h-4 text-lokcok-pink"></i>
+        <a href="#our-story" class="hover:text-stone-500 transition py-1">Our Story</a>
+        
+        <!-- Vibe Check (Quiz) -->
+        <a href="#vibe-check" class="text-black font-bold hover:text-stone-500 transition py-1 flex items-center gap-1">
           <span>Vibe Check</span>
-          <span class="text-[9px] bg-lokcok-pink text-white px-1.5 py-0.2 rounded-full">Quiz</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-black"></span>
         </a>
 
-        <a href="#our-story" class="hover:text-lokcok-purple transition">Our Story</a>
-        <a href="#services" class="hover:text-lokcok-purple transition">Inquiry Services</a>
-        <a href="#faq" class="hover:text-lokcok-purple transition">Giải Đáp &amp; Chính Sách</a>
-        <a href="#contact" class="hover:text-lokcok-purple transition">Contact</a>
+        <a href="#contact" class="hover:text-stone-500 transition py-1">Contact</a>
+        <a href="#inquiry-services" class="hover:text-stone-500 transition py-1">Inquiry Services Page</a>
       </nav>
 
-      <!-- Header Actions -->
-      <div class="flex items-center gap-4">
-        <!-- Search icon -->
-        <button onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})" class="w-10 h-10 rounded-full hover:bg-stone-100 flex items-center justify-center text-stone-600 transition">
-          <i data-lucide="search" class="w-5 h-5"></i>
-        </button>
-
-        <!-- Cart Button -->
-        <button onclick="toggleCartDrawer()" class="relative w-10 h-10 rounded-full hover:bg-stone-100 flex items-center justify-center text-stone-700 transition">
-          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-          <span id="cart-counter" class="absolute -top-1 -right-1 bg-lokcok-pink text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">
-            0
-          </span>
-        </button>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 rounded-full hover:bg-stone-100 flex items-center justify-center text-stone-700">
-          <i data-lucide="menu" class="w-6 h-6"></i>
+      <!-- Mobile Nav Toggle -->
+      <div class="md:hidden py-2 border-t border-stone-100 flex items-center justify-between text-xs tracking-widest uppercase">
+        <span class="font-bold">Menu</span>
+        <button onclick="toggleMobileNav()" class="p-1 text-stone-800">
+          <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
       </div>
 
-    </div>
+      <!-- Mobile Menu Items -->
+      <div id="mobile-nav-menu" class="hidden md:hidden py-3 border-t border-stone-100 space-y-2 text-xs uppercase tracking-wider">
+        <a href="#home" onclick="toggleMobileNav()" class="block py-1">Home</a>
+        <a href="#shop" onclick="toggleMobileNav()" class="block py-1 font-semibold">Shop Sản Phẩm</a>
+        <a href="#our-story" onclick="toggleMobileNav()" class="block py-1">Our Story</a>
+        <a href="#vibe-check" onclick="toggleMobileNav()" class="block py-1 font-bold">✨ Vibe Check (Quiz)</a>
+        <a href="#contact" onclick="toggleMobileNav()" class="block py-1">Contact</a>
+        <a href="#inquiry-services" onclick="toggleMobileNav()" class="block py-1">Inquiry Services Page</a>
+      </div>
 
-    <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-stone-200 bg-white p-4 space-y-3">
-      <a href="#home" onclick="toggleMobileMenu()" class="block text-sm font-semibold py-1">Home</a>
-      <a href="#shop" onclick="toggleMobileMenu()" class="block text-sm font-semibold py-1">Shop Sản Phẩm</a>
-      <a href="#vibe-check" onclick="toggleMobileMenu()" class="block text-sm font-bold text-lokcok-pink py-1">✨ Vibe Check (Quiz Tư Vấn)</a>
-      <a href="#our-story" onclick="toggleMobileMenu()" class="block text-sm font-semibold py-1">Our Story</a>
-      <a href="#services" onclick="toggleMobileMenu()" class="block text-sm font-semibold py-1">Inquiry Services</a>
-      <a href="#faq" onclick="toggleMobileMenu()" class="block text-sm font-semibold py-1">Giải Đáp &amp; Chính Sách</a>
-      <a href="#contact" onclick="toggleMobileMenu()" class="block text-sm font-semibold py-1">Contact</a>
     </div>
   </header>
 
-  <!-- ==================== 3. HERO SECTION ==================== -->
-  <section id="home" class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden bg-gradient-to-b from-white via-[#FAF9F6] to-[#FAF9F6]">
+  <!-- ==================== 3. SECTION: DANH MỤC SẢN PHẨM (EXACT FROM WIX) ==================== -->
+  <section id="shop" class="py-14 max-w-6xl mx-auto px-4 sm:px-6">
     
-    <!-- Background Glows -->
-    <div class="absolute top-10 left-1/4 w-96 h-96 bg-purple-200/40 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-pink-200/40 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- Title Header -->
+    <div class="flex items-center justify-between border-b border-black pb-3 mb-8">
+      <h2 class="text-lg sm:text-xl font-bold tracking-[0.1em] uppercase text-black">
+        Danh mục sản phẩm
+      </h2>
+      <a href="#shop" onclick="filterWixCategory('all')" class="text-xs uppercase tracking-widest text-stone-500 hover:text-black font-semibold transition">
+        View All
+      </a>
+    </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-12 items-center">
+    <!-- 4 Product Image Grid (Exact 4 images from Wix) -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-6">
+      
+      <!-- Item 1 -->
+      <div class="group cursor-pointer" onclick="openProductDetail('LOKCOK Dark Eclipse', '1.950.000₫', 'images/prod_1.jpg', 'Bản Limited Edition khung nhôm CNC, Rapid Trigger 0.1ms, switch cơ học độc quyền.')">
+        <div class="product-image-container aspect-square mb-3">
+          <img src="images/prod_1.jpg" alt="LOKCOK Dark Eclipse" class="w-full h-full object-cover">
+          <div class="product-overlay-btn">View All</div>
+        </div>
+        <p class="text-xs font-semibold tracking-wider uppercase text-black mt-1">LOKCOK Dark Eclipse</p>
+        <p class="text-xs text-stone-500 mt-0.5">1.950.000₫</p>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="group cursor-pointer" onclick="openProductDetail('LOKCOK Sakura Blossom', '2.000.000₫', 'images/prod_2.jpg', 'Tone hồng pastel thanh lịch, switch Silent êm ái, giảm 20% khi nhập mã.')">
+        <div class="product-image-container aspect-square mb-3">
+          <img src="images/prod_2.jpg" alt="LOKCOK Sakura Blossom" class="w-full h-full object-cover">
+          <div class="product-overlay-btn">View All</div>
+        </div>
+        <p class="text-xs font-semibold tracking-wider uppercase text-black mt-1">LOKCOK Sakura Blossom</p>
+        <p class="text-xs text-stone-500 mt-0.5"><span class="line-through mr-1 text-stone-400">2.500.000₫</span> 2.000.000₫</p>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="group cursor-pointer" onclick="openProductDetail('LOKCOK Navy Core', '1.150.000₫', 'images/prod_3.jpg', 'Thiết kế tối giản sang trọng, âm thocky đầm tay, layout 75% tiêu chuẩn văn phòng.')">
+        <div class="product-image-container aspect-square mb-3">
+          <img src="images/prod_3.jpg" alt="LOKCOK Navy Core" class="w-full h-full object-cover">
+          <div class="product-overlay-btn">View All</div>
+        </div>
+        <p class="text-xs font-semibold tracking-wider uppercase text-black mt-1">LOKCOK Navy Core</p>
+        <p class="text-xs text-stone-500 mt-0.5">1.150.000₫</p>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="group cursor-pointer" onclick="openProductDetail('LOKCOK Cream Matcha', '1.450.000₫', 'images/prod_4.jpg', 'Phối màu bơ matcha ngọt ngào, cảm giác gõ êm dịu truyền cảm hứng mỗi ngày.')">
+        <div class="product-image-container aspect-square mb-3">
+          <img src="images/prod_4.jpg" alt="LOKCOK Cream Matcha" class="w-full h-full object-cover">
+          <div class="product-overlay-btn">View All</div>
+        </div>
+        <p class="text-xs font-semibold tracking-wider uppercase text-black mt-1">LOKCOK Cream Matcha</p>
+        <p class="text-xs text-stone-500 mt-0.5">1.450.000₫</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==================== 4. SECTION: SẢN PHẨM MỚI & BANNER GIẢM SỐC (EXACT FROM WIX) ==================== -->
+  <section class="py-12 bg-stone-50 border-y border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="grid md:grid-cols-12 gap-8 lg:gap-12 items-center">
         
-        <!-- Hero Text -->
-        <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-          
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lokcok-black text-white text-xs font-semibold tracking-wide shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Chào mừng đến với thế giới của LOKCOK
+        <!-- Left Column: Sản Phẩm Mới (Image 5 from Wix) -->
+        <div class="md:col-span-5 text-center md:text-left">
+          <h3 class="text-base sm:text-lg font-bold tracking-[0.1em] uppercase text-black mb-4">
+            Sản phẩm mới
+          </h3>
+          <div class="product-image-container aspect-square max-w-sm mx-auto md:mx-0 border border-stone-200 shadow-sm cursor-pointer" onclick="openProductDetail('Keycap Cloud Bloom & Switch Custom', '450.000₫', 'images/prod_5.jpg', 'Bộ keycap PBT cao cấp và switch mod độc quyền.')">
+            <img src="images/prod_5.jpg" alt="Sản phẩm mới LOKCOK" class="w-full h-full object-cover">
+            <div class="product-overlay-btn">Xem Chi Tiết</div>
           </div>
-
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-lokcok-black tracking-tight leading-[1.15]">
-            Type Your Vibe <br>
-            <span class="bg-gradient-to-r from-lokcok-purple via-lokcok-pink to-amber-500 bg-clip-text text-transparent">
-              Định Hình Cá Tính
-            </span>
-          </h1>
-
-          <p class="text-stone-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-            Nơi công nghệ gắn liền với phong cách sống, cảm hứng sáng tạo và dấu ấn cá nhân của thế hệ trẻ. Khám phá những thay đổi mới với thiết kế tối giản, cảm giác gõ vượt trội và khả năng custom không giới hạn.
-          </p>
-
-          <!-- Hero CTAs -->
-          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-            <a href="#vibe-check" class="btn-glow px-8 py-4 rounded-full bg-lokcok-black hover:bg-lokcok-dark text-white font-bold text-sm shadow-xl shadow-black/20 flex items-center gap-2.5 transition transform hover:-translate-y-0.5">
-              <i data-lucide="sparkles" class="w-4 h-4 text-amber-300"></i>
-              <span>Vibe Check: Tìm Phím Chuẩn Gu</span>
-            </a>
-
-            <a href="#shop" class="px-7 py-4 rounded-full border-2 border-stone-300 hover:border-lokcok-black text-stone-800 font-bold text-sm hover:bg-white transition">
-              <span>Khám Phá Bộ Sưu Tập</span>
-            </a>
-          </div>
-
-          <!-- Feature Pills -->
-          <div class="grid grid-cols-3 gap-3 pt-6 border-t border-stone-200">
-            <div class="text-center lg:text-left">
-              <p class="text-xl sm:text-2xl font-black text-lokcok-black">100%</p>
-              <p class="text-xs text-stone-500 font-medium">Chính hãng LOKCOK</p>
-            </div>
-            <div class="text-center lg:text-left">
-              <p class="text-xl sm:text-2xl font-black text-lokcok-black">07 Ngày</p>
-              <p class="text-xs text-stone-500 font-medium">Đổi trả linh hoạt</p>
-            </div>
-            <div class="text-center lg:text-left">
-              <p class="text-xl sm:text-2xl font-black text-lokcok-black">-20%</p>
-              <p class="text-xs text-stone-500 font-medium">Mã GIAMGIAHE2026</p>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Hero Visual: Real Product Gallery from Wix -->
-        <div class="lg:col-span-6 relative">
-          <div class="relative mx-auto max-w-lg">
-            
-            <!-- Main Featured Image -->
-            <div class="relative rounded-3xl overflow-hidden bg-white p-4 shadow-2xl border border-stone-200 group">
-              <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-stone-100 relative">
-                <img id="hero-main-img" src="images/prod_1.jpg" alt="LOKCOK Mechanical Keyboard" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
-                <span class="absolute top-4 left-4 bg-lokcok-black/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                  🔥 New Arrival: Dark Eclipse
-                </span>
-                <span class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md text-lokcok-black text-xs font-extrabold px-3 py-1.5 rounded-full shadow">
-                  1.950.000₫
-                </span>
-              </div>
-            </div>
+        <!-- Right Column: Banner Giảm Sốc (Exact Text & Font Style from Wix) -->
+        <div class="md:col-span-7 space-y-4 text-center md:text-left">
+          <p class="text-2xl sm:text-3xl lg:text-4xl font-black text-red-600 tracking-tight uppercase">
+            Giảm sốc!
+          </p>
+          
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-black tracking-tight leading-tight">
+            GIẢM 20% <br class="hidden sm:inline">
+            <span class="text-xl sm:text-2xl font-normal text-stone-700 block mt-2">
+              toàn bộ sản phẩm khi nhập mã <span class="font-bold text-black border-b-2 border-black">GIAMGIAHE2026</span>
+            </span>
+          </h2>
 
-            <!-- Floating Mini Card 1 -->
-            <div class="absolute -bottom-6 -left-6 bg-white p-3 rounded-2xl shadow-xl border border-stone-100 flex items-center gap-3 animate-float">
-              <img src="images/prod_2.jpg" alt="Sakura Blossom" class="w-14 h-14 rounded-xl object-cover">
-              <div>
-                <p class="text-[11px] text-lokcok-pink font-extrabold uppercase">Chic &amp; Cute</p>
-                <p class="text-xs font-bold text-stone-900">Sakura Blossom</p>
-                <p class="text-[11px] text-stone-500 line-through">2.500.000₫ <span class="text-red-500 font-bold ml-1">2.000.000₫</span></p>
-              </div>
-            </div>
+          <p class="text-sm font-semibold tracking-widest uppercase text-stone-500 pt-1">
+            Từ ngày 1/7 - 15/7
+          </p>
 
-            <!-- Floating Mini Card 2 -->
-            <div class="absolute -top-6 -right-6 bg-white p-3 rounded-2xl shadow-xl border border-stone-100 flex items-center gap-3 animate-float" style="animation-delay: 2s;">
-              <img src="images/prod_5.jpg" alt="Keycap Custom" class="w-14 h-14 rounded-xl object-cover">
-              <div>
-                <p class="text-[11px] text-lokcok-purple font-extrabold uppercase">Keycap &amp; Switch</p>
-                <p class="text-xs font-bold text-stone-900">Cloud Bloom Art</p>
-                <p class="text-[11px] text-emerald-600 font-bold">Từ 45.000₫</p>
-              </div>
-            </div>
-
+          <div class="pt-4">
+            <a href="#vibe-check" class="wix-btn-black">
+              LÀM QUIZ TÌM PHÍM CHUẨN GU ➔
+            </a>
           </div>
         </div>
 
       </div>
+
     </div>
   </section>
 
-  <!-- ==================== 4. VIBE CHECK QUIZ (5 CÂU HỎI TƯ VẤN SẢN PHẨM) ==================== -->
-  <section id="vibe-check" class="py-16 md:py-24 bg-white border-y border-stone-200 relative overflow-hidden">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+  <!-- ==================== 5. SECTION: VIBE CHECK QUIZ (TÍCH HỢP ĐÚNG PHONG CÁCH WIX) ==================== -->
+  <section id="vibe-check" class="py-16 md:py-24 bg-white border-b border-stone-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
       
-      <!-- Quiz Header -->
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lokcok-pink/10 text-lokcok-pink text-xs font-bold uppercase tracking-wider border border-lokcok-pink/20">
-          <i data-lucide="sparkles" class="w-4 h-4"></i> Vibe Check Quiz (1 Phút)
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-black text-lokcok-black mt-3 tracking-tight">Tìm Chiếc Bàn Phím Chuẩn Gu Bạn</h2>
-        <p class="text-stone-600 text-sm sm:text-base mt-2">
-          Trả lời 5 câu hỏi nhanh để LOKCOK phân tích cá tính, nhu cầu gõ phím và gợi ý mẫu bàn phím cơ hoàn hảo nhất dành riêng cho góc làm việc của bạn!
+      <!-- Quiz Header (Minimalist Wix Style) -->
+      <div class="text-center mb-10">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-stone-400">
+          VIBE CHECK
+        </p>
+        <h2 class="text-2xl sm:text-3xl font-bold uppercase tracking-wider text-black mt-2">
+          Nếp Phím Của Bạn Là Gì?
+        </h2>
+        <div class="w-12 h-0.5 bg-black mx-auto my-3"></div>
+        <p class="text-xs sm:text-sm text-stone-500 max-w-lg mx-auto leading-relaxed">
+          5 câu hỏi ngắn để LOKCOK phân tích gu thẩm mỹ, thói quen gõ phím và tư vấn mẫu bàn phím cơ hoàn hảo nhất cho góc máy của bạn.
         </p>
       </div>
 
-      <!-- Quiz Box Container -->
-      <div class="bg-gradient-to-b from-[#FAF9F6] to-white rounded-3xl shadow-xl border border-stone-200/80 p-6 sm:p-10 relative" id="vibe-quiz-box">
+      <!-- Quiz Box -->
+      <div class="border border-stone-300 p-6 sm:p-10 bg-white shadow-sm" id="wix-quiz-box">
         
-        <!-- Progress Bar -->
-        <div id="quiz-progress-section" class="mb-8">
-          <div class="flex items-center justify-between text-xs font-bold text-stone-500 mb-2">
-            <span id="quiz-question-num" class="text-lokcok-black font-extrabold">Câu hỏi 1 / 5</span>
-            <span id="quiz-progress-text" class="text-lokcok-purple">20%</span>
+        <!-- Progress bar -->
+        <div id="quiz-progress-wrap" class="mb-8">
+          <div class="flex items-center justify-between text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">
+            <span id="quiz-step-lbl">Câu hỏi 1 / 5</span>
+            <span id="quiz-pct-lbl">20%</span>
           </div>
-          <div class="w-full h-3 bg-stone-200 rounded-full overflow-hidden p-0.5">
-            <div id="quiz-progress-fill" class="h-full bg-gradient-to-r from-lokcok-purple to-lokcok-pink rounded-full transition-all duration-300" style="width: 20%;"></div>
+          <div class="w-full h-1.5 bg-stone-100">
+            <div id="quiz-progress-bar" class="h-full bg-black transition-all duration-300" style="width: 20%;"></div>
           </div>
         </div>
 
         <!-- Question View -->
-        <div id="quiz-question-view" class="space-y-6">
-          <div class="space-y-2">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-lokcok-purple bg-purple-50 px-3 py-1 rounded-md inline-block" id="quiz-category-tag">
-              Mục Đích Sử Dụng
+        <div id="quiz-question-box" class="space-y-6">
+          <div class="space-y-1">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-stone-400" id="quiz-category-lbl">
+              01. Mục Đích Sử Dụng
             </span>
-            <h3 class="text-lg sm:text-2xl font-bold text-stone-900 leading-snug" id="quiz-question-title">
+            <h3 class="text-base sm:text-lg font-bold text-black" id="quiz-title-lbl">
               Nhu cầu sử dụng bàn phím chính của bạn là gì?
             </h3>
           </div>
 
-          <!-- Options Container -->
-          <div class="space-y-3.5" id="quiz-options-list">
-            <!-- Dynamic Buttons generated by JS -->
+          <!-- Options -->
+          <div class="space-y-3" id="quiz-options-container">
+            <!-- Dynamic Buttons rendered via JS -->
           </div>
         </div>
 
         <!-- Result View (Hidden initially) -->
-        <div id="quiz-result-view" class="hidden text-center space-y-6">
-          <div class="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-lokcok-purple to-lokcok-pink text-white flex items-center justify-center shadow-xl animate-bounce" style="animation-duration: 2s;">
-            <i data-lucide="award" class="w-10 h-10"></i>
+        <div id="quiz-result-box" class="hidden text-center space-y-6">
+          <div class="inline-block p-3 border border-black rounded-full mb-1">
+            <i data-lucide="check" class="w-6 h-6 text-black"></i>
           </div>
 
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3.5 py-1.5 rounded-full border border-emerald-200" id="result-badge">
-              Kết Quả Vibe Của Bạn
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-stone-400" id="res-badge">
+              KẾT QUẢ VIBE CHECK
             </span>
-            <h3 class="text-2xl sm:text-4xl font-black text-lokcok-black mt-3" id="result-vibe-title">
-              Vibe: Nàng Thơ Chic &amp; Cute
+            <h3 class="text-xl sm:text-2xl font-bold uppercase tracking-wider text-black mt-1" id="res-title">
+              Nàng Thơ Chic &amp; Cute
             </h3>
-            <p class="text-stone-600 text-sm max-w-lg mx-auto mt-2 leading-relaxed" id="result-vibe-desc"></p>
+            <p class="text-xs sm:text-sm text-stone-600 max-w-md mx-auto mt-2 leading-relaxed" id="res-desc"></p>
           </div>
 
-          <!-- Recommended Product Showcase Card -->
-          <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-md text-left grid md:grid-cols-12 gap-6 items-center">
-            <div class="md:col-span-5 rounded-2xl overflow-hidden aspect-square bg-stone-100 border border-stone-100">
-              <img id="result-prod-img" src="images/prod_2.jpg" alt="Recommended Keyboard" class="w-full h-full object-cover">
+          <!-- Recommended Product Display (Wix Style) -->
+          <div class="border border-stone-200 p-5 text-left grid sm:grid-cols-12 gap-5 items-center bg-stone-50/50">
+            <div class="sm:col-span-4 aspect-square bg-white border border-stone-200 overflow-hidden">
+              <img id="res-img" src="images/prod_2.jpg" alt="Recommended Keyboard" class="w-full h-full object-cover">
             </div>
-
-            <div class="md:col-span-7 space-y-3">
-              <span class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded bg-red-100 text-red-600 inline-block" id="result-prod-badge">
+            <div class="sm:col-span-8 space-y-2">
+              <span class="text-[10px] uppercase font-bold tracking-widest bg-black text-white px-2 py-0.5 inline-block" id="res-promo">
                 Ưu Đãi -20% Khi Nhập Mã
               </span>
-              <h4 class="text-xl font-black text-stone-900" id="result-prod-name">LOKCOK Sakura Blossom</h4>
-              <div class="flex items-baseline gap-2">
-                <span class="text-2xl font-black text-lokcok-pink" id="result-prod-price">2.000.000₫</span>
-                <span class="text-xs text-stone-400 line-through" id="result-prod-oldprice">2.500.000₫</span>
+              <h4 class="text-base font-bold text-black uppercase tracking-wider" id="res-prod-name">LOKCOK Sakura Blossom</h4>
+              <div class="flex items-baseline gap-2 text-xs">
+                <span class="text-base font-black text-black" id="res-price">2.000.000₫</span>
+                <span class="text-stone-400 line-through" id="res-oldprice">2.500.000₫</span>
               </div>
-              <p class="text-xs text-stone-600 leading-relaxed" id="result-prod-specs">
-                Cảm giác gõ êm ái, switch silent êm dịu, layout 75% gọn gàng cùng keycap PBT cao cấp tone hồng pastel ngọt ngào.
+              <p class="text-xs text-stone-600 leading-relaxed" id="res-specs">
+                Tone hồng pastel thanh lịch, switch Silent êm dịu không ồn, keycap PBT cao cấp.
               </p>
               
               <div class="pt-2 flex flex-wrap gap-2">
-                <button onclick="addResultProductToCart()" class="btn-glow px-6 py-3 rounded-full bg-lokcok-black hover:bg-lokcok-dark text-white text-xs font-bold shadow-md transition flex items-center gap-2">
-                  <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                  <span>Thêm Vào Giỏ Hàng Ngay</span>
+                <button onclick="addWixResultToCart()" class="wix-btn-black text-xs py-2.5 px-5">
+                  Thêm vào giỏ hàng
                 </button>
-                <a href="#shop" class="px-5 py-3 rounded-full border border-stone-300 text-stone-700 text-xs font-semibold hover:bg-stone-50 transition">
-                  Xem thêm mẫu cùng gu
-                </a>
+                <button onclick="resetWixQuiz()" class="wix-btn-outline text-xs py-2.5 px-5">
+                  Làm lại Quiz
+                </button>
               </div>
             </div>
           </div>
 
-          <!-- Reset Quiz Button -->
-          <div class="pt-4 flex items-center justify-center gap-3">
-            <button onclick="resetQuiz()" class="text-xs text-stone-500 hover:text-stone-900 font-semibold underline flex items-center gap-1">
-              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-              <span>Làm lại Vibe Check</span>
-            </button>
-          </div>
-
         </div>
 
       </div>
@@ -390,548 +429,187 @@
     </div>
   </section>
 
-  <!-- ==================== 5. PRODUCT CATALOG (SHOP SECTION) ==================== -->
-  <section id="shop" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6">
-    
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+  <!-- ==================== 6. SECTION: CHÀO MỪNG ĐẾN VỚI THẾ GIỚI CỦA LOKCOK (NEWSLETTER) ==================== -->
+  <section class="py-16 max-w-xl mx-auto px-4 text-center">
+    <h3 class="text-xl sm:text-2xl font-bold tracking-wide uppercase text-black">
+      Chào mừng đến với thế giới của LOKCOK
+    </h3>
+    <p class="text-xs sm:text-sm text-stone-500 tracking-wider mt-1">
+      Khám phá những thay đổi mới
+    </p>
+
+    <!-- Form (Exact from Wix) -->
+    <form onsubmit="handleWixNewsletter(event)" class="mt-8 space-y-4 text-left">
       <div>
-        <span class="text-xs font-bold text-lokcok-purple uppercase tracking-wider bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
-          Danh Mục Bàn Phím &amp; Phụ Kiện
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-black text-lokcok-black mt-2 tracking-tight">Sản Phẩm Mới &amp; Nổi Bật</h2>
-        <p class="text-stone-600 text-sm mt-1">Khám phá các thiết kế bàn phím mang đậm phong cách cá nhân của bạn.</p>
+        <label class="block text-xs font-semibold tracking-wider uppercase text-black mb-1">
+          Email *
+        </label>
+        <input type="email" id="newsletter-email" required placeholder="" 
+               class="w-full border border-black p-3 text-xs focus:outline-none focus:ring-1 focus:ring-black">
       </div>
 
-      <!-- Category Filter Tabs -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-2" id="filter-tabs">
-        <button onclick="filterCategory('all')" class="cat-btn active px-4 py-2 rounded-full text-xs font-bold transition bg-lokcok-black text-white" data-cat="all">Tất Cả</button>
-        <button onclick="filterCategory('chic')" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition bg-stone-100 hover:bg-stone-200 text-stone-700" data-cat="chic">Chic &amp; Cute</button>
-        <button onclick="filterCategory('basic')" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition bg-stone-100 hover:bg-stone-200 text-stone-700" data-cat="basic">Basic &amp; Classic</button>
-        <button onclick="filterCategory('game')" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition bg-stone-100 hover:bg-stone-200 text-stone-700" data-cat="game">Game &amp; Tech</button>
-        <button onclick="filterCategory('custom')" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition bg-stone-100 hover:bg-stone-200 text-stone-700" data-cat="custom">Custom &amp; Phụ Kiện</button>
-      </div>
-    </div>
-
-    <!-- Product Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">
-      
-      <!-- Product 1: Sakura Blossom -->
-      <div class="prod-card bg-white rounded-3xl p-4 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group" data-category="chic">
-        <div>
-          <div class="aspect-square rounded-2xl overflow-hidden bg-stone-100 relative mb-4">
-            <img src="images/prod_2.jpg" alt="LOKCOK Sakura Blossom" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">-20% SALE</span>
-          </div>
-          <p class="text-[11px] font-bold text-lokcok-pink uppercase">Chic &amp; Cute</p>
-          <h3 class="text-sm font-bold text-stone-900 group-hover:text-lokcok-purple transition mt-0.5">LOKCOK Sakura Blossom</h3>
-          <p class="text-xs text-stone-500 mt-1">Tone hồng pastel, switch silent êm ái, keycap cherry PBT.</p>
-        </div>
-        <div class="pt-4 border-t border-stone-100 mt-4 flex items-center justify-between">
-          <div>
-            <span class="text-xs text-stone-400 line-through block">2.500.000₫</span>
-            <span class="text-base font-black text-stone-900">2.000.000₫</span>
-          </div>
-          <button onclick="addToCart('LOKCOK Sakura Blossom', 2000000, 'images/prod_2.jpg')" class="w-9 h-9 rounded-full bg-lokcok-black hover:bg-lokcok-pink text-white flex items-center justify-center transition shadow-md">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-          </button>
-        </div>
+      <div class="flex items-start gap-2 pt-1">
+        <input type="checkbox" id="newsletter-consent" required class="mt-1 accent-black">
+        <label for="newsletter-consent" class="text-xs text-stone-600">
+          Yes, subscribe me to your newsletter. *
+        </label>
       </div>
 
-      <!-- Product 2: Dark Eclipse -->
-      <div class="prod-card bg-white rounded-3xl p-4 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group" data-category="game">
-        <div>
-          <div class="aspect-square rounded-2xl overflow-hidden bg-stone-100 relative mb-4">
-            <img src="images/prod_1.jpg" alt="LOKCOK Dark Eclipse" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 left-3 bg-lokcok-black text-amber-300 text-[10px] font-black px-2.5 py-1 rounded-full shadow border border-amber-300/30">LIMITED EDITION</span>
-          </div>
-          <p class="text-[11px] font-bold text-lokcok-purple uppercase">Game &amp; Tech</p>
-          <h3 class="text-sm font-bold text-stone-900 group-hover:text-lokcok-purple transition mt-0.5">LOKCOK Dark Eclipse</h3>
-          <p class="text-xs text-stone-500 mt-1">Vỏ nhôm CNC anodized, Rapid Trigger phản hồi 0.1ms, Led RGB.</p>
-        </div>
-        <div class="pt-4 border-t border-stone-100 mt-4 flex items-center justify-between">
-          <div>
-            <span class="text-base font-black text-stone-900">1.950.000₫</span>
-          </div>
-          <button onclick="addToCart('LOKCOK Dark Eclipse', 1950000, 'images/prod_1.jpg')" class="w-9 h-9 rounded-full bg-lokcok-black hover:bg-lokcok-purple text-white flex items-center justify-center transition shadow-md">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-          </button>
-        </div>
+      <div class="text-center pt-2">
+        <button type="submit" class="wix-btn-black w-full sm:w-auto px-10">
+          Join
+        </button>
       </div>
-
-      <!-- Product 3: Navy Core -->
-      <div class="prod-card bg-white rounded-3xl p-4 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group" data-category="basic">
-        <div>
-          <div class="aspect-square rounded-2xl overflow-hidden bg-stone-100 relative mb-4">
-            <img src="images/prod_3.jpg" alt="LOKCOK Navy Core" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">BEST SELLER</span>
-          </div>
-          <p class="text-[11px] font-bold text-blue-600 uppercase">Basic &amp; Classic</p>
-          <h3 class="text-sm font-bold text-stone-900 group-hover:text-lokcok-purple transition mt-0.5">LOKCOK Navy Core</h3>
-          <p class="text-xs text-stone-500 mt-1">Tone xanh navy sang trọng, layout 75% tiêu chuẩn văn phòng, âm thocky.</p>
-        </div>
-        <div class="pt-4 border-t border-stone-100 mt-4 flex items-center justify-between">
-          <div>
-            <span class="text-base font-black text-stone-900">1.150.000₫</span>
-          </div>
-          <button onclick="addToCart('LOKCOK Navy Core', 1150000, 'images/prod_3.jpg')" class="w-9 h-9 rounded-full bg-lokcok-black hover:bg-blue-600 text-white flex items-center justify-center transition shadow-md">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Product 4: Cream Matcha -->
-      <div class="prod-card bg-white rounded-3xl p-4 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group" data-category="chic">
-        <div>
-          <div class="aspect-square rounded-2xl overflow-hidden bg-stone-100 relative mb-4">
-            <img src="images/prod_4.jpg" alt="LOKCOK Cream Matcha" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">TRENDING</span>
-          </div>
-          <p class="text-[11px] font-bold text-lokcok-matcha uppercase">Chic &amp; Cute</p>
-          <h3 class="text-sm font-bold text-stone-900 group-hover:text-lokcok-purple transition mt-0.5">LOKCOK Cream Matcha</h3>
-          <p class="text-xs text-stone-500 mt-1">Màu kem sữa bơ matcha, cảm giác gõ êm dịu sảng khoái.</p>
-        </div>
-        <div class="pt-4 border-t border-stone-100 mt-4 flex items-center justify-between">
-          <div>
-            <span class="text-base font-black text-stone-900">1.450.000₫</span>
-          </div>
-          <button onclick="addToCart('LOKCOK Cream Matcha', 1450000, 'images/prod_4.jpg')" class="w-9 h-9 rounded-full bg-lokcok-black hover:bg-emerald-600 text-white flex items-center justify-center transition shadow-md">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Product 5: Daisy Breeze -->
-      <div class="prod-card bg-white rounded-3xl p-4 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group" data-category="chic">
-        <div>
-          <div class="aspect-square rounded-2xl overflow-hidden bg-stone-100 relative mb-4">
-            <img src="images/prod_2.jpg" alt="LOKCOK Daisy Breeze" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter hue-rotate-30">
-          </div>
-          <p class="text-[11px] font-bold text-amber-600 uppercase">Chic &amp; Cute</p>
-          <h3 class="text-sm font-bold text-stone-900 group-hover:text-lokcok-purple transition mt-0.5">LOKCOK Daisy Breeze</h3>
-          <p class="text-xs text-stone-500 mt-1">Sắc hoa cúc vàng tinh khôi, năng lượng tươi mới mỗi ngày.</p>
-        </div>
-        <div class="pt-4 border-t border-stone-100 mt-4 flex items-center justify-between">
-          <div>
-            <span class="text-base font-black text-stone-900">1.350.000₫</span>
-          </div>
-          <button onclick="addToCart('LOKCOK Daisy Breeze', 1350000, 'images/prod_2.jpg')" class="w-9 h-9 rounded-full bg-lokcok-black hover:bg-amber-500 text-white flex items-center justify-center transition shadow-md">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Product 6: Crimson Hunter -->
-      <div class="prod-card bg-white rounded-3xl p-4 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group" data-category="game">
-        <div>
-          <div class="aspect-square rounded-2xl overflow-hidden bg-stone-100 relative mb-4">
-            <img src="images/prod_1.jpg" alt="LOKCOK Crimson Hunter" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter saturate-150">
-            <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">HOT</span>
-          </div>
-          <p class="text-[11px] font-bold text-red-600 uppercase">Game &amp; Tech</p>
-          <h3 class="text-sm font-bold text-stone-900 group-hover:text-lokcok-purple transition mt-0.5">LOKCOK Crimson Hunter</h3>
-          <p class="text-xs text-stone-500 mt-1">Tone đen đỏ đậm chất gaming, switch cơ học phản hồi tức thì.</p>
-        </div>
-        <div class="pt-4 border-t border-stone-100 mt-4 flex items-center justify-between">
-          <div>
-            <span class="text-base font-black text-stone-900">1.850.000₫</span>
-          </div>
-          <button onclick="addToCart('LOKCOK Crimson Hunter', 1850000, 'images/prod_1.jpg')" class="w-9 h-9 rounded-full bg-lokcok-black hover:bg-red-600 text-white flex items-center justify-center transition shadow-md">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Product 7: LOKCOK Clear Case Custom -->
-      <div class="prod-card bg-white rounded-3xl p-4 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group" data-category="custom">
-        <div>
-          <div class="aspect-square rounded-2xl overflow-hidden bg-stone-100 relative mb-4">
-            <img src="images/prod_3.jpg" alt="LOKCOK Clear Case" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter opacity-90">
-            <span class="absolute top-3 left-3 bg-purple-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">CUSTOM</span>
-          </div>
-          <p class="text-[11px] font-bold text-lokcok-purple uppercase">Custom Case</p>
-          <h3 class="text-sm font-bold text-stone-900 group-hover:text-lokcok-purple transition mt-0.5">LOKCOK Clear Acrylic Case</h3>
-          <p class="text-xs text-stone-500 mt-1">Vỏ case acrylic trong suốt cao cấp, khoe trọn mạch led RGB.</p>
-        </div>
-        <div class="pt-4 border-t border-stone-100 mt-4 flex items-center justify-between">
-          <div>
-            <span class="text-base font-black text-stone-900">500.000₫</span>
-          </div>
-          <button onclick="addToCart('LOKCOK Clear Acrylic Case', 500000, 'images/prod_3.jpg')" class="w-9 h-9 rounded-full bg-lokcok-black hover:bg-purple-600 text-white flex items-center justify-center transition shadow-md">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Product 8: Cloud Bloom Keycap -->
-      <div class="prod-card bg-white rounded-3xl p-4 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group" data-category="custom">
-        <div>
-          <div class="aspect-square rounded-2xl overflow-hidden bg-stone-100 relative mb-4">
-            <img src="images/prod_5.jpg" alt="LOKCOK Cloud Bloom Keycap" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          </div>
-          <p class="text-[11px] font-bold text-pink-600 uppercase">Keycap &amp; Switch</p>
-          <h3 class="text-sm font-bold text-stone-900 group-hover:text-lokcok-purple transition mt-0.5">Bộ Keycap Cloud Bloom PBT</h3>
-          <p class="text-xs text-stone-500 mt-1">Chất liệu PBT Dyesub chống mòn bóng, màu sắc bền bỉ sắc nét.</p>
-        </div>
-        <div class="pt-4 border-t border-stone-100 mt-4 flex items-center justify-between">
-          <div>
-            <span class="text-base font-black text-stone-900">450.000₫</span>
-          </div>
-          <button onclick="addToCart('Bộ Keycap Cloud Bloom PBT', 450000, 'images/prod_5.jpg')" class="w-9 h-9 rounded-full bg-lokcok-black hover:bg-pink-600 text-white flex items-center justify-center transition shadow-md">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Custom keyboard consultation banner -->
-    <div class="mt-12 p-8 rounded-3xl bg-gradient-to-r from-lokcok-black via-lokcok-dark to-stone-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
-      <div class="space-y-1 text-center sm:text-left">
-        <h4 class="text-xl font-bold">Bạn muốn tự build chiếc bàn phím độc bản của riêng mình?</h4>
-        <p class="text-xs text-stone-400">Liên hệ trực tiếp để nhận tư vấn custom bàn phím từ vỏ case, switch, keycap đến mod lube âm thanh.</p>
-      </div>
-      <a href="#services" class="btn-glow px-6 py-3.5 rounded-full bg-white text-lokcok-black font-bold text-xs hover:bg-stone-100 transition shrink-0">
-        Liên Hệ Tư Vấn Custom ➔
-      </a>
-    </div>
-
+      <p id="newsletter-msg" class="text-xs text-emerald-700 font-semibold text-center hidden"></p>
+    </form>
   </section>
 
-  <!-- ==================== 6. OUR STORY SECTION ==================== -->
-  <section id="our-story" class="py-16 md:py-24 bg-white border-y border-stone-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="grid lg:grid-cols-12 gap-12 items-center">
-        
-        <div class="lg:col-span-6 relative">
-          <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-stone-200 bg-stone-100 aspect-[4/3]">
-            <img src="images/prod_4.jpg" alt="LOKCOK Brand Story" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
-              <p class="text-white text-xs font-medium italic">"Công nghệ không chỉ để sử dụng – mà còn để tạo nên cảm xúc và nguồn năng lượng tích cực."</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 space-y-6">
-          <span class="text-xs font-bold text-lokcok-purple uppercase tracking-wider bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
-            Brand Story
-          </span>
-          
-          <h2 class="text-3xl sm:text-4xl font-black text-lokcok-black tracking-tight leading-tight">
-            Thương Hiệu Bàn Phím Dành Cho Thế Hệ Trẻ Việt Nam
-          </h2>
-
-          <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
-            Với mong muốn trở thành thương hiệu bàn phím dành cho <strong>thế hệ trẻ Việt Nam</strong> – nơi công nghệ gắn liền với phong cách sống, cảm hứng sáng tạo và dấu ấn cá nhân.
-          </p>
-
-          <p class="text-stone-600 text-sm leading-relaxed">
-            Sứ mệnh của <strong>LOKCOK</strong> là mang đến những sản phẩm bàn phím vừa đảm bảo trải nghiệm sử dụng chất lượng, vừa giúp người dùng thể hiện cá tính và phong cách riêng trong cuộc sống hiện đại. Chúng tôi tập trung vào <strong>thiết kế tối giản, thẩm mỹ và khả năng cá nhân hóa đa dạng</strong>, kết hợp cùng chất lượng hoàn thiện, cảm giác gõ và tính tiện dụng vượt trội.
-          </p>
-
-          <p class="text-stone-600 text-sm leading-relaxed">
-            LOKCOK mong muốn đồng hành cùng thế hệ trẻ biến góc setup cá nhân thành không gian truyền cảm hứng, khơi nguồn sáng tạo và thể hiện bản thân mỗi ngày. Bởi chúng tôi tin rằng, công nghệ không chỉ để sử dụng – mà còn để tạo nên cảm xúc, phong cách sống và nguồn năng lượng tích cực trong từng khoảnh khắc.
-          </p>
-
-          <div class="pt-2 flex items-center gap-6">
-            <div>
-              <p class="text-2xl font-black text-lokcok-purple">100%</p>
-              <p class="text-xs text-stone-500 font-medium">Đam mê sáng tạo</p>
-            </div>
-            <div class="w-px h-10 bg-stone-200"></div>
-            <div>
-              <p class="text-2xl font-black text-lokcok-pink">Độc Bản</p>
-              <p class="text-xs text-stone-500 font-medium">Cá nhân hóa góc máy</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 7. INQUIRY SERVICES SECTION ==================== -->
-  <section id="services" class="py-16 md:py-24 bg-[#FAF9F6]">
+  <!-- ==================== 7. FOOTER (EXACT 4 COLUMNS FROM WIX) ==================== -->
+  <footer id="contact" class="border-t border-black bg-white pt-16 pb-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-bold text-lokcok-purple uppercase tracking-wider bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
-          Inquiry Services Page
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-black text-lokcok-black mt-3 tracking-tight">Khám Phá Dịch Vụ &amp; Liên Hệ</h2>
-        <p class="text-stone-600 text-sm sm:text-base mt-2">Đội ngũ kỹ thuật viên và chuyên gia mod phím LOKCOK luôn sẵn sàng hỗ trợ biến ý tưởng của bạn thành hiện thực.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12 text-xs">
         
-        <!-- Service 1 -->
-        <div class="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <div class="text-3xl font-black text-lokcok-purple/30 mb-4">01.</div>
-          <h3 class="text-lg font-bold text-stone-900 mb-3">Dự Án Tùy Chỉnh (Custom)</h3>
-          <p class="text-xs text-stone-600 leading-relaxed">
-            Chúng tôi hợp tác chặt chẽ với bạn để phát triển các giải pháp được thiết kế riêng biệt cho nhu cầu độc đáo của bạn. Từ giai đoạn lên ý tưởng đến thực thi, chúng tôi đảm bảo mọi chi tiết đều phù hợp với tầm nhìn của bạn.
-          </p>
-        </div>
-
-        <!-- Service 2 -->
-        <div class="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <div class="text-3xl font-black text-lokcok-pink/30 mb-4">02.</div>
-          <h3 class="text-lg font-bold text-stone-900 mb-3">Lập Kế Hoạch Giải Pháp Cá Nhân</h3>
-          <p class="text-xs text-stone-600 leading-relaxed">
-            Nhận được sự hỗ trợ chuyên biệt để xác định và cấu trúc các giải pháp phù hợp nhất cho tình huống cá nhân của bạn. Chúng tôi lắng nghe cẩn thận để hiểu rõ các mục tiêu và thách thức của bạn.
-          </p>
-        </div>
-
-        <!-- Service 3 -->
-        <div class="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <div class="text-3xl font-black text-amber-500/30 mb-4">03.</div>
-          <h3 class="text-lg font-bold text-stone-900 mb-3">Gói Hướng Dẫn Chuyên Gia</h3>
-          <p class="text-xs text-stone-600 leading-relaxed">
-            Nhận được sự hiểu biết chuyên sâu và định hướng chiến lược từ các chuyên gia hàng đầu trong lĩnh vực phím cơ. Gói này cung cấp cho bạn những hiểu biết sâu sắc và các bước hành động giá trị nhất.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== 8. STORE POLICY & FAQ ==================== -->
-  <section id="faq" class="py-16 md:py-24 bg-white border-y border-stone-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-xs font-bold text-lokcok-purple uppercase tracking-wider bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
-          Chính Sách &amp; Giải Đáp
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-black text-lokcok-black mt-3 tracking-tight">Câu Hỏi Thường Gặp (FAQ)</h2>
-        <p class="text-stone-600 text-sm mt-2">Tất cả những thông tin về giao hàng, bảo hành, thanh toán và đổi trả tại LOKCOK.</p>
-      </div>
-
-      <div class="space-y-4">
-        
-        <!-- FAQ 1 -->
-        <div class="border border-stone-200 rounded-2xl overflow-hidden bg-stone-50/50">
-          <button onclick="toggleAccordion(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-bold text-stone-900 text-sm sm:text-base">
-            <span>Thời gian giao hàng mất bao lâu?</span>
-            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-200 shrink-0"></i>
-          </button>
-          <div class="acc-content hidden px-5 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3 space-y-2">
-            <p>• Đối với các sản phẩm có sẵn: <strong>1-3 ngày làm việc tại TP.HCM</strong>, 3-5 ngày đối với các tỉnh thành khu vực miền Nam và 4-7 ngày đối với khu vực miền Trung, miền Bắc.</p>
-            <p>• Đối với các sản phẩm custom theo yêu cầu: Thời gian thiết kế và hoàn thiện thường từ <strong>5-10 ngày làm việc</strong> trước khi được bàn giao cho đơn vị vận chuyển.</p>
-          </div>
-        </div>
-
-        <!-- FAQ 2 -->
-        <div class="border border-stone-200 rounded-2xl overflow-hidden bg-stone-50/50">
-          <button onclick="toggleAccordion(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-bold text-stone-900 text-sm sm:text-base">
-            <span>Làm thế nào để theo dõi đơn hàng?</span>
-            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-200 shrink-0"></i>
-          </button>
-          <div class="acc-content hidden px-5 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
-            Sau khi đơn hàng được xác nhận và bàn giao cho đơn vị vận chuyển, LOKCOK sẽ gửi mã vận đơn qua Email hoặc tin nhắn cho khách hàng. Khách hàng có thể sử dụng mã này để tra cứu trạng thái đơn hàng trực tiếp hoặc liên hệ bộ phận CSKH để được tra cứu tức thì.
-          </div>
-        </div>
-
-        <!-- FAQ 3 -->
-        <div class="border border-stone-200 rounded-2xl overflow-hidden bg-stone-50/50">
-          <button onclick="toggleAccordion(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-bold text-stone-900 text-sm sm:text-base">
-            <span>Chính sách đổi trả sản phẩm như thế nào?</span>
-            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-200 shrink-0"></i>
-          </button>
-          <div class="acc-content hidden px-5 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3 space-y-2">
-            <p>LOKCOK hỗ trợ đổi trả trong vòng <strong>07 ngày</strong> kể từ ngày nhận hàng đối với các trường hợp sản phẩm bị lỗi kỹ thuật từ nhà sản xuất hoặc giao không đúng mẫu mã, màu sắc theo đơn đặt hàng.</p>
-            <p>Đối với sản phẩm custom theo yêu cầu riêng, chính sách đổi trả áp dụng khi phát sinh lỗi từ phía thương hiệu.</p>
-          </div>
-        </div>
-
-        <!-- FAQ 4 -->
-        <div class="border border-stone-200 rounded-2xl overflow-hidden bg-stone-50/50">
-          <button onclick="toggleAccordion(this)" class="w-full text-left p-5 flex items-center justify-between gap-4 font-bold text-stone-900 text-sm sm:text-base">
-            <span>LOKCOK hỗ trợ những phương thức thanh toán nào?</span>
-            <i data-lucide="chevron-down" class="w-5 h-5 text-stone-400 transition-transform duration-200 shrink-0"></i>
-          </button>
-          <div class="acc-content hidden px-5 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
-            Chúng tôi hỗ trợ đa dạng phương thức thanh toán:
-            <ul class="list-disc list-inside mt-2 space-y-1 font-medium">
-              <li>Thanh toán khi nhận hàng (COD)</li>
-              <li>Chuyển khoản ngân hàng trực tiếp</li>
-              <li>Thanh toán qua ví điện tử: MoMo, ZaloPay, VNPay</li>
-              <li>Thanh toán bằng thẻ tín dụng / thẻ ghi nợ (Visa, MasterCard)</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== 9. CONTACT & FOOTER ==================== -->
-  <footer id="contact" class="bg-lokcok-black text-stone-300 py-16 border-t border-stone-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-stone-800">
-        
-        <!-- Brand Info -->
-        <div class="md:col-span-4 space-y-4">
-          <img src="images/logo.png" alt="LOKCOK Logo" class="h-10 w-auto object-contain brightness-0 invert">
-          <p class="text-xs text-stone-400 leading-relaxed">
-            LOKCOK - Type your vibe. Mang đến những sản phẩm bàn phím cơ chất lượng cao, tối giản và đậm chất cá tính cho thế hệ trẻ Việt Nam.
-          </p>
-          <div class="flex items-center gap-3 pt-2">
-            <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-lokcok-purple text-white flex items-center justify-center transition text-xs">
-              <i data-lucide="facebook" class="w-4 h-4"></i>
-            </a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-lokcok-pink text-white flex items-center justify-center transition text-xs">
-              <i data-lucide="instagram" class="w-4 h-4"></i>
-            </a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white hover:text-black text-white flex items-center justify-center transition text-xs">
-              <i data-lucide="video" class="w-4 h-4"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Links: Khám phá -->
-        <div class="md:col-span-2 space-y-3">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white">Khám Phá</h4>
-          <ul class="text-xs text-stone-400 space-y-2">
-            <li><a href="#shop" class="hover:text-white transition">Bàn phím cơ</a></li>
-            <li><a href="#shop" class="hover:text-white transition">Keycap PBT</a></li>
-            <li><a href="#shop" class="hover:text-white transition">Switch Custom</a></li>
-            <li><a href="#vibe-check" class="hover:text-lokcok-pink font-semibold transition">Vibe Check Quiz</a></li>
+        <!-- Column 1: Khám phá -->
+        <div class="space-y-3">
+          <h4 class="font-bold uppercase tracking-widest text-black">Khám phá</h4>
+          <ul class="space-y-2 text-stone-600">
+            <li><a href="#shop" class="hover:text-black transition">Bàn phím</a></li>
+            <li><a href="#shop" class="hover:text-black transition">Keycap</a></li>
+            <li><a href="#shop" class="hover:text-black transition">Switch</a></li>
+            <li><a href="#vibe-check" class="hover:text-black font-semibold transition">Vibe Check (Quiz)</a></li>
           </ul>
         </div>
 
-        <!-- Links: Hỗ trợ -->
-        <div class="md:col-span-2 space-y-3">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-white">Hỗ Trợ</h4>
-          <ul class="text-xs text-stone-400 space-y-2">
-            <li><a href="#faq" class="hover:text-white transition">Giao hàng</a></li>
-            <li><a href="#faq" class="hover:text-white transition">Chính sách đổi trả</a></li>
-            <li><a href="#faq" class="hover:text-white transition">Phương thức thanh toán</a></li>
-            <li><a href="#faq" class="hover:text-white transition">Giải đáp thắc mắc</a></li>
+        <!-- Column 2: Hỗ trợ -->
+        <div class="space-y-3">
+          <h4 class="font-bold uppercase tracking-widest text-black">Hỗ trợ</h4>
+          <ul class="space-y-2 text-stone-600">
+            <li><a href="#faq-modal" onclick="openPolicyModal('shipping')" class="hover:text-black transition">Giao hàng</a></li>
+            <li><a href="#faq-modal" onclick="openPolicyModal('return')" class="hover:text-black transition">Đổi trả</a></li>
+            <li><a href="#faq-modal" onclick="openPolicyModal('payment')" class="hover:text-black transition">Thanh toán</a></li>
+            <li><a href="#faq-modal" onclick="openPolicyModal('faq')" class="hover:text-black transition">Giải đáp</a></li>
           </ul>
         </div>
 
-        <!-- Contact Info & Operating Hours -->
-        <div class="md:col-span-4 space-y-3 text-xs">
-          <h4 class="font-bold uppercase tracking-wider text-white">Liên Hệ &amp; Showroom</h4>
-          <p class="text-stone-400 flex items-start gap-2">
-            <i data-lucide="map-pin" class="w-4 h-4 text-lokcok-pink shrink-0 mt-0.5"></i>
-            <span>27 Đồng Khởi, Quận 1, TP. Hồ Chí Minh</span>
-          </p>
-          <p class="text-stone-400 flex items-center gap-2">
-            <i data-lucide="mail" class="w-4 h-4 text-lokcok-purple shrink-0"></i>
-            <span>lokcokvn@gmail.com</span>
-          </p>
-          <p class="text-stone-400 flex items-center gap-2">
-            <i data-lucide="phone" class="w-4 h-4 text-emerald-400 shrink-0"></i>
-            <span>Hotline: 1902 1217</span>
-          </p>
+        <!-- Column 3: Liên hệ -->
+        <div class="space-y-3">
+          <h4 class="font-bold uppercase tracking-widest text-black">Liên hệ</h4>
+          <div class="space-y-1.5 text-stone-600 leading-relaxed">
+            <p>27 Đồng Khởi, Quận 1, TP. Hồ Chí Minh</p>
+            <p><a href="mailto:lokcokvn@gmail.com" class="hover:underline">lokcokvn@gmail.com</a></p>
+            <p>Tel: 1902 1217</p>
+          </div>
+        </div>
 
-          <div class="pt-2 border-t border-stone-800 text-[11px] text-stone-400 space-y-1">
-            <p class="font-bold text-stone-300">Thời gian hoạt động:</p>
-            <p>• Thứ 2 - Thứ 6: 7h - 22h</p>
-            <p>• Thứ 7: 8h - 22h</p>
-            <p>• Chủ nhật: 8h - 23h</p>
+        <!-- Column 4: Thời gian hoạt động -->
+        <div class="space-y-3">
+          <h4 class="font-bold uppercase tracking-widest text-black">Thời gian hoạt động</h4>
+          <div class="space-y-1 text-stone-600 leading-relaxed">
+            <p>Thứ 2 - Thứ 6: 7h - 22h</p>
+            <p>Thứ 7: 8h - 22h</p>
+            <p>Chủ nhật: 8h - 23h</p>
           </div>
         </div>
 
       </div>
 
-      <!-- Copyright -->
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
-        <p>© 2026 LOKCOK. Type your vibe. All rights reserved.</p>
-        <p class="text-[11px]">Designed with passion for Vietnamese Mechanical Keyboard Community.</p>
+      <!-- Social & Copyright Line (Exact from Wix) -->
+      <div class="border-t border-stone-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+        <p>© 2035 by Lou Paperie / LOKCOK. Powered and secured by Wix</p>
+        
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-stone-700 hover:text-black transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+          <a href="#" class="text-stone-700 hover:text-black transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+          <a href="#" class="text-stone-700 hover:text-black transition"><i data-lucide="video" class="w-4 h-4"></i></a>
+        </div>
       </div>
 
     </div>
   </footer>
 
-  <!-- ==================== 10. CART SLIDE-OUT DRAWER ==================== -->
-  <div id="cart-drawer-overlay" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300" onclick="toggleCartDrawer()"></div>
-  <div id="cart-drawer" class="fixed top-0 right-0 z-50 w-full sm:w-96 h-full bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
-    <div class="p-5 bg-lokcok-black text-white flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-        <h3 class="font-bold text-sm">Giỏ Hàng Của Bạn</h3>
-      </div>
-      <button onclick="toggleCartDrawer()" class="text-stone-400 hover:text-white p-1">
+  <!-- ==================== SUBPAGE MODALS (OUR STORY, SERVICES, POLICIES, CART) ==================== -->
+  
+  <!-- Our Story Modal -->
+  <div id="story-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-2xl w-full p-8 sm:p-10 border border-black max-h-[85vh] overflow-y-auto space-y-4 text-xs sm:text-sm text-stone-700 leading-relaxed relative">
+      <button onclick="closeModal('story-modal')" class="absolute top-4 right-4 p-2 text-stone-500 hover:text-black">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
-    </div>
-
-    <!-- Items List -->
-    <div id="cart-items-list" class="flex-1 p-5 overflow-y-auto space-y-4">
-      <!-- Empty message by default -->
-      <div id="empty-cart-msg" class="text-center py-12 text-stone-400">
-        <i data-lucide="shopping-cart" class="w-12 h-12 mx-auto mb-3 opacity-30"></i>
-        <p class="text-xs">Giỏ hàng của bạn đang trống.</p>
-        <button onclick="toggleCartDrawer()" class="mt-4 px-4 py-2 rounded-full bg-lokcok-black text-white text-xs font-bold">
-          Mua sắm ngay
-        </button>
-      </div>
-    </div>
-
-    <!-- Cart Footer & Checkout -->
-    <div class="p-5 bg-stone-50 border-t border-stone-200 space-y-3">
-      <!-- Coupon field -->
-      <div class="flex items-center gap-2">
-        <input type="text" id="coupon-input" placeholder="Mã giảm giá (GIAMGIAHE2026)" class="flex-1 px-3 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none uppercase">
-        <button onclick="applyCoupon()" class="px-3 py-2 rounded-xl bg-lokcok-black text-white text-xs font-bold">Áp Dụng</button>
-      </div>
-      <p id="coupon-status" class="text-[11px] hidden font-semibold"></p>
-
-      <div class="flex items-center justify-between text-xs text-stone-600">
-        <span>Tạm tính:</span>
-        <span id="cart-subtotal" class="font-bold text-stone-900">0₫</span>
-      </div>
-      <div class="flex items-center justify-between text-xs text-stone-600">
-        <span>Giảm giá:</span>
-        <span id="cart-discount" class="font-bold text-red-500">-0₫</span>
-      </div>
-      <div class="flex items-center justify-between text-sm font-black text-stone-900 pt-2 border-t border-stone-200">
-        <span>Tổng thanh toán:</span>
-        <span id="cart-total" class="text-lg text-lokcok-pink">0₫</span>
-      </div>
-
-      <button onclick="checkoutAlert()" class="btn-glow w-full py-3.5 rounded-full bg-lokcok-black hover:bg-lokcok-dark text-white font-bold text-xs shadow-lg transition">
-        Tiến Hành Đặt Hàng ➔
-      </button>
+      <h3 class="text-xl font-bold uppercase tracking-widest text-black">Brand Story</h3>
+      <div class="w-10 h-0.5 bg-black my-2"></div>
+      <p class="font-semibold text-black">
+        Với mong muốn trở thành thương hiệu bàn phím dành cho thế hệ trẻ Việt Nam – nơi công nghệ gắn liền với phong cách sống, cảm hứng sáng tạo và dấu ấn cá nhân.
+      </p>
+      <p>
+        Sứ mệnh của LOKCOK là mang đến những sản phẩm bàn phím vừa đảm bảo trải nghiệm sử dụng chất lượng, vừa giúp người dùng thể hiện cá tính và phong cách riêng trong cuộc sống hiện đại. Chúng tôi tập trung vào thiết kế tối giản, thẩm mỹ và khả năng cá nhân hóa đa dạng, kết hợp cùng chất lượng hoàn thiện, cảm giác gõ và tính tiện dụng vượt trội.
+      </p>
+      <p>
+        LOKCOK mong muốn đồng hành cùng thế hệ trẻ biến góc setup cá nhân thành không gian truyền cảm hứng, khơi nguồn sáng tạo và thể hiện bản thân mỗi ngày. Bởi chúng tôi tin rằng, công nghệ không chỉ để sử dụng – mà còn để tạo nên cảm xúc, phong cách sống và nguồn năng lượng tích cực trong từng khoảnh khắc.
+      </p>
     </div>
   </div>
 
-  <!-- ==================== 11. CHATBOT WIDGET ==================== -->
-  <div class="fixed bottom-5 right-5 z-40">
-    <button onclick="toggleChat()" class="relative w-14 h-14 rounded-full bg-lokcok-black hover:bg-lokcok-dark text-white shadow-2xl flex items-center justify-center transition-all hover:scale-105 active:scale-95 group">
-      <i data-lucide="message-square" class="w-6 h-6 group-hover:rotate-12 transition"></i>
-      <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-lokcok-pink rounded-full border-2 border-white"></span>
-    </button>
-
-    <!-- Chat Modal -->
-    <div id="chat-box" class="hidden absolute bottom-16 right-0 w-[88vw] sm:w-96 bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden flex flex-col h-[480px]">
-      <div class="p-4 bg-lokcok-black text-white flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-full bg-lokcok-purple text-white flex items-center justify-center text-xs font-bold">LC</div>
-          <div>
-            <h4 class="text-xs font-bold">Trợ Lý Ảo LOKCOK</h4>
-            <p class="text-[10px] text-emerald-400">● Đang trực tuyến</p>
-          </div>
+  <!-- Inquiry Services Modal -->
+  <div id="services-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-2xl w-full p-8 sm:p-10 border border-black max-h-[85vh] overflow-y-auto space-y-6 text-xs sm:text-sm text-stone-700 relative">
+      <button onclick="closeModal('services-modal')" class="absolute top-4 right-4 p-2 text-stone-500 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h3 class="text-xl font-bold uppercase tracking-widest text-black">Khám phá dịch vụ &amp; Liên hệ với chúng tôi</h3>
+      <div class="w-10 h-0.5 bg-black my-2"></div>
+      
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-bold text-black uppercase">01. Dự án Tùy chỉnh (Custom Keyboard)</h4>
+          <p class="text-stone-600 mt-1">Chúng tôi hợp tác chặt chẽ với bạn để phát triển các giải pháp được thiết kế riêng biệt cho nhu cầu độc đáo của bạn. Từ giai đoạn lên ý tưởng đến thực thi, đảm bảo từng chi tiết đều phù hợp với tầm nhìn của bạn.</p>
         </div>
-        <button onclick="toggleChat()" class="text-stone-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
-      </div>
-
-      <div id="chat-logs" class="flex-1 p-4 overflow-y-auto space-y-3 bg-stone-50 text-xs">
-        <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-stone-200 text-stone-700 space-y-1">
-          <p>Xin chào! Mình là trợ lý ảo của <strong>LOKCOK</strong>.</p>
-          <p>Bạn cần tư vấn chọn bàn phím cơ, hỏi thời gian giao hàng hay muốn dùng thử <strong>Quiz Vibe Check</strong>?</p>
+        <div>
+          <h4 class="font-bold text-black uppercase">02. Lập kế hoạch Giải pháp Cá nhân</h4>
+          <p class="text-stone-600 mt-1">Nhận sự hỗ trợ chuyên biệt để xác định và cấu trúc các giải pháp phù hợp nhất cho tình huống cá nhân của bạn. Xây dựng lộ trình rõ ràng và hiệu quả.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-black uppercase">03. Gói Hướng dẫn Chuyên gia</h4>
+          <p class="text-stone-600 mt-1">Nhận hiểu biết chuyên sâu và định hướng chiến lược từ các chuyên gia hàng đầu trong lĩnh vực bàn phím cơ.</p>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="p-3 bg-white border-t border-stone-200 flex items-center gap-2">
-        <input type="text" id="chat-input" onkeypress="if(event.key === 'Enter') sendChat()" placeholder="Hỏi bất cứ điều gì..." class="flex-1 px-3 py-2 rounded-full border border-stone-200 text-xs focus:outline-none">
-        <button onclick="sendChat()" class="w-8 h-8 rounded-full bg-lokcok-black text-white flex items-center justify-center"><i data-lucide="send" class="w-3.5 h-3.5"></i></button>
+  <!-- Policy / FAQ Modal -->
+  <div id="policy-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-2xl w-full p-8 sm:p-10 border border-black max-h-[85vh] overflow-y-auto space-y-4 text-xs sm:text-sm text-stone-700 relative">
+      <button onclick="closeModal('policy-modal')" class="absolute top-4 right-4 p-2 text-stone-500 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h3 class="text-xl font-bold uppercase tracking-widest text-black" id="policy-modal-title">Chính Sách LOKCOK</h3>
+      <div class="w-10 h-0.5 bg-black my-2"></div>
+      <div id="policy-modal-body" class="space-y-3 leading-relaxed"></div>
+    </div>
+  </div>
+
+  <!-- Cart Modal (Wix Clean Style) -->
+  <div id="cart-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-md w-full p-6 sm:p-8 border border-black space-y-4 relative">
+      <button onclick="closeModal('cart-modal')" class="absolute top-4 right-4 p-2 text-stone-500 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h3 class="text-lg font-bold uppercase tracking-widest text-black">Giỏ Hàng Của Bạn</h3>
+      <div class="w-10 h-0.5 bg-black"></div>
+      
+      <div id="wix-cart-items" class="space-y-3 max-h-60 overflow-y-auto text-xs">
+        <p class="text-stone-400 py-6 text-center">Giỏ hàng của bạn đang trống.</p>
+      </div>
+
+      <div class="pt-3 border-t border-stone-200 space-y-2 text-xs">
+        <div class="flex items-center justify-between font-bold text-sm">
+          <span>Tổng cộng:</span>
+          <span id="wix-cart-total">0₫</span>
+        </div>
+        <p class="text-[11px] text-stone-500">Áp dụng mã <strong>GIAMGIAHE2026</strong> khi thanh toán để nhận giảm 20%.</p>
+        <button onclick="alert('Cảm ơn bạn! Đơn hàng đang được kết nối thanh toán an toàn.')" class="wix-btn-black w-full mt-2">
+          Tiến Hành Thanh Toán
+        </button>
       </div>
     </div>
   </div>
@@ -940,46 +618,42 @@
   <script>
     lucide.createIcons();
 
-    // ================= VIBE CHECK QUIZ DATA & LOGIC =================
-    const quizData = [
+    // ================= QUIZ LOGIC (5 CÂU HỎI TƯ VẤN SẢN PHẨM) =================
+    const wixQuiz = [
       {
-        id: 1,
-        category: "Mục Đích Sử Dụng",
-        question: "Nhu cầu sử dụng bàn phím chính của bạn là gì?",
-        options: [
-          { text: "A. Gõ văn phòng, làm việc, viết lách hằng ngày (Ưu tiên êm, lịch sự).", vibe: "basic" },
-          { text: "B. Chơi game, leo rank (FPS/MOBA) cần tốc độ phản hồi cực nhanh.", vibe: "game" },
+        cat: "01. Mục Đích Sử Dụng",
+        q: "Mục đích sử dụng bàn phím chính của bạn là gì?",
+        opts: [
+          { text: "A. Làm việc văn phòng, gõ văn bản nhẹ nhàng, ưu tiên sự thanh lịch.", vibe: "basic" },
+          { text: "B. Gaming chuyên nghiệp, leo rank, cần tốc độ phản hồi cực nhanh.", vibe: "game" },
           { text: "C. Decor góc làm việc thẩm mỹ, thích sự ngọt ngào, đáng yêu (Chic & Cute).", vibe: "chic" },
           { text: "D. Đam mê mày mò, thích custom âm thanh, tự mod lube switch độc bản.", vibe: "custom" }
         ]
       },
       {
-        id: 2,
-        category: "Âm Thanh & Cảm Giác Gõ",
-        question: "Bạn thích cảm giác gõ và âm thanh switch bàn phím như thế nào?",
-        options: [
-          { text: "A. Âm trầm ấm, đầm tay (Thocky / Linear) – không làm phiền người xung quanh.", vibe: "basic" },
-          { text: "B. Nảy tanh tách, dứt khoát, âm thanh vui tai kích thích (Clicky / Speed).", vibe: "game" },
-          { text: "C. Nhẹ tênh, bấm êm ru như gõ trên bông (Silent / Pink Linear).", vibe: "chic" },
-          { text: "D. Thích thử nghiệm nhiều switch lạ (Lunar Crystal, Apex Strike) để custom.", vibe: "custom" }
+        cat: "02. Âm Thanh & Cảm Giác Gõ",
+        q: "Bạn thích cảm giác gõ và âm thanh switch như thế nào?",
+        opts: [
+          { text: "A. Âm trầm ấm (Thocky / Linear) – êm dịu, không làm phiền người xung quanh.", vibe: "basic" },
+          { text: "B. Nảy tanh tách, dứt khoát, âm đanh giòn vui tai kích thích (Clicky).", vibe: "game" },
+          { text: "C. Nhẹ tênh, bấm êm ru như gõ trên bông (Silent Pink / Linear êm ái).", vibe: "chic" },
+          { text: "D. Thích thử nghiệm nhiều switch lạ để custom cảm giác gõ riêng biệt.", vibe: "custom" }
         ]
       },
       {
-        id: 3,
-        category: "Tone Màu & Phong Cách",
-        question: "Tone màu và phong cách setup góc bàn ưa thích của bạn?",
-        options: [
-          { text: "A. Basic & Thanh lịch: Xanh Navy, Trắng, Đen nhã nhặn (LOKCOK Navy Core).", vibe: "basic" },
+        cat: "03. Phong Cách Setup",
+        q: "Tone màu và phong cách setup góc máy bạn ưa thích?",
+        opts: [
+          { text: "A. Basic & Classic: Xanh Navy, Trắng, Đen thanh lịch (LOKCOK Navy Core).", vibe: "basic" },
           { text: "B. Cyberpunk & Game Tech: Đen nhám huyền bí, Đỏ thẫm, Led RGB rực rỡ.", vibe: "game" },
-          { text: "C. Pastel Chic & Cute: Hồng Sakura, Kem Matcha, Vàng Daisy, Tím Lavender.", vibe: "chic" },
-          { text: "D. Trong suốt (Clear Acrylic Case) phô trọn bo mạch cơ khí độc lạ.", vibe: "custom" }
+          { text: "C. Pastel Chic & Cute: Hồng Sakura, Kem Matcha, Vàng Daisy tinh khôi.", vibe: "chic" },
+          { text: "D. Trong suốt (Clear Acrylic) phô trọn linh kiện cơ khí độc lạ.", vibe: "custom" }
         ]
       },
       {
-        id: 4,
-        category: "Kích Thước Layout",
-        question: "Kích thước layout bàn phím phù hợp với bàn làm việc của bạn?",
-        options: [
+        cat: "04. Kích Thước Layout",
+        q: "Kích thước layout bàn phím bạn mong muốn?",
+        opts: [
           { text: "A. Compact 65% - 75%: Gọn gàng, đủ phím điều hướng, tối ưu diện tích.", vibe: "chic" },
           { text: "B. TKL 87% hoặc Fullsize 100%: Có cụm phím số nhập liệu số liệu nhanh.", vibe: "basic" },
           { text: "C. Mini 60%: Siêu nhỏ gọn, dễ dàng bỏ túi mang đi cafe, thư viện.", vibe: "game" },
@@ -987,115 +661,110 @@
         ]
       },
       {
-        id: 5,
-        category: "Ngân Sách Đầu Tư",
-        question: "Mức ngân sách bạn dự định đầu tư cho chiếc bàn phím?",
-        options: [
-          { text: "A. Tầm giá 1.100.000đ - 1.400.000đ (Hiệu năng tốt, tiết kiệm cho sinh viên).", vibe: "basic" },
-          { text: "B. Khoảng 1.800.000đ - 2.000.000đ (Bản giới hạn Limited Edition, phím game xịn).", vibe: "game" },
+        cat: "05. Ngân Sách Dự Kiến",
+        q: "Mức ngân sách bạn dự định đầu tư cho góc máy?",
+        opts: [
+          { text: "A. Tầm giá 1.150.000đ (Hiệu năng tốt, tiết kiệm cho học sinh - sinh viên).", vibe: "basic" },
+          { text: "B. Khoảng 1.950.000đ (Bản giới hạn Limited Edition, phím game xịn).", vibe: "game" },
           { text: "C. Khoảng 2.000.000đ (Full set Chic & Cute cao cấp, switch cao cấp).", vibe: "chic" },
           { text: "D. Đầu tư từng món linh kiện để tự build custom (500k - 1.500k).", vibe: "custom" }
         ]
       }
     ];
 
-    const vibeResults = {
+    const wixResults = {
       chic: {
-        title: "Vibe: Nàng Thơ Chic & Cute ✨",
-        badge: "Gu Tinh Tế & Ngọt Ngào",
-        desc: "Bạn có gu thẩm mỹ cao, yêu thích một góc làm việc truyền cảm hứng với màu sắc nhẹ nhàng, cảm giác gõ êm ái như nhung.",
+        badge: "VIBE CHECK: NÀNG THƠ CHIC & CUTE",
+        title: "LOKCOK Sakura Blossom",
+        desc: "Bạn có gu thẩm mỹ tinh tế, yêu thích sự ngọt ngào và năng lượng tích cực trong không gian làm việc.",
         prodName: "LOKCOK Sakura Blossom",
-        prodPrice: "2.000.000₫",
-        prodOldPrice: "2.500.000₫",
-        prodImg: "images/prod_2.jpg",
-        prodBadge: "ĐANG GIẢM 20% (GIAMGIAHE2026)",
-        prodSpecs: "Tone hồng Sakura pastel, switch Silent Pink êm ái tuyệt đối, keycap PBT cao cấp không bóng mòn.",
+        price: "2.000.000₫",
+        oldprice: "2.500.000₫",
+        img: "images/prod_2.jpg",
+        promo: "ĐANG GIẢM 20% (GIAMGIAHE2026)",
+        specs: "Tone hồng pastel, switch Silent Pink êm dịu, keycap PBT chống mòn bóng.",
         numericPrice: 2000000
       },
       game: {
-        title: "Vibe: Chiến Thần Game & Tech ⚡",
-        badge: "Gu Tốc Độ & Uy Lực",
-        desc: "Bạn đòi hỏi hiệu năng tối thượng, phản hồi tức thì và phong cách mạnh mẽ để làm chủ mọi trận đấu xếp hạng.",
-        prodName: "LOKCOK Dark Eclipse (Limited Edition)",
-        prodPrice: "1.950.000₫",
-        prodOldPrice: "2.300.000₫",
-        prodImg: "images/prod_1.jpg",
-        prodBadge: "LIMITED EDITION",
-        prodSpecs: "Khung nhôm CNC cao cấp, Rapid Trigger 0.1ms, Switch Apex Strike độc quyền, Led RGB đa chế độ.",
+        badge: "VIBE CHECK: CHIẾN THẦN GAME & TECH",
+        title: "LOKCOK Dark Eclipse",
+        desc: "Bạn ưu tiên hiệu năng đỉnh cao, độ chính xác tuyệt đối và phong cách mạnh mẽ làm chủ cuộc chơi.",
+        prodName: "LOKCOK Dark Eclipse",
+        price: "1.950.000₫",
+        oldprice: "2.300.000₫",
+        img: "images/prod_1.jpg",
+        promo: "LIMITED EDITION",
+        specs: "Khung nhôm CNC anodized, Rapid Trigger 0.1ms, switch cơ học Apex Strike.",
         numericPrice: 1950000
       },
       basic: {
-        title: "Vibe: Tối Giản Basic & Classic 🖤",
-        badge: "Gu Thanh Lịch & Bền Bỉ",
-        desc: "Bạn yêu thích sự chỉn chu, chuyên nghiệp và âm phím thocky trầm ấm đồng hành suốt ngày dài làm việc.",
+        badge: "VIBE CHECK: TỐI GIẢN BASIC & CLASSIC",
+        title: "LOKCOK Navy Core",
+        desc: "Bạn theo đuổi phong cách tối giản thanh lịch, bền bỉ và âm phím thocky trầm ấm đồng hành suốt ngày dài.",
         prodName: "LOKCOK Navy Core",
-        prodPrice: "1.150.000₫",
-        prodOldPrice: "1.350.000₫",
-        prodImg: "images/prod_3.jpg",
-        prodBadge: "BEST SELLER VĂN PHÒNG",
-        prodSpecs: "Tone Navy sang trọng, layout 75% tiêu chuẩn, hotswap 5-pin, lót foam tiêu âm dày dặn.",
+        price: "1.150.000₫",
+        oldprice: "1.350.000₫",
+        img: "images/prod_3.jpg",
+        promo: "BEST SELLER VĂN PHÒNG",
+        specs: "Tone xanh Navy sang trọng, layout 75% tiêu chuẩn, hotswap 5-pin, lót foam tiêu âm.",
         numericPrice: 1150000
       },
       custom: {
-        title: "Vibe: Nghệ Nhân Custom Độc Bản 🛠️",
-        badge: "Gu Cá Nhân Hóa 100%",
-        desc: "Bạn không thích những mẫu có sẵn mà muốn tự tay chọn từng chiếc case, mod từng switch và phối màu keycap theo gu riêng.",
-        prodName: "LOKCOK Clear Acrylic Case + Custom Kit",
-        prodPrice: "500.000₫",
-        prodOldPrice: "650.000₫",
-        prodImg: "images/prod_3.jpg",
-        prodBadge: "DÀNH CHO DÂN MOD PHÍM",
-        prodSpecs: "Vỏ Acrylic trong suốt CNC nguyên khối, mạch xuôi hotswap RGB, tương thích mọi switch trên thị trường.",
+        badge: "VIBE CHECK: NGHỆ NHÂN CUSTOM ĐỘC BẢN",
+        title: "LOKCOK Clear Acrylic Case & Kit",
+        desc: "Bạn muốn tự tay kiến tạo chiếc bàn phím mang dấu ấn riêng, mod từng switch và phối màu theo ý thích.",
+        prodName: "LOKCOK Clear Acrylic Case",
+        price: "500.000₫",
+        oldprice: "650.000₫",
+        img: "images/prod_3.jpg",
+        promo: "DÀNH CHO DÂN MOD PHÍM",
+        specs: "Vỏ Acrylic trong suốt CNC nguyên khối, mạch xuôi hotswap RGB tương thích mọi switch.",
         numericPrice: 500000
       }
     };
 
-    let currentQ = 0;
-    let userVibeAnswers = [];
+    let step = 0;
+    let selectedVibes = [];
+    let currentQuizVibeKey = 'chic';
 
-    function renderQuizQuestion() {
-      const q = quizData[currentQ];
-      document.getElementById('quiz-category-tag').innerText = q.category;
-      document.getElementById('quiz-question-title').innerText = q.question;
-      document.getElementById('quiz-question-num').innerText = `Câu hỏi ${currentQ + 1} / 5`;
+    function renderWixQuestion() {
+      const q = wixQuiz[step];
+      document.getElementById('quiz-category-lbl').innerText = q.cat;
+      document.getElementById('quiz-title-lbl').innerText = q.q;
+      document.getElementById('quiz-step-lbl').innerText = `Câu hỏi ${step + 1} / 5`;
       
-      const pct = ((currentQ + 1) / 5) * 100;
-      document.getElementById('quiz-progress-text').innerText = `${pct}%`;
-      document.getElementById('quiz-progress-fill').style.width = `${pct}%`;
+      const pct = ((step + 1) / 5) * 100;
+      document.getElementById('quiz-pct-lbl').innerText = `${pct}%`;
+      document.getElementById('quiz-progress-bar').style.width = `${pct}%`;
 
-      const list = document.getElementById('quiz-options-list');
-      list.innerHTML = '';
+      const container = document.getElementById('quiz-options-container');
+      container.innerHTML = '';
 
-      q.options.forEach(opt => {
+      q.opts.forEach(opt => {
         const btn = document.createElement('button');
-        btn.className = "w-full text-left p-4 sm:p-5 rounded-2xl border border-stone-200 hover:border-lokcok-purple hover:bg-purple-50/40 text-stone-800 text-sm font-semibold transition flex items-center justify-between group active:scale-[0.99] shadow-sm";
+        btn.className = "w-full text-left p-4 border border-stone-200 hover:border-black hover:bg-stone-50 text-xs sm:text-sm font-medium transition flex items-center justify-between";
         btn.innerHTML = `
-          <span class="group-hover:text-lokcok-purple transition">${opt.text}</span>
-          <span class="w-7 h-7 rounded-xl border border-stone-300 group-hover:border-lokcok-purple group-hover:bg-lokcok-purple group-hover:text-white flex items-center justify-center text-xs font-bold text-stone-400 shrink-0 transition">
-            →
-          </span>
+          <span>${opt.text}</span>
+          <span class="text-stone-400 font-bold ml-2">→</span>
         `;
-        btn.onclick = () => selectVibeOption(opt.vibe);
-        list.appendChild(btn);
+        btn.onclick = () => chooseWixOption(opt.vibe);
+        container.appendChild(btn);
       });
     }
 
-    function selectVibeOption(vibe) {
-      userVibeAnswers.push(vibe);
-      if (currentQ < quizData.length - 1) {
-        currentQ++;
-        renderQuizQuestion();
+    function chooseWixOption(vibe) {
+      selectedVibes.push(vibe);
+      if (step < wixQuiz.length - 1) {
+        step++;
+        renderWixQuestion();
       } else {
-        showVibeResult();
+        showWixResult();
       }
     }
 
-    let currentResultVibe = 'chic';
-
-    function showVibeResult() {
-      // Find mode of vibes
+    function showWixResult() {
       const counts = { chic: 0, game: 0, basic: 0, custom: 0 };
-      userVibeAnswers.forEach(v => { counts[v] = (counts[v] || 0) + 1; });
+      selectedVibes.forEach(v => counts[v] = (counts[v] || 0) + 1);
       
       let winner = 'chic';
       let maxScore = -1;
@@ -1105,250 +774,173 @@
           winner = k;
         }
       }
-      currentResultVibe = winner;
+      currentQuizVibeKey = winner;
 
-      const r = vibeResults[winner];
-      document.getElementById('quiz-question-view').classList.add('hidden');
-      document.getElementById('quiz-progress-section').classList.add('hidden');
-      document.getElementById('quiz-result-view').classList.remove('hidden');
+      const r = wixResults[winner];
+      document.getElementById('quiz-question-box').classList.add('hidden');
+      document.getElementById('quiz-progress-wrap').classList.add('hidden');
+      document.getElementById('quiz-result-box').classList.remove('hidden');
 
-      document.getElementById('result-badge').innerText = r.badge;
-      document.getElementById('result-vibe-title').innerText = r.title;
-      document.getElementById('result-vibe-desc').innerText = r.desc;
-      document.getElementById('result-prod-name').innerText = r.prodName;
-      document.getElementById('result-prod-price').innerText = r.prodPrice;
-      document.getElementById('result-prod-oldprice').innerText = r.prodOldPrice;
-      document.getElementById('result-prod-img').src = r.prodImg;
-      document.getElementById('result-prod-badge').innerText = r.prodBadge;
-      document.getElementById('result-prod-specs').innerText = r.prodSpecs;
+      document.getElementById('res-badge').innerText = r.badge;
+      document.getElementById('res-title').innerText = r.title;
+      document.getElementById('res-desc').innerText = r.desc;
+      document.getElementById('res-prod-name').innerText = r.prodName;
+      document.getElementById('res-price').innerText = r.price;
+      document.getElementById('res-oldprice').innerText = r.oldprice;
+      document.getElementById('res-img').src = r.img;
+      document.getElementById('res-promo').innerText = r.promo;
+      document.getElementById('res-specs').innerText = r.specs;
 
       if (typeof confetti === 'function') {
-        confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
+        confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
       }
       lucide.createIcons();
     }
 
-    function resetQuiz() {
-      currentQ = 0;
-      userVibeAnswers = [];
-      document.getElementById('quiz-result-view').classList.add('hidden');
-      document.getElementById('quiz-question-view').classList.remove('hidden');
-      document.getElementById('quiz-progress-section').classList.remove('hidden');
-      renderQuizQuestion();
+    function resetWixQuiz() {
+      step = 0;
+      selectedVibes = [];
+      document.getElementById('quiz-result-box').classList.add('hidden');
+      document.getElementById('quiz-question-box').classList.remove('hidden');
+      document.getElementById('quiz-progress-wrap').classList.remove('hidden');
+      renderWixQuestion();
     }
 
-    function addResultProductToCart() {
-      const r = vibeResults[currentResultVibe];
-      addToCart(r.prodName, r.numericPrice, r.prodImg);
-      toggleCartDrawer();
+    function addWixResultToCart() {
+      const r = wixResults[currentQuizVibeKey];
+      addWixCartItem(r.prodName, r.numericPrice, r.img);
+      openModal('cart-modal');
     }
 
-    renderQuizQuestion();
+    renderWixQuestion();
 
-    // ================= SHOP FILTER LOGIC =================
-    function filterCategory(cat) {
-      document.querySelectorAll('.cat-btn').forEach(btn => {
-        if (btn.dataset.cat === cat) {
-          btn.className = "cat-btn px-4 py-2 rounded-full text-xs font-bold transition bg-lokcok-black text-white";
-        } else {
-          btn.className = "cat-btn px-4 py-2 rounded-full text-xs font-bold transition bg-stone-100 hover:bg-stone-200 text-stone-700";
-        }
-      });
+    // ================= CART LOGIC =================
+    let wixCart = [];
 
-      const cards = document.querySelectorAll('.prod-card');
-      cards.forEach(c => {
-        if (cat === 'all' || c.dataset.category === cat) {
-          c.style.display = 'flex';
-        } else {
-          c.style.display = 'none';
-        }
-      });
-    }
-
-    // ================= CART DRAWER & COUPON LOGIC =================
-    let cart = [];
-    let discountRate = 0; // 0.2 if coupon applied
-
-    function toggleCartDrawer() {
-      const drawer = document.getElementById('cart-drawer');
-      const overlay = document.getElementById('cart-drawer-overlay');
-      const isClosed = drawer.classList.contains('translate-x-full');
-
-      if (isClosed) {
-        overlay.classList.remove('hidden');
-        setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-        drawer.classList.remove('translate-x-full');
-      } else {
-        overlay.classList.add('opacity-0');
-        drawer.classList.add('translate-x-full');
-        setTimeout(() => overlay.classList.add('hidden'), 300);
-      }
-    }
-
-    function addToCart(name, price, img) {
-      const existing = cart.find(i => i.name === name);
+    function addWixCartItem(name, price, img) {
+      const existing = wixCart.find(i => i.name === name);
       if (existing) {
         existing.qty += 1;
       } else {
-        cart.push({ name, price, img, qty: 1 });
+        wixCart.push({ name, price, img, qty: 1 });
       }
-      updateCartUI();
-      
-      // Mini alert notification
-      const counter = document.getElementById('cart-counter');
-      counter.classList.add('scale-125');
-      setTimeout(() => counter.classList.remove('scale-125'), 200);
+      renderCart();
     }
 
-    function updateCartUI() {
-      const list = document.getElementById('cart-items-list');
-      const emptyMsg = document.getElementById('empty-cart-msg');
-      const counter = document.getElementById('cart-counter');
-      
-      const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-      counter.innerText = totalItems;
+    function renderCart() {
+      const display = document.getElementById('cart-qty-display');
+      const list = document.getElementById('wix-cart-items');
+      const totalDisplay = document.getElementById('wix-cart-total');
 
-      if (cart.length === 0) {
-        emptyMsg.classList.remove('hidden');
-        list.innerHTML = '';
-        list.appendChild(emptyMsg);
-      } else {
-        emptyMsg.classList.add('hidden');
-        list.innerHTML = '';
+      const totalQty = wixCart.reduce((s, i) => s + i.qty, 0);
+      display.innerText = totalQty;
 
-        cart.forEach((item, idx) => {
-          const div = document.createElement('div');
-          div.className = "flex items-center gap-3 p-3 bg-stone-50 rounded-2xl border border-stone-200 text-xs";
-          div.innerHTML = `
-            <img src="${item.img}" class="w-12 h-12 rounded-xl object-cover">
-            <div class="flex-1">
-              <h5 class="font-bold text-stone-900">${item.name}</h5>
-              <p class="text-lokcok-pink font-semibold">${item.price.toLocaleString()}₫</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <button onclick="changeQty(${idx}, -1)" class="w-6 h-6 rounded-lg bg-stone-200 flex items-center justify-center font-bold text-stone-600">-</button>
-              <span class="font-bold">${item.qty}</span>
-              <button onclick="changeQty(${idx}, 1)" class="w-6 h-6 rounded-lg bg-stone-200 flex items-center justify-center font-bold text-stone-600">+</button>
-            </div>
-          `;
-          list.appendChild(div);
-        });
-      }
-
-      // Calculations
-      const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-      const discount = subtotal * discountRate;
-      const total = subtotal - discount;
-
-      document.getElementById('cart-subtotal').innerText = subtotal.toLocaleString() + '₫';
-      document.getElementById('cart-discount').innerText = '-' + discount.toLocaleString() + '₫';
-      document.getElementById('cart-total').innerText = total.toLocaleString() + '₫';
-      lucide.createIcons();
-    }
-
-    function changeQty(idx, delta) {
-      cart[idx].qty += delta;
-      if (cart[idx].qty <= 0) {
-        cart.splice(idx, 1);
-      }
-      updateCartUI();
-    }
-
-    function applyCoupon() {
-      const val = document.getElementById('coupon-input').value.trim().toUpperCase();
-      const status = document.getElementById('coupon-status');
-      status.classList.remove('hidden');
-
-      if (val === 'GIAMGIAHE2026') {
-        discountRate = 0.2;
-        status.className = "text-[11px] font-bold text-emerald-600";
-        status.innerText = "✓ Đã áp dụng mã giảm giá 20% toàn bộ đơn hàng!";
-      } else {
-        discountRate = 0;
-        status.className = "text-[11px] font-bold text-red-500";
-        status.innerText = "Mã không hợp lệ hoặc đã hết hạn!";
-      }
-      updateCartUI();
-    }
-
-    function copyCoupon(code) {
-      navigator.clipboard.writeText(code);
-      alert("Đã sao chép mã giảm giá: " + code + ". Hãy áp dụng trong giỏ hàng để được giảm 20%!");
-      document.getElementById('coupon-input').value = code;
-    }
-
-    function checkoutAlert() {
-      if (cart.length === 0) {
-        alert("Giỏ hàng của bạn đang trống!");
+      if (wixCart.length === 0) {
+        list.innerHTML = '<p class="text-stone-400 py-6 text-center">Giỏ hàng của bạn đang trống.</p>';
+        totalDisplay.innerText = '0₫';
         return;
       }
-      alert("Cảm ơn bạn! Đơn hàng của bạn đang được chuyển đến cổng thanh toán bảo mật của LOKCOK.");
-    }
 
-    // ================= ACCORDION & MENU =================
-    function toggleAccordion(btn) {
-      const content = btn.nextElementSibling;
-      const icon = btn.querySelector('[data-lucide="chevron-down"]');
-      const isHidden = content.classList.contains('hidden');
-
-      document.querySelectorAll('.acc-content').forEach(c => c.classList.add('hidden'));
-      document.querySelectorAll('[data-lucide="chevron-down"]').forEach(i => i.style.transform = 'rotate(0deg)');
-
-      if (isHidden) {
-        content.classList.remove('hidden');
-        if (icon) icon.style.transform = 'rotate(180deg)';
-      }
-    }
-
-    function toggleMobileMenu() {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    }
-
-    // ================= CHATBOT =================
-    function toggleChat() {
-      document.getElementById('chat-box').classList.toggle('hidden');
-    }
-
-    function sendChat() {
-      const input = document.getElementById('chat-input');
-      const text = input.value.trim();
-      if (!text) return;
-
-      const logs = document.getElementById('chat-logs');
-      logs.innerHTML += `
-        <div class="flex justify-end">
-          <div class="bg-lokcok-black text-white p-2.5 rounded-2xl rounded-tr-none text-xs max-w-[85%]">
-            ${text}
-          </div>
-        </div>
-      `;
-      input.value = '';
-
-      setTimeout(() => {
-        let reply = "Cảm ơn bạn đã nhắn tin cho LOKCOK! Bạn có thể gọi hotline 1902 1217 hoặc làm Quiz Vibe Check trên web để được gợi ý bàn phím nhanh nhất nhé!";
-        const q = text.toLowerCase();
-        if (q.includes('giảm giá') || q.includes('mã') || q.includes('khuyến mãi')) {
-          reply = "LOKCOK đang có chương trình GIẢM 20% toàn bộ sản phẩm với mã: <strong>GIAMGIAHE2026</strong> (áp dụng 1/7 - 15/7)!";
-        } else if (q.includes('giao hàng') || q.includes('ship') || q.includes('bao lâu')) {
-          reply = "Thời gian giao hàng là 1-3 ngày tại TP.HCM, 3-5 ngày miền Nam và 4-7 ngày miền Trung/Bắc. Sản phẩm custom mất 5-10 ngày nhé!";
-        } else if (q.includes('đổi trả') || q.includes('bảo hành')) {
-          reply = "LOKCOK hỗ trợ đổi trả trong vòng 07 ngày đối với các lỗi kỹ thuật từ nhà sản xuất ạ.";
-        } else if (q.includes('địa chỉ') || q.includes('ở đâu')) {
-          reply = "Showroom LOKCOK tọa lạc tại: 27 Đồng Khởi, Quận 1, TP. Hồ Chí Minh. Mở cửa từ 7h - 22h hằng ngày!";
-        }
-
-        logs.innerHTML += `
-          <div class="flex gap-2 items-start">
-            <div class="w-6 h-6 rounded-full bg-lokcok-purple text-white flex items-center justify-center text-[10px] font-bold shrink-0">LC</div>
-            <div class="bg-white p-2.5 rounded-2xl rounded-tl-none border border-stone-200 text-stone-700 text-xs shadow-sm max-w-[85%]">
-              ${reply}
+      list.innerHTML = '';
+      let sum = 0;
+      wixCart.forEach((item, idx) => {
+        sum += item.price * item.qty;
+        const row = document.createElement('div');
+        row.className = "flex items-center justify-between border-b border-stone-100 pb-2";
+        row.innerHTML = `
+          <div class="flex items-center gap-3">
+            <img src="${item.img}" class="w-10 h-10 object-cover border border-stone-200">
+            <div>
+              <p class="font-bold text-black">${item.name}</p>
+              <p class="text-stone-500">${item.price.toLocaleString()}₫ x ${item.qty}</p>
             </div>
           </div>
+          <button onclick="removeWixCartItem(${idx})" class="text-stone-400 hover:text-black">✕</button>
         `;
-        logs.scrollTop = logs.scrollHeight;
-        lucide.createIcons();
-      }, 400);
+        list.appendChild(row);
+      });
+
+      totalDisplay.innerText = sum.toLocaleString() + '₫';
     }
+
+    function removeWixCartItem(idx) {
+      wixCart.splice(idx, 1);
+      renderCart();
+    }
+
+    // ================= MODAL HELPERS =================
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function openPolicyModal(type) {
+      const title = document.getElementById('policy-modal-title');
+      const body = document.getElementById('policy-modal-body');
+
+      if (type === 'shipping') {
+        title.innerText = "CHÍNH SÁCH GIAO HÀNG";
+        body.innerHTML = `
+          <p>• Đối với các sản phẩm có sẵn, thời gian giao hàng thường từ <strong>1-3 ngày làm việc tại TP.HCM</strong>, 3-5 ngày đối với các tỉnh thành khu vực miền Nam và 4-7 ngày đối với khu vực miền Trung, miền Bắc.</p>
+          <p>• Đối với các sản phẩm custom theo yêu cầu, thời gian thiết kế và hoàn thiện thường từ <strong>5-10 ngày làm việc</strong> trước khi được bàn giao cho đơn vị vận chuyển.</p>
+        `;
+      } else if (type === 'return') {
+        title.innerText = "CHÍNH SÁCH ĐỔI TRẢ";
+        body.innerHTML = `
+          <p>LOKCOK hỗ trợ đổi trả trong vòng <strong>07 ngày</strong> kể từ ngày nhận hàng đối với các trường hợp sản phẩm bị lỗi kỹ thuật từ nhà sản xuất hoặc giao không đúng mẫu mã, màu sắc theo đơn đặt hàng.</p>
+          <p>Sản phẩm đổi trả cần còn nguyên vẹn, không có dấu hiệu hư hỏng do tác động từ người sử dụng.</p>
+        `;
+      } else if (type === 'payment') {
+        title.innerText = "PHƯƠNG THỨC THANH TOÁN";
+        body.innerHTML = `
+          <ul class="list-disc list-inside space-y-1">
+            <li>Thanh toán khi nhận hàng (COD)</li>
+            <li>Chuyển khoản ngân hàng trực tiếp</li>
+            <li>Thanh toán qua ví điện tử: MoMo, ZaloPay, VNPay</li>
+            <li>Thanh toán bằng thẻ tín dụng / thẻ ghi nợ (Credit / Debit Cards)</li>
+          </ul>
+        `;
+      } else {
+        title.innerText = "GIẢI ĐÁP & HỖ TRỢ";
+        body.innerHTML = `
+          <p>Mọi thắc mắc về đơn hàng, kỹ thuật hoặc nhu cầu custom bàn phím, vui lòng liên hệ hotline <strong>1902 1217</strong> hoặc email <strong>lokcokvn@gmail.com</strong>.</p>
+        `;
+      }
+
+      openModal('policy-modal');
+    }
+
+    function openProductDetail(name, price, img, desc) {
+      addWixCartItem(name, parseInt(price.replace(/\D/g, '')), img);
+      alert(`Đã thêm "${name}" vào giỏ hàng! Bấm vào "Giỏ hàng" ở góc trên để xem chi tiết.`);
+    }
+
+    function filterWixCategory(cat) {
+      alert("Đang lọc danh mục: " + cat.toUpperCase() + ". Tất cả các mẫu bàn phím LOKCOK đang hiển thị sẵn sàng bên dưới.");
+    }
+
+    function toggleMobileNav() {
+      document.getElementById('mobile-nav-menu').classList.toggle('hidden');
+    }
+
+    function handleWixNewsletter(e) {
+      e.preventDefault();
+      const msg = document.getElementById('newsletter-msg');
+      msg.innerText = "✓ Thanks for submitting!";
+      msg.classList.remove('hidden');
+      document.getElementById('newsletter-email').value = '';
+    }
+
+    // Modal navigation listeners
+    document.querySelectorAll('a[href="#our-story"]').forEach(el => {
+      el.onclick = (e) => { e.preventDefault(); openModal('story-modal'); };
+    });
+    document.querySelectorAll('a[href="#inquiry-services"]').forEach(el => {
+      el.onclick = (e) => { e.preventDefault(); openModal('services-modal'); };
+    });
   </script>
 </body>
 </html>
