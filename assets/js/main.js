@@ -1,6 +1,7 @@
 /**
- * MAIN.JS - CÁC TƯƠNG TÁC CHÍNH CỦA WEBSITE NẾP TÓC THORAKAO
- * Xử lý: Header Smooth Scroll, FAQ Accordion, Forms, Login Modal, Hero Video, Cart Counter, Toast
+ * MAIN.JS - CÁC TƯƠNG TÁC GỐC CHUẨN WIX CỦA NẾP TÓC THORAKAO
+ * Xử lý: Navigation Smooth Scroll, FAQ Accordion, Member Auth (cshoamaist2025@gmail.com),
+ * Wix AI Chat, Quiz Modal, Video Hero, Toast
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,18 +9,44 @@ document.addEventListener('DOMContentLoaded', () => {
   initWixFAQ();
   initWixForms();
   initHeroVideo();
-  initHeaderCartTrigger();
+  initMarqueeBanners();
+  checkAuthState();
+  initWixChat();
   updateHeaderCartCount();
 });
 
-// 1. SMOOTH SCROLLING CHO ANCHOR LINKS (#quizz, #faq, #contact)
+// 1. SMOOTH SCROLLING CHO CÁC LIÊN KẾT ANCHOR MENU
 function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
+  document.querySelectorAll('a[href*="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
-      const hash = this.getAttribute('href');
-      if (!hash || hash === '#') return;
+      const href = this.getAttribute('href');
+      if (!href) return;
       
-      const target = document.querySelector(hash) || document.querySelector(`[name="${hash.slice(1)}"]`);
+      let targetSelector = '';
+      if (href.startsWith('#')) {
+        targetSelector = href;
+      } else if (href.includes('#')) {
+        targetSelector = '#' + href.split('#')[1];
+      }
+
+      if (!targetSelector || targetSelector === '#') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      // Map alias anchors sang Section ID tương ứng nếu cần
+      let target = document.querySelector(targetSelector) || document.querySelector(`[name="${targetSelector.slice(1)}"]`);
+      if (!target) {
+        if (targetSelector === '#featured-categories' || targetSelector === '#quizz') {
+          target = document.getElementById('comp-mvqu69vk');
+        } else if (targetSelector === '#phan-11' || targetSelector === '#faq') {
+          target = document.getElementById('comp-mvq8wnvx');
+        } else if (targetSelector === '#phan-12' || targetSelector === '#contact') {
+          target = document.getElementById('comp-mvqw008w');
+        }
+      }
+
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -44,7 +71,7 @@ function initWixFAQ() {
       const nextContainer = btn.nextElementSibling; // div.rah-static
       const expandIcon = btn.querySelector('[data-hook="expandIcon"]');
 
-      // Đóng tất cả các câu hỏi khác
+      // Đóng các câu khác
       accordionButtons.forEach(otherBtn => {
         if (otherBtn !== btn) {
           otherBtn.setAttribute('aria-expanded', 'false');
@@ -91,20 +118,15 @@ function initWixFAQ() {
   tabs.forEach((tab, index) => {
     tab.style.cursor = 'pointer';
     tab.addEventListener('click', () => {
-      tabs.forEach(t => {
-        t.setAttribute('aria-selected', 'false');
-      });
+      tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
       tab.setAttribute('aria-selected', 'true');
 
-      // Lấy danh sách câu hỏi
       const items = sec10.querySelectorAll('li, div.sEjwD5F');
       if (index === 0) {
-        // Tab 0: Sản phẩm (7 câu đầu)
         items.forEach((item, idx) => {
           item.style.display = idx < 7 ? 'block' : 'none';
         });
       } else {
-        // Tab 1: Mua hàng (câu thứ 8)
         items.forEach((item, idx) => {
           item.style.display = idx >= 7 ? 'block' : 'none';
         });
@@ -113,16 +135,51 @@ function initWixFAQ() {
   });
 }
 
-// 3. TỰ ĐỘNG CHẠY VIDEO HERO
+// 3. TỰ ĐỘNG PHÁT VIDEO HERO VÀ MARQUEE BANNERS
 function initHeroVideo() {
   const vid = document.getElementById('comp-mpbn2nv6_video');
   if (vid) {
     vid.muted = true;
-    vid.playsInline = true;
-    vid.play().catch(e => {
-      console.log('Video autoplay deferred:', e);
-    });
+    vid.defaultMuted = true;
+    vid.setAttribute('muted', '');
+    vid.setAttribute('playsinline', '');
+    vid.setAttribute('autoplay', '');
+    vid.setAttribute('loop', '');
+
+    const tryPlay = () => {
+      const p = vid.play();
+      if (p !== undefined) {
+        p.catch(err => console.log('Autoplay deferred:', err));
+      }
+    };
+    tryPlay();
+    window.addEventListener('scroll', tryPlay, { once: true, passive: true });
+    document.addEventListener('click', tryPlay, { once: true, passive: true });
+    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+
+    const playPauseBtn = document.querySelector('.background-video-play-pause-button');
+    if (playPauseBtn) {
+      playPauseBtn.onclick = (e) => {
+        e.preventDefault();
+        if (vid.paused) {
+          vid.play();
+        } else {
+          vid.pause();
+        }
+      };
+    }
   }
+}
+
+function initMarqueeBanners() {
+  const marquees = document.querySelectorAll('._marqueeUnitContainer_z4m05_32, [data-marquee-animation]');
+  marquees.forEach(m => {
+    m.setAttribute('data-marquee-animation', 'left');
+    m.style.setProperty('--marquee-animation-state', 'running');
+    m.style.setProperty('--marquee-duration', '25s');
+    m.style.animation = '_left_z4m05_1 25s linear infinite';
+    m.style.animationPlayState = 'running';
+  });
 }
 
 // 4. TƯƠNG TÁC FORMS (LIÊN HỆ & NEWSLETTER)
@@ -134,7 +191,6 @@ function initWixForms() {
     if (submitBtn) {
       submitBtn.addEventListener('click', async (e) => {
         e.preventDefault();
-        
         const inputs = sec11.querySelectorAll('input');
         const textarea = sec11.querySelector('textarea');
 
@@ -161,20 +217,18 @@ function initWixForms() {
 
         const formData = {
           type: 'CONTACT',
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          message: message,
+          firstName,
+          lastName,
+          email,
+          message,
           createdAt: new Date().toISOString()
         };
 
         try {
-          const inquiries = JSON.parse(localStorage.getItem('thorakao_inquiries') || '[]');
-          inquiries.push(formData);
-          localStorage.setItem('thorakao_inquiries', JSON.stringify(inquiries));
-        } catch (err) {
-          console.error(err);
-        }
+          const list = JSON.parse(localStorage.getItem('thorakao_inquiries') || '[]');
+          list.push(formData);
+          localStorage.setItem('thorakao_inquiries', JSON.stringify(list));
+        } catch (err) {}
 
         if (typeof CONFIG !== 'undefined' && CONFIG.GOOGLE_SHEET_WEBHOOK_URL) {
           try {
@@ -183,13 +237,10 @@ function initWixForms() {
               headers: { 'Content-Type': 'text/plain;charset=utf-8' },
               body: JSON.stringify(formData)
             });
-          } catch (err) {
-            console.warn('Webhook error:', err);
-          }
+          } catch (err) {}
         }
 
         showToast('Cảm ơn bạn! Lời nhắn của bạn đã được gửi thành công đến Thorakao.');
-        
         inputs.forEach(inp => inp.value = '');
         if (textarea) textarea.value = '';
         submitBtn.disabled = false;
@@ -220,7 +271,7 @@ function initWixForms() {
 
         const data = {
           type: 'NEWSLETTER',
-          email: email,
+          email,
           createdAt: new Date().toISOString()
         };
 
@@ -228,21 +279,7 @@ function initWixForms() {
           const subs = JSON.parse(localStorage.getItem('thorakao_subscribers') || '[]');
           if (!subs.includes(email)) subs.push(email);
           localStorage.setItem('thorakao_subscribers', JSON.stringify(subs));
-        } catch (err) {
-          console.error(err);
-        }
-
-        if (typeof CONFIG !== 'undefined' && CONFIG.GOOGLE_SHEET_WEBHOOK_URL) {
-          try {
-            await fetch(CONFIG.GOOGLE_SHEET_WEBHOOK_URL, {
-              method: 'POST',
-              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-              body: JSON.stringify(data)
-            });
-          } catch (err) {
-            console.warn('Webhook error:', err);
-          }
-        }
+        } catch (err) {}
 
         showToast('Chúc mừng! Bạn đã đăng ký nhận thông tin chiến dịch thành công.');
         if (emailInput) emailInput.value = '';
@@ -253,130 +290,238 @@ function initWixForms() {
   }
 }
 
-// 5. MODAL ĐĂNG NHẬP THÀNH VIÊN & TRA CỨU ĐƠN HÀNG
-function openLoginModal(tab = 'login') {
-  const modal = document.getElementById('loginModalBackdrop');
-  if (modal) {
-    modal.classList.add('open');
-    modal.style.display = 'flex';
-    switchLoginTab(tab);
-  }
-}
+// 5. QUẢN LÝ ĐĂNG NHẬP THÀNH VIÊN WIX (cshoamaist2025@gmail.com / 123456)
+function checkAuthState() {
+  const auth = JSON.parse(localStorage.getItem('thorakao_auth') || 'null');
+  const label = document.getElementById('loginHeaderLabel');
+  const avatarWrap = document.getElementById('loginAvatarIconWrap');
 
-function closeLoginModal() {
-  const modal = document.getElementById('loginModalBackdrop');
-  if (modal) {
-    modal.classList.remove('open');
-    modal.style.display = 'none';
-  }
-}
-
-// Đóng modal khi bấm phím Escape hoặc click backdrop
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeLoginModal();
-    if (typeof closeChatbot === 'function') closeChatbot();
-  }
-});
-
-function switchLoginTab(tab) {
-  const loginForm = document.getElementById('memberLoginForm');
-  const lookupForm = document.getElementById('orderLookupForm');
-  const tabLogin = document.getElementById('tabBtnLogin');
-  const tabLookup = document.getElementById('tabBtnLookup');
-
-  if (tab === 'login') {
-    if (loginForm) loginForm.style.display = 'block';
-    if (lookupForm) lookupForm.style.display = 'none';
-    if (tabLogin) tabLogin.classList.add('active');
-    if (tabLookup) tabLookup.classList.remove('active');
+  if (auth && auth.email) {
+    if (label) label.innerText = auth.name || auth.email.split('@')[0];
+    if (avatarWrap) {
+      avatarWrap.innerHTML = `
+        <div style="width: 24px; height: 24px; border-radius: 50%; background: #781816; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;">
+          ${(auth.initial || auth.email[0]).toUpperCase()}
+        </div>
+      `;
+    }
+    const nameEl = document.getElementById('memberDropdownName');
+    const emailEl = document.getElementById('memberDropdownEmail');
+    const avatarEl = document.getElementById('memberDropdownAvatar');
+    if (nameEl) nameEl.innerText = auth.name || auth.email.split('@')[0];
+    if (emailEl) emailEl.innerText = auth.email;
+    if (avatarEl) avatarEl.innerText = (auth.initial || auth.email[0]).toUpperCase();
   } else {
-    if (loginForm) loginForm.style.display = 'none';
-    if (lookupForm) lookupForm.style.display = 'block';
-    if (tabLogin) tabLogin.classList.remove('active');
-    if (tabLookup) tabLookup.classList.add('active');
+    if (label) label.innerText = 'Đăng nhập';
+    if (avatarWrap) {
+      avatarWrap.innerHTML = `
+        <div id="defaultAvatar-comp-mb7ogqrp_r_comp-mpbn4c1x" class="_avatarPlaceholder_amy81_32 wixui-vector-image">
+          <div data-testid="svgRoot-defaultAvatar-comp-mb7ogqrp_r_comp-mpbn4c1x" class="_svgRoot_zlqkq_19 _nonScalingStroke_zlqkq_55 _avatarPlaceholder_amy81_32">
+            <svg data-bbox="0 0 50 50" data-type="shape" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+              <path d="M25 48.077c-5.924 0-11.31-2.252-15.396-5.921 2.254-5.362 7.492-8.267 15.373-8.267 7.889 0 13.139 3.044 15.408 8.418-4.084 3.659-9.471 5.77-15.385 5.77m.278-35.3c4.927 0 8.611 3.812 8.611 8.878 0 5.21-3.875 9.456-8.611 9.456s-8.611-4.246-8.611-9.456c0-5.066 3.684-8.878 8.611-8.878M25 0C11.193 0 0 11.193 0 25c0 .915.056 1.816.152 2.705.032.295.091.581.133.873.085.589.173 1.176.298 1.751.073.338.169.665.256.997.135.515.273 1.027.439 1.529.114.342.243.675.37 1.01.18.476.369.945.577 1.406.149.331.308.657.472.98.225.446.463.883.714 1.313.182.312.365.619.56.922.272.423.56.832.856 1.237.207.284.41.568.629.841.325.408.671.796 1.02 1.182.22.244.432.494.662.728.405.415.833.801 1.265 1.186.173.154.329.325.507.475l.004-.011A24.886 24.886 0 0 0 25 50a24.881 24.881 0 0 0 16.069-5.861.126.126 0 0 1 .003.01c.172-.144.324-.309.49-.458.442-.392.88-.787 1.293-1.209.228-.232.437-.479.655-.72.352-.389.701-.78 1.028-1.191.218-.272.421-.556.627-.838.297-.405.587-.816.859-1.24a26.104 26.104 0 0 0 1.748-3.216c.208-.461.398-.93.579-1.406.127-.336.256-.669.369-1.012.167-.502.305-1.014.44-1.53.087-.332.183-.659.256-.996.126-.576.214-1.164.299-1.754.042-.292.101-.577.133-.872.095-.89.152-1.791.152-2.707C50 11.193 38.807 0 25 0"></path>
+            </svg>
+          </div>
+        </div>
+      `;
+    }
   }
 }
 
-function handleMemberLogin(e) {
+function handleLoginHeaderClick(e) {
+  if (e) e.preventDefault();
+  const auth = JSON.parse(localStorage.getItem('thorakao_auth') || 'null');
+  if (auth && auth.email) {
+    const dropdown = document.getElementById('wixMemberDropdown');
+    if (dropdown) {
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+  } else {
+    openWixLoginModal();
+  }
+}
+
+function closeMemberDropdown() {
+  const dropdown = document.getElementById('wixMemberDropdown');
+  if (dropdown) dropdown.style.display = 'none';
+}
+
+function openWixLoginModal() {
+  const modal = document.getElementById('wixLoginModal');
+  if (modal) modal.style.display = 'flex';
+}
+
+function closeWixLoginModal() {
+  const modal = document.getElementById('wixLoginModal');
+  if (modal) modal.style.display = 'none';
+}
+
+function handleMemberSubmit(e) {
   e.preventDefault();
-  const acc = document.getElementById('loginAccount').value.trim();
-  const pass = document.getElementById('loginPassword').value.trim();
-  if (!acc || !pass) {
-    showToast('Vui lòng nhập đầy đủ tài khoản và mật khẩu!', true);
+  const emailInput = document.getElementById('wixLoginEmail');
+  const email = emailInput ? emailInput.value.trim() : '';
+
+  if (!email) {
+    showToast('Vui lòng nhập Email!', true);
     return;
   }
-  localStorage.setItem('thorakao_user', JSON.stringify({ account: acc, loggedInAt: new Date().toISOString() }));
-  showToast(`Xin chào thành viên ${acc}! Bạn đã đăng nhập thành công.`);
-  closeLoginModal();
 
-  const loginText = document.querySelector('#btn-login-header ._logOutText_1j3j6_12, #btn-login-header span');
-  if (loginText) loginText.innerText = 'Tài khoản';
-}
+  let displayName = email.split('@')[0];
+  let initial = email[0].toUpperCase();
 
-function handleOrderLookup(e) {
-  e.preventDefault();
-  const phone = document.getElementById('lookupPhone').value.trim();
-  const resArea = document.getElementById('lookupResultArea');
-  if (!phone) {
-    showToast('Vui lòng nhập số điện thoại để tra cứu!', true);
-    return;
+  if (email.toLowerCase() === 'cshoamaist2025@gmail.com') {
+    displayName = 'cshoamaist2025';
+    initial = 'C';
   }
 
-  let orders = [];
-  try {
-    orders = JSON.parse(localStorage.getItem('thorakao_orders') || '[]');
-  } catch(err) {}
+  const authData = {
+    email,
+    name: displayName,
+    initial,
+    loggedInAt: new Date().toISOString()
+  };
 
-  const userOrders = orders.filter(o => o.phone === phone || o.customerPhone === phone);
-
-  if (userOrders.length > 0) {
-    const latest = userOrders[userOrders.length - 1];
-    resArea.innerHTML = `
-      <div style="background:#eaf7ee;border:1px solid #68d391;padding:12px;border-radius:8px;margin-top:10px;">
-        <strong style="color:#22543d;">Đơn hàng #${latest.orderId || latest.id || 'TK-2026'}:</strong><br>
-        • Trạng thái: <span style="color:#2f855a;font-weight:700;">Đang xử lý giao hàng</span><br>
-        • Sản phẩm: ${latest.items ? latest.items.map(i => i.name).join(', ') : 'Dầu gội bồ kết Thorakao'}<br>
-        • Tổng tiền: <strong>${(latest.total || 113000).toLocaleString('vi-VN')}₫</strong>
-      </div>
-    `;
-  } else {
-    resArea.innerHTML = `
-      <div style="background:#fffaf0;border:1px solid #f6ad55;padding:12px;border-radius:8px;margin-top:10px;">
-        <strong style="color:#c05621;">Không tìm thấy đơn hàng cho SĐT ${phone}!</strong><br>
-        <span style="font-size:0.85rem;color:#7b341e;">Nếu bạn vừa đặt hàng qua Form hoặc Webhook, đơn hàng đang được hệ thống đồng bộ. Bạn cũng có thể liên hệ hotline <strong>028 8887 3241</strong> để được kiểm tra trực tiếp.</span>
-      </div>
-    `;
-  }
+  localStorage.setItem('thorakao_auth', JSON.stringify(authData));
+  checkAuthState();
+  closeWixLoginModal();
+  showToast(`Đăng nhập thành công! Chào mừng ${displayName}.`);
 }
 
-// 6. TƯƠNG TÁC GIỎ HÀNG HEADER
-function initHeaderCartTrigger() {
-  const cartBtn = document.getElementById('open-header-cart');
-  if (cartBtn) {
-    cartBtn.addEventListener('click', (e) => {
-      if (typeof openCartDrawer === 'function') {
-        e.preventDefault();
-        openCartDrawer();
-      }
+function handleMemberLogout() {
+  localStorage.removeItem('thorakao_auth');
+  closeMemberDropdown();
+  checkAuthState();
+  showToast('Bạn đã đăng xuất tài khoản.');
+}
+
+// 6. TƯƠNG TÁC WIX AI SITE CHAT (Nút vàng nguyên bản góc phải)
+function initWixChat() {
+  const chatBtn = document.querySelector('.minimizedButtonV2');
+  if (chatBtn) {
+    chatBtn.style.cursor = 'pointer';
+    chatBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleWixChat();
+    });
+  }
+
+  // Đóng tooltip vàng khi bấm nút x của tooltip
+  const closeTooltipBtn = document.querySelector('button[aria-label="Đóng thông báo"]');
+  if (closeTooltipBtn) {
+    closeTooltipBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const popover = document.querySelector('[data-hook="popover-content"]');
+      if (popover) popover.style.display = 'none';
     });
   }
 }
 
+function toggleWixChat() {
+  const popup = document.getElementById('wixChatPopup');
+  if (!popup) return;
+  const isOpen = popup.style.display === 'flex';
+  if (isOpen) {
+    popup.style.display = 'none';
+  } else {
+    popup.style.display = 'flex';
+    const input = document.getElementById('wixChatInput');
+    if (input) setTimeout(() => input.focus(), 150);
+  }
+}
+
+function sendWixChatMessage(predefinedText = null) {
+  const input = document.getElementById('wixChatInput');
+  const msg = predefinedText || (input ? input.value.trim() : '');
+  if (!msg) return;
+
+  const container = document.getElementById('wixChatMessages');
+  if (!container) return;
+
+  // Tin nhắn người dùng
+  const userMsg = document.createElement('div');
+  userMsg.className = 'wix-chat-msg user';
+  userMsg.innerText = msg;
+  container.appendChild(userMsg);
+
+  if (input) input.value = '';
+  container.scrollTop = container.scrollHeight;
+
+  // Phản hồi tự động
+  setTimeout(() => {
+    const reply = analyzeWixQuery(msg);
+    const botMsg = document.createElement('div');
+    botMsg.className = 'wix-chat-msg bot';
+    botMsg.innerHTML = reply;
+    container.appendChild(botMsg);
+    container.scrollTop = container.scrollHeight;
+  }, 350);
+}
+
+function analyzeWixQuery(text) {
+  const t = text.toLowerCase();
+  if (t.includes('giá') || t.includes('bao nhiêu') || t.includes('mua') || t.includes('tiền')) {
+    return `Dầu gội bồ kết Thorakao chính hãng <strong>750ml</strong> có giá niêm yết <strong>113.000₫/chai</strong>.<br><br>Đặc biệt: Khi mua từ 2 chai (từ 200.000₫), Thorakao áp dụng chính sách <strong>MIỄN PHÍ VẬN CHUYỂN</strong> toàn quốc! Bạn có thể vào <a href="product.html" style="color:#781816;font-weight:700;">trang sản phẩm</a> để đặt hàng ngay nhé!`;
+  }
+  if (t.includes('ship') || t.includes('giao hàng') || t.includes('vận chuyển')) {
+    return `Chính sách giao hàng:<br>• <strong>Miễn phí vận chuyển</strong> cho đơn hàng từ <strong>200.000₫</strong> trở lên.<br>• Đơn dưới 200.000₫ có phí ship đồng giá toàn quốc chỉ <strong>25.000₫</strong>!`;
+  }
+  if (t.includes('bết') || t.includes('dầu') || t.includes('nhờn')) {
+    return `Với mái tóc dễ bết dầu chân tóc, saponin và flavonoid tự nhiên trong bồ kết Thorakao sẽ làm sạch bã nhờn dịu nhẹ, giúp tóc tơi xốp, bồng bềnh lâu bết hơn.<br><br>👉 Bạn có thể làm ngay <a href="#featured-categories" onclick="toggleWixChat(); openQuizModal();" style="color:#781816;font-weight:700;">Mini Quiz Nếp Tóc</a> để nhận hướng dẫn chuẩn nhé!`;
+  }
+  if (t.includes('khô') || t.includes('xơ') || t.includes('rụng')) {
+    return `Bồ kết chứa nhiều hợp chất chống oxy hóa giúp nang tóc chắc khỏe, giảm gãy rụng và nuôi dưỡng sợi tóc đen mượt óng ả. Bạn nên kết hợp dầu xả ở phần ngọn tóc để duy trì độ mềm mại tối ưu!`;
+  }
+  if (t.includes('quiz') || t.includes('trắc nghiệm') || t.includes('nếp tóc')) {
+    return `Mời bạn tham gia bài <a href="#featured-categories" onclick="toggleWixChat(); openQuizModal();" style="color:#781816;font-weight:700;">Mini Quiz 5 câu "Nếp Tóc"</a> để khám phá nếp tóc của mình nhé!`;
+  }
+  return `Cảm ơn bạn đã nhắn tin cho Thorakao! Bạn có thể xem thêm mục <strong>FAQ (Câu hỏi thường gặp)</strong> hoặc để lại tin nhắn ở <strong>Form Liên Hệ</strong> để chuyên viên tư vấn hỗ trợ chi tiết nhất nhé!`;
+}
+
+// 7. QUIZ MODAL
+function openQuizModal() {
+  const modal = document.getElementById('wixQuizModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    if (typeof startQuizModal === 'function') {
+      startQuizModal();
+    }
+  }
+}
+
+function closeQuizModal() {
+  const modal = document.getElementById('wixQuizModal');
+  if (modal) modal.style.display = 'none';
+}
+
+// 8. ĐÓNG CÁC POPUP KHI BẤM PHÍM ESCAPE HOẶC CLICK NGOÀI
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeWixLoginModal();
+    closeQuizModal();
+    closeMemberDropdown();
+    const chatPopup = document.getElementById('wixChatPopup');
+    if (chatPopup) chatPopup.style.display = 'none';
+  }
+});
+
+document.addEventListener('click', (e) => {
+  const dropdown = document.getElementById('wixMemberDropdown');
+  const loginBar = document.getElementById('comp-mb7ogqrp_r_comp-mpbn4c1x');
+  if (dropdown && loginBar && !loginBar.contains(e.target)) {
+    dropdown.style.display = 'none';
+  }
+});
+
+// 9. CẬP NHẬT SỐ LƯỢNG GIỎ HÀNG
 function updateHeaderCartCount() {
   try {
     const cart = JSON.parse(localStorage.getItem('thorakao_cart') || '[]');
     const totalQty = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    const badge = document.querySelector('#open-header-cart [data-hook="items-count"], #open-header-cart span, .header-cart-badge');
-    if (badge) {
-      badge.textContent = totalQty;
-    }
-  } catch (e) {
-    console.error(e);
-  }
+    const badge = document.querySelector('#open-header-cart [data-hook="items-count"], #open-header-cart text');
+    if (badge) badge.textContent = totalQty;
+  } catch (e) {}
 }
 
-// 7. TOAST NOTIFICATION UTILITY
+// 10. TOAST NOTIFICATION UTILITY
 function showToast(message, isError = false) {
   let container = document.getElementById('toastContainer');
   if (!container) {

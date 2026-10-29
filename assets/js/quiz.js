@@ -1,6 +1,6 @@
 /**
  * QUIZ.JS - LOGIC MINI QUIZ "NẾP TÓC - NẾP RIÊNG?"
- * Chuẩn 5 câu hỏi, thanh tiến độ thật và phân loại 3 nhóm nếp tóc.
+ * Chuẩn 5 câu hỏi thực tế, tiến độ thật và phân loại 3 nhóm nếp tóc theo yêu cầu khách hàng.
  */
 
 const QUIZ_QUESTIONS = [
@@ -84,69 +84,65 @@ const QUIZ_RESULTS = {
 let currentQuestionIndex = 0;
 let userAnswers = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-  initQuiz();
-});
-
-function startQuiz() {
-  const launchCard = document.getElementById('quiz-launch-card');
-  const activeCard = document.getElementById('quiz-active-card');
-  if (launchCard) launchCard.style.display = 'none';
-  if (activeCard) activeCard.style.display = 'block';
-  currentQuestionIndex = 0;
-  userAnswers = [];
-  renderQuestion();
-}
-
-function initQuiz() {
+// Khởi tạo Quiz khi mở Modal
+function startQuizModal() {
   currentQuestionIndex = 0;
   userAnswers = [];
 
-  const startBtn = document.getElementById('btn-start-quiz');
-  const closeBtn = document.getElementById('quiz-close-btn');
-  const prevBtn = document.getElementById('quiz-btn-prev');
+  const bodyEl = document.getElementById('quizQuestionBody');
+  const footerEl = document.getElementById('quizQuestionFooter');
+  const resultCard = document.getElementById('quiz-result-card');
 
-  if (startBtn) {
-    startBtn.onclick = startQuiz;
+  if (bodyEl) bodyEl.style.display = 'block';
+  if (footerEl) footerEl.style.display = 'flex';
+  if (resultCard) {
+    resultCard.style.display = 'none';
+    resultCard.innerHTML = '';
   }
 
-  if (closeBtn) {
-    closeBtn.onclick = () => {
-      document.getElementById('quiz-active-card').style.display = 'none';
-      document.getElementById('quiz-launch-card').style.display = 'block';
-    };
-  }
+  renderQuizQuestion();
+}
 
-  if (prevBtn) {
-    prevBtn.onclick = () => {
-      if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        renderQuestion();
-      }
-    };
+function openQuizModal() {
+  const modal = document.getElementById('wixQuizModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    startQuizModal();
   }
 }
 
-function renderQuestion() {
+function closeQuizModal() {
+  const modal = document.getElementById('wixQuizModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+function renderQuizQuestion() {
   const q = QUIZ_QUESTIONS[currentQuestionIndex];
   if (!q) return;
 
-  // Cập nhật số câu & thanh tiến độ
+  const total = QUIZ_QUESTIONS.length;
+  const currentNum = currentQuestionIndex + 1;
+  const percent = Math.round((currentNum / total) * 100);
+
+  // Tiến độ
   const stepText = document.getElementById('quiz-step-text');
   const progressBar = document.getElementById('quiz-progress-bar');
   const prevBtn = document.getElementById('quiz-btn-prev');
 
-  const progressPercent = Math.round(((currentQuestionIndex + 1) / QUIZ_QUESTIONS.length) * 100);
-  if (stepText) stepText.innerText = `Câu ${currentQuestionIndex + 1} / ${QUIZ_QUESTIONS.length} (${progressPercent}%)`;
-  if (progressBar) progressBar.style.width = `${progressPercent}%`;
+  if (stepText) stepText.textContent = `Câu ${currentNum} / ${total} (${percent}%)`;
+  if (progressBar) progressBar.style.width = `${percent}%`;
   if (prevBtn) prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
 
-  // Tiêu đề câu hỏi
-  const titleEl = document.getElementById('quiz-question-text') || document.getElementById('quiz-question-title');
-  if (titleEl) titleEl.innerText = `${q.id}. ${q.question}`;
+  // Câu hỏi
+  const questionEl = document.getElementById('quiz-question-text');
+  if (questionEl) questionEl.textContent = `${q.id}. ${q.question}`;
 
   // Danh sách đáp án
-  const optionsEl = document.getElementById('quiz-options-container') || document.getElementById('quiz-options-list');
+  const optionsEl = document.getElementById('quiz-options-container');
   if (optionsEl) {
     optionsEl.innerHTML = '';
     q.options.forEach(opt => {
@@ -169,18 +165,26 @@ function renderQuestion() {
 function selectQuizOption(key, btnElement) {
   const allBtns = document.querySelectorAll('.quiz-option-btn');
   allBtns.forEach(b => b.classList.remove('selected'));
-  btnElement.classList.add('selected');
+  if (btnElement) btnElement.classList.add('selected');
 
   userAnswers[currentQuestionIndex] = key;
 
+  // Hiệu ứng chuyển mượt sang câu tiếp theo
   setTimeout(() => {
     if (currentQuestionIndex < QUIZ_QUESTIONS.length - 1) {
       currentQuestionIndex++;
-      renderQuestion();
+      renderQuizQuestion();
     } else {
       showQuizResult();
     }
-  }, 280);
+  }, 240);
+}
+
+function prevQuizQuestion() {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    renderQuizQuestion();
+  }
 }
 
 function calculateQuizResult(answers) {
@@ -196,11 +200,9 @@ function calculateQuizResult(answers) {
     return winners[0];
   }
 
-  // Phân định hòa: Ưu tiên đáp án của câu 1 (mối bận tâm cốt lõi của người dùng)
-  const q1Answer = answers[0];
-  if (winners.includes(q1Answer)) {
-    return q1Answer;
-  }
+  // Hòa: Ưu tiên câu 1 (mối bận tâm cốt lõi)
+  const q1 = answers[0];
+  if (winners.includes(q1)) return q1;
   return winners[0];
 }
 
@@ -208,10 +210,17 @@ function showQuizResult() {
   const winningKey = calculateQuizResult(userAnswers);
   const res = QUIZ_RESULTS[winningKey];
 
-  const activeCard = document.getElementById('quiz-active-card');
+  const bodyEl = document.getElementById('quizQuestionBody');
+  const footerEl = document.getElementById('quizQuestionFooter');
   const resultCard = document.getElementById('quiz-result-card');
+  const stepText = document.getElementById('quiz-step-text');
+  const progressBar = document.getElementById('quiz-progress-bar');
 
-  if (activeCard) activeCard.style.display = 'none';
+  if (bodyEl) bodyEl.style.display = 'none';
+  if (footerEl) footerEl.style.display = 'none';
+  if (stepText) stepText.textContent = `Hoàn thành 100%`;
+  if (progressBar) progressBar.style.width = `100%`;
+
   if (resultCard) {
     resultCard.style.display = 'block';
     resultCard.innerHTML = `
@@ -232,25 +241,16 @@ function showQuizResult() {
         <p>${res.explore}</p>
       </div>
       <div class="quiz-res-cta-row">
-        <a href="${res.ctaLink}" class="btn-res-cta">${res.ctaText} &rarr;</a>
-        <button type="button" class="btn-res-restart" onclick="restartQuiz()">Làm lại trắc nghiệm</button>
+        <a href="${res.ctaLink}" class="btn-res-cta" onclick="closeQuizModal()">${res.ctaText} &rarr;</a>
+        <button type="button" class="btn-res-restart" onclick="startQuizModal()">🔄 Làm lại trắc nghiệm</button>
       </div>
     `;
-
-    // Smooth scroll to view result
-    resultCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
 
-function restartQuiz() {
-  const launchCard = document.getElementById('quiz-launch-card');
-  const activeCard = document.getElementById('quiz-active-card');
-  const resultCard = document.getElementById('quiz-result-card');
-
-  if (resultCard) resultCard.style.display = 'none';
-  if (launchCard) launchCard.style.display = 'block';
-  if (activeCard) activeCard.style.display = 'none';
-
-  currentQuestionIndex = 0;
-  userAnswers = [];
-}
+// Gán toàn cục để gọi từ HTML
+window.openQuizModal = openQuizModal;
+window.closeQuizModal = closeQuizModal;
+window.startQuizModal = startQuizModal;
+window.prevQuizQuestion = prevQuizQuestion;
+window.restartQuiz = startQuizModal;

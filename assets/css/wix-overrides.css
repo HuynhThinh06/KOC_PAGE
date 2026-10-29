@@ -1,9 +1,29 @@
 /* ==========================================================================
    WIX OVERRIDES & RESTORATION STYLESHEET
-   Đảm bảo độ phân giải chính xác 100% theo bản thiết kế gốc Wix và kích hoạt tương tác
+   100% Fidelity với thiết kế gốc Wix và kích hoạt tương tác mượt mà
    ========================================================================== */
 
-/* 1. GOOGLE FONTS FOR VIETNAMESE TYPOGRAPHY */
+/* 1. REMOVE WIX_ADS BANNER (Được xây dựng trên WIX HARMONY) */
+#WIX_ADS,
+.WIX_ADS {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+:root {
+  --wix-ads-height: 0px !important;
+}
+
+#site-root {
+  top: 0 !important;
+}
+
+/* 2. GOOGLE FONTS FOR VIETNAMESE TYPOGRAPHY */
 body, input, textarea, select, button, p, span, a, li, div, label {
   font-family: 'Montserrat', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
@@ -20,7 +40,7 @@ h1, h2, h3, h4, h5, h6,
   letter-spacing: -0.01em;
 }
 
-/* 2. RESPONSIVE SECTION SCALING (100% FIDELITY) */
+/* 3. RESPONSIVE SECTION SCALING (100% FIDELITY GỐC) */
 #comp-mpbn2o2z, #comp-mvq65b7f, #comp-mpbn2o4g, #comp-mvpfzoii, #comp-mvq57pzq, #comp-mvqu69vk {
   width: 100% !important;
   min-height: calc(100vw * 1080 / 1920) !important;
@@ -76,9 +96,10 @@ h1, h2, h3, h4, h5, h6,
   z-index: 10 !important;
   pointer-events: auto !important;
   width: 100% !important;
+  height: 100% !important;
 }
 
-/* 3. STICKY HEADER & SMOOTH SCROLL */
+/* 4. STICKY HEADER & SMOOTH SCROLL */
 #comp-mb7ogqrp,
 #SITE_HEADER {
   position: sticky !important;
@@ -93,7 +114,7 @@ html {
   scroll-behavior: smooth !important;
 }
 
-/* 4. CONTINUOUS MARQUEE ANIMATION ("Giữ nếp xưa Tỏ nếp mình") */
+/* 5. CONTINUOUS MARQUEE ANIMATION ("Giữ nếp xưa Tỏ nếp mình") */
 @keyframes marqueeScroll {
   0% {
     transform: translateX(0%);
@@ -128,7 +149,7 @@ html {
   flex-shrink: 0 !important;
 }
 
-/* 5. INTERACTIVE FAQ ACCORDION */
+/* 6. INTERACTIVE FAQ ACCORDION */
 [data-hook="accordion-item-header"] {
   cursor: pointer !important;
   user-select: none !important;
@@ -165,104 +186,293 @@ html {
   border-bottom: 2px solid #781816 !important;
 }
 
-/* 6. SECTION 9 INTERACTIVE QUIZ CARD */
-.quiz-interactive-mount {
-  position: relative !important;
-  z-index: 20 !important;
-  max-width: 760px !important;
-  width: 90% !important;
-  margin: 40px auto !important;
-  text-align: center !important;
-  pointer-events: auto !important;
+/* 7. WIX MEMBER SOCIAL BAR & DROPDOWN MENU */
+.wix-member-dropdown {
+  position: absolute !important;
+  top: 100% !important;
+  right: 0 !important;
+  background: #ffffff !important;
+  border: 1px solid #ebd9c2 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+  min-width: 220px !important;
+  z-index: 2000 !important;
+  padding: 8px 0 !important;
+  animation: dropdownFadeIn 0.2s ease-out !important;
 }
 
-.quiz-launch-card {
-  background: rgba(253, 248, 242, 0.96) !important;
-  border: 2px solid #c99a4e !important;
-  border-radius: 16px !important;
-  padding: 36px 30px !important;
-  box-shadow: 0 10px 30px rgba(120, 24, 22, 0.15) !important;
-  backdrop-filter: blur(10px) !important;
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.quiz-badge {
-  display: inline-block !important;
+.member-dropdown-header {
+  padding: 12px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.member-dropdown-avatar {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
   background: #781816 !important;
   color: #fff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  flex-shrink: 0 !important;
+}
+
+.member-dropdown-meta {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.member-dropdown-meta strong {
   font-size: 13px !important;
-  font-weight: 600 !important;
-  padding: 4px 14px !important;
-  border-radius: 20px !important;
-  letter-spacing: 1px !important;
-  text-transform: uppercase !important;
-  margin-bottom: 12px !important;
+  color: #222 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
-.quiz-title {
-  font-size: 28px !important;
-  color: #3b1413 !important;
-  margin-bottom: 10px !important;
-  font-weight: bold !important;
+.member-dropdown-divider {
+  height: 1px !important;
+  background: #f0e6da !important;
+  margin: 6px 0 !important;
 }
 
-.quiz-desc {
-  font-size: 16px !important;
-  color: #555 !important;
-  line-height: 1.6 !important;
-  margin-bottom: 24px !important;
-  max-width: 580px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+.member-dropdown-item {
+  display: block !important;
+  padding: 10px 16px !important;
+  color: #333 !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  transition: background 0.15s ease !important;
 }
 
-.btn-quiz-start {
-  background: linear-gradient(135deg, #781816, #a82421) !important;
-  color: #fff !important;
+.member-dropdown-item:hover {
+  background: #fdfaf7 !important;
+  color: #781816 !important;
+}
+
+/* 8. WIX MODAL BACKDROP & DIALOGS */
+.wix-modal-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(5px) !important;
+  z-index: 99999 !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+}
+
+.wix-login-card {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  max-width: 400px !important;
+  width: 100% !important;
+  padding: 36px 30px !important;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25) !important;
+  position: relative !important;
+  animation: modalScaleUp 0.25s ease-out !important;
+}
+
+@keyframes modalScaleUp {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.wix-modal-close {
+  position: absolute !important;
+  top: 16px !important;
+  right: 18px !important;
+  background: none !important;
   border: none !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  padding: 14px 32px !important;
-  border-radius: 30px !important;
+  font-size: 26px !important;
+  color: #888 !important;
   cursor: pointer !important;
-  box-shadow: 0 4px 14px rgba(120, 24, 22, 0.35) !important;
-  transition: all 0.3s ease !important;
+  line-height: 1 !important;
+  padding: 4px !important;
 }
 
-.btn-quiz-start:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(120, 24, 22, 0.45) !important;
+.wix-modal-close:hover {
+  color: #222 !important;
 }
 
-.quiz-active-card, .quiz-result-card {
-  background: rgba(253, 248, 242, 0.98) !important;
+/* 9. WIX NATIVE AI CHAT POPUP (Yellow theme matching Wix button) */
+.wix-chat-popup {
+  position: fixed !important;
+  bottom: 85px !important;
+  right: 24px !important;
+  width: 360px !important;
+  max-width: calc(100vw - 36px) !important;
+  height: 500px !important;
+  max-height: calc(100vh - 110px) !important;
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  z-index: 10000 !important;
+  border: 1px solid rgba(0,0,0,0.08) !important;
+  animation: modalScaleUp 0.2s ease-out !important;
+}
+
+.wix-chat-popup-header {
+  background: #ffc800 !important;
+  color: #1c1917 !important;
+  padding: 14px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+}
+
+.wix-chat-close-btn {
+  background: none !important;
+  border: none !important;
+  font-size: 22px !important;
+  color: #333 !important;
+  cursor: pointer !important;
+  line-height: 1 !important;
+}
+
+.wix-chat-popup-body {
+  flex: 1 !important;
+  padding: 16px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  background: #fdfaf7 !important;
+}
+
+.wix-chat-msg {
+  max-width: 82% !important;
+  padding: 12px 16px !important;
+  border-radius: 14px !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.wix-chat-msg.bot {
+  align-self: flex-start !important;
+  background: #ffffff !important;
+  color: #2b2b2b !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+  border: 1px solid #ebd9c2 !important;
+}
+
+.wix-chat-msg.user {
+  align-self: flex-end !important;
+  background: #781816 !important;
+  color: #ffffff !important;
+}
+
+.wix-chat-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 6px !important;
+}
+
+.wix-chip-btn {
+  background: #ffffff !important;
+  border: 1px solid #d8c2a3 !important;
+  border-radius: 18px !important;
+  padding: 6px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #781816 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.wix-chip-btn:hover {
+  background: #781816 !important;
+  color: #ffffff !important;
+}
+
+.wix-chat-input-bar {
+  display: flex !important;
+  padding: 10px 14px !important;
+  background: #ffffff !important;
+  border-top: 1px solid #ebd9c2 !important;
+  gap: 8px !important;
+}
+
+.wix-chat-input-bar input {
+  flex: 1 !important;
+  border: 1px solid #d8c2a3 !important;
+  border-radius: 20px !important;
+  padding: 8px 14px !important;
+  font-size: 14px !important;
+  outline: none !important;
+}
+
+.wix-chat-input-bar button {
+  background: #781816 !important;
+  color: #ffffff !important;
+  border: none !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 10. QUIZ DIALOG & INNER STYLES */
+.wix-quiz-dialog {
+  background: #fdfaf7 !important;
   border: 2px solid #c99a4e !important;
   border-radius: 16px !important;
-  padding: 30px 28px !important;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2) !important;
-  text-align: left !important;
-  backdrop-filter: blur(12px) !important;
+  padding: 28px 24px !important;
+  max-width: 680px !important;
+  width: 90% !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25) !important;
+  position: relative !important;
+  animation: modalScaleUp 0.25s ease-out !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  font-family: inherit !important;
+  box-sizing: border-box !important;
 }
 
 .quiz-card-header {
   display: flex !important;
   align-items: center !important;
-  gap: 16px !important;
+  gap: 14px !important;
   margin-bottom: 20px !important;
-  border-bottom: 1px solid #ebd9c2 !important;
-  padding-bottom: 14px !important;
 }
 
 .quiz-step-label {
+  font-size: 13px !important;
   font-weight: 700 !important;
   color: #781816 !important;
-  font-size: 15px !important;
-  min-width: 80px !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
 .quiz-progress-track {
   flex: 1 !important;
   height: 8px !important;
-  background: #ebd9c2 !important;
+  background: #ecdac5 !important;
   border-radius: 10px !important;
   overflow: hidden !important;
 }
@@ -270,8 +480,8 @@ html {
 .quiz-progress-fill {
   height: 100% !important;
   background: linear-gradient(90deg, #c99a4e, #781816) !important;
+  transition: width 0.3s ease !important;
   border-radius: 10px !important;
-  transition: width 0.4s ease !important;
 }
 
 .quiz-close-btn {
@@ -281,241 +491,186 @@ html {
   color: #888 !important;
   cursor: pointer !important;
   line-height: 1 !important;
+  padding: 0 4px !important;
+  transition: color 0.2s !important;
+}
+.quiz-close-btn:hover {
+  color: #781816 !important;
 }
 
 .quiz-question-title {
-  font-size: 20px !important;
-  color: #3b1413 !important;
-  margin-bottom: 18px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #1c1917 !important;
   line-height: 1.4 !important;
+  margin: 0 0 18px 0 !important;
 }
 
 .quiz-options-list {
   display: flex !important;
   flex-direction: column !important;
-  gap: 12px !important;
+  gap: 10px !important;
 }
 
 .quiz-option-btn {
   display: flex !important;
   align-items: center !important;
   gap: 14px !important;
-  background: #fff !important;
-  border: 1.5px solid #d8c2a3 !important;
+  width: 100% !important;
   padding: 14px 18px !important;
+  background: #ffffff !important;
+  border: 1.5px solid #e2d3c1 !important;
   border-radius: 10px !important;
-  font-size: 15px !important;
-  color: #2b2b2b !important;
   cursor: pointer !important;
   text-align: left !important;
   transition: all 0.2s ease !important;
-  line-height: 1.4 !important;
+  font-family: inherit !important;
+  box-sizing: border-box !important;
 }
-
 .quiz-option-btn:hover {
+  border-color: #c99a4e !important;
+  background: #fbf5ee !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(120, 24, 22, 0.08) !important;
+}
+.quiz-option-btn.selected {
   border-color: #781816 !important;
-  background: #fdf5eb !important;
-  transform: translateX(4px) !important;
+  background: #f8ebe8 !important;
+  box-shadow: 0 4px 12px rgba(120, 24, 22, 0.15) !important;
 }
 
 .quiz-option-key {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: #f3e8dc !important;
+  color: #781816 !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 28px !important;
-  height: 28px !important;
-  border-radius: 50% !important;
-  background: #f0e2cf !important;
-  color: #781816 !important;
-  font-weight: bold !important;
-  font-size: 14px !important;
   flex-shrink: 0 !important;
+  transition: all 0.2s !important;
+}
+.quiz-option-btn.selected .quiz-option-key {
+  background: #781816 !important;
+  color: #ffffff !important;
 }
 
-.quiz-option-btn:hover .quiz-option-key {
-  background: #781816 !important;
-  color: #fff !important;
+.quiz-option-desc {
+  font-size: 15px !important;
+  color: #333333 !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
 }
 
 .quiz-card-footer {
-  margin-top: 20px !important;
   display: flex !important;
   justify-content: flex-start !important;
+  margin-top: 18px !important;
 }
 
 .quiz-btn-prev {
   background: none !important;
-  border: 1px solid #781816 !important;
+  border: 1px solid #c99a4e !important;
   color: #781816 !important;
-  padding: 8px 18px !important;
-  border-radius: 20px !important;
-  font-size: 14px !important;
-  cursor: pointer !important;
-  font-weight: 500 !important;
-}
-
-/* Result Card */
-.quiz-res-header {
-  border-bottom: 2px dashed #c99a4e !important;
-  padding-bottom: 16px !important;
-  margin-bottom: 18px !important;
-}
-
-.quiz-res-tag {
-  color: #781816 !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
   font-size: 13px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
 }
-
-.quiz-res-title {
-  font-size: 24px !important;
-  color: #781816 !important;
-  margin-top: 6px !important;
-  font-weight: bold !important;
-}
-
-.quiz-res-section {
-  margin-bottom: 16px !important;
-}
-
-.quiz-res-section h5 {
-  font-size: 15px !important;
-  color: #3b1413 !important;
-  margin-bottom: 6px !important;
-  font-weight: 700 !important;
-}
-
-.quiz-res-section p {
-  font-size: 14px !important;
-  color: #444 !important;
-  line-height: 1.6 !important;
-  margin: 0 !important;
-}
-
-.quiz-res-cta-row {
-  margin-top: 24px !important;
-  display: flex !important;
-  gap: 12px !important;
-  flex-wrap: wrap !important;
-}
-
-.btn-res-cta {
+.quiz-btn-prev:hover {
   background: #781816 !important;
   color: #fff !important;
-  padding: 12px 24px !important;
-  border-radius: 25px !important;
-  font-weight: 600 !important;
-  font-size: 15px !important;
-  text-decoration: none !important;
+}
+
+/* KẾT QUẢ QUIZ */
+.quiz-result-card {
+  animation: modalScaleUp 0.3s ease-out !important;
+}
+.quiz-res-header {
+  text-align: center !important;
+  margin-bottom: 20px !important;
+  padding-bottom: 16px !important;
+  border-bottom: 1px solid #ebd9c2 !important;
+}
+.quiz-res-tag {
   display: inline-block !important;
-  transition: all 0.3s ease !important;
+  background: #781816 !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 4px 14px !important;
+  border-radius: 20px !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 8px !important;
 }
-
+.quiz-res-title {
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  color: #781816 !important;
+  margin: 0 !important;
+}
+.quiz-res-section {
+  background: #ffffff !important;
+  border: 1px solid #ecdac5 !important;
+  border-radius: 10px !important;
+  padding: 14px 18px !important;
+  margin-bottom: 12px !important;
+}
+.quiz-res-section h5 {
+  margin: 0 0 6px 0 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #781816 !important;
+}
+.quiz-res-section p {
+  margin: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #444444 !important;
+}
+.quiz-res-cta-row {
+  display: flex !important;
+  gap: 12px !important;
+  margin-top: 22px !important;
+  flex-wrap: wrap !important;
+}
+.btn-res-cta {
+  flex: 1 !important;
+  min-width: 220px !important;
+  background: linear-gradient(135deg, #781816, #9b201d) !important;
+  color: #ffffff !important;
+  padding: 13px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(120, 24, 22, 0.25) !important;
+  transition: all 0.2s !important;
+  display: inline-block !important;
+}
 .btn-res-cta:hover {
-  background: #96201e !important;
-  transform: translateY(-2px) !important;
+  background: #5e1210 !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(120, 24, 22, 0.35) !important;
 }
-
 .btn-res-restart {
-  background: #fff !important;
-  border: 1px solid #c99a4e !important;
-  color: #555 !important;
-  padding: 12px 20px !important;
-  border-radius: 25px !important;
+  background: #ffffff !important;
+  border: 1.5px solid #c99a4e !important;
+  color: #781816 !important;
+  padding: 13px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
   font-size: 14px !important;
   cursor: pointer !important;
+  transition: all 0.2s !important;
 }
-
-/* 7. LOGIN & ORDER LOOKUP MODAL */
-.login-modal-backdrop {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background: rgba(0, 0, 0, 0.65) !important;
-  backdrop-filter: blur(4px) !important;
-  z-index: 9999 !important;
-  display: none;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 16px !important;
+.btn-res-restart:hover {
+  background: #fdf5eb !important;
 }
-
-.login-modal-backdrop.open {
-  display: flex !important;
-}
-
-.login-modal-box {
-  background: #FFFFFF !important;
-  border-radius: 16px !important;
-  max-width: 440px !important;
-  width: 100% !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid #ebd9c2 !important;
-  overflow: hidden !important;
-  animation: modalPop 0.3s ease-out !important;
-}
-
-@keyframes modalPop {
-  from { opacity: 0; transform: scale(0.92); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.login-modal-header {
-  background: #fdfaf7 !important;
-  padding: 18px 24px !important;
-  border-bottom: 1px solid #ebd9c2 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-}
-
-.login-modal-close {
-  background: none !important;
-  border: none !important;
-  font-size: 28px !important;
-  line-height: 1 !important;
-  color: #888 !important;
-  cursor: pointer !important;
-}
-
-.login-modal-close:hover {
-  color: #781816 !important;
-}
-
-.login-modal-body {
-  padding: 24px !important;
-}
-
-.login-tabs {
-  display: flex !important;
-  gap: 8px !important;
-  margin-bottom: 20px !important;
-  border-bottom: 1.5px solid #ebd9c2 !important;
-  padding-bottom: 8px !important;
-}
-
-.login-tab-btn {
-  flex: 1 !important;
-  background: none !important;
-  border: none !important;
-  padding: 8px 12px !important;
-  font-weight: 600 !important;
-  font-size: 0.95rem !important;
-  color: #777 !important;
-  cursor: pointer !important;
-  border-radius: 6px !important;
-  transition: all 0.2s ease !important;
-}
-
-.login-tab-btn.active {
-  background: #f5ebe1 !important;
-  color: #781816 !important;
-  font-weight: 700 !important;
-}
-
-/* 8. IMPORT COMPONENTS CSS */
-@import url('components.css');
