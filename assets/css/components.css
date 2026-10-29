@@ -1,0 +1,1323 @@
+/* ==========================================================================
+   COMPONENTS.CSS - CÁC THÀNH PHẦN GIAO DIỆN & TƯƠNG TÁC
+   ========================================================================== */
+
+/* ==========================================================================
+   1. HEADER & NAVIGATION
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(250, 247, 242, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 0 24px;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  position: relative;
+  padding: 8px 0;
+  transition: var(--transition);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2.5px;
+  background-color: var(--color-primary);
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-primary);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-login {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.btn-login:hover {
+  background: var(--bg-parchment);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.cart-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #FFF;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  color: var(--color-primary);
+  font-size: 1.15rem;
+  transition: var(--transition);
+}
+
+.cart-icon-btn:hover {
+  background: var(--color-primary);
+  color: #FFF;
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--color-accent);
+  color: var(--text-dark);
+  font-size: 0.75rem;
+  font-weight: 800;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: 6px;
+}
+
+@media (max-width: 991px) {
+  .header-nav {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-cream);
+    flex-direction: column;
+    padding: 24px 0;
+    gap: 16px;
+    border-bottom: 2px solid var(--color-primary);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-150%);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+  }
+
+  .header-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   2. SECTION 1 - HERO VIDEO & MARQUEE
+   ========================================================================== */
+.hero-video-section {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  min-height: 520px;
+  max-height: 900px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.hero-video-player {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+}
+
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.2) 60%, rgba(122,39,55,0.75) 100%);
+  pointer-events: none;
+}
+
+.hero-marquee-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-primary);
+  padding: 16px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.hero-marquee-track {
+  display: inline-flex;
+  animation: marquee 24s linear infinite;
+}
+
+.hero-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0 40px;
+}
+
+.hero-marquee-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  margin: 0 30px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   3. SECTION 4 - GIÁ & NÚT ĐẶT HÀNG
+   ========================================================================== */
+.price-section-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-price-order {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #E5A823 0%, #F5B731 100%);
+  color: var(--color-primary-dark);
+  font-size: 1.25rem;
+  font-weight: 900;
+  padding: 16px 54px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 25px rgba(229, 168, 35, 0.55), 0 0 0 4px #FFF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 20;
+  animation: pulse-cta 2s infinite ease-in-out;
+}
+
+.btn-price-order:hover {
+  background: #FFF;
+  color: var(--color-primary);
+  transform: translateX(-50%) scale(1.05);
+}
+
+@keyframes pulse-cta {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.04); }
+}
+
+@media (max-width: 768px) {
+  .btn-price-order {
+    bottom: 8%;
+    padding: 12px 36px;
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   4. SECTION 8 - MINI QUIZ "NẾP TÓC - NẾP RIÊNG?" (APP CHUẨN THIẾT KẾ)
+   ========================================================================== */
+.quiz-section {
+  padding: 60px 0;
+  background: #C43B2A;
+  background-image: radial-gradient(#9E2819 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.quiz-outer-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background: #FFF7F0;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  border: 4px solid #F0D9C0;
+}
+
+.quiz-header-badge {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.quiz-brand-title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 900;
+  color: #B52B1E;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+}
+
+.quiz-brand-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: #B52B1E;
+  margin: 4px auto 0;
+}
+
+.quiz-brand-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #D69715;
+  margin-top: 4px;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+/* Thanh Tiến Độ */
+.quiz-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.quiz-progress-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #C98818;
+  white-space: nowrap;
+}
+
+.quiz-progress-track {
+  position: relative;
+  flex: 1;
+  height: 28px;
+  background: #2E4B5E;
+  border: 2px solid #1D2E3A;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.quiz-progress-bar {
+  height: 100%;
+  width: 20%;
+  background: linear-gradient(90deg, #E5A823, #F7C53A);
+  transition: width 0.4s ease;
+  position: relative;
+}
+
+.quiz-progress-star {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #C43B2A;
+  font-size: 1rem;
+}
+
+/* Hộp Câu Hỏi */
+.quiz-card-box {
+  background: #FDF3E9;
+  border: 2px dashed #C48E7C;
+  border-radius: var(--radius-md);
+  padding: 30px 24px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.quiz-question-header {
+  background: #B83A2C;
+  color: #FCEBD7;
+  padding: 18px 24px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 12px rgba(184, 58, 44, 0.3);
+  margin-bottom: 28px;
+}
+
+/* Danh Sách Phương Án */
+.quiz-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.quiz-option-btn {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 2px dashed #C58F7D;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #333333;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative;
+}
+
+.quiz-option-btn:hover {
+  border-color: #B83A2C;
+  background: #FFF7F5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(184, 58, 44, 0.15);
+}
+
+.quiz-option-btn.selected {
+  background: #B83A2C;
+  border-color: #B83A2C;
+  border-style: solid;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(184, 58, 44, 0.35);
+}
+
+.quiz-option-letter {
+  display: inline-block;
+  font-weight: 800;
+  margin-right: 8px;
+  color: #B83A2C;
+}
+
+.quiz-option-btn.selected .quiz-option-letter {
+  color: #F7C53A;
+}
+
+/* Thẻ Màn Hình Kết Quả */
+.quiz-result-view {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.quiz-result-view.active {
+  display: block;
+}
+
+.quiz-result-banner {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.quiz-result-headline {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #E29B12;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #851C12;
+  margin-bottom: 20px;
+}
+
+.quiz-result-name-box {
+  display: inline-block;
+  background: #B83A2C;
+  color: #F7C53A;
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  padding: 14px 36px;
+  border-radius: var(--radius-md);
+  margin-bottom: 28px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.quiz-result-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #2B2321;
+}
+
+.quiz-result-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.quiz-result-item-star {
+  color: #B83A2C;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.quiz-result-item-text strong {
+  color: #8E2317;
+  font-weight: 700;
+}
+
+.quiz-result-cta-wrap {
+  text-align: center;
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.quiz-result-cta-btn {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #D69715;
+  text-shadow: 1px 1px 0px #631209;
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  background: rgba(184, 58, 44, 0.08);
+  border: 2px dashed #C98818;
+  transition: var(--transition);
+}
+
+.quiz-result-cta-btn:hover {
+  background: #B83A2C;
+  color: #FFF;
+  border-color: #B83A2C;
+  transform: scale(1.03);
+}
+
+.quiz-retake-btn {
+  background: transparent;
+  color: #6B625E;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.quiz-retake-btn:hover {
+  color: #B83A2C;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   5. SECTION 9 - FAQ ACCORDION
+   ========================================================================== */
+.faq-section {
+  padding: 80px 0;
+  background-color: var(--bg-cream);
+}
+
+.faq-filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.faq-tab-btn {
+  padding: 10px 24px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: #FFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+}
+
+.faq-tab-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.faq-tab-btn.active {
+  background: var(--color-primary);
+  color: #FFF;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(122, 39, 55, 0.25);
+}
+
+.faq-accordion-list {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.faq-item:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-md);
+}
+
+.faq-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 26px;
+  text-align: left;
+  background: transparent;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+}
+
+.faq-icon {
+  font-size: 1.3rem;
+  color: var(--color-accent);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  color: var(--color-primary);
+}
+
+.faq-answer-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 26px;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.faq-item.open .faq-answer-panel {
+  max-height: 300px;
+  padding-bottom: 22px;
+}
+
+/* ==========================================================================
+   6. SECTION 10 - LIÊN HỆ VỚI CHÚNG TÔI
+   ========================================================================== */
+.contact-section {
+  padding: 80px 0;
+  background: var(--bg-parchment);
+  border-top: 1px solid var(--border-color);
+}
+
+.contact-card {
+  max-width: 760px;
+  margin: 0 auto;
+  background: #FFF;
+  padding: 44px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.contact-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin-bottom: 10px;
+}
+
+.contact-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.form-label .req {
+  color: #D32F2F;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: #FAF7F2;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--color-primary);
+  background: #FFF;
+  box-shadow: 0 0 0 3px rgba(122, 39, 55, 0.12);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ==========================================================================
+   7. FOOTER TOÀN DIỆN
+   ========================================================================== */
+.site-footer {
+  position: relative;
+  background-color: #EBDCC6;
+  background-image: url('../images/footer-art.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
+  padding: 80px 0 30px;
+  border-top: 2px solid var(--border-color);
+}
+
+.footer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(235, 220, 198, 0.88);
+  pointer-events: none;
+}
+
+.footer-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 900px) {
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.newsletter-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin-bottom: 12px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+}
+
+.newsletter-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.newsletter-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+}
+
+.footer-heading {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.footer-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links-list a {
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.footer-links-list a:hover {
+  color: var(--color-primary);
+  padding-left: 4px;
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.social-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #FFF;
+  font-size: 1.1rem;
+  transition: var(--transition);
+}
+
+.social-icon-btn:hover {
+  background: var(--color-accent);
+  color: var(--text-dark);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   8. DRAWER GIỎ HÀNG (SLIDE-OVER CART)
+   ========================================================================== */
+.cart-drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.cart-drawer-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  background: #FFF;
+  box-shadow: -8px 0 25px rgba(0, 0, 0, 0.15);
+  z-index: 2001;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer-backdrop.open .cart-drawer {
+  transform: translateX(0);
+}
+
+.cart-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cart-drawer-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+}
+
+.cart-drawer-close {
+  background: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.cart-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+}
+
+.cart-shipping-notice {
+  background: #FFF7EB;
+  border: 1px solid #F5D3A3;
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cart-drawer-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--border-color);
+  background: #FAF7F2;
+}
+
+.cart-subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cart-checkout-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   9. CHATBOT WIDGET (REPLICA WIX AI SITE CHAT)
+   ========================================================================== */
+.chatbot-widget-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+}
+
+.chatbot-tooltip-bubble {
+  position: absolute;
+  bottom: 64px;
+  right: 0;
+  background: #FFFFFF;
+  color: var(--text-dark);
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: floatBubble 3s ease-in-out infinite;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+}
+
+.chatbot-tooltip-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 24px;
+  width: 12px;
+  height: 12px;
+  background: #FFF;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  transform: rotate(45deg);
+}
+
+.chatbot-tooltip-close {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.chatbot-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-primary);
+  color: #FFF;
+  padding: 12px 22px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 24px rgba(122, 39, 55, 0.4);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chatbot-trigger-btn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(122, 39, 55, 0.5);
+}
+
+.chatbot-trigger-icon {
+  font-size: 1.2rem;
+  color: var(--color-accent);
+}
+
+/* Cửa Sổ Chat */
+.chatbot-window {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: 380px;
+  height: 520px;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 120px);
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1501;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.95);
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+}
+
+.chatbot-window.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.chatbot-header {
+  background: var(--color-primary);
+  color: #FFF;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatbot-header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatbot-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #FFF;
+  padding: 2px;
+}
+
+.chatbot-title-box h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.chatbot-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+.chatbot-status-dot {
+  width: 8px;
+  height: 8px;
+  background: #4CAF50;
+  border-radius: 50%;
+}
+
+.chatbot-close-btn {
+  background: none;
+  color: #FFF;
+  font-size: 1.4rem;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.chatbot-close-btn:hover {
+  opacity: 1;
+}
+
+.chatbot-messages-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #FAF7F2;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.chat-bubble.bot {
+  align-self: flex-start;
+  background: #FFFFFF;
+  color: var(--text-dark);
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.chat-chip {
+  background: #FFF;
+  border: 1px solid var(--color-accent);
+  color: var(--color-primary-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chat-chip:hover {
+  background: var(--color-primary);
+  color: #FFF;
+  border-color: var(--color-primary);
+}
+
+.chatbot-input-bar {
+  display: flex;
+  padding: 12px 16px;
+  background: #FFF;
+  border-top: 1px solid var(--border-color);
+  gap: 8px;
+}
+
+.chatbot-input-field {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+}
+
+.chatbot-send-btn {
+  background: var(--color-primary);
+  color: #FFF;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.chatbot-send-btn:hover {
+  background: var(--color-accent);
+  color: var(--text-dark);
+}
+
+@keyframes floatBubble {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ==========================================================================
+   10. TOAST NOTIFICATIONS
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  top: 90px;
+  right: 24px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #FFF;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-left: 4px solid #4CAF50;
+  animation: slideInRight 0.3s ease;
+}
+
+.toast.toast-error {
+  border-left-color: #F44336;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}

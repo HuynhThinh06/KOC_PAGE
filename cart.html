@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng & Thanh Toán | Nếp Tóc Thorakao</title>
+  <link rel="icon" href="assets/images/logo-thorakao.png" type="image/png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+
+  <style>
+    .cart-page-section {
+      padding: 40px 0 80px;
+    }
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    @media (max-width: 900px) {
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .cart-box {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .cart-box-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--bg-parchment);
+    }
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .cart-table th {
+      text-align: left;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      text-transform: uppercase;
+    }
+    .cart-table td {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    .cart-item-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .cart-item-img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      background: #FAF7F2;
+      border-radius: var(--radius-sm);
+      padding: 4px;
+      border: 1px solid var(--border-color);
+    }
+    .cart-item-title {
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      font-size: 0.95rem;
+    }
+    .cart-item-price {
+      font-size: 0.9rem;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      font-size: 1rem;
+      color: var(--text-dark);
+    }
+    .summary-row.total-row {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      border-top: 2px dashed var(--border-color);
+      padding-top: 16px;
+      margin-top: 10px;
+    }
+    .payment-option-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      background: #FAF7F2;
+    }
+    .payment-option-card:hover, .payment-option-card.active {
+      border-color: var(--color-primary);
+      background: #FFF7F5;
+    }
+    .payment-option-card input {
+      accent-color: var(--color-primary);
+    }
+    /* Modal Đặt Hàng Thành Công */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 4000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .success-modal {
+      background: #FFF;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      animation: modalPop 0.35s ease;
+    }
+    @keyframes modalPop {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="header-brand">
+        <img src="assets/images/logo-thorakao.png" alt="Thorakao Logo" class="header-logo">
+      </a>
+      <nav class="header-nav" id="header-nav">
+        <a href="index.html" class="nav-link">Trang chủ</a>
+        <a href="product.html" class="nav-link">Sản Phẩm</a>
+        <a href="index.html#quizz" class="nav-link">Quizz</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+        <a href="index.html#contact" class="nav-link">Liên Hệ</a>
+      </nav>
+      <div class="header-actions">
+        <a href="product.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem;">+ Mua thêm</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== NỘI DUNG GIỎ HÀNG ==================== -->
+  <main class="cart-page-section">
+    <div class="container">
+      
+      <h1 class="section-title" style="margin-bottom: 20px;">Giỏ Hàng & Đặt Hàng</h1>
+
+      <!-- Thông báo Freeship -->
+      <div id="cart-page-freeship-banner" class="cart-shipping-notice" style="font-size: 1rem; padding: 16px;"></div>
+
+      <div class="cart-layout">
+        
+        <!-- Cột 1: Danh Sách Sản Phẩm & Tóm Tắt -->
+        <div class="cart-box">
+          <h2 class="cart-box-title">Đơn hàng của bạn</h2>
+          
+          <div id="cart-page-items-wrapper">
+            <!-- Render danh sách sản phẩm qua JS -->
+          </div>
+
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+            <div class="summary-row">
+              <span>Tạm tính:</span>
+              <strong id="cart-page-subtotal">0₫</strong>
+            </div>
+            <div class="summary-row">
+              <span>Phí vận chuyển:</span>
+              <strong id="cart-page-shipping">0₫</strong>
+            </div>
+            <div class="summary-row total-row">
+              <span>Tổng thanh toán:</span>
+              <span id="cart-page-total">0₫</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cột 2: Thông Tin Nhận Hàng & Thanh Toán -->
+        <div class="cart-box">
+          <h2 class="cart-box-title">Thông tin giao hàng</h2>
+
+          <form id="order-form">
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="order-fullname" class="form-label">Họ và tên <span class="req">*</span></label>
+              <input type="text" id="order-fullname" class="form-input" placeholder="Ví dụ: Nguyễn Văn A" required>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="order-phone" class="form-label">Số điện thoại <span class="req">*</span></label>
+              <input type="tel" id="order-phone" class="form-input" placeholder="Ví dụ: 0987654321" required>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="order-address" class="form-label">Địa chỉ nhận hàng chi tiết <span class="req">*</span></label>
+              <textarea id="order-address" class="form-textarea" style="min-height: 80px;" placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố..." required></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 18px;">
+              <label for="order-note" class="form-label">Ghi chú đơn hàng (nếu có)</label>
+              <input type="text" id="order-note" class="form-input" placeholder="Ví dụ: Giao giờ hành chính, gọi trước khi đến...">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label class="form-label" style="margin-bottom: 8px;">Phương thức thanh toán:</label>
+              
+              <label class="payment-option-card active" onclick="selectPayment('COD', this)">
+                <input type="radio" name="payment" value="COD" checked>
+                <div>
+                  <strong>Thanh toán khi nhận hàng (COD)</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Kiểm tra hàng rồi thanh toán tiền mặt cho bưu tá</div>
+                </div>
+              </label>
+
+              <label class="payment-option-card" onclick="selectPayment('BANK', this)">
+                <input type="radio" name="payment" value="BANK">
+                <div>
+                  <strong>Chuyển khoản ngân hàng (QR Code 24/7)</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Quét mã QR chuyển khoản nhanh chóng, tiện lợi</div>
+                </div>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-submit-order" style="width: 100%; padding: 16px; font-size: 1.1rem;">
+              Xác Nhận Đặt Hàng
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== MODAL ĐẶT HÀNG THÀNH CÔNG ==================== -->
+  <div class="modal-backdrop" id="order-success-modal">
+    <div class="success-modal">
+      <div style="font-size: 4rem; margin-bottom: 10px;">🎉</div>
+      <h2 style="font-family: var(--font-heading); color: var(--color-primary-dark); font-size: 1.6rem; margin-bottom: 10px;">
+        Đặt Hàng Thành Công!
+      </h2>
+      <p style="color: var(--text-muted); margin-bottom: 20px;">
+        Cảm ơn bạn đã lựa chọn Dầu Gội Bồ Kết Thorakao. Mã đơn hàng của bạn là:
+      </p>
+      <div style="background: var(--bg-parchment); border: 2px dashed var(--color-primary); padding: 12px 20px; font-size: 1.3rem; font-weight: 800; color: var(--color-primary); border-radius: var(--radius-sm); margin-bottom: 24px; display: inline-block;" id="modal-order-id">
+        THO-123456
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px;">
+        Chuyên viên tư vấn của Thorakao sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận và giao hàng.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <a href="index.html" class="btn btn-outline">Về Trang Chủ</a>
+        <a href="product.html" class="btn btn-primary">Xem Thêm Sản Phẩm</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="footer-overlay"></div>
+    <div class="footer-container">
+      <div class="footer-bottom">
+        <p>© 2026 Nếp Tóc Thorakao. Hotline hỗ trợ đặt hàng: 028 8887 3241.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    let selectedPaymentMethod = 'COD';
+
+    function selectPayment(method, element) {
+      selectedPaymentMethod = method;
+      document.querySelectorAll('.payment-option-card').forEach(c => c.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    function renderCartPage(summary) {
+      const wrapper = document.getElementById('cart-page-items-wrapper');
+      const banner = document.getElementById('cart-page-freeship-banner');
+      const subtotalEl = document.getElementById('cart-page-subtotal');
+      const shippingEl = document.getElementById('cart-page-shipping');
+      const totalEl = document.getElementById('cart-page-total');
+      const submitBtn = document.getElementById('btn-submit-order');
+
+      if (!wrapper) return;
+
+      if (summary.cart.length === 0) {
+        wrapper.innerHTML = `
+          <div style="text-align: center; padding: 40px 10px; color: var(--text-muted);">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🧴</div>
+            <h3 style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 8px;">Giỏ hàng của bạn đang trống!</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 20px;">Hãy thêm sản phẩm dầu gội bồ kết 750ml vào giỏ để tiếp tục nhé.</p>
+            <a href="product.html" class="btn btn-primary">Quay lại xem sản phẩm</a>
+          </div>
+        `;
+        if (banner) banner.style.display = 'none';
+        if (subtotalEl) subtotalEl.innerText = '0₫';
+        if (shippingEl) shippingEl.innerText = '0₫';
+        if (totalEl) totalEl.innerText = '0₫';
+        if (submitBtn) submitBtn.disabled = true;
+        return;
+      }
+
+      if (submitBtn) submitBtn.disabled = false;
+
+      // Banner Freeship
+      if (banner) {
+        banner.style.display = 'block';
+        if (summary.freeShipDiff === 0) {
+          banner.innerHTML = `🎉 <strong>Chúc mừng!</strong> Đơn hàng của bạn đã đủ điều kiện <strong>MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC</strong>!`;
+          banner.style.background = '#E8F5E9';
+          banner.style.borderColor = '#C8E6C9';
+          banner.style.color = '#2E7D32';
+        } else {
+          banner.innerHTML = `🚚 Mua thêm <strong>${summary.freeShipDiff.toLocaleString('vi-VN')}₫</strong> nữa để được <strong>MIỄN PHÍ VẬN CHUYỂN</strong>! (Phí ship hiện tại: 25.000₫)`;
+          banner.style.background = '#FFF7EB';
+          banner.style.borderColor = '#F5D3A3';
+          banner.style.color = '#B45309';
+        }
+      }
+
+      // Bảng Sản Phẩm
+      let html = '<table class="cart-table"><thead><tr><th>Sản Phẩm</th><th>Số Lượng</th><th>Thành Tiền</th><th></th></tr></thead><tbody>';
+      summary.cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        html += `
+          <tr>
+            <td>
+              <div class="cart-item-info">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                <div>
+                  <div class="cart-item-title">${item.name}</div>
+                  <div class="cart-item-price">${item.price.toLocaleString('vi-VN')}₫</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div style="display: inline-flex; align-items: center; border: 1px solid var(--border-color); border-radius: 4px; background: #FAF7F2;">
+                <button type="button" onclick="updateQuantity('${item.id}', -1)" style="width: 28px; height: 28px; background: none; font-weight: 700; cursor: pointer;">-</button>
+                <span style="min-width: 26px; text-align: center; font-weight: 700; font-size: 0.9rem;">${item.quantity}</span>
+                <button type="button" onclick="updateQuantity('${item.id}', 1)" style="width: 28px; height: 28px; background: none; font-weight: 700; cursor: pointer;">+</button>
+              </div>
+            </td>
+            <td>
+              <strong style="color: var(--color-primary); font-size: 1rem;">${itemTotal.toLocaleString('vi-VN')}₫</strong>
+            </td>
+            <td>
+              <button type="button" onclick="removeFromCart('${item.id}')" style="background: none; border: none; color: #999; font-size: 1.1rem; cursor: pointer;" title="Xóa">✕</button>
+            </td>
+          </tr>
+        `;
+      });
+      html += '</tbody></table>';
+      wrapper.innerHTML = html;
+
+      // Cập nhật tóm tắt
+      if (subtotalEl) subtotalEl.innerText = summary.subtotal.toLocaleString('vi-VN') + '₫';
+      if (shippingEl) shippingEl.innerText = summary.shippingFee === 0 ? 'Miễn phí' : summary.shippingFee.toLocaleString('vi-VN') + '₫';
+      if (totalEl) totalEl.innerText = summary.total.toLocaleString('vi-VN') + '₫';
+    }
+
+    // Submit form đặt hàng
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCartPage(getCartSummary());
+
+      const orderForm = document.getElementById('order-form');
+      if (orderForm) {
+        orderForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const summary = getCartSummary();
+          if (summary.cart.length === 0) {
+            showToast('Giỏ hàng trống! Vui lòng chọn sản phẩm.', true);
+            return;
+          }
+
+          const fullName = document.getElementById('order-fullname').value.trim();
+          const phone = document.getElementById('order-phone').value.trim();
+          const address = document.getElementById('order-address').value.trim();
+          const note = document.getElementById('order-note').value.trim();
+
+          const btn = document.getElementById('btn-submit-order');
+          const orig = btn.innerText;
+          btn.disabled = true;
+          btn.innerText = 'Đang xử lý đơn hàng...';
+
+          const res = await submitOrder({
+            fullName,
+            phone,
+            address,
+            note,
+            quantity: summary.totalQty,
+            subtotal: summary.subtotal,
+            shippingFee: summary.shippingFee,
+            total: summary.total,
+            paymentMethod: selectedPaymentMethod
+          });
+
+          btn.disabled = false;
+          btn.innerText = orig;
+
+          if (res.success) {
+            document.getElementById('modal-order-id').innerText = res.orderId;
+            document.getElementById('order-success-modal').classList.add('open');
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

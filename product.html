@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dầu Gội Bồ Kết 750ml | Nếp Tóc Thorakao</title>
+  <meta name="description" content="Dầu Gội Bồ Kết Thorakao 750ml giúp làm sạch tóc và da đầu, chăm sóc mái tóc mềm mượt, bồng bềnh, đen bóng tự nhiên. Giá chỉ 113.000₫.">
+  <link rel="icon" href="assets/images/logo-thorakao.png" type="image/png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+
+  <style>
+    .product-page-section {
+      padding: 40px 0 80px;
+    }
+    .breadcrumb {
+      display: flex;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+    .breadcrumb a:hover {
+      color: var(--color-primary);
+    }
+    .product-layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 50px;
+      background: #FFF;
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+    }
+    @media (max-width: 860px) {
+      .product-layout-grid {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 30px;
+      }
+    }
+    .product-gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .product-main-img-box {
+      width: 100%;
+      height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FAF7F2;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      padding: 20px;
+    }
+    .product-main-img {
+      max-height: 100%;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .product-main-img:hover {
+      transform: scale(1.05);
+    }
+    .product-thumbs {
+      display: flex;
+      gap: 12px;
+    }
+    .thumb-item {
+      width: 70px;
+      height: 70px;
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 4px;
+      background: #FAF7F2;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .thumb-item.active, .thumb-item:hover {
+      border-color: var(--color-primary);
+    }
+    .product-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      line-height: 1.25;
+    }
+    .product-badge-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .badge-instock {
+      background: #E8F5E9;
+      color: #2E7D32;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+    }
+    .badge-volume {
+      background: var(--color-accent-light);
+      color: var(--color-primary-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+    }
+    .product-price-box {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .product-price-current {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--color-primary);
+    }
+    .product-price-unit {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    .product-summary-text {
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+    .product-qty-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .qty-picker {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #FAF7F2;
+    }
+    .qty-btn {
+      width: 40px;
+      height: 42px;
+      background: none;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+    .qty-btn:hover {
+      background: #EFE7D8;
+    }
+    .qty-input {
+      width: 50px;
+      height: 42px;
+      text-align: center;
+      font-weight: 700;
+      background: #FFF;
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+    }
+    .product-action-btns {
+      display: flex;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    @media (max-width: 500px) {
+      .product-action-btns {
+        flex-direction: column;
+      }
+    }
+    .product-shipping-perk {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #FFF9E6;
+      border: 1px dashed #E5A823;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      color: #7A5300;
+    }
+    .product-tabs-section {
+      margin-top: 50px;
+      background: #FFF;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .product-tab-headers {
+      display: flex;
+      background: #FAF7F2;
+      border-bottom: 1px solid var(--border-color);
+      overflow-x: auto;
+    }
+    .p-tab-btn {
+      padding: 16px 28px;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: none;
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: var(--transition);
+    }
+    .p-tab-btn.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+      background: #FFF;
+    }
+    .product-tab-body {
+      padding: 36px 40px;
+      line-height: 1.8;
+      color: var(--text-dark);
+    }
+    @media (max-width: 600px) {
+      .product-tab-body {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header" id="top">
+    <div class="header-container">
+      <a href="index.html" class="header-brand">
+        <img src="assets/images/logo-thorakao.png" alt="Thorakao Logo" class="header-logo">
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="header-nav" id="header-nav">
+        <a href="https://thorakao.com" target="_blank" rel="noopener" class="nav-link">Website</a>
+        <a href="index.html" class="nav-link">Trang chủ</a>
+        <a href="index.html#quizz" class="nav-link">Quizz</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+        <a href="index.html#contact" class="nav-link">Liên Hệ</a>
+        <a href="product.html" class="nav-link active">Sản Phẩm</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button type="button" class="cart-icon-btn" onclick="openCartDrawer()" aria-label="Xem giỏ hàng">
+          🛒
+          <span class="cart-badge" style="display: none;">0</span>
+        </button>
+        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== CHI TIẾT SẢN PHẨM ==================== -->
+  <main class="product-page-section">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">Trang chủ</a> <span>/</span>
+        <a href="product.html">Sản phẩm</a> <span>/</span>
+        <span style="color: var(--color-primary); font-weight: 600;">Dầu Gội Bồ Kết 750ml</span>
+      </div>
+
+      <!-- Khối Sản Phẩm Chính -->
+      <div class="product-layout-grid">
+        
+        <!-- Cột Trái: Gallery Ảnh -->
+        <div class="product-gallery">
+          <div class="product-main-img-box">
+            <img src="assets/images/product-bottle.png" alt="Dầu Gội Bồ Kết Thorakao 750ml" id="main-product-image" class="product-main-img">
+          </div>
+          <div class="product-thumbs">
+            <img src="assets/images/product-bottle.png" class="thumb-item active" onclick="switchProductImage(this.src, this)">
+            <img src="assets/images/san-pham.png" class="thumb-item" onclick="switchProductImage(this.src, this)">
+            <img src="assets/images/thanh-phan-cong-dung.jpg" class="thumb-item" onclick="switchProductImage(this.src, this)">
+            <img src="assets/images/gia-ban.jpg" class="thumb-item" onclick="switchProductImage(this.src, this)">
+          </div>
+        </div>
+
+        <!-- Cột Phải: Thông Tin & Mua Hàng -->
+        <div class="product-info-col">
+          
+          <div class="product-badge-row">
+            <span class="badge-instock">● Còn hàng</span>
+            <span class="badge-volume">Dung tích: 750ml</span>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Mã: THO-BOKET-750</span>
+          </div>
+
+          <h1 class="product-title">Dầu Gội Bồ Kết Thorakao 750ml</h1>
+
+          <div class="product-price-box">
+            <span class="product-price-current">113.000₫</span>
+            <span class="product-price-unit">/ Chai 750ml</span>
+          </div>
+
+          <p class="product-summary-text">
+            Dầu Gội Bồ Kết Thorakao 750ml giúp làm sạch tóc và da đầu, đồng thời chăm sóc mái tóc khô xơ, yếu và dễ gãy rụng. Sản phẩm hỗ trợ giảm gàu, cung cấp độ ẩm giúp tóc mềm mượt, dễ chải và hạn chế rối. Sử dụng đều đặn giúp mái tóc trông đen bóng, óng mượt và khỏe đẹp tự nhiên.
+          </p>
+
+          <div class="product-shipping-perk">
+            <span>🎁</span>
+            <div>
+              <strong>Ưu đãi vận chuyển:</strong> Miễn phí vận chuyển khi mua từ <strong>2 chai trở lên</strong> (Đơn từ 200.000₫).
+            </div>
+          </div>
+
+          <!-- Bộ Chọn Số Lượng -->
+          <div class="product-qty-row">
+            <span style="font-weight: 700; font-size: 0.95rem;">Số lượng:</span>
+            <div class="qty-picker">
+              <button type="button" class="qty-btn" onclick="adjustProductPageQty(-1)">-</button>
+              <input type="text" id="product-page-qty" class="qty-input" value="1" readonly>
+              <button type="button" class="qty-btn" onclick="adjustProductPageQty(1)">+</button>
+            </div>
+          </div>
+
+          <!-- Nút Mua -->
+          <div class="product-action-btns">
+            <button type="button" class="btn btn-outline" style="flex: 1;" onclick="handleProductAddToCart()">
+              🛒 Thêm vào giỏ hàng
+            </button>
+            <button type="button" class="btn btn-primary" style="flex: 1;" onclick="handleProductBuyNow()">
+              ⚡ Mua ngay
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Tab Nội Dung Chi Tiết -->
+      <div class="product-tabs-section">
+        <div class="product-tab-headers">
+          <button type="button" class="p-tab-btn active" onclick="switchProductTab(0, this)">Mô tả sản phẩm</button>
+          <button type="button" class="p-tab-btn" onclick="switchProductTab(1, this)">Thành phần & Công dụng</button>
+          <button type="button" class="p-tab-btn" onclick="switchProductTab(2, this)">Hướng dẫn sử dụng</button>
+          <button type="button" class="p-tab-btn" onclick="switchProductTab(3, this)">Chính sách vận chuyển & Đổi trả</button>
+        </div>
+
+        <div class="product-tab-body" id="product-tab-body">
+          <!-- Tab 0: Mô tả -->
+          <div class="tab-pane active" id="tab-0">
+            <h3 style="font-size: 1.3rem; color: var(--color-primary); margin-bottom: 14px;">Giữ Nếp Xưa - Tỏ Nếp Mình Cùng Bồ Kết Thorakao</h3>
+            <p>Trải qua hàng chục năm đồng hành cùng vẻ đẹp phụ nữ Việt, Thorakao tự hào mang trái bồ kết dân gian vào công thức dầu gội hiện đại, tiện lợi sử dụng mỗi ngày mà không cần mất công nướng nấu cầu kỳ.</p>
+            <br>
+            <p>Dầu gội bồ kết Thorakao chai lớn 750ml là người bạn đồng hành lý tưởng cho cả gia đình. Không chỉ mang lại cảm giác thanh sạch, thông thoáng cho da đầu, sản phẩm còn nuôi dưỡng chân tóc chắc khỏe, giảm gãy rụng và giữ nếp tóc bồng bềnh mượt mà tự nhiên.</p>
+          </div>
+
+          <!-- Tab 1: Thành phần -->
+          <div class="tab-pane" id="tab-1" style="display: none;">
+            <h3 style="font-size: 1.3rem; color: var(--color-primary); margin-bottom: 14px;">Thành Phần Tự Nhiên & Công Năng Nổi Bật</h3>
+            <ul style="list-style: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 10px;">
+              <li><strong>Chiết xuất bồ kết nguyên chất:</strong> Giàu hợp chất saponin tự nhiên giúp tạo bọt mịn, làm sạch sâu gàu và bã nhờn mà không gây kích ứng da đầu.</li>
+              <li><strong>Chất chống oxy hóa Flavonoid & Tanin:</strong> Bảo vệ sợi tóc trước khói bụi ô nhiễm và nhiệt độ, kích thích lưu thông máu dưới da đầu giúp chân tóc bám chắc, ngăn ngừa rụng tóc.</li>
+              <li><strong>Dưỡng chất làm mềm:</strong> Bổ sung độ ẩm cần thiết, giúp thân và ngọn tóc không bị khô xơ, dễ chải và bóng mượt sau khi gội.</li>
+            </ul>
+          </div>
+
+          <!-- Tab 2: Cách dùng -->
+          <div class="tab-pane" id="tab-2" style="display: none;">
+            <h3 style="font-size: 1.3rem; color: var(--color-primary); margin-bottom: 14px;">Hướng Dẫn Gội Đầu Chuẩn Nếp</h3>
+            <ol style="list-style: decimal; padding-left: 20px; display: flex; flex-direction: column; gap: 10px;">
+              <li>Làm ướt toàn bộ tóc và da đầu bằng nước ấm hoặc nước mát.</li>
+              <li>Lấy một lượng dầu gội vừa đủ (khoảng 10-15ml) thoa đều lên tóc, tạo bọt nhẹ nhàng.</li>
+              <li>Massage đều đặn khắp da đầu và chân tóc trong 2 đến 3 phút để dưỡng chất bồ kết thẩm thấu sâu.</li>
+              <li>Xả sạch lại bằng nhiều nước. Có thể dùng thêm dầu xả ở phần ngọn tóc nếu tóc quá khô xơ.</li>
+            </ol>
+            <p style="margin-top: 16px; color: #B45309; font-size: 0.9rem;">⚠️ <em>Lưu ý: Chỉ dùng ngoài da. Tránh để sản phẩm dính vào mắt. Bảo quản nơi khô ráo, tránh ánh nắng trực tiếp.</em></p>
+          </div>
+
+          <!-- Tab 3: Chính sách -->
+          <div class="tab-pane" id="tab-3" style="display: none;">
+            <h3 style="font-size: 1.3rem; color: var(--color-primary); margin-bottom: 14px;">Chính Sách Bán Hàng Chính Hãng</h3>
+            <ul style="list-style: check; padding-left: 20px; display: flex; flex-direction: column; gap: 10px;">
+              <li><strong>Giao hàng toàn quốc:</strong> Miễn phí vận chuyển cho đơn hàng từ 200.000₫ trở lên. Đơn dưới 200.000₫ phí ship đồng giá 25.000₫.</li>
+              <li><strong>Thời gian giao:</strong> 1-2 ngày tại TP.HCM và các tỉnh lân cận; 2-4 ngày đối với các tỉnh thành khác.</li>
+              <li><strong>Đổi trả hàng:</strong> Cam kết 1 đổi 1 nếu sản phẩm bị hư hại, đổ vỡ do vận chuyển hoặc phát hiện lỗi bao bì. Quý khách vui lòng giữ nguyên hiện trạng để được xử lý nhanh nhất.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="footer-overlay"></div>
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div>
+          <h3 class="newsletter-title">Đăng ký nhận thông tin chiến dịch</h3>
+          <p style="font-size: 0.9rem; color: var(--text-dark); margin-bottom: 16px;">
+            Nhận thông báo sớm nhất về các tập tiếp theo của Series KOC và ưu đãi độc quyền.
+          </p>
+          <form id="newsletter-form" class="newsletter-form">
+            <div class="newsletter-input-row">
+              <input type="email" id="newsletter-email" class="form-input" placeholder="Nhập email của bạn" required>
+              <button type="submit" class="btn btn-primary" style="padding: 12px 20px; white-space: nowrap;">Đăng ký</button>
+            </div>
+            <label class="newsletter-checkbox-row">
+              <input type="checkbox" id="newsletter-agree" required>
+              <span>Tôi muốn đăng ký nhận bản tin của bạn. *</span>
+            </label>
+          </form>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Chính Sách & Hỗ Trợ</h4>
+          <ul class="footer-links-list">
+            <li><a href="chinh-sach-doi-tra.html">Chính sách đổi trả hàng</a></li>
+            <li><a href="chinh-sach-van-chuyen.html">Chính sách vận chuyển</a></li>
+            <li><a href="chinh-sach-quyen-rieng-tu.html">Chính sách quyền riêng tư</a></li>
+            <li><a href="product.html">Đặt mua Dầu gội bồ kết 750ml</a></li>
+            <li><a href="index.html#faq">Câu hỏi thường gặp (FAQ)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Liên Hệ Thorakao</h4>
+          <div class="footer-contact-info">
+            <div>📍 <strong>Địa chỉ:</strong> 241 bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP. Hồ Chí Minh</div>
+            <div>📞 <strong>Hotline:</strong> 028 8887 3241</div>
+            <div>✉️ <strong>Email:</strong> info@thorakao.com</div>
+          </div>
+          <div class="footer-social-links">
+            <a href="https://www.facebook.com/neptocthorakao/" target="_blank" rel="noopener" class="social-icon-btn">FB</a>
+            <a href="https://www.tiktok.com/@neptoc.thorakao?_r=1&_t=ZS-9AsfZet6sB4" target="_blank" rel="noopener" class="social-icon-btn">TT</a>
+            <a href="https://www.threads.com/@neptoc.thorakao" target="_blank" rel="noopener" class="social-icon-btn">TH</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Nếp Tóc Thorakao. Chiến dịch KOC Series "Thử Món Mẹ Từng Dùng". Bảo lưu mọi quyền.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SIDE-DRAWER GIỎ HÀNG ==================== -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" onclick="closeCartDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3 class="cart-drawer-title">Giỏ Hàng Của Bạn</h3>
+        <button type="button" class="cart-drawer-close" onclick="closeCartDrawer()">✕</button>
+      </div>
+      <div class="cart-drawer-body">
+        <div class="cart-shipping-notice" id="cart-drawer-ship-notice"></div>
+        <div id="cart-drawer-items"></div>
+      </div>
+      <div class="cart-drawer-footer">
+        <div class="cart-subtotal-row">
+          <span>Tạm tính:</span>
+          <span id="cart-drawer-subtotal" style="color: var(--color-primary);">0₫</span>
+        </div>
+        <a href="cart.html" class="btn btn-primary cart-checkout-btn" id="cart-drawer-checkout-btn">
+          Tiến hành thanh toán
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/chatbot.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    let pQty = 1;
+    function adjustProductPageQty(delta) {
+      pQty = Math.max(1, pQty + delta);
+      document.getElementById('product-page-qty').value = pQty;
+    }
+
+    function switchProductImage(src, element) {
+      document.getElementById('main-product-image').src = src;
+      document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    function switchProductTab(index, btnElement) {
+      document.querySelectorAll('.p-tab-btn').forEach(b => b.classList.remove('active'));
+      btnElement.classList.add('active');
+      document.querySelectorAll('.tab-pane').forEach((p, idx) => {
+        p.style.display = idx === index ? 'block' : 'none';
+      });
+    }
+
+    function handleProductAddToCart() {
+      addToCart(pQty, true);
+    }
+
+    function handleProductBuyNow() {
+      addToCart(pQty, false);
+      window.location.href = 'cart.html';
+    }
+  </script>
+
+</body>
+</html>
