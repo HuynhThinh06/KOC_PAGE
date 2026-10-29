@@ -60,9 +60,18 @@ h1, h2, h3, h4, h5, h6,
 
 #comp-mpbn2nv6 {
   width: 100% !important;
-  min-height: 100vh !important;
   position: relative !important;
   overflow: hidden !important;
+  aspect-ratio: 16 / 9 !important;
+  max-height: 100vh !important;
+}
+
+#comp-mpbn2nv6_video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
 }
 
 #comp-kbgakxmn_r_comp-kbgakgyt {
@@ -318,17 +327,21 @@ html {
   right: 24px !important;
   width: 360px !important;
   max-width: calc(100vw - 36px) !important;
-  height: 500px !important;
+  height: 520px !important;
   max-height: calc(100vh - 110px) !important;
   background: #ffffff !important;
   border-radius: 16px !important;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22) !important;
-  display: flex !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25) !important;
+  display: none !important;
   flex-direction: column !important;
   overflow: hidden !important;
-  z-index: 10000 !important;
-  border: 1px solid rgba(0,0,0,0.08) !important;
+  z-index: 100000 !important;
+  border: 1px solid rgba(0,0,0,0.12) !important;
   animation: modalScaleUp 0.2s ease-out !important;
+}
+
+.wix-chat-popup.open {
+  display: flex !important;
 }
 
 .wix-chat-popup-header {
@@ -342,12 +355,24 @@ html {
 }
 
 .wix-chat-close-btn {
-  background: none !important;
+  background: rgba(0, 0, 0, 0.08) !important;
   border: none !important;
-  font-size: 22px !important;
-  color: #333 !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px !important;
+  color: #222 !important;
   cursor: pointer !important;
   line-height: 1 !important;
+  transition: all 0.2s !important;
+}
+
+.wix-chat-close-btn:hover {
+  background: rgba(0, 0, 0, 0.22) !important;
+  color: #000 !important;
 }
 
 .wix-chat-popup-body {
@@ -436,241 +461,318 @@ html {
   justify-content: center !important;
 }
 
-/* 10. QUIZ DIALOG & INNER STYLES */
-.wix-quiz-dialog {
-  background: #fdfaf7 !important;
-  border: 2px solid #c99a4e !important;
-  border-radius: 16px !important;
-  padding: 28px 24px !important;
-  max-width: 680px !important;
-  width: 90% !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25) !important;
-  position: relative !important;
-  animation: modalScaleUp 0.25s ease-out !important;
-  max-height: 90vh !important;
-  overflow-y: auto !important;
-  font-family: inherit !important;
+/* ==========================================================================
+   10. MINI QUIZ NẾP TÓC SECTION 9 (CHÍNH XÁC THEO BẢN THIẾT KẾ GỐC)
+   Tái hiện 100% hình ảnh Quizz.png & Kết quả quizz.png trực tiếp tại Section 9
+   ========================================================================== */
+
+#comp-mvqu69vk {
+  background: #ece8df url('../images/quiz-banner.png') center top / cover no-repeat !important;
+  padding: 50px 15px 70px 15px !important;
   box-sizing: border-box !important;
+  min-height: auto !important;
+  position: relative !important;
 }
 
-.quiz-card-header {
-  display: flex !important;
-  align-items: center !important;
-  gap: 14px !important;
-  margin-bottom: 20px !important;
-}
-
-.quiz-step-label {
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  color: #781816 !important;
-  white-space: nowrap !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-}
-
-.quiz-progress-track {
-  flex: 1 !important;
-  height: 8px !important;
-  background: #ecdac5 !important;
-  border-radius: 10px !important;
-  overflow: hidden !important;
-}
-
-.quiz-progress-fill {
-  height: 100% !important;
-  background: linear-gradient(90deg, #c99a4e, #781816) !important;
-  transition: width 0.3s ease !important;
-  border-radius: 10px !important;
-}
-
-.quiz-close-btn {
-  background: none !important;
-  border: none !important;
-  font-size: 24px !important;
-  color: #888 !important;
-  cursor: pointer !important;
-  line-height: 1 !important;
-  padding: 0 4px !important;
-  transition: color 0.2s !important;
-}
-.quiz-close-btn:hover {
-  color: #781816 !important;
-}
-
-.quiz-question-title {
-  font-size: 18px !important;
-  font-weight: 700 !important;
-  color: #1c1917 !important;
-  line-height: 1.4 !important;
-  margin: 0 0 18px 0 !important;
-}
-
-.quiz-options-list {
+.quiz-custom-section {
+  max-width: 1040px !important;
+  margin: 0 auto !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 10px !important;
+  align-items: center !important;
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+  position: relative !important;
+  z-index: 5 !important;
 }
 
-.quiz-option-btn {
+/* Header: QUIZZ + Nếp tóc - Nếp riêng? */
+.quiz-header-wrap {
+  text-align: center !important;
+  margin-bottom: 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.quiz-main-brand {
+  position: relative !important;
+  display: inline-block !important;
+}
+
+.quiz-brand-text {
+  font-family: 'Montserrat', 'Arial Black', sans-serif !important;
+  font-weight: 900 !important;
+  font-size: clamp(38px, 5vw, 56px) !important;
+  color: #ad3d2a !important;
+  letter-spacing: 3px !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+}
+
+.quiz-brand-line {
+  position: absolute !important;
+  bottom: -4px !important;
+  left: 20% !important;
+  width: 42% !important;
+  height: 5px !important;
+  background: #ad3d2a !important;
+  border-radius: 2px !important;
+}
+
+.quiz-sub-script {
+  font-family: 'Playfair Display', Georgia, cursive, serif !important;
+  font-style: italic !important;
+  font-weight: 800 !important;
+  font-size: clamp(26px, 3.8vw, 42px) !important;
+  color: #f7b928 !important;
+  text-shadow: 1.5px 1.5px 0 #1b435b, -1.5px -1.5px 0 #1b435b, 1.5px -1.5px 0 #1b435b, -1.5px 1.5px 0 #1b435b, 0 2px 4px rgba(0,0,0,0.3) !important;
+  margin-top: 6px !important;
+  letter-spacing: 1px !important;
+}
+
+/* Main Red Card Frame */
+.quiz-red-frame {
+  width: 100% !important;
+  max-width: 980px !important;
+  background: #aa3d2d !important;
+  border-radius: 8px !important;
+  padding: clamp(16px, 3vw, 26px) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22) !important;
+  box-sizing: border-box !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+/* Progress bar row */
+.quiz-progress-row {
   display: flex !important;
   align-items: center !important;
-  gap: 14px !important;
-  width: 100% !important;
-  padding: 14px 18px !important;
-  background: #ffffff !important;
-  border: 1.5px solid #e2d3c1 !important;
-  border-radius: 10px !important;
-  cursor: pointer !important;
-  text-align: left !important;
-  transition: all 0.2s ease !important;
-  font-family: inherit !important;
+  gap: 16px !important;
+  margin-bottom: 20px !important;
+}
+
+.quiz-progress-text {
+  font-family: 'Playfair Display', Georgia, cursive, serif !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  font-size: clamp(20px, 2.5vw, 26px) !important;
+  color: #ffbe3b !important;
+  text-shadow: 1px 1px 0 #1b435b, -1px -1px 0 #1b435b, 1px -1px 0 #1b435b, -1px 1px 0 #1b435b !important;
+  white-space: nowrap !important;
+}
+
+.quiz-progress-bar-track {
+  flex: 1 !important;
+  height: 24px !important;
+  background: #fbc02d !important;
+  border: 2px solid #1c1917 !important;
+  border-radius: 4px !important;
+  position: relative !important;
+  overflow: hidden !important;
   box-sizing: border-box !important;
 }
-.quiz-option-btn:hover {
-  border-color: #c99a4e !important;
-  background: #fbf5ee !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(120, 24, 22, 0.08) !important;
-}
-.quiz-option-btn.selected {
-  border-color: #781816 !important;
-  background: #f8ebe8 !important;
-  box-shadow: 0 4px 12px rgba(120, 24, 22, 0.15) !important;
+
+.quiz-progress-bar-fill {
+  height: 100% !important;
+  background: #254b61 !important;
+  width: 20% !important;
+  transition: width 0.35s ease !important;
 }
 
-.quiz-option-key {
-  width: 32px !important;
-  height: 32px !important;
-  border-radius: 50% !important;
-  background: #f3e8dc !important;
-  color: #781816 !important;
-  font-weight: 800 !important;
-  font-size: 14px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-shrink: 0 !important;
-  transition: all 0.2s !important;
-}
-.quiz-option-btn.selected .quiz-option-key {
-  background: #781816 !important;
-  color: #ffffff !important;
-}
-
-.quiz-option-desc {
+.quiz-progress-star {
+  position: absolute !important;
+  right: 6px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #aa3d2d !important;
   font-size: 15px !important;
-  color: #333333 !important;
-  line-height: 1.4 !important;
-  font-weight: 500 !important;
+  line-height: 1 !important;
+  pointer-events: none !important;
 }
 
-.quiz-card-footer {
+/* Inner Peach Box */
+.quiz-inner-card {
+  background: #f4ddd3 !important;
+  border: 2px dashed #aa3d2d !important;
+  border-radius: 6px !important;
+  padding: clamp(20px, 3.5vw, 36px) clamp(16px, 3vw, 32px) !important;
+  box-sizing: border-box !important;
+}
+
+/* Question Pill (Terracotta Red) */
+.quiz-q-pill {
+  background: #b24130 !important;
+  border: 2px solid #5a190f !important;
+  border-radius: 8px !important;
+  color: #ffbe3b !important;
+  font-size: clamp(16px, 2.2vw, 22px) !important;
+  font-weight: 700 !important;
+  padding: 16px 22px !important;
+  text-align: center !important;
+  margin-bottom: 22px !important;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) !important;
+  line-height: 1.4 !important;
+}
+
+/* Options Grid / List */
+.quiz-options-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+}
+
+.quiz-opt-btn {
+  background: #ffffff !important;
+  border: 2px dotted #b24130 !important;
+  border-radius: 8px !important;
+  padding: 16px 24px !important;
+  font-size: clamp(14px, 1.8vw, 18px) !important;
+  font-weight: 500 !important;
+  color: #1c1917 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  line-height: 1.4 !important;
+  font-family: inherit !important;
+}
+
+.quiz-opt-btn:hover {
+  background: #fff8f5 !important;
+  border-style: solid !important;
+  border-color: #8c2415 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 14px rgba(178, 65, 48, 0.15) !important;
+}
+
+.quiz-opt-btn.selected {
+  background: #fde8e4 !important;
+  border-style: solid !important;
+  border-color: #781816 !important;
+  font-weight: 700 !important;
+  color: #781816 !important;
+  box-shadow: 0 4px 14px rgba(120, 24, 22, 0.2) !important;
+}
+
+/* Navigation Row */
+.quiz-nav-row {
+  margin-top: 18px !important;
   display: flex !important;
   justify-content: flex-start !important;
-  margin-top: 18px !important;
 }
 
-.quiz-btn-prev {
+.quiz-prev-btn {
   background: none !important;
-  border: 1px solid #c99a4e !important;
-  color: #781816 !important;
-  padding: 8px 16px !important;
+  border: 1.5px solid #aa3d2d !important;
+  color: #aa3d2d !important;
+  padding: 7px 16px !important;
   border-radius: 6px !important;
   font-size: 13px !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   cursor: pointer !important;
   transition: all 0.2s !important;
-}
-.quiz-btn-prev:hover {
-  background: #781816 !important;
-  color: #fff !important;
 }
 
-/* KẾT QUẢ QUIZ */
-.quiz-result-card {
-  animation: modalScaleUp 0.3s ease-out !important;
-}
-.quiz-res-header {
-  text-align: center !important;
-  margin-bottom: 20px !important;
-  padding-bottom: 16px !important;
-  border-bottom: 1px solid #ebd9c2 !important;
-}
-.quiz-res-tag {
-  display: inline-block !important;
-  background: #781816 !important;
+.quiz-prev-btn:hover {
+  background: #aa3d2d !important;
   color: #ffffff !important;
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  padding: 4px 14px !important;
-  border-radius: 20px !important;
-  letter-spacing: 0.5px !important;
+}
+
+/* ==========================================================================
+   RESULT VIEW (TÁI HIỆN CHÍNH XÁC Kết quả quizz.png)
+   ========================================================================== */
+
+.quiz-result-top-banner {
+  font-family: 'Montserrat', 'Arial Black', sans-serif !important;
+  font-weight: 900 !important;
+  font-size: clamp(20px, 3.2vw, 32px) !important;
+  color: #ffbe3b !important;
+  letter-spacing: 2px !important;
+  text-align: center !important;
   text-transform: uppercase !important;
-  margin-bottom: 8px !important;
+  text-shadow: 1.5px 1.5px 0 #1b435b, -1.5px -1.5px 0 #1b435b, 1.5px -1.5px 0 #1b435b, -1.5px 1.5px 0 #1b435b, 0 2px 4px rgba(0,0,0,0.3) !important;
+  margin-bottom: 18px !important;
 }
-.quiz-res-title {
-  font-size: 24px !important;
-  font-weight: 800 !important;
-  color: #781816 !important;
-  margin: 0 !important;
+
+.quiz-result-pill {
+  max-width: 480px !important;
+  margin: 0 auto 26px auto !important;
+  font-size: clamp(18px, 2.5vw, 24px) !important;
 }
-.quiz-res-section {
-  background: #ffffff !important;
-  border: 1px solid #ecdac5 !important;
-  border-radius: 10px !important;
-  padding: 14px 18px !important;
-  margin-bottom: 12px !important;
-}
-.quiz-res-section h5 {
-  margin: 0 0 6px 0 !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  color: #781816 !important;
-}
-.quiz-res-section p {
-  margin: 0 !important;
-  font-size: 14px !important;
-  line-height: 1.5 !important;
-  color: #444444 !important;
-}
-.quiz-res-cta-row {
+
+.quiz-star-list {
   display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  margin-bottom: 24px !important;
+}
+
+.quiz-star-item {
+  display: flex !important;
+  align-items: flex-start !important;
   gap: 12px !important;
-  margin-top: 22px !important;
+  font-size: clamp(14px, 1.7vw, 17px) !important;
+  line-height: 1.55 !important;
+  color: #222222 !important;
+  text-align: left !important;
+}
+
+.quiz-star-icon {
+  color: #aa3d2d !important;
+  font-size: 18px !important;
+  line-height: 1.3 !important;
+  flex-shrink: 0 !important;
+}
+
+.quiz-star-content strong {
+  color: #111111 !important;
+  font-weight: 700 !important;
+}
+
+.quiz-result-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
   flex-wrap: wrap !important;
+  margin-top: 10px !important;
+  padding-top: 14px !important;
+  border-top: 1px dashed rgba(170, 61, 45, 0.3) !important;
 }
-.btn-res-cta {
-  flex: 1 !important;
-  min-width: 220px !important;
-  background: linear-gradient(135deg, #781816, #9b201d) !important;
-  color: #ffffff !important;
-  padding: 13px 20px !important;
-  border-radius: 8px !important;
-  font-weight: 700 !important;
-  font-size: 14px !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  box-shadow: 0 4px 14px rgba(120, 24, 22, 0.25) !important;
-  transition: all 0.2s !important;
-  display: inline-block !important;
-}
-.btn-res-cta:hover {
-  background: #5e1210 !important;
-  color: #fff !important;
-  box-shadow: 0 6px 18px rgba(120, 24, 22, 0.35) !important;
-}
-.btn-res-restart {
+
+.quiz-restart-btn {
   background: #ffffff !important;
-  border: 1.5px solid #c99a4e !important;
-  color: #781816 !important;
-  padding: 13px 20px !important;
-  border-radius: 8px !important;
+  border: 1.5px solid #aa3d2d !important;
+  color: #aa3d2d !important;
+  padding: 8px 18px !important;
+  border-radius: 20px !important;
+  font-size: 13px !important;
   font-weight: 700 !important;
-  font-size: 14px !important;
   cursor: pointer !important;
   transition: all 0.2s !important;
 }
-.btn-res-restart:hover {
-  background: #fdf5eb !important;
+
+.quiz-restart-btn:hover {
+  background: #aa3d2d !important;
+  color: #ffffff !important;
+}
+
+.quiz-cta-cursive {
+  font-family: 'Playfair Display', Georgia, cursive, serif !important;
+  font-style: italic !important;
+  font-weight: 800 !important;
+  font-size: clamp(20px, 2.6vw, 28px) !important;
+  color: #f7b928 !important;
+  text-shadow: 1.5px 1.5px 0 #1b435b, -1.5px -1.5px 0 #1b435b, 1.5px -1.5px 0 #1b435b, -1.5px 1.5px 0 #1b435b, 0 2px 4px rgba(0,0,0,0.3) !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease !important;
+  margin-left: auto !important;
+  letter-spacing: 0.5px !important;
+}
+
+.quiz-cta-cursive:hover {
+  transform: scale(1.05) translateY(-2px) !important;
+  color: #ffe066 !important;
 }

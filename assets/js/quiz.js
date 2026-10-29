@@ -1,52 +1,53 @@
 /**
- * QUIZ.JS - LOGIC MINI QUIZ "NẾP TÓC - NẾP RIÊNG?"
- * Chuẩn 5 câu hỏi thực tế, tiến độ thật và phân loại 3 nhóm nếp tóc theo yêu cầu khách hàng.
+ * QUIZ.JS - INTERACTIVE MINI QUIZ SECTION 9 "NẾP TÓC - NẾP RIÊNG?"
+ * Tái hiện 100% bản thiết kế gốc (Quizz.png & Kết quả quizz.png)
+ * 5 câu hỏi thực tế, tiến độ thật, hiển thị kết quả trực tiếp tại Section 9.
  */
 
 const QUIZ_QUESTIONS = [
   {
     id: 1,
-    question: "Mái tóc của bạn thường gặp tình trạng nào nhất?",
+    title: "Q1: Mái tóc của bạn thường gặp tình trạng nào nhất?",
     options: [
-      { key: "A", text: "Dễ bết dầu, nhất là phần chân tóc." },
-      { key: "B", text: "Khô, dễ rối hoặc thiếu độ mềm mại." },
-      { key: "C", text: "Tương đối ổn định, ít gặp vấn đề." }
+      { key: "A", text: "A. Dễ bết dầu, nhất là phần chân tóc." },
+      { key: "B", text: "B. Khô, dễ rối hoặc thiếu độ mềm mại." },
+      { key: "C", text: "C. Tương đối ổn định, ít gặp vấn đề." }
     ]
   },
   {
     id: 2,
-    question: "Sau một ngày dài, mái tóc thường khiến bạn bận tâm điều gì?",
+    title: "Q2: Sau một ngày dài, mái tóc thường khiến bạn bận tâm điều gì?",
     options: [
-      { key: "A", text: "Chân tóc bắt đầu bết, mất độ bồng bềnh." },
-      { key: "B", text: "Tóc xơ, rối và khó vào nếp." },
-      { key: "C", text: "Không có vấn đề gì đáng kể." }
+      { key: "A", text: "A. Chân tóc bắt đầu bết, mất độ bồng bềnh." },
+      { key: "B", text: "B. Tóc xơ, rối và khó vào nếp." },
+      { key: "C", text: "C. Không có vấn đề gì đáng kể." }
     ]
   },
   {
     id: 3,
-    question: "Bạn thường gội đầu với tần suất như thế nào?",
+    title: "Q3: Bạn thường gội đầu với tần suất như thế nào?",
     options: [
-      { key: "A", text: "Hằng ngày hoặc cách một ngày." },
-      { key: "B", text: "Khoảng 2-3 lần/tuần." },
-      { key: "C", text: "Tùy lịch sinh hoạt và tình trạng tóc." }
+      { key: "A", text: "A. Hằng ngày hoặc cách một ngày." },
+      { key: "B", text: "B. Khoảng 2-3 lần/tuần." },
+      { key: "C", text: "C. Tùy lịch sinh hoạt và tình trạng tóc." }
     ]
   },
   {
     id: 4,
-    question: "Khi chọn dầu gội, yếu tố nào khiến bạn chú ý đầu tiên?",
+    title: "Q4: Khi chọn dầu gội, yếu tố nào khiến bạn chú ý đầu tiên?",
     options: [
-      { key: "A", text: "Cảm giác sạch thoáng, dễ chịu sau gội." },
-      { key: "B", text: "Tóc mềm mại, dễ chải và ít rối." },
-      { key: "C", text: "Thành phần, mùi hương và mức giá phù hợp." }
+      { key: "A", text: "A. Cảm giác sạch thoáng, dễ chịu sau gội." },
+      { key: "B", text: "B. Tóc mềm mại, dễ chải và ít rối." },
+      { key: "C", text: "C. Thành phần, mùi hương và mức giá phù hợp." }
     ]
   },
   {
     id: 5,
-    question: "Nếu thử dầu gội bồ kết Thorakao, bạn tò mò nhất về điều gì?",
+    title: "Q5: Nếu thử dầu gội bồ kết Thorakao, bạn tò mò nhất về điều gì?",
     options: [
-      { key: "A", text: "Khả năng làm sạch và cảm giác da đầu." },
-      { key: "B", text: "Cảm giác tóc sau khi gội." },
-      { key: "C", text: "Mùi hương bồ kết và trải nghiệm so với dầu gội thường dùng." }
+      { key: "A", text: "A. Khả năng làm sạch và cảm giác da đầu." },
+      { key: "B", text: "B. Cảm giác tóc sau khi gội." },
+      { key: "C", text: "C. Mùi hương bồ kết và trải nghiệm so với dầu gội thường dùng." }
     ]
   }
 ];
@@ -84,96 +85,77 @@ const QUIZ_RESULTS = {
 let currentQuestionIndex = 0;
 let userAnswers = [];
 
-// Khởi tạo Quiz khi mở Modal
-function startQuizModal() {
+document.addEventListener('DOMContentLoaded', () => {
+  initQuizSection();
+});
+
+function initQuizSection() {
   currentQuestionIndex = 0;
   userAnswers = [];
-
-  const bodyEl = document.getElementById('quizQuestionBody');
-  const footerEl = document.getElementById('quizQuestionFooter');
-  const resultCard = document.getElementById('quiz-result-card');
-
-  if (bodyEl) bodyEl.style.display = 'block';
-  if (footerEl) footerEl.style.display = 'flex';
-  if (resultCard) {
-    resultCard.style.display = 'none';
-    resultCard.innerHTML = '';
-  }
-
-  renderQuizQuestion();
+  renderCurrentQuestion();
 }
 
-function openQuizModal() {
-  const modal = document.getElementById('wixQuizModal');
-  if (modal) {
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    startQuizModal();
-  }
-}
-
-function closeQuizModal() {
-  const modal = document.getElementById('wixQuizModal');
-  if (modal) {
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-}
-
-function renderQuizQuestion() {
+function renderCurrentQuestion() {
   const q = QUIZ_QUESTIONS[currentQuestionIndex];
   if (!q) return;
 
+  const qView = document.getElementById('quizQuestionView');
+  const rView = document.getElementById('quizResultView');
+  if (qView) qView.style.display = 'block';
+  if (rView) rView.style.display = 'none';
+
+  // Cập nhật thanh tiến độ %
   const total = QUIZ_QUESTIONS.length;
   const currentNum = currentQuestionIndex + 1;
   const percent = Math.round((currentNum / total) * 100);
 
-  // Tiến độ
-  const stepText = document.getElementById('quiz-step-text');
-  const progressBar = document.getElementById('quiz-progress-bar');
-  const prevBtn = document.getElementById('quiz-btn-prev');
+  const fillEl = document.getElementById('quizProgressFill');
+  if (fillEl) {
+    fillEl.style.width = percent + '%';
+  }
 
-  if (stepText) stepText.textContent = `Câu ${currentNum} / ${total} (${percent}%)`;
-  if (progressBar) progressBar.style.width = `${percent}%`;
-  if (prevBtn) prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
+  // Cập nhật tiêu đề câu hỏi
+  const titleEl = document.getElementById('quizQuestionTitle');
+  if (titleEl) {
+    titleEl.textContent = q.title;
+  }
 
-  // Câu hỏi
-  const questionEl = document.getElementById('quiz-question-text');
-  if (questionEl) questionEl.textContent = `${q.id}. ${q.question}`;
-
-  // Danh sách đáp án
-  const optionsEl = document.getElementById('quiz-options-container');
-  if (optionsEl) {
-    optionsEl.innerHTML = '';
+  // Cập nhật danh sách đáp án A, B, C
+  const optionsContainer = document.getElementById('quizOptionsList');
+  if (optionsContainer) {
+    optionsContainer.innerHTML = '';
     q.options.forEach(opt => {
       const btn = document.createElement('button');
-      btn.className = 'quiz-option-btn';
       btn.type = 'button';
+      btn.className = 'quiz-opt-btn';
       if (userAnswers[currentQuestionIndex] === opt.key) {
         btn.classList.add('selected');
       }
-      btn.innerHTML = `
-        <span class="quiz-option-key">${opt.key}</span>
-        <span class="quiz-option-desc">${opt.text}</span>
-      `;
+      btn.textContent = opt.text;
       btn.onclick = () => selectQuizOption(opt.key, btn);
-      optionsEl.appendChild(btn);
+      optionsContainer.appendChild(btn);
     });
+  }
+
+  // Nút quay lại câu trước
+  const navRow = document.getElementById('quizNavRow');
+  if (navRow) {
+    navRow.style.display = currentQuestionIndex > 0 ? 'flex' : 'none';
   }
 }
 
 function selectQuizOption(key, btnElement) {
-  const allBtns = document.querySelectorAll('.quiz-option-btn');
+  const allBtns = document.querySelectorAll('.quiz-opt-btn');
   allBtns.forEach(b => b.classList.remove('selected'));
   if (btnElement) btnElement.classList.add('selected');
 
   userAnswers[currentQuestionIndex] = key;
 
-  // Hiệu ứng chuyển mượt sang câu tiếp theo
+  // Chuyển mượt sang câu tiếp theo sau 240ms
   setTimeout(() => {
     if (currentQuestionIndex < QUIZ_QUESTIONS.length - 1) {
       currentQuestionIndex++;
-      renderQuizQuestion();
+      renderCurrentQuestion();
     } else {
       showQuizResult();
     }
@@ -183,7 +165,7 @@ function selectQuizOption(key, btnElement) {
 function prevQuizQuestion() {
   if (currentQuestionIndex > 0) {
     currentQuestionIndex--;
-    renderQuizQuestion();
+    renderCurrentQuestion();
   }
 }
 
@@ -200,7 +182,7 @@ function calculateQuizResult(answers) {
     return winners[0];
   }
 
-  // Hòa: Ưu tiên câu 1 (mối bận tâm cốt lõi)
+  // Phân định hòa: Ưu tiên đáp án của câu 1 (mối bận tâm cốt lõi)
   const q1 = answers[0];
   if (winners.includes(q1)) return q1;
   return winners[0];
@@ -208,49 +190,59 @@ function calculateQuizResult(answers) {
 
 function showQuizResult() {
   const winningKey = calculateQuizResult(userAnswers);
-  const res = QUIZ_RESULTS[winningKey];
+  const res = QUIZ_RESULTS[winningKey] || QUIZ_RESULTS.A;
 
-  const bodyEl = document.getElementById('quizQuestionBody');
-  const footerEl = document.getElementById('quizQuestionFooter');
-  const resultCard = document.getElementById('quiz-result-card');
-  const stepText = document.getElementById('quiz-step-text');
-  const progressBar = document.getElementById('quiz-progress-bar');
+  const qView = document.getElementById('quizQuestionView');
+  const rView = document.getElementById('quizResultView');
+  if (qView) qView.style.display = 'none';
+  if (rView) rView.style.display = 'block';
 
-  if (bodyEl) bodyEl.style.display = 'none';
-  if (footerEl) footerEl.style.display = 'none';
-  if (stepText) stepText.textContent = `Hoàn thành 100%`;
-  if (progressBar) progressBar.style.width = `100%`;
+  // Điền thông tin kết quả chính xác
+  const pillEl = document.getElementById('quizResultPill');
+  const traitEl = document.getElementById('quizResTrait');
+  const adviceEl = document.getElementById('quizResAdvice');
+  const exploreEl = document.getElementById('quizResExplore');
+  const ctaEl = document.getElementById('quizResCta');
 
-  if (resultCard) {
-    resultCard.style.display = 'block';
-    resultCard.innerHTML = `
-      <div class="quiz-res-header">
-        <span class="quiz-res-tag">${res.badge}</span>
-        <h3 class="quiz-res-title">${res.title}</h3>
-      </div>
-      <div class="quiz-res-section">
-        <h5>🌿 Nếp tóc của bạn:</h5>
-        <p>${res.trait}</p>
-      </div>
-      <div class="quiz-res-section">
-        <h5>💡 Gợi ý chăm sóc:</h5>
-        <p>${res.advice}</p>
-      </div>
-      <div class="quiz-res-section">
-        <h5>✨ Khám phá cùng Thorakao:</h5>
-        <p>${res.explore}</p>
-      </div>
-      <div class="quiz-res-cta-row">
-        <a href="${res.ctaLink}" class="btn-res-cta" onclick="closeQuizModal()">${res.ctaText} &rarr;</a>
-        <button type="button" class="btn-res-restart" onclick="startQuizModal()">🔄 Làm lại trắc nghiệm</button>
-      </div>
-    `;
+  if (pillEl) pillEl.textContent = res.title;
+  if (traitEl) traitEl.textContent = res.trait;
+  if (adviceEl) adviceEl.textContent = res.advice;
+  if (exploreEl) exploreEl.textContent = res.explore;
+
+  if (ctaEl) {
+    ctaEl.textContent = res.ctaText;
+    ctaEl.href = res.ctaLink;
+  }
+
+  // Cuộn nhẹ để kết quả hiển thị trọn vẹn trong tầm mắt
+  const section = document.getElementById('comp-mvqu69vk') || document.getElementById('quizSectionContainer');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
 
-// Gán toàn cục để gọi từ HTML
+function restartQuiz() {
+  currentQuestionIndex = 0;
+  userAnswers = [];
+  renderCurrentQuestion();
+}
+
+function openQuizModal() {
+  const section = document.getElementById('comp-mvqu69vk') || document.getElementById('quizz');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  restartQuiz();
+}
+
+function closeQuizModal() {
+  // Modal placeholder for backwards compatibility
+}
+
+// Global functions
+window.initQuizSection = initQuizSection;
+window.selectQuizOption = selectQuizOption;
+window.prevQuizQuestion = prevQuizQuestion;
+window.restartQuiz = restartQuiz;
 window.openQuizModal = openQuizModal;
 window.closeQuizModal = closeQuizModal;
-window.startQuizModal = startQuizModal;
-window.prevQuizQuestion = prevQuizQuestion;
-window.restartQuiz = startQuizModal;

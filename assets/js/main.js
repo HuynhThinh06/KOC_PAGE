@@ -418,11 +418,22 @@ function initWixChat() {
 function toggleWixChat() {
   const popup = document.getElementById('wixChatPopup');
   if (!popup) return;
-  const isOpen = popup.style.display === 'flex';
-  if (isOpen) {
-    popup.style.display = 'none';
-  } else {
-    popup.style.display = 'flex';
+  popup.classList.toggle('open');
+  if (popup.classList.contains('open')) {
+    const input = document.getElementById('wixChatInput');
+    if (input) setTimeout(() => input.focus(), 150);
+  }
+}
+
+function closeWixChat() {
+  const popup = document.getElementById('wixChatPopup');
+  if (popup) popup.classList.remove('open');
+}
+
+function openWixChat() {
+  const popup = document.getElementById('wixChatPopup');
+  if (popup) {
+    popup.classList.add('open');
     const input = document.getElementById('wixChatInput');
     if (input) setTimeout(() => input.focus(), 150);
   }
@@ -476,30 +487,37 @@ function analyzeWixQuery(text) {
   return `Cảm ơn bạn đã nhắn tin cho Thorakao! Bạn có thể xem thêm mục <strong>FAQ (Câu hỏi thường gặp)</strong> hoặc để lại tin nhắn ở <strong>Form Liên Hệ</strong> để chuyên viên tư vấn hỗ trợ chi tiết nhất nhé!`;
 }
 
-// 7. QUIZ MODAL
+// 7. QUIZ SECTION NAVIGATION
 function openQuizModal() {
-  const modal = document.getElementById('wixQuizModal');
-  if (modal) {
-    modal.style.display = 'flex';
-    if (typeof startQuizModal === 'function') {
-      startQuizModal();
+  const section = document.getElementById('comp-mvqu69vk') || document.getElementById('quizz');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (typeof restartQuiz === 'function') {
+      restartQuiz();
     }
   }
 }
 
 function closeQuizModal() {
-  const modal = document.getElementById('wixQuizModal');
-  if (modal) modal.style.display = 'none';
+  // For backwards compatibility
 }
 
 // 8. ĐÓNG CÁC POPUP KHI BẤM PHÍM ESCAPE HOẶC CLICK NGOÀI
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeWixLoginModal();
-    closeQuizModal();
+    closeWixChat();
     closeMemberDropdown();
-    const chatPopup = document.getElementById('wixChatPopup');
-    if (chatPopup) chatPopup.style.display = 'none';
+  }
+});
+
+document.addEventListener('click', (e) => {
+  const chatPopup = document.getElementById('wixChatPopup');
+  const chatBtn = document.querySelector('.minimizedButtonV2');
+  if (chatPopup && chatPopup.classList.contains('open')) {
+    if (!chatPopup.contains(e.target) && (!chatBtn || !chatBtn.contains(e.target))) {
+      closeWixChat();
+    }
   }
 });
 
