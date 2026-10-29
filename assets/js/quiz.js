@@ -88,6 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initQuiz();
 });
 
+function startQuiz() {
+  const launchCard = document.getElementById('quiz-launch-card');
+  const activeCard = document.getElementById('quiz-active-card');
+  if (launchCard) launchCard.style.display = 'none';
+  if (activeCard) activeCard.style.display = 'block';
+  currentQuestionIndex = 0;
+  userAnswers = [];
+  renderQuestion();
+}
+
 function initQuiz() {
   currentQuestionIndex = 0;
   userAnswers = [];
@@ -97,13 +107,7 @@ function initQuiz() {
   const prevBtn = document.getElementById('quiz-btn-prev');
 
   if (startBtn) {
-    startBtn.onclick = () => {
-      document.getElementById('quiz-launch-card').style.display = 'none';
-      document.getElementById('quiz-active-card').style.display = 'block';
-      currentQuestionIndex = 0;
-      userAnswers = [];
-      renderQuestion();
-    };
+    startBtn.onclick = startQuiz;
   }
 
   if (closeBtn) {
