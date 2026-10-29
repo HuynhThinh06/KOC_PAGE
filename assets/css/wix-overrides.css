@@ -735,3 +735,366 @@ a, button, [role="button"], input, textarea, select {
 [data-marquee-animation]:hover {
   animation-play-state: paused !important;
 }
+
+/* ==========================================================================
+   10. SECTION 10 FAQ TABS & ACCORDION (100% GIAO DIỆN GỐC TỪ SCREENSHOT)
+   ========================================================================== */
+#comp-mvq8wnvx {
+  background-color: #aa3d2d !important;
+}
+
+.sRrNTjA {
+  cursor: pointer !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #ffd9c2 !important;
+  transition: color 0.2s ease !important;
+  padding: 10px 24px 14px 24px !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+}
+
+.sRrNTjA:hover,
+.sRrNTjA.s__8xHcsActive,
+.sRrNTjA[data-tab-active="true"] {
+  color: #ffffff !important;
+}
+
+.s__2by1lR {
+  background-color: #ffc800 !important;
+  height: 3px !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  transition: left 0.3s ease, width 0.3s ease !important;
+  z-index: 10 !important;
+}
+
+.spqBk3x.ovokFxS---theme-3-box {
+  border: 1px solid rgba(251, 192, 45, 0.6) !important;
+  margin-top: 8px !important;
+  background: transparent !important;
+  border-radius: 4px !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.spqBk3x.ovokFxS---theme-3-box:first-child {
+  margin-top: 0 !important;
+}
+
+.spqBk3x.ovokFxS---theme-3-box:hover {
+  border-color: rgba(251, 192, 45, 0.95) !important;
+}
+
+.s__5d0Vqd[data-hook="title"] {
+  color: #f7b928 !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  line-height: 1.4 !important;
+}
+
+.s__6RFjpy[data-hook="expandIcon"] {
+  color: #f7b928 !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: inline-block !important;
+}
+
+.sIwn0eJ {
+  padding: 14px 24px 20px 24px !important;
+}
+
+.sIwn0eJ p,
+.sIwn0eJ span {
+  color: #ffffff !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+/* ==========================================================================
+   11. WIX CART DRAWER (GIỎ HÀNG SLIDE-OUT 100% GIAO DIỆN GỐC)
+   ========================================================================== */
+.wix-cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.wix-cart-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.wix-cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 100%;
+  max-width: 420px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.wix-cart-drawer.open {
+  right: 0;
+}
+
+.wix-cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.wix-cart-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222222;
+  margin: 0;
+}
+
+.wix-cart-close {
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: #666666;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s ease;
+}
+
+.wix-cart-close:hover {
+  color: #000000;
+}
+
+.wix-cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.wix-cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 320px;
+}
+
+.wix-cart-empty-icon {
+  margin-bottom: 18px;
+}
+
+.wix-cart-empty-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #222222;
+  margin: 0 0 8px 0;
+}
+
+.wix-cart-empty-sub {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.wix-cart-empty-link {
+  color: #1a56db;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wix-cart-empty-link:hover {
+  color: #1e429f;
+}
+
+.wix-cart-footer {
+  padding: 20px 24px;
+  border-top: 1px solid #f0f0f0;
+  background: #ffffff;
+}
+
+.wix-cart-subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.wix-cart-subtotal-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.wix-cart-subtotal-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ad402e;
+}
+
+.wix-cart-btn-primary {
+  display: block;
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #8B1E1E;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.wix-cart-btn-primary:hover {
+  background-color: #721616;
+}
+
+.wix-cart-btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.wix-cart-btn-secondary:hover {
+  background-color: #f8f8f8;
+  border-color: #c0c0c0;
+}
+
+/* Item trong giỏ hàng */
+.wix-cart-item-row {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+}
+
+.wix-cart-item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #fbfbfb;
+}
+
+.wix-cart-item-info {
+  flex: 1;
+}
+
+.wix-cart-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222222;
+  margin: 0 0 4px 0;
+}
+
+.wix-cart-item-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ad402e;
+  margin-bottom: 6px;
+}
+
+.wix-cart-item-qty-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wix-cart-qty-btn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.wix-cart-qty-val {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.wix-cart-item-remove {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+}
+
+.wix-cart-item-remove:hover {
+  color: #d82222;
+}
+
+/* ==========================================================================
+   12. ĐỊA CHỈ CUỐI TRANG & CHÍNH SÁCH MÀU ĐỎ THEO YÊU CẦU NGƯỜI DÙNG
+   ========================================================================== */
+#comp-kbgakxmn_r_comp-mvrfv02a,
+#comp-kbgakxmn_r_comp-mvrfv02a p,
+#comp-kbgakxmn_r_comp-mvrfv02a span,
+#comp-kbgakxmn_r_comp-mvrfv02a a {
+  color: #ad402e !important;
+  font-weight: 600 !important;
+}
+
+#comp-kbgakxmn_r_comp-mvrfuy2j a,
+#comp-kbgakxmn_r_comp-mvrfuy2j p,
+#comp-kbgakxmn_r_comp-mvrfuy2j span {
+  color: #ad402e !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+}
+
+/* Tooltip chat */
+.notificationBubbleV2 {
+  background-color: #ffc800 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+._text_1h9p7_79 {
+  color: #222222 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+}
+
+._closeButton_1h9p7_89 {
+  color: #444444 !important;
+}
