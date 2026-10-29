@@ -418,21 +418,25 @@ function initWixChat() {
 function toggleWixChat() {
   const popup = document.getElementById('wixChatPopup');
   if (!popup) return;
-  popup.classList.toggle('open');
-  if (popup.classList.contains('open')) {
-    const input = document.getElementById('wixChatInput');
-    if (input) setTimeout(() => input.focus(), 150);
+  if (popup.classList.contains('open') && popup.style.display !== 'none') {
+    closeWixChat();
+  } else {
+    openWixChat();
   }
 }
 
 function closeWixChat() {
   const popup = document.getElementById('wixChatPopup');
-  if (popup) popup.classList.remove('open');
+  if (popup) {
+    popup.classList.remove('open');
+    popup.style.display = 'none';
+  }
 }
 
 function openWixChat() {
   const popup = document.getElementById('wixChatPopup');
   if (popup) {
+    popup.style.display = 'flex';
     popup.classList.add('open');
     const input = document.getElementById('wixChatInput');
     if (input) setTimeout(() => input.focus(), 150);
