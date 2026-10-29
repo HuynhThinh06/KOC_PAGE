@@ -257,6 +257,7 @@ function initWixForms() {
 function openLoginModal(tab = 'login') {
   const modal = document.getElementById('loginModalBackdrop');
   if (modal) {
+    modal.classList.add('open');
     modal.style.display = 'flex';
     switchLoginTab(tab);
   }
@@ -264,8 +265,19 @@ function openLoginModal(tab = 'login') {
 
 function closeLoginModal() {
   const modal = document.getElementById('loginModalBackdrop');
-  if (modal) modal.style.display = 'none';
+  if (modal) {
+    modal.classList.remove('open');
+    modal.style.display = 'none';
+  }
 }
+
+// Đóng modal khi bấm phím Escape hoặc click backdrop
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeLoginModal();
+    if (typeof closeChatbot === 'function') closeChatbot();
+  }
+});
 
 function switchLoginTab(tab) {
   const loginForm = document.getElementById('memberLoginForm');
