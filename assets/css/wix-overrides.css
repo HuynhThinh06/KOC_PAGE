@@ -171,8 +171,17 @@ div[data-testid="wix-ads"] {
   color: #ffffff !important;
 }
 
-/* Đảm bảo chữ địa chỉ, email, sđt chân trang hiển thị rõ nét trên nền kraft */
+/* Địa chỉ, hotline, email chân trang đổi thành màu đỏ theo yêu cầu */
 #comp-kbgakxmn_r_comp-mvrfv02a,
+#comp-kbgakxmn_r_comp-mvrfv02a p,
+#comp-kbgakxmn_r_comp-mvrfv02a span,
+#comp-kbgakxmn_r_comp-mvrfv02a a {
+  color: #ad3d2a !important;
+  font-weight: 700 !important;
+  z-index: 10 !important;
+  position: relative !important;
+}
+
 #comp-kbgakxmn_r_comp-mpbn5rlu,
 #comp-kbgakxmn_r_comp-mvte363p {
   color: #1c1917 !important;
@@ -508,7 +517,7 @@ a, button, [role="button"], input, textarea, select {
 .quiz-progress-bar-fill {
   height: 100% !important;
   background: #254b61 !important;
-  width: 20% !important;
+  width: 20%;
   transition: width 0.35s ease !important;
 }
 

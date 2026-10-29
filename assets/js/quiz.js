@@ -111,7 +111,7 @@ function renderCurrentQuestion() {
 
   const fillEl = document.getElementById('quizProgressFill');
   if (fillEl) {
-    fillEl.style.width = percent + '%';
+    fillEl.style.setProperty('width', percent + '%', 'important');
   }
 
   // Cập nhật tiêu đề câu hỏi
