@@ -310,10 +310,11 @@ document.addEventListener('click', (e) => {
 // 9. CẬP NHẬT SỐ LƯỢNG GIỎ HÀNG
 function updateHeaderCartCount() {
   try {
-    const cart = JSON.parse(localStorage.getItem('thorakao_cart') || '[]');
+    const raw = localStorage.getItem('thorakao_koc_cart') || localStorage.getItem('thorakao_cart') || '[]';
+    const cart = JSON.parse(raw);
     const totalQty = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    const badge = document.querySelector('#open-header-cart [data-hook="items-count"], #open-header-cart text');
-    if (badge) badge.textContent = totalQty;
+    const badges = document.querySelectorAll('#open-header-cart [data-hook="items-count"], #open-header-cart text, .cart-badge');
+    badges.forEach(b => { b.textContent = totalQty; });
   } catch (e) {}
 }
 
@@ -532,10 +533,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function initWixCartDrawer() {
   // Bắt sự kiện click vào nút giỏ hàng trên header
   const cartBtn = document.getElementById('open-header-cart') || document.querySelector('[data-hook="cart-icon-button"]');
-  if (cartBtn) {
+  if (cartBtn && !cartBtn.dataset.cartBound) {
+    cartBtn.dataset.cartBound = 'true';
     cartBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      openWixCart();
+      if (document.getElementById('cart-drawer-backdrop') && typeof openCartDrawer === 'function') {
+        openCartDrawer();
+      } else {
+        openWixCart();
+      }
     });
   }
 }
@@ -576,7 +582,7 @@ function renderWixCart() {
   const drawer = document.getElementById('wixCartDrawer');
   if (!drawer) return;
 
-  const cart = JSON.parse(localStorage.getItem('thorakao_cart') || '[]');
+  const cart = JSON.parse(localStorage.getItem('thorakao_koc_cart') || localStorage.getItem('thorakao_cart') || '[]');
   const totalQty = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
   const subtotal = cart.reduce((sum, item) => sum + ((item.price || 113000) * (item.quantity || 1)), 0);
 
@@ -621,7 +627,7 @@ function renderWixCart() {
           <div class="wix-cart-item-row">
             <img src="${item.image || 'assets/images/product-bottle.png'}" alt="${item.title}" class="wix-cart-item-img">
             <div class="wix-cart-item-info">
-              <h4 class="wix-cart-item-title">${item.title}</h4>
+              <h4 class="wix-cart-item-title">${item.name || item.title || "Dầu Gội Bồ Kết Thorakao 750ml"}</h4>
               <div class="wix-cart-item-price">${formatVND(item.price)}</div>
               <div class="wix-cart-item-qty-row">
                 <button type="button" class="wix-cart-qty-btn" onclick="updateWixCartQty(${idx}, -1)">-</button>
@@ -648,21 +654,21 @@ function renderWixCart() {
 }
 
 function updateWixCartQty(index, delta) {
-  let cart = JSON.parse(localStorage.getItem('thorakao_cart') || '[]');
+  let cart = JSON.parse(localStorage.getItem('thorakao_koc_cart') || localStorage.getItem('thorakao_cart') || '[]');
   if (cart[index]) {
     cart[index].quantity = (cart[index].quantity || 1) + delta;
     if (cart[index].quantity <= 0) {
       cart.splice(index, 1);
     }
   }
-  localStorage.setItem('thorakao_cart', JSON.stringify(cart));
+  localStorage.setItem('thorakao_cart', JSON.stringify(cart)); localStorage.setItem('thorakao_koc_cart', JSON.stringify(cart));
   renderWixCart();
 }
 
 function removeWixCartItem(index) {
-  let cart = JSON.parse(localStorage.getItem('thorakao_cart') || '[]');
+  let cart = JSON.parse(localStorage.getItem('thorakao_koc_cart') || localStorage.getItem('thorakao_cart') || '[]');
   cart.splice(index, 1);
-  localStorage.setItem('thorakao_cart', JSON.stringify(cart));
+  localStorage.setItem('thorakao_cart', JSON.stringify(cart)); localStorage.setItem('thorakao_koc_cart', JSON.stringify(cart));
   renderWixCart();
 }
 

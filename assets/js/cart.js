@@ -18,6 +18,7 @@ function getCart() {
 
 function saveCart(cart) {
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  localStorage.setItem('thorakao_cart', JSON.stringify(cart));
   updateCartUI();
 }
 
@@ -98,9 +99,9 @@ function updateCartUI() {
   const summary = getCartSummary();
 
   // 1. Cập nhật Badge trên Header
-  const badges = document.querySelectorAll('.cart-badge, .header-cart-badge, #open-header-cart [data-part="item-count"], #open-header-cart span, [data-part="item-count"]');
+  const badges = document.querySelectorAll('.cart-badge, .header-cart-badge, #open-header-cart [data-hook="items-count"], #open-header-cart [data-part="item-count"], #open-header-cart text, #open-header-cart span, [data-part="item-count"]');
   badges.forEach(b => {
-    b.innerText = summary.totalQty;
+    b.textContent = summary.totalQty;
   });
 
   // 2. Cập nhật Drawer giỏ hàng

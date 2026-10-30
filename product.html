@@ -7,23 +7,171 @@
   <meta name="description" content="Dầu Gội Bồ Kết Thorakao 750ml giúp làm sạch tóc và da đầu, chăm sóc mái tóc mềm mượt, bồng bềnh, đen bóng tự nhiên. Giá chỉ 113.000₫.">
   <link rel="icon" href="assets/images/logo-thorakao.png" type="image/png">
 
+  <!-- Google Fonts (Montserrat synced with index.html) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/wix-overrides.css">
 
   <style>
+    body.product-red-bg {
+      background-color: #b44637 !important;
+      background-image: url('assets/images/red-paper-bg.png') !important;
+      background-repeat: repeat !important;
+      background-size: 320px auto !important;
+      margin: 0;
+    }
+    /* Đồng bộ Header 100% với trang Home/Index */
+    .wix-synced-header {
+      background-color: #ffffff !important;
+      width: 100%;
+      height: 76px;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      font-family: 'Montserrat', sans-serif;
+    }
+    .wix-synced-header-inner {
+      max-width: 100%;
+      height: 100%;
+      padding: 0 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+    .wix-synced-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .wix-synced-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .wix-synced-nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #933827;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      padding: 4px 0;
+      transition: opacity 0.2s ease;
+    }
+    .wix-synced-nav a:hover,
+    .wix-synced-nav a.active {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 2px;
+    }
+    .wix-synced-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .wix-synced-login-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px 6px;
+      font-family: 'Montserrat', sans-serif;
+      color: #285572;
+    }
+    .wix-synced-avatar-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #285572;
+      fill: #285572;
+      flex-shrink: 0;
+    }
+    .wix-synced-avatar-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: #285572;
+      display: block;
+    }
+    #loginHeaderLabel {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #285572;
+      max-width: 96px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .wix-synced-bag-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 36px;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+    }
+    .wix-synced-bag-btn svg {
+      width: 29px;
+      height: 35px;
+      display: block;
+      fill: #285572;
+    }
+    .wix-synced-bag-btn svg text {
+      fill: #ffc800;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 46px;
+      font-weight: 600;
+    }
+    @media (max-width: 860px) {
+      .wix-synced-header-inner {
+        padding: 0 16px;
+      }
+      .wix-synced-nav {
+        gap: 14px;
+        overflow-x: auto;
+      }
+      .wix-synced-nav a {
+        font-size: 13px;
+        white-space: nowrap;
+      }
+    }
     .product-page-section {
       padding: 40px 0 80px;
+      background-color: #b44637;
+      background-image: url('assets/images/red-paper-bg.png');
+      background-repeat: repeat;
+      background-size: 320px auto;
     }
     .breadcrumb {
       display: flex;
       gap: 8px;
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      font-size: 0.95rem;
+      color: rgba(255, 248, 235, 0.85);
       margin-bottom: 30px;
     }
+    .breadcrumb a {
+      color: #fff8eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
     .breadcrumb a:hover {
-      color: var(--color-primary);
+      color: #ffc800;
+      text-decoration: underline;
     }
     .product-layout-grid {
       display: grid;
@@ -238,32 +386,56 @@
   </style>
   <link rel="stylesheet" href="assets/css/auth.css">
 </head>
-<body>
+<body class="product-red-bg">
 
-  <!-- ==================== HEADER ==================== -->
-  <header class="site-header" id="top">
-    <div class="header-container">
-      <a href="index.html" class="header-brand">
-        <img src="assets/images/logo-thorakao.png" alt="Thorakao Logo" class="header-logo">
+  <!-- ==================== HEADER (ĐỒNG BỘ 100% VỚI TRANG HOME/INDEX) ==================== -->
+  <header id="comp-mb7ogqrp" class="wix-synced-header">
+    <div class="wix-synced-header-inner">
+      <!-- Logo Thorakao bên trái -->
+      <a href="index.html" class="wix-synced-logo" aria-label="Trang chủ Thorakao">
+        <img src="assets/images/logo-thorakao.png" alt="Thorakao">
       </a>
 
-      <!-- Navigation Links -->
-      <nav class="header-nav" id="header-nav">
-        <a href="https://thorakao.com" target="_blank" rel="noopener" class="nav-link">Website</a>
-        <a href="index.html" class="nav-link">Trang chủ</a>
-        <a href="index.html#quizz" class="nav-link">Quizz</a>
-        <a href="index.html#faq" class="nav-link">FAQ</a>
-        <a href="index.html#contact" class="nav-link">Liên Hệ</a>
-        <a href="product.html" class="nav-link active">Sản Phẩm</a>
+      <!-- Menu điều hướng chính giữa -->
+      <nav class="wix-synced-nav" aria-label="Trang web">
+        <a href="https://thorakao.com/" target="_blank" rel="noopener">WEBSITE</a>
+        <a href="index.html">TRANG CHỦ</a>
+        <a href="index.html#quizz">QUIZZ</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contact">LIÊN HỆ</a>
       </nav>
 
-      <!-- Action Buttons -->
-      <div class="header-actions">
-        <button type="button" class="cart-icon-btn" onclick="openCartDrawer()" aria-label="Xem giỏ hàng">
-          🛒
-          <span class="cart-badge" style="display: none;">0</span>
-        </button>
-        <button type="button" class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+      <!-- Cụm Đăng nhập & Giỏ hàng bên phải -->
+      <div class="wix-synced-right">
+        <div id="comp-mb7ogqrp_r_comp-mpbn4c1x" style="position: relative; display: flex; align-items: center;">
+          <button type="button" id="loginHeaderBtn" class="wix-synced-login-btn" aria-label="Thanh đăng nhập" onclick="handleWixLoginClick(event)">
+            <div class="wix-synced-avatar-icon" id="loginAvatarIconWrap">
+              <div id="defaultAvatar-comp-mb7ogqrp_r_comp-mpbn4c1x">
+                <svg data-bbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 50 50">
+                  <g><path d="M25 48.077c-5.924 0-11.31-2.252-15.396-5.921 2.254-5.362 7.492-8.267 15.373-8.267 7.889 0 13.139 3.044 15.408 8.418-4.084 3.659-9.471 5.77-15.385 5.77m.278-35.3c4.927 0 8.611 3.812 8.611 8.878 0 5.21-3.875 9.456-8.611 9.456s-8.611-4.246-8.611-9.456c0-5.066 3.684-8.878 8.611-8.878M25 0C11.193 0 0 11.193 0 25c0 .915.056 1.816.152 2.705.032.295.091.581.133.873.085.589.173 1.176.298 1.751.073.338.169.665.256.997.135.515.273 1.027.439 1.529.114.342.243.675.37 1.01.18.476.369.945.577 1.406.149.331.308.657.472.98.225.446.463.883.714 1.313.182.312.365.619.56.922.272.423.56.832.856 1.237.207.284.41.568.629.841.325.408.671.796 1.02 1.182.22.244.432.494.662.728.405.415.833.801 1.265 1.186.173.154.329.325.507.475l.004-.011A24.886 24.886 0 0 0 25 50a24.881 24.881 0 0 0 16.069-5.861.126.126 0 0 1 .003.01c.172-.144.324-.309.49-.458.442-.392.88-.787 1.293-1.209.228-.232.437-.479.655-.72.352-.389.701-.78 1.028-1.191.218-.272.421-.556.627-.838.297-.405.587-.816.859-1.24a26.104 26.104 0 0 0 1.748-3.216c.208-.461.398-.93.579-1.406.127-.336.256-.669.369-1.012.167-.502.305-1.014.44-1.53.087-.332.183-.659.256-.996.126-.576.214-1.164.299-1.754.042-.292.101-.577.133-.872.095-.89.152-1.791.152-2.707C50 11.193 38.807 0 25 0"></path></g>
+                </svg>
+              </div>
+            </div>
+            <span id="loginHeaderLabel">Đăng nhập</span>
+          </button>
+
+          <!-- Dropdown Thành viên -->
+          <div class="wix-member-dropdown" id="wixMemberDropdown" style="display: none;">
+            <a href="account.html" class="member-dropdown-item" onclick="closeMemberDropdown()">Account Settings</a>
+            <a href="cart.html" class="member-dropdown-item" onclick="closeMemberDropdown()">My Orders</a>
+            <div class="member-dropdown-divider"></div>
+            <button type="button" class="member-dropdown-item logout" onclick="handleMemberLogout()">Log Out</button>
+          </div>
+        </div>
+
+        <!-- Nút Giỏ hàng chuẩn Wix -->
+        <a class="wix-synced-bag-btn" data-hook="cart-icon-button" role="button" aria-label="Giỏ hàng" href="cart.html" id="open-header-cart">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 105.5 126.1" preserveAspectRatio="xMinYMax meet" data-hook="svg-icon-1">
+            <path d="M102.143 118.16L93.812 48.2067C93.386 44.66 90.3566 42 86.7591 42H79.1382V56H74.4047V42H31.8032V56H27.0697V42H19.4488C15.8513 42 12.8219 44.66 12.3959 48.16L4.06489 118.16C3.78088 120.167 4.44357 122.173 5.76895 123.667C7.14167 125.16 9.0824 126 11.0705 126H95.1374C97.1255 126 99.0662 125.16 100.439 123.667C101.764 122.173 102.427 120.167 102.143 118.16Z"></path>
+            <path d="M32.0594 25.6667C32.0594 14.0933 41.506 4.66667 53.1039 4.66667C64.7018 4.66667 74.1485 14.0933 74.1485 25.6667V42H78.825V25.6667C78.825 11.5267 67.2739 0 53.1039 0C38.9339 0 27.3828 11.5267 27.3828 25.6667V42H32.0594V25.6667Z"></path>
+            <text x="53" y="85.5" dy=".35em" text-anchor="middle" class="uxskpx" data-hook="items-count">0</text>
+          </svg>
+        </a>
       </div>
     </div>
   </header>
@@ -276,7 +448,7 @@
       <div class="breadcrumb">
         <a href="index.html">Trang chủ</a> <span>/</span>
         <a href="product.html">Sản phẩm</a> <span>/</span>
-        <span style="color: var(--color-primary); font-weight: 600;">Dầu Gội Bồ Kết 750ml</span>
+        <span style="color: #ffc800; font-weight: 700;">Dầu Gội Bồ Kết 750ml</span>
       </div>
 
       <!-- Khối Sản Phẩm Chính -->
@@ -477,6 +649,105 @@
       </div>
     </div>
   </div>
+
+<!-- WIX MEMBER LOGIN / REGISTER MODAL -->
+<div class="wix-login-modal-backdrop" id="wixLoginModal" style="display: none;" onclick="if(event.target===this)closeWixLoginModal()">
+  <div class="wix-login-modal">
+    <button type="button" class="wix-login-close" id="wixModalCloseBtn" onclick="closeWixLoginModal()" aria-label="Đóng">&times;</button>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="assets/images/logo-thorakao.png" alt="Thorakao" style="height: 48px; width: auto; object-fit: contain; margin-bottom: 8px;">
+      <h3 id="wixAuthTitle" style="margin: 0; font-size: 20px; font-weight: 700; color: #1c1917; font-family: 'Montserrat', sans-serif;">Đăng nhập tài khoản</h3>
+      <p id="wixAuthSubtitle" style="margin: 6px 0 0; font-size: 13px; color: #78716c;">Chào mừng bạn đến với Thorakao - Giữ nếp tóc Việt</p>
+    </div>
+
+    <!-- Dual Tab: Đăng nhập / Đăng ký -->
+    <div class="wix-auth-tabs">
+      <button type="button" class="wix-auth-tab-btn active" id="tabBtnLogin" onclick="switchWixAuthTab('login')">Đăng nhập</button>
+      <button type="button" class="wix-auth-tab-btn" id="tabBtnRegister" onclick="switchWixAuthTab('register')">Đăng ký</button>
+    </div>
+
+    <!-- Social Login Buttons -->
+    <div class="wix-auth-socials">
+      <button type="button" class="wix-social-btn google" onclick="handleSocialLogin('Google')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        <span>Tiếp tục với Google</span>
+      </button>
+      <button type="button" class="wix-social-btn facebook" onclick="handleSocialLogin('Facebook')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span>Tiếp tục với Facebook</span>
+      </button>
+    </div>
+
+    <div class="wix-auth-divider">
+      <span>hoặc sử dụng email</span>
+    </div>
+
+    <!-- Login Form -->
+    <form id="wixLoginForm" onsubmit="handleMemberSubmit(event)" style="display: block;">
+      <div class="wix-auth-field">
+        <label for="wixLoginEmail">Email</label>
+        <input type="email" id="wixLoginEmail" required value="cshoamaist2025@gmail.com" placeholder="Nhập email của bạn">
+      </div>
+      <div class="wix-auth-field">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <label for="wixLoginPass" style="margin: 0;">Mật khẩu</label>
+          <a href="#" onclick="handleForgotPassword(event)" style="font-size: 12px; color: #781816; text-decoration: none; font-weight: 600;">Quên mật khẩu?</a>
+        </div>
+        <div style="position: relative;">
+          <input type="password" id="wixLoginPass" required value="123456" placeholder="Nhập mật khẩu">
+          <button type="button" class="wix-toggle-pw" onclick="togglePasswordVisibility('wixLoginPass', this)" aria-label="Hiện/ẩn mật khẩu">👁️</button>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #444; cursor: pointer; margin: 0;">
+          <input type="checkbox" id="wixRememberMe" checked style="accent-color: #781816; width: 16px; height: 16px;">
+          <span>Ghi nhớ đăng nhập</span>
+        </label>
+      </div>
+      <button type="submit" class="wix-auth-submit-btn">Đăng nhập</button>
+      <div style="margin-top: 14px; text-align: center; font-size: 13px; color: #666;">
+        Chưa có tài khoản? <a href="#" onclick="event.preventDefault(); switchWixAuthTab('register')" style="color: #781816; font-weight: 700; text-decoration: none;">Đăng ký ngay</a>
+      </div>
+      <div class="wix-auth-hint">
+        💡 Tài khoản trải nghiệm: <strong>cshoamaist2025@gmail.com</strong> (MK: <strong>123456</strong>)
+      </div>
+    </form>
+
+    <!-- Register Form -->
+    <form id="wixRegisterForm" onsubmit="handleMemberRegister(event)" style="display: none;">
+      <div class="wix-auth-field">
+        <label for="wixRegName">Họ và tên</label>
+        <input type="text" id="wixRegName" required placeholder="Ví dụ: Nguyễn Văn A">
+      </div>
+      <div class="wix-auth-field">
+        <label for="wixRegEmail">Email</label>
+        <input type="email" id="wixRegEmail" required placeholder="name@example.com">
+      </div>
+      <div class="wix-auth-field">
+        <label for="wixRegPhone">Số điện thoại</label>
+        <input type="tel" id="wixRegPhone" placeholder="0912 345 678">
+      </div>
+      <div class="wix-auth-field">
+        <label for="wixRegPass">Mật khẩu</label>
+        <div style="position: relative;">
+          <input type="password" id="wixRegPass" required placeholder="Tối thiểu 6 ký tự">
+          <button type="button" class="wix-toggle-pw" onclick="togglePasswordVisibility('wixRegPass', this)" aria-label="Hiện/ẩn mật khẩu">👁️</button>
+        </div>
+      </div>
+      <div style="margin-bottom: 16px;">
+        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #555; cursor: pointer;">
+          <input type="checkbox" id="wixRegTerms" required checked style="accent-color: #781816; width: 15px; height: 15px; margin-top: 2px;">
+          <span>Tôi đồng ý với <a href="chinh-sach-quyen-rieng-tu.html" target="_blank" style="color: #781816; text-decoration: underline;">Điều khoản & Chính sách quyền riêng tư</a> của Thorakao</span>
+        </label>
+      </div>
+      <button type="submit" class="wix-auth-submit-btn">Đăng ký tài khoản</button>
+      <div style="margin-top: 14px; text-align: center; font-size: 13px; color: #666;">
+        Đã có tài khoản? <a href="#" onclick="event.preventDefault(); switchWixAuthTab('login')" style="color: #781816; font-weight: 700; text-decoration: none;">Đăng nhập ngay</a>
+      </div>
+    </form>
+  </div>
+</div>
 
   <!-- Scripts -->
   <script src="assets/js/config.js"></script>
