@@ -56,6 +56,7 @@ function initSmoothScroll() {
 }
 
 // 2. TƯƠNG TÁC FAQ ACCORDION GỐC CỦA WIX & TAB SWITCHING (SẢN PHẨM & MUA HÀNG)
+// 5. TƯƠNG TÁC SECTION 10: FAQ ACCORDION & TABS (CHUẨN 100% GIAO DIỆN GỐC)
 function initWixFAQ() {
   const sec10 = document.getElementById('comp-mvq8wnvx');
   if (!sec10) return;
@@ -68,8 +69,10 @@ function initWixFAQ() {
 
   function updateIndicator(activeTab) {
     if (!indicator || !activeTab) return;
-    indicator.style.left = activeTab.offsetLeft + 'px';
-    indicator.style.width = activeTab.offsetWidth + 'px';
+    const left = activeTab.offsetLeft || 0;
+    const width = activeTab.offsetWidth || 165;
+    indicator.style.left = left + 'px';
+    indicator.style.width = width + 'px';
   }
 
   function switchFAQTab(tabIndex) {
@@ -77,12 +80,12 @@ function initWixFAQ() {
       if (tabSanPham) {
         tabSanPham.setAttribute('aria-selected', 'true');
         tabSanPham.setAttribute('data-tab-active', 'true');
-        tabSanPham.classList.add('s__8xHcsActive');
+        tabSanPham.classList.add('oW7Yi2b--isActive');
       }
       if (tabMuaHang) {
         tabMuaHang.setAttribute('aria-selected', 'false');
         tabMuaHang.setAttribute('data-tab-active', 'false');
-        tabMuaHang.classList.remove('s__8xHcsActive');
+        tabMuaHang.classList.remove('oW7Yi2b--isActive');
       }
       if (groupSanPham) groupSanPham.style.display = 'block';
       if (groupMuaHang) groupMuaHang.style.display = 'none';
@@ -91,12 +94,12 @@ function initWixFAQ() {
       if (tabMuaHang) {
         tabMuaHang.setAttribute('aria-selected', 'true');
         tabMuaHang.setAttribute('data-tab-active', 'true');
-        tabMuaHang.classList.add('s__8xHcsActive');
+        tabMuaHang.classList.add('oW7Yi2b--isActive');
       }
       if (tabSanPham) {
         tabSanPham.setAttribute('aria-selected', 'false');
         tabSanPham.setAttribute('data-tab-active', 'false');
-        tabSanPham.classList.remove('s__8xHcsActive');
+        tabSanPham.classList.remove('oW7Yi2b--isActive');
       }
       if (groupSanPham) groupSanPham.style.display = 'none';
       if (groupMuaHang) groupMuaHang.style.display = 'block';
@@ -121,7 +124,7 @@ function initWixFAQ() {
   }
 
   // Khởi tạo vị trí gạch dưới ban đầu
-  setTimeout(() => updateIndicator(tabSanPham), 300);
+  setTimeout(() => updateIndicator(tabSanPham), 250);
   window.addEventListener('resize', () => {
     const isMuaHangActive = tabMuaHang && tabMuaHang.getAttribute('aria-selected') === 'true';
     updateIndicator(isMuaHangActive ? tabMuaHang : tabSanPham);
@@ -151,7 +154,10 @@ function initWixFAQ() {
             otherNext.style.overflow = 'hidden';
             otherNext.classList.add('rah-static--height-zero');
             const inner = otherNext.firstElementChild;
-            if (inner) inner.style.opacity = '0';
+            if (inner) {
+              inner.style.opacity = '0';
+              inner.style.display = 'none';
+            }
           }
           const otherIcon = otherBtn.querySelector('[data-hook="expandIcon"]');
           if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
@@ -166,7 +172,10 @@ function initWixFAQ() {
           nextContainer.style.overflow = 'hidden';
           nextContainer.classList.add('rah-static--height-zero');
           const inner = nextContainer.firstElementChild;
-          if (inner) inner.style.opacity = '0';
+          if (inner) {
+            inner.style.opacity = '0';
+            inner.style.display = 'none';
+          }
         }
         if (expandIcon) expandIcon.style.transform = 'rotate(0deg)';
       } else {
@@ -176,270 +185,15 @@ function initWixFAQ() {
           nextContainer.style.height = 'auto';
           nextContainer.style.overflow = 'visible';
           const inner = nextContainer.firstElementChild;
-          if (inner) inner.style.opacity = '1';
+          if (inner) {
+            inner.style.display = 'block';
+            inner.style.opacity = '1';
+          }
         }
         if (expandIcon) expandIcon.style.transform = 'rotate(180deg)';
       }
     });
   });
-}
-
-// 3. TỰ ĐỘNG PHÁT VIDEO HERO VÀ MARQUEE BANNERS
-function initHeroVideo() {
-  const vid = document.getElementById('comp-mpbn2nv6_video');
-  if (vid) {
-    vid.muted = true;
-    vid.defaultMuted = true;
-    vid.setAttribute('muted', '');
-    vid.setAttribute('playsinline', '');
-    vid.setAttribute('autoplay', '');
-    vid.setAttribute('loop', '');
-
-    const tryPlay = () => {
-      const p = vid.play();
-      if (p !== undefined) {
-        p.catch(err => console.log('Autoplay deferred:', err));
-      }
-    };
-    tryPlay();
-    window.addEventListener('scroll', tryPlay, { once: true, passive: true });
-    document.addEventListener('click', tryPlay, { once: true, passive: true });
-    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
-
-    const playPauseBtn = document.querySelector('.background-video-play-pause-button');
-    if (playPauseBtn) {
-      playPauseBtn.onclick = (e) => {
-        e.preventDefault();
-        if (vid.paused) {
-          vid.play();
-        } else {
-          vid.pause();
-        }
-      };
-    }
-  }
-}
-
-function initMarqueeBanners() {
-  const marquees = document.querySelectorAll('._marqueeUnitContainer_z4m05_32, [data-marquee-animation]');
-  marquees.forEach(m => {
-    m.setAttribute('data-marquee-animation', 'left');
-    m.style.setProperty('--marquee-animation-state', 'running');
-    m.style.setProperty('--marquee-duration', '25s');
-    m.style.animation = '_left_z4m05_1 25s linear infinite';
-    m.style.animationPlayState = 'running';
-  });
-}
-
-// 4. TƯƠNG TÁC FORMS (LIÊN HỆ & NEWSLETTER)
-function initWixForms() {
-  // A. Contact Form ở Section 11 (comp-mvqw008w)
-  const sec11 = document.getElementById('comp-mvqw008w');
-  if (sec11) {
-    const submitBtn = sec11.querySelector('button[data-hook="submit-button"]');
-    if (submitBtn) {
-      submitBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const inputs = sec11.querySelectorAll('input');
-        const textarea = sec11.querySelector('textarea');
-
-        const firstName = inputs[0] ? inputs[0].value.trim() : '';
-        const lastName = inputs[1] ? inputs[1].value.trim() : '';
-        const email = inputs[2] ? inputs[2].value.trim() : '';
-        const message = textarea ? textarea.value.trim() : '';
-
-        if (!email) {
-          showToast('Vui lòng nhập địa chỉ Email của bạn!', true);
-          if (inputs[2]) inputs[2].focus();
-          return;
-        }
-
-        if (!message) {
-          showToast('Vui lòng nhập nội dung bạn muốn gửi tới Thorakao!', true);
-          if (textarea) textarea.focus();
-          return;
-        }
-
-        const originalText = submitBtn.innerText;
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Đang gửi...';
-
-        const formData = {
-          type: 'CONTACT',
-          firstName,
-          lastName,
-          email,
-          message,
-          createdAt: new Date().toISOString()
-        };
-
-        try {
-          const list = JSON.parse(localStorage.getItem('thorakao_inquiries') || '[]');
-          list.push(formData);
-          localStorage.setItem('thorakao_inquiries', JSON.stringify(list));
-        } catch (err) {}
-
-        if (typeof CONFIG !== 'undefined' && CONFIG.GOOGLE_SHEET_WEBHOOK_URL) {
-          try {
-            await fetch(CONFIG.GOOGLE_SHEET_WEBHOOK_URL, {
-              method: 'POST',
-              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-              body: JSON.stringify(formData)
-            });
-          } catch (err) {}
-        }
-
-        showToast('Cảm ơn bạn! Lời nhắn của bạn đã được gửi thành công đến Thorakao.');
-        inputs.forEach(inp => inp.value = '');
-        if (textarea) textarea.value = '';
-        submitBtn.disabled = false;
-        submitBtn.innerText = originalText;
-      });
-    }
-  }
-
-  // B. Newsletter Form ở Section 12 (comp-kbgakxmn_r_comp-kbgakgyt)
-  const sec12 = document.getElementById('comp-kbgakxmn_r_comp-kbgakgyt');
-  if (sec12) {
-    const subBtn = sec12.querySelector('button[data-hook="submit-button"]');
-    if (subBtn) {
-      subBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const emailInput = sec12.querySelector('input[type="email"], input');
-        const email = emailInput ? emailInput.value.trim() : '';
-
-        if (!email || !email.includes('@')) {
-          showToast('Vui lòng nhập email hợp lệ để nhận bản tin!', true);
-          if (emailInput) emailInput.focus();
-          return;
-        }
-
-        const origText = subBtn.innerText;
-        subBtn.disabled = true;
-        subBtn.innerText = 'Đang đăng ký...';
-
-        const data = {
-          type: 'NEWSLETTER',
-          email,
-          createdAt: new Date().toISOString()
-        };
-
-        try {
-          const subs = JSON.parse(localStorage.getItem('thorakao_subscribers') || '[]');
-          if (!subs.includes(email)) subs.push(email);
-          localStorage.setItem('thorakao_subscribers', JSON.stringify(subs));
-        } catch (err) {}
-
-        showToast('Chúc mừng! Bạn đã đăng ký nhận thông tin chiến dịch thành công.');
-        if (emailInput) emailInput.value = '';
-        subBtn.disabled = false;
-        subBtn.innerText = origText;
-      });
-    }
-  }
-}
-
-// 5. QUẢN LÝ ĐĂNG NHẬP THÀNH VIÊN WIX (cshoamaist2025@gmail.com / 123456)
-function checkAuthState() {
-  const auth = JSON.parse(localStorage.getItem('thorakao_auth') || 'null');
-  const label = document.getElementById('loginHeaderLabel');
-  const avatarWrap = document.getElementById('loginAvatarIconWrap');
-
-  if (auth && auth.email) {
-    if (label) label.innerText = auth.name || auth.email.split('@')[0];
-    if (avatarWrap) {
-      avatarWrap.innerHTML = `
-        <div style="width: 24px; height: 24px; border-radius: 50%; background: #781816; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;">
-          ${(auth.initial || auth.email[0]).toUpperCase()}
-        </div>
-      `;
-    }
-    const nameEl = document.getElementById('memberDropdownName');
-    const emailEl = document.getElementById('memberDropdownEmail');
-    const avatarEl = document.getElementById('memberDropdownAvatar');
-    if (nameEl) nameEl.innerText = auth.name || auth.email.split('@')[0];
-    if (emailEl) emailEl.innerText = auth.email;
-    if (avatarEl) avatarEl.innerText = (auth.initial || auth.email[0]).toUpperCase();
-  } else {
-    if (label) label.innerText = 'Đăng nhập';
-    if (avatarWrap) {
-      avatarWrap.innerHTML = `
-        <div id="defaultAvatar-comp-mb7ogqrp_r_comp-mpbn4c1x" class="_avatarPlaceholder_amy81_32 wixui-vector-image">
-          <div data-testid="svgRoot-defaultAvatar-comp-mb7ogqrp_r_comp-mpbn4c1x" class="_svgRoot_zlqkq_19 _nonScalingStroke_zlqkq_55 _avatarPlaceholder_amy81_32">
-            <svg data-bbox="0 0 50 50" data-type="shape" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-              <path d="M25 48.077c-5.924 0-11.31-2.252-15.396-5.921 2.254-5.362 7.492-8.267 15.373-8.267 7.889 0 13.139 3.044 15.408 8.418-4.084 3.659-9.471 5.77-15.385 5.77m.278-35.3c4.927 0 8.611 3.812 8.611 8.878 0 5.21-3.875 9.456-8.611 9.456s-8.611-4.246-8.611-9.456c0-5.066 3.684-8.878 8.611-8.878M25 0C11.193 0 0 11.193 0 25c0 .915.056 1.816.152 2.705.032.295.091.581.133.873.085.589.173 1.176.298 1.751.073.338.169.665.256.997.135.515.273 1.027.439 1.529.114.342.243.675.37 1.01.18.476.369.945.577 1.406.149.331.308.657.472.98.225.446.463.883.714 1.313.182.312.365.619.56.922.272.423.56.832.856 1.237.207.284.41.568.629.841.325.408.671.796 1.02 1.182.22.244.432.494.662.728.405.415.833.801 1.265 1.186.173.154.329.325.507.475l.004-.011A24.886 24.886 0 0 0 25 50a24.881 24.881 0 0 0 16.069-5.861.126.126 0 0 1 .003.01c.172-.144.324-.309.49-.458.442-.392.88-.787 1.293-1.209.228-.232.437-.479.655-.72.352-.389.701-.78 1.028-1.191.218-.272.421-.556.627-.838.297-.405.587-.816.859-1.24a26.104 26.104 0 0 0 1.748-3.216c.208-.461.398-.93.579-1.406.127-.336.256-.669.369-1.012.167-.502.305-1.014.44-1.53.087-.332.183-.659.256-.996.126-.576.214-1.164.299-1.754.042-.292.101-.577.133-.872.095-.89.152-1.791.152-2.707C50 11.193 38.807 0 25 0"></path>
-            </svg>
-          </div>
-        </div>
-      `;
-    }
-  }
-}
-
-function handleLoginHeaderClick(e) {
-  if (e) e.preventDefault();
-  const auth = JSON.parse(localStorage.getItem('thorakao_auth') || 'null');
-  if (auth && auth.email) {
-    const dropdown = document.getElementById('wixMemberDropdown');
-    if (dropdown) {
-      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    }
-  } else {
-    openWixLoginModal();
-  }
-}
-
-function closeMemberDropdown() {
-  const dropdown = document.getElementById('wixMemberDropdown');
-  if (dropdown) dropdown.style.display = 'none';
-}
-
-function openWixLoginModal() {
-  const modal = document.getElementById('wixLoginModal');
-  if (modal) modal.style.display = 'flex';
-}
-
-function closeWixLoginModal() {
-  const modal = document.getElementById('wixLoginModal');
-  if (modal) modal.style.display = 'none';
-}
-
-function handleMemberSubmit(e) {
-  e.preventDefault();
-  const emailInput = document.getElementById('wixLoginEmail');
-  const email = emailInput ? emailInput.value.trim() : '';
-
-  if (!email) {
-    showToast('Vui lòng nhập Email!', true);
-    return;
-  }
-
-  let displayName = email.split('@')[0];
-  let initial = email[0].toUpperCase();
-
-  if (email.toLowerCase() === 'cshoamaist2025@gmail.com') {
-    displayName = 'cshoamaist2025';
-    initial = 'C';
-  }
-
-  const authData = {
-    email,
-    name: displayName,
-    initial,
-    loggedInAt: new Date().toISOString()
-  };
-
-  localStorage.setItem('thorakao_auth', JSON.stringify(authData));
-  checkAuthState();
-  closeWixLoginModal();
-  showToast(`Đăng nhập thành công! Chào mừng ${displayName}.`);
-}
-
-function handleMemberLogout() {
-  localStorage.removeItem('thorakao_auth');
-  closeMemberDropdown();
-  checkAuthState();
-  showToast('Bạn đã đăng xuất tài khoản.');
 }
 
 // 6. TƯƠNG TÁC WIX AI SITE CHAT (Nút vàng nguyên bản góc phải)
