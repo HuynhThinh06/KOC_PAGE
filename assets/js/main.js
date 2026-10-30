@@ -244,17 +244,8 @@ function initWixFAQ() {
   });
 }
 
-// 6. TƯƠNG TÁC WIX AI SITE CHAT (Nút vàng nguyên bản góc phải)
+// 6. TƯƠNG TÁC WIX AI SITE CHAT (Xử lý tại chatbot.js - Website Knowledge Engine)
 function initWixChat() {
-  const chatBtn = document.querySelector('.minimizedButtonV2');
-  if (chatBtn) {
-    chatBtn.style.cursor = 'pointer';
-    chatBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      toggleWixChat();
-    });
-  }
-
   // Đóng tooltip vàng khi bấm nút x của tooltip
   const closeTooltipBtn = document.querySelector('button[aria-label="Đóng thông báo"]');
   if (closeTooltipBtn) {
@@ -264,82 +255,6 @@ function initWixChat() {
       if (popover) popover.style.display = 'none';
     });
   }
-}
-
-function toggleWixChat() {
-  const popup = document.getElementById('wixChatPopup');
-  if (!popup) return;
-  if (popup.classList.contains('open') && popup.style.display !== 'none') {
-    closeWixChat();
-  } else {
-    openWixChat();
-  }
-}
-
-function closeWixChat() {
-  const popup = document.getElementById('wixChatPopup');
-  if (popup) {
-    popup.classList.remove('open');
-    popup.style.display = 'none';
-  }
-}
-
-function openWixChat() {
-  const popup = document.getElementById('wixChatPopup');
-  if (popup) {
-    popup.style.display = 'flex';
-    popup.classList.add('open');
-    const input = document.getElementById('wixChatInput');
-    if (input) setTimeout(() => input.focus(), 150);
-  }
-}
-
-function sendWixChatMessage(predefinedText = null) {
-  const input = document.getElementById('wixChatInput');
-  const msg = predefinedText || (input ? input.value.trim() : '');
-  if (!msg) return;
-
-  const container = document.getElementById('wixChatMessages');
-  if (!container) return;
-
-  // Tin nhắn người dùng
-  const userMsg = document.createElement('div');
-  userMsg.className = 'wix-chat-msg user';
-  userMsg.innerText = msg;
-  container.appendChild(userMsg);
-
-  if (input) input.value = '';
-  container.scrollTop = container.scrollHeight;
-
-  // Phản hồi tự động
-  setTimeout(() => {
-    const reply = analyzeWixQuery(msg);
-    const botMsg = document.createElement('div');
-    botMsg.className = 'wix-chat-msg bot';
-    botMsg.innerHTML = reply;
-    container.appendChild(botMsg);
-    container.scrollTop = container.scrollHeight;
-  }, 350);
-}
-
-function analyzeWixQuery(text) {
-  const t = text.toLowerCase();
-  if (t.includes('giá') || t.includes('bao nhiêu') || t.includes('mua') || t.includes('tiền')) {
-    return `Dầu gội bồ kết Thorakao chính hãng <strong>750ml</strong> có giá niêm yết <strong>113.000₫/chai</strong>.<br><br>Đặc biệt: Khi mua từ 2 chai (từ 200.000₫), Thorakao áp dụng chính sách <strong>MIỄN PHÍ VẬN CHUYỂN</strong> toàn quốc! Bạn có thể vào <a href="product.html" style="color:#781816;font-weight:700;">trang sản phẩm</a> để đặt hàng ngay nhé!`;
-  }
-  if (t.includes('ship') || t.includes('giao hàng') || t.includes('vận chuyển')) {
-    return `Chính sách giao hàng:<br>• <strong>Miễn phí vận chuyển</strong> cho đơn hàng từ <strong>200.000₫</strong> trở lên.<br>• Đơn dưới 200.000₫ có phí ship đồng giá toàn quốc chỉ <strong>25.000₫</strong>!`;
-  }
-  if (t.includes('bết') || t.includes('dầu') || t.includes('nhờn')) {
-    return `Với mái tóc dễ bết dầu chân tóc, saponin và flavonoid tự nhiên trong bồ kết Thorakao sẽ làm sạch bã nhờn dịu nhẹ, giúp tóc tơi xốp, bồng bềnh lâu bết hơn.<br><br>👉 Bạn có thể làm ngay <a href="#featured-categories" onclick="toggleWixChat(); openQuizModal();" style="color:#781816;font-weight:700;">Mini Quiz Nếp Tóc</a> để nhận hướng dẫn chuẩn nhé!`;
-  }
-  if (t.includes('khô') || t.includes('xơ') || t.includes('rụng')) {
-    return `Bồ kết chứa nhiều hợp chất chống oxy hóa giúp nang tóc chắc khỏe, giảm gãy rụng và nuôi dưỡng sợi tóc đen mượt óng ả. Bạn nên kết hợp dầu xả ở phần ngọn tóc để duy trì độ mềm mại tối ưu!`;
-  }
-  if (t.includes('quiz') || t.includes('trắc nghiệm') || t.includes('nếp tóc')) {
-    return `Mời bạn tham gia bài <a href="#featured-categories" onclick="toggleWixChat(); openQuizModal();" style="color:#781816;font-weight:700;">Mini Quiz 5 câu "Nếp Tóc"</a> để khám phá nếp tóc của mình nhé!`;
-  }
-  return `Cảm ơn bạn đã nhắn tin cho Thorakao! Bạn có thể xem thêm mục <strong>FAQ (Câu hỏi thường gặp)</strong> hoặc để lại tin nhắn ở <strong>Form Liên Hệ</strong> để chuyên viên tư vấn hỗ trợ chi tiết nhất nhé!`;
 }
 
 // 7. QUIZ SECTION NAVIGATION
@@ -361,7 +276,7 @@ function closeQuizModal() {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeWixLoginModal();
-    closeWixChat();
+    if (typeof closeWixChat === 'function') closeWixChat();
     closeMemberDropdown();
   }
 });
@@ -369,9 +284,15 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('click', (e) => {
   const chatPopup = document.getElementById('wixChatPopup');
   const chatBtn = document.querySelector('.minimizedButtonV2');
+  const notifyBtn = document.querySelector('.notificationBubbleV2');
   if (chatPopup && chatPopup.classList.contains('open')) {
-    if (!chatPopup.contains(e.target) && (!chatBtn || !chatBtn.contains(e.target))) {
-      closeWixChat();
+    if (!document.body.contains(e.target)) return;
+    if (
+      !chatPopup.contains(e.target) &&
+      (!chatBtn || !chatBtn.contains(e.target)) &&
+      (!notifyBtn || !notifyBtn.contains(e.target))
+    ) {
+      if (typeof closeWixChat === 'function') closeWixChat();
     }
   }
 });
