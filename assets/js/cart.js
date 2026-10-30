@@ -203,12 +203,24 @@ async function submitOrder(orderData) {
     note: orderData.note || ''
   };
 
+  // Gắn tài khoản (nếu khách đã đăng nhập)
+  const authUser = window.ThorakaoAuth && window.ThorakaoAuth.user;
+  if (authUser) {
+    payload.uid = authUser.uid;
+    payload.email = authUser.email || '';
+  }
+
   // 1. Lưu đơn hàng vào localStorage dự phòng
   try {
     const existingOrders = JSON.parse(localStorage.getItem(ORDERS_STORAGE_KEY) || '[]');
     existingOrders.unshift(payload);
     localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(existingOrders));
   } catch (e) {}
+
+  // 1b. Lưu đơn vào Firestore để xem lịch sử trên trang tài khoản (chỉ khi đã đăng nhập)
+  if (authUser && window.ThorakaoAuth.saveOrder) {
+    try { await window.ThorakaoAuth.saveOrder(payload); } catch (e) { console.warn('Lưu đơn lên tài khoản thất bại:', e); }
+  }
 
   // 2. Gửi Webhook Google Sheet (Nếu đã cài đặt URL)
   if (THORAKAO_CONFIG.GOOGLE_SHEET_WEBHOOK_URL) {
@@ -233,3 +245,22 @@ async function submitOrder(orderData) {
 document.addEventListener('DOMContentLoaded', () => {
   updateCartUI();
 });
+
+// Tự điền form đặt hàng bằng hồ sơ khi khách đã đăng nhập (không bắt buộc đăng nhập để đặt hàng)
+async function prefillOrderForm(user) {
+  const nameEl = document.getElementById('order-fullname');
+  if (!user || !nameEl || !window.ThorakaoAuth || !window.ThorakaoAuth.getProfile) return;
+  try {
+    const p = (await window.ThorakaoAuth.getProfile()) || {};
+    const set = (id, v) => {
+      const el = document.getElementById(id);
+      if (el && !el.value && v) el.value = v;
+    };
+    set('order-fullname', p.fullName || user.displayName);
+    set('order-phone', p.phone);
+    set('order-address', p.address);
+  } catch (e) {
+    console.warn('Prefill error:', e);
+  }
+}
+window.addEventListener('auth:changed', (e) => prefillOrderForm(e.detail));

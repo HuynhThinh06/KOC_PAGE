@@ -2,6 +2,14 @@
  * CẤU HÌNH HỆ THỐNG WEBSITE NẾP TÓC THORAKAO
  */
 const THORAKAO_CONFIG = {
+  // Cấu hình Firebase Auth/Firestore (xem HUONG-DAN-FIREBASE-AUTH.md). Để trống apiKey thì tính năng đăng nhập sẽ tự ẩn.
+  FIREBASE: {
+    apiKey: "AIzaSyCvgN3fJLXxWch9uTmfh8ACAbgevppH7as",
+    authDomain: "thorakao-bf63b.firebaseapp.com",
+    projectId: "thorakao-bf63b",
+    appId: "1:518648546031:web:c6ddfe4c88601e9079d11a"
+  },
+
   // Đường link Webhook Google Sheets (Nếu có thì dán vào đây theo hướng dẫn trong HUONG-DAN-GOOGLE-SHEET.md)
   GOOGLE_SHEET_WEBHOOK_URL: "https://script.google.com/macros/s/AKfycbxViboZmAXEGUAGrx7flJI75uaPRM6tOxf-Xatohe0oqEf_pd9INPNtiqJXoX2v7PVK/exec",
 

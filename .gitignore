@@ -7,3 +7,11 @@ scratch*
 *.tmp
 .DS_Store
 Thumbs.db
+
+# Browser profile, bản dump và thư mục sao lưu (không cần cho site)
+chrome_profile/
+KOC_PAGE/
+chrome_dump.html
+live_fetched.html
+scratch_live_wix.html
+scratch/

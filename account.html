@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tài khoản của tôi | Thorakao</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="header-brand">
+        <img src="assets/images/logo-thorakao.png" alt="Thorakao Logo" class="header-logo">
+      </a>
+      <div class="header-actions">
+        <a href="product.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem;">Sản phẩm</a>
+        <a href="cart.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem;">Giỏ hàng</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="account-wrap">
+    <h1 class="section-title" style="margin-bottom: 20px;">Tài khoản của tôi</h1>
+
+    <div id="account-guest" class="account-card" style="display:none;">
+      <p>Vui lòng đăng nhập để xem tài khoản và lịch sử đơn hàng.</p>
+      <button type="button" class="account-save" onclick="window.openAuthModal && openAuthModal('login')">Đăng nhập / Đăng ký</button>
+    </div>
+
+    <div id="account-disabled" class="account-card" style="display:none;">
+      <p>Tính năng đăng nhập chưa được cấu hình. Xem <code>HUONG-DAN-FIREBASE-AUTH.md</code>.</p>
+    </div>
+
+    <div id="account-content" style="display:none;">
+      <section class="account-card">
+        <h2>Thông tin cá nhân</h2>
+        <form id="profile-form">
+          <label for="p-email">Email</label>
+          <input id="p-email" type="email" readonly>
+          <label for="p-name">Họ và tên</label>
+          <input id="p-name" type="text" required>
+          <label for="p-phone">Số điện thoại</label>
+          <input id="p-phone" type="tel">
+          <label for="p-address">Địa chỉ nhận hàng mặc định</label>
+          <textarea id="p-address" rows="2"></textarea>
+          <button type="submit" class="account-save">Lưu thay đổi</button>
+          <span id="p-status" class="account-status"></span>
+        </form>
+      </section>
+
+      <section class="account-card" id="orders">
+        <h2>Đơn hàng của tôi</h2>
+        <div id="orders-list" class="account-empty">Đang tải...</div>
+      </section>
+      <button type="button" class="account-save" id="btn-logout" style="background:#6B625E;">Đăng xuất</button>
+    </div>
+  </main>
+
+  <script src="assets/js/config.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+  <script src="assets/js/auth-ui.js"></script>
+  <script>
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      const fmt = (n) => (Number(n) || 0).toLocaleString('vi-VN') + '₫';
+      const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      let loadedFor = null;
+
+      async function render(user) {
+        const A = window.ThorakaoAuth;
+        if (!A || !A.enabled) { $('account-disabled').style.display = ''; return; }
+        $('account-guest').style.display = user ? 'none' : '';
+        $('account-content').style.display = user ? '' : 'none';
+        if (!user || loadedFor === user.uid) return;
+        loadedFor = user.uid;
+
+        const profile = (await A.getProfile().catch(() => null)) || {};
+        $('p-email').value = user.email || profile.email || '';
+        $('p-name').value = profile.fullName || user.displayName || '';
+        $('p-phone').value = profile.phone || '';
+        $('p-address').value = profile.address || '';
+
+        try {
+          const orders = await A.getOrders();
+          $('orders-list').innerHTML = orders.length
+            ? '<div style="overflow-x:auto"><table class="orders-table"><thead><tr><th>Mã đơn</th><th>Ngày</th><th>SL</th><th>Tổng tiền</th><th>Thanh toán</th></tr></thead><tbody>' +
+              orders.map((o) => '<tr><td>' + esc(o.orderId) + '</td><td>' +
+                (o.createdAt && o.createdAt.toDate ? o.createdAt.toDate().toLocaleDateString('vi-VN') : '') +
+                '</td><td>' + esc(o.quantity) + '</td><td>' + fmt(o.totalPrice) + '</td><td>' + esc(o.paymentMethod) + '</td></tr>').join('') +
+              '</tbody></table></div>'
+            : 'Bạn chưa có đơn hàng nào.';
+        } catch (e) {
+          $('orders-list').textContent = 'Không tải được đơn hàng. Vui lòng thử lại sau.';
+        }
+      }
+
+      $('profile-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try {
+          await window.ThorakaoAuth.updateProfileData({
+            fullName: $('p-name').value.trim(), phone: $('p-phone').value.trim(), address: $('p-address').value.trim()
+          });
+          $('p-status').textContent = 'Đã lưu!';
+        } catch (err) { $('p-status').textContent = 'Lưu thất bại.'; }
+        setTimeout(() => ($('p-status').textContent = ''), 2500);
+      });
+      $('btn-logout').onclick = async () => { await window.ThorakaoAuth.logout(); location.href = 'index.html'; };
+
+      window.addEventListener('auth:changed', (e) => render(e.detail));
+      window.addEventListener('auth:ready', () => { if (!window.ThorakaoAuth.enabled) render(null); });
+      if (window.ThorakaoAuth && !window.ThorakaoAuth.enabled) render(null);
+    })();
+  </script>
+</body>
+</html>

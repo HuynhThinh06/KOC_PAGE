@@ -1,0 +1,48 @@
+/* AUTH.CSS - Modal đăng nhập, menu tài khoản, trang tài khoản */
+.auth-nav { position: relative; display: inline-flex; align-items: center; margin-right: 10px; font-family: 'Be Vietnam Pro', sans-serif; }
+.auth-nav-floating { position: fixed; top: 12px; right: 14px; z-index: 9990; margin: 0; }
+.auth-login-btn { padding: 8px 16px; font-size: 0.85rem; cursor: pointer; background: #fff; color: #7A2737; border: 2px solid #7A2737; border-radius: 999px; font-weight: 600; }
+.auth-login-btn:hover { background: #7A2737; color: #fff; }
+.auth-avatar-btn { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #E2D7C5; border-radius: 999px; padding: 4px 12px 4px 4px; cursor: pointer; font: inherit; color: #2B2321; }
+.auth-avatar-btn img, .auth-initial { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+.auth-initial { display: inline-flex; align-items: center; justify-content: center; background: #7A2737; color: #fff; font-weight: 700; }
+.auth-name-text { max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.85rem; }
+.auth-menu { display: none; position: absolute; right: 0; top: calc(100% + 6px); min-width: 190px; background: #fff; border: 1px solid #E2D7C5; border-radius: 10px; box-shadow: 0 6px 18px rgba(43,35,33,.15); overflow: hidden; z-index: 9995; }
+.auth-menu.open { display: block; }
+.auth-menu a, .auth-menu button { display: block; width: 100%; text-align: left; padding: 11px 16px; background: none; border: 0; font: inherit; font-size: 0.9rem; color: #2B2321; text-decoration: none; cursor: pointer; }
+.auth-menu a:hover, .auth-menu button:hover { background: #FAF7F2; }
+.auth-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 10000; align-items: center; justify-content: center; padding: 16px; }
+.auth-backdrop.open { display: flex; }
+.auth-modal { position: relative; background: #fff; width: 100%; max-width: 400px; border-radius: 14px; padding: 26px 24px 22px; max-height: 94vh; overflow-y: auto; font-family: 'Be Vietnam Pro', sans-serif; }
+.auth-close { position: absolute; top: 8px; right: 12px; background: none; border: 0; font-size: 1.8rem; line-height: 1; cursor: pointer; color: #6B625E; }
+.auth-tabs { display: flex; margin-bottom: 18px; border-bottom: 2px solid #E2D7C5; }
+.auth-tabs button { flex: 1; padding: 10px; background: none; border: 0; font: inherit; font-weight: 600; color: #6B625E; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.auth-tabs button.active { color: #7A2737; border-bottom-color: #7A2737; }
+.auth-social { display: block; width: 100%; padding: 11px; margin-bottom: 10px; border-radius: 8px; font: inherit; font-weight: 600; cursor: pointer; border: 1px solid #E2D7C5; background: #fff; color: #2B2321; }
+.auth-facebook { background: #1877F2; border-color: #1877F2; color: #fff; }
+.auth-google:hover { background: #FAF7F2; }
+.auth-facebook:hover { background: #1465d0; }
+.auth-divider { text-align: center; margin: 14px 0; color: #6B625E; font-size: 0.82rem; position: relative; }
+.auth-divider::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid #E2D7C5; }
+.auth-divider span { position: relative; background: #fff; padding: 0 10px; }
+.auth-form .form-input { display: block; width: 100%; box-sizing: border-box; margin-bottom: 10px; padding: 11px 12px; border: 1px solid #E2D7C5; border-radius: 8px; font: inherit; }
+.auth-submit { width: 100%; padding: 12px; background: #7A2737; color: #fff; border: 0; border-radius: 8px; font: inherit; font-weight: 700; cursor: pointer; }
+.auth-submit:hover { background: #581925; }
+.auth-msg { min-height: 18px; margin-bottom: 8px; color: #c0392b; font-size: 0.85rem; }
+.auth-msg.ok { color: #2e7d32; }
+.auth-forgot { display: block; text-align: center; margin-top: 12px; font-size: 0.85rem; color: #7A2737; }
+
+/* Trang tài khoản */
+.account-wrap { max-width: 860px; margin: 30px auto 60px; padding: 0 16px; font-family: 'Be Vietnam Pro', sans-serif; }
+.account-card { background: #fff; border: 1px solid #E2D7C5; border-radius: 14px; padding: 22px; margin-bottom: 24px; }
+.account-card h2 { margin: 0 0 16px; color: #7A2737; font-size: 1.2rem; }
+.account-card label { display: block; font-size: 0.85rem; font-weight: 600; margin: 10px 0 4px; }
+.account-card input, .account-card textarea { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #E2D7C5; border-radius: 8px; font: inherit; }
+.account-card input[readonly] { background: #FAF7F2; color: #6B625E; }
+.account-save { margin-top: 16px; padding: 11px 22px; background: #7A2737; color: #fff; border: 0; border-radius: 8px; font-weight: 700; cursor: pointer; }
+.account-status { margin-left: 12px; font-size: 0.85rem; color: #2e7d32; }
+.orders-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.orders-table th, .orders-table td { padding: 10px 8px; border-bottom: 1px solid #E2D7C5; text-align: left; }
+.orders-table th { color: #6B625E; font-weight: 600; }
+.account-empty { color: #6B625E; padding: 12px 0; }
+@media (max-width: 640px) { .auth-name-text { display: none; } .orders-table { font-size: 0.8rem; } }

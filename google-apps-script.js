@@ -44,9 +44,11 @@ function doPost(e) {
           "Phí Vận Chuyển", 
           "Tổng Thanh Toán", 
           "Phương Thức TT", 
-          "Ghi Chú"
+          "Ghi Chú",
+          "Email Tài Khoản",
+          "UID Tài Khoản"
         ]);
-        sheet.getRange("A1:L1").setFontWeight("bold").setBackground("#B23A48").setFontColor("#FFFFFF");
+        sheet.getRange("A1:N1").setFontWeight("bold").setBackground("#B23A48").setFontColor("#FFFFFF");
         sheet.setFrozenRows(1);
       }
       
@@ -62,7 +64,9 @@ function doPost(e) {
         data.shippingFee === 0 ? "Miễn phí" : formatMoney(data.shippingFee),
         data.totalPrice ? formatMoney(data.totalPrice) : "",
         data.paymentMethod || "COD (Thanh toán khi nhận hàng)",
-        data.note || ""
+        data.note || "",
+        data.email || "",
+        data.uid || ""
       ]);
 
     // 2. XỬ LÝ LIÊN HỆ (CONTACT)
