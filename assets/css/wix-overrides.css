@@ -1267,3 +1267,39 @@ a, button, [role="button"], input, textarea, select {
 ._closeButton_1h9p7_89 {
   color: #444444 !important;
 }
+
+/* 13. FOOTER LOGO VÀ KHUNG ĐĂNG KÝ FORM TRẮNG CHUẨN 100% WIX */
+#comp-kbgakxmn_r_comp-mvq7204e .sN4uTVR,
+.sN4uTVR,
+div[data-hook="Form-wrapper"] {
+  background-color: #ffffff !important;
+  padding: 24px !important;
+  box-sizing: border-box !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+#comp-kbgakxmn_r_comp-mpbn5rko,
+.comp-kbgakxmn_r_comp-mpbn5rko {
+  width: 147.016px !important;
+  height: 98px !important;
+  display: block !important;
+}
+
+#comp-kbgakxmn_r_comp-mpbn5rko a,
+#comp-kbgakxmn_r_comp-mpbn5rko wow-image {
+  width: 147.016px !important;
+  height: 98px !important;
+  display: block !important;
+}
+
+#comp-kbgakxmn_r_comp-mpbn5rko img {
+  width: 147px !important;
+  height: 98px !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  display: block !important;
+}
