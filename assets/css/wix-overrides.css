@@ -747,8 +747,7 @@ a, button, [role="button"], input, textarea, select {
   background-color: #ad402e !important;
   border-radius: 0px !important;
   box-sizing: border-box !important;
-  display: flex !important;
-  align-items: center !important;
+  display: block !important;
 }
 
 #comp-mvpa1nnh,
@@ -759,6 +758,7 @@ a, button, [role="button"], input, textarea, select {
   background-color: transparent !important;
   display: flex !important;
   align-items: center !important;
+  justify-content: center !important;
 }
 
 #comp-mvpa1nnh ._backgroundLayer_1xyyz_25,
@@ -778,9 +778,13 @@ a, button, [role="button"], input, textarea, select {
   position: relative !important;
   z-index: 2 !important;
   width: 100% !important;
+  height: 68.3px !important;
   background-color: transparent !important;
   padding: 0 !important;
   margin: 0 !important;
+  align-self: center !important;
+  display: flex !important;
+  align-items: center !important;
   box-sizing: border-box !important;
 }
 
