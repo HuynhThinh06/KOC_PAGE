@@ -61,7 +61,7 @@ body {
   background-color: var(--bg-cream);
   color: var(--text-dark);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-image: radial-gradient(#e8ddcc 0.75px, transparent 0.75px);
   background-size: 24px 24px;
 }

@@ -258,12 +258,13 @@ a, button, [role="button"], input, textarea, select {
 }
 
 #comp-mb7ogqrp {
-  position: relative !important;
+  position: sticky !important;
   top: 0px !important;
   margin-top: 0px !important;
   background-color: #ffffff !important;
   --alpha-bg: 1 !important;
   z-index: 9999 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
 }
 
 #comp-mb7ogqrp_r_comp-mb7ogqqn {
