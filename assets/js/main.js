@@ -878,7 +878,7 @@ function handleSocialLogin(provider) {
 
 function handleForgotPassword(e) {
   if (e) e.preventDefault();
-  const email = prompt('Vui lòng nhập email đã đăng ký để nhận mã xác nhận đổi mật khẩu:', 'cshoamaist2025@gmail.com');
+  const email = prompt('Vui lòng nhập email đã đăng ký để nhận mã xác nhận đổi mật khẩu:');
   if (email) {
     showToast(`Đã gửi liên kết đặt lại mật khẩu đến ${email}! Vui lòng kiểm tra hộp thư.`);
   }
@@ -913,6 +913,7 @@ function closeMemberDropdown() {
 
 // Gán toàn cục window
 window.handleLoginHeaderClick = handleLoginHeaderClick;
+window.handleWixLoginClick = handleLoginHeaderClick;
 window.openWixLoginModal = openWixLoginModal;
 window.closeWixLoginModal = closeWixLoginModal;
 window.switchWixAuthTab = switchWixAuthTab;
