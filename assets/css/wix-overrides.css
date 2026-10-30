@@ -229,61 +229,89 @@ a, button, [role="button"], input, textarea, select {
   pointer-events: auto !important;
 }
 
-/* 6. DROPDOWN THÀNH VIÊN ĐÃ ĐĂNG NHẬP */
+/* 6. DROPDOWN THÀNH VIÊN ĐÃ ĐĂNG NHẬP (Chuẩn 100% Web Gốc Wix) */
+#comp-mb7ogqrp,
+#comp-mb7ogqrp_r_comp-mb7ogqqn,
+#comp-mb7ogqrp_r_comp-mdr142kt,
+.comp-mb7ogqrp_r_comp-mpbn4c1x-presets-wrapper,
+#comp-mb7ogqrp_r_comp-mpbn4c1x {
+  overflow: visible !important;
+}
+
+#comp-mb7ogqrp {
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+#comp-mb7ogqrp_r_comp-mpbn4c1x {
+  position: relative !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  z-index: 99999 !important;
+}
+
+#wixMemberDropdown,
+.wix-member-dropdown,
 #wix-custom-member-dropdown {
   position: absolute !important;
-  top: calc(100% + 12px) !important;
-  right: 0 !important;
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  border-radius: 12px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-  width: 250px !important;
-  padding: 12px 0 !important;
+  top: calc(100% + 10px) !important;
+  right: -6px !important;
+  background-color: #285572 !important;
+  border: none !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22) !important;
+  width: 200px !important;
+  padding: 18px 24px !important;
+  box-sizing: border-box !important;
   z-index: 999999 !important;
-  display: flex !important;
+  display: none !important;
   flex-direction: column !important;
 }
 
-.member-dropdown-header {
-  padding: 10px 18px 14px 18px !important;
-  border-bottom: 1px solid #f0ede6 !important;
-}
-
-.member-dropdown-name {
-  font-weight: 700 !important;
-  font-size: 15px !important;
-  color: #1c1917 !important;
-}
-
-.member-dropdown-email {
-  font-size: 12px !important;
-  color: #78716c !important;
-  margin-top: 2px !important;
-  word-break: break-all !important;
+#wixMemberDropdown.open,
+.wix-member-dropdown.open,
+#wix-custom-member-dropdown.open {
+  display: flex !important;
 }
 
 .member-dropdown-item {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  padding: 11px 18px !important;
-  font-size: 14px !important;
-  color: #292524 !important;
+  display: block !important;
+  width: 100% !important;
+  padding: 9px 0 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: #ffc800 !important;
+  text-align: left !important;
   text-decoration: none !important;
+  background: transparent !important;
+  border: none !important;
   cursor: pointer !important;
-  transition: background 0.15s ease !important;
+  transition: opacity 0.2s ease !important;
+  line-height: 1.4 !important;
 }
 
 .member-dropdown-item:hover {
-  background: #faf7f2 !important;
-  color: #8c2415 !important;
+  background: transparent !important;
+  color: #ffc800 !important;
+  opacity: 0.78 !important;
+}
+
+.member-dropdown-divider {
+  width: 100% !important;
+  height: 1px !important;
+  background-color: rgba(255, 255, 255, 0.22) !important;
+  margin: 10px 0 !important;
+  border: none !important;
 }
 
 .member-dropdown-item.logout {
-  color: #dc2626 !important;
-  border-top: 1px solid #f0ede6 !important;
-  margin-top: 4px !important;
+  color: #ffc800 !important;
+  border-top: none !important;
+  margin-top: 0 !important;
+  padding: 9px 0 !important;
+  font-weight: 400 !important;
 }
 
 /* 6.1. HIDE REDUNDANT FLOATING BUTTONS */
