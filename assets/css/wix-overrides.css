@@ -1807,3 +1807,324 @@ div[data-hook="Form-wrapper"] {
 .wix-floating-chat-launcher:hover {
   animation-play-state: paused !important;
 }
+
+
+/* ==========================================================================
+   15. ĐỒNG BỘ TOÀN DIỆN HEADER VÀ FOOTER CHO CÁC TRANG CON (PRODUCT, CART, POLICY)
+   ========================================================================== */
+#comp-mb7ogqrp.wix-synced-header {
+  background-color: #ffffff !important;
+  width: 100% !important;
+  height: 76px !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 99999 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+.wix-synced-header-inner {
+  max-width: 100% !important;
+  height: 100% !important;
+  padding: 0 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+}
+.wix-synced-logo {
+  display: flex !important;
+  align-items: center !important;
+  height: 52px !important;
+}
+.wix-synced-logo img {
+  height: 52px !important;
+  width: auto !important;
+  max-width: 220px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+.wix-synced-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 28px !important;
+}
+.wix-synced-nav a {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #933827 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  letter-spacing: 0.02em !important;
+  padding: 4px 0 !important;
+  transition: opacity 0.2s ease !important;
+}
+.wix-synced-nav a:hover,
+.wix-synced-nav a.active {
+  text-decoration: underline !important;
+  text-underline-offset: 5px !important;
+  text-decoration-thickness: 2px !important;
+}
+.wix-synced-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 18px !important;
+}
+.wix-synced-login-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 4px 6px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #285572 !important;
+}
+.wix-synced-avatar-icon {
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #285572 !important;
+  fill: #285572 !important;
+  flex-shrink: 0 !important;
+}
+.wix-synced-avatar-icon svg {
+  width: 28px !important;
+  height: 28px !important;
+  fill: #285572 !important;
+  display: block !important;
+}
+#loginHeaderLabel {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #285572 !important;
+  max-width: 96px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.wix-synced-bag-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 36px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  position: relative !important;
+}
+.wix-synced-bag-btn svg {
+  width: 29px !important;
+  height: 35px !important;
+  display: block !important;
+  fill: #285572 !important;
+}
+.wix-synced-bag-btn svg text {
+  fill: #ffc800 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 46px !important;
+  font-weight: 600 !important;
+}
+@media (max-width: 860px) {
+  .wix-synced-header-inner {
+    padding: 0 16px !important;
+  }
+  .wix-synced-nav {
+    gap: 14px !important;
+    overflow-x: auto !important;
+  }
+  .wix-synced-nav a {
+    font-size: 13px !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* WIX FOOTER ĐỒNG BỘ */
+.wix-synced-footer {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 820px !important;
+  background-color: #cba46a !important;
+  overflow: hidden !important;
+  font-family: 'Montserrat', sans-serif !important;
+  padding: 40px 0 60px !important;
+  box-sizing: border-box !important;
+}
+.wix-synced-footer-bg {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center right !important;
+  display: block !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+.wix-synced-footer-content {
+  position: relative !important;
+  z-index: 5 !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  padding: 0 32px !important;
+  box-sizing: border-box !important;
+}
+.wix-footer-logo-link {
+  display: inline-block !important;
+  width: 147px !important;
+  height: 98px !important;
+  margin-bottom: 28px !important;
+}
+.wix-footer-logo-link img {
+  width: 147px !important;
+  height: 98px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+.wix-footer-form-box {
+  background-color: #ffffff !important;
+  width: 590px !important;
+  max-width: 100% !important;
+  padding: 34px 36px !important;
+  box-sizing: border-box !important;
+  border-radius: 0px !important;
+  margin-left: 20px !important;
+}
+.wix-footer-form-title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
+  margin: 0 0 24px 0 !important;
+  line-height: 1.3 !important;
+}
+.wix-footer-email-label {
+  display: block !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  color: #361a0d !important;
+  margin-bottom: 8px !important;
+}
+.wix-footer-email-input {
+  width: 100% !important;
+  height: 35px !important;
+  border: 1px solid rgba(54, 26, 13, 0.6) !important;
+  background-color: #ffffff !important;
+  border-radius: 0px !important;
+  padding: 0 10px !important;
+  font-size: 14px !important;
+  color: #1c1917 !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+}
+.wix-footer-checkbox-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-top: 22px !important;
+  font-size: 13.5px !important;
+  color: #000000 !important;
+  cursor: pointer !important;
+}
+.wix-footer-checkbox-row input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  accent-color: #8c2d19 !important;
+  cursor: pointer !important;
+}
+.wix-footer-submit-wrap {
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-top: 20px !important;
+}
+.wix-footer-submit-btn {
+  background: #8c2d19 !important;
+  color: #ffbe3b !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 10px 44px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+.wix-footer-submit-btn:hover {
+  background: #6e2010 !important;
+  color: #ffffff !important;
+}
+.wix-footer-policies {
+  margin-left: 20px !important;
+  margin-top: 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+.wix-footer-policies a {
+  color: #ad402e !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  text-decoration: underline !important;
+  line-height: 1.4 !important;
+  width: fit-content !important;
+}
+.wix-footer-policies a:hover {
+  color: #781816 !important;
+}
+.wix-footer-contact-block {
+  margin-left: 20px !important;
+  margin-top: 32px !important;
+  color: #ad402e !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.75 !important;
+}
+.wix-footer-contact-block p {
+  margin: 0 0 4px 0 !important;
+  color: #ad402e !important;
+}
+.wix-footer-contact-block a {
+  color: #ad402e !important;
+  text-decoration: underline !important;
+}
+.wix-footer-socials {
+  margin-left: 20px !important;
+  margin-top: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+.wix-footer-social-link {
+  width: 34px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.2s ease !important;
+}
+.wix-footer-social-link:hover {
+  transform: scale(1.1) !important;
+}
+.wix-footer-social-link svg {
+  width: 32px !important;
+  height: 32px !important;
+  display: block !important;
+}
+@media (max-width: 768px) {
+  .wix-footer-form-box,
+  .wix-footer-policies,
+  .wix-footer-contact-block,
+  .wix-footer-socials {
+    margin-left: 0 !important;
+  }
+  .wix-footer-form-box {
+    padding: 24px 20px !important;
+  }
+}

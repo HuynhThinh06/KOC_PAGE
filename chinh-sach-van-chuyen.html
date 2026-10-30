@@ -13,7 +13,318 @@
   <link rel="stylesheet" href="assets/css/wix-overrides.css">
   <link rel="stylesheet" href="assets/css/auth.css">
   <style>
-    /* Đồng bộ nền đỏ gạch vân giấy chuẩn giống trang sản phẩm & giỏ hàng */
+/* Đồng bộ Header 100% với trang Home/Index (Cố định đi theo khi cuộn chuột) */
+    #comp-mb7ogqrp.wix-synced-header {
+      background-color: #ffffff !important;
+      width: 100% !important;
+      height: 76px !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 99999 !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    .wix-synced-header-inner {
+      max-width: 100%;
+      height: 100%;
+      padding: 0 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+    .wix-synced-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .wix-synced-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .wix-synced-nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #933827;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      padding: 4px 0;
+      transition: opacity 0.2s ease;
+    }
+    .wix-synced-nav a:hover,
+    .wix-synced-nav a.active {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 2px;
+    }
+    .wix-synced-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .wix-synced-login-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px 6px;
+      font-family: 'Montserrat', sans-serif;
+      color: #285572;
+    }
+    .wix-synced-avatar-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #285572;
+      fill: #285572;
+      flex-shrink: 0;
+    }
+    .wix-synced-avatar-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: #285572;
+      display: block;
+    }
+    #loginHeaderLabel {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #285572;
+      max-width: 96px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .wix-synced-bag-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 36px;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+    }
+    .wix-synced-bag-btn svg {
+      width: 29px;
+      height: 35px;
+      display: block;
+      fill: #285572;
+    }
+    .wix-synced-bag-btn svg text {
+      fill: #ffc800;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 46px;
+      font-weight: 600;
+    }
+    @media (max-width: 860px) {
+      .wix-synced-header-inner {
+        padding: 0 16px;
+      }
+      .wix-synced-nav {
+        gap: 14px;
+        overflow-x: auto;
+      }
+      .wix-synced-nav a {
+        font-size: 13px;
+        white-space: nowrap;
+      }
+    }
+
+.wix-synced-footer {
+      position: relative;
+      width: 100%;
+      min-height: 820px;
+      background-color: #cba46a;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      padding: 40px 0 60px;
+      box-sizing: border-box;
+    }
+    .wix-synced-footer-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center right;
+      display: block;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .wix-synced-footer-content {
+      position: relative;
+      z-index: 5;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 32px;
+      box-sizing: border-box;
+    }
+    .wix-footer-logo-link {
+      display: inline-block;
+      width: 147px;
+      height: 98px;
+      margin-bottom: 28px;
+    }
+    .wix-footer-logo-link img {
+      width: 147px;
+      height: 98px;
+      object-fit: contain;
+      display: block;
+    }
+    .wix-footer-form-box {
+      background-color: #ffffff !important;
+      width: 590px;
+      max-width: 100%;
+      padding: 34px 36px;
+      box-sizing: border-box;
+      border-radius: 0px;
+      margin-left: 20px;
+    }
+    .wix-footer-form-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: #000000;
+      margin: 0 0 24px 0;
+      line-height: 1.3;
+    }
+    .wix-footer-email-label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 400;
+      color: #361a0d;
+      margin-bottom: 8px;
+    }
+    .wix-footer-email-input {
+      width: 100%;
+      height: 35px;
+      border: 1px solid rgba(54, 26, 13, 0.6) !important;
+      background-color: #ffffff !important;
+      border-radius: 0px !important;
+      padding: 0 10px;
+      font-size: 14px;
+      color: #1c1917;
+      box-sizing: border-box;
+      outline: none;
+    }
+    .wix-footer-checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+      font-size: 13.5px;
+      color: #000000;
+      cursor: pointer;
+    }
+    .wix-footer-checkbox-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #8c2d19;
+      cursor: pointer;
+    }
+    .wix-footer-submit-wrap {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+    .wix-footer-submit-btn {
+      background: #8c2d19 !important;
+      color: #ffbe3b !important;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 44px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .wix-footer-submit-btn:hover {
+      background: #6e2010 !important;
+      color: #ffffff !important;
+    }
+    .wix-footer-policies {
+      margin-left: 20px;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .wix-footer-policies a {
+      color: #ad402e !important;
+      font-size: 19px;
+      font-weight: 700;
+      text-decoration: underline !important;
+      line-height: 1.4;
+      width: fit-content;
+    }
+    .wix-footer-policies a:hover {
+      color: #781816 !important;
+    }
+    .wix-footer-contact-block {
+      margin-left: 20px;
+      margin-top: 32px;
+      color: #ad402e !important;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.75;
+    }
+    .wix-footer-contact-block p {
+      margin: 0 0 4px 0;
+      color: #ad402e !important;
+    }
+    .wix-footer-contact-block a {
+      color: #ad402e !important;
+      text-decoration: underline;
+    }
+    .wix-footer-socials {
+      margin-left: 20px;
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .wix-footer-social-link {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+    .wix-footer-social-link:hover {
+      transform: scale(1.1);
+    }
+    .wix-footer-social-link svg {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .wix-footer-form-box,
+      .wix-footer-policies,
+      .wix-footer-contact-block,
+      .wix-footer-socials {
+        margin-left: 0;
+      }
+      .wix-footer-form-box {
+        padding: 24px 20px;
+      }
+    }
+
+    /* Đồng bộ nền đỏ gạch vân giấy chuẩn */
     body {
       background-color: #b44637 !important;
       background-image: url('assets/images/red-paper-bg.png') !important;
@@ -21,12 +332,13 @@
       background-size: 320px auto !important;
       margin: 0;
       padding: 0;
+      padding-top: 76px !important;
       font-family: 'Montserrat', sans-serif;
       color: #333333;
     }
 
     .policy-page-wrapper {
-      padding: 60px 20px 90px;
+      padding: 50px 20px 80px;
       min-height: calc(100vh - 450px);
       box-sizing: border-box;
     }
@@ -35,7 +347,7 @@
       max-width: 920px;
       margin: 0 auto;
       background: #FFFFFF;
-      padding: 50px 45px;
+      padding: 48px 44px;
       border-radius: 16px;
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
       line-height: 1.8;
@@ -103,11 +415,14 @@
     }
 
     @media (max-width: 768px) {
+      body {
+        padding-top: 66px !important;
+      }
       .policy-page-wrapper {
-        padding: 30px 14px 60px;
+        padding: 24px 14px 50px;
       }
       .policy-card {
-        padding: 30px 20px;
+        padding: 28px 18px;
       }
       .policy-title {
         font-size: 22px;
