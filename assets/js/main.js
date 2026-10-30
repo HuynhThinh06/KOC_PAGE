@@ -5,15 +5,47 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initHeroVideo();
   initSmoothScroll();
   initWixFAQ();
-  initWixForms();
-  initHeroVideo();
-  initMarqueeBanners();
-  checkAuthState();
   initWixChat();
+  initWixCartDrawer();
+  initNotificationTooltip();
   updateHeaderCartCount();
 });
+
+// 0. KHỞI TẠO VIDEO CÂY BỒ KẾT HERO (TĂNG TỐC 2X THEO YÊU CẦU NGƯỜI DÙNG)
+function initHeroVideo() {
+  const video = document.getElementById('comp-mpbn2nv6_video') || document.querySelector('video');
+  if (video) {
+    video.playbackRate = 2.0; // Tăng tốc 2x
+    video.defaultPlaybackRate = 2.0;
+
+    // Đảm bảo video tự động phát mượt mà
+    video.muted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay policy fallback: click anywhere to play
+        document.addEventListener('click', () => {
+          video.play();
+        }, { once: true });
+      });
+    }
+
+    // Luôn giữ playbackRate 2x ngay cả khi video loop lại
+    video.addEventListener('ratechange', () => {
+      if (video.playbackRate !== 2.0) {
+        video.playbackRate = 2.0;
+      }
+    });
+
+    video.addEventListener('ended', () => {
+      video.playbackRate = 2.0;
+      video.play();
+    });
+  }
+}
 
 // 1. SMOOTH SCROLLING CHO CÁC LIÊN KẾT ANCHOR MENU
 function initSmoothScroll() {

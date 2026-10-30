@@ -724,13 +724,55 @@ a, button, [role="button"], input, textarea, select {
   color: #ffe066 !important;
 }
 
-/* 10. TEXT MARQUEE ANIMATION */
+/* 10. HERO MARQUEE BANNER "GIỮ NẾP XƯA - TỎ NẾP MÌNH" (100% GIAO DIỆN GỐC TỪ WIX) */
+#comp-mvpa1nna,
+.comp-mvpa1nna {
+  width: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background-color: #ad402e !important;
+  border-radius: 0px !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+#comp-mvpa1nnh,
+.comp-mvpa1nnh {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  background-color: transparent !important;
+}
+
+#comp-mvpa1nnh ._backgroundLayer_1xyyz_25,
+#comp-mvpa1nnk,
+.comp-mvpa1nnk {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  background-color: #ad402e !important;
+  z-index: 1 !important;
+}
+
+#comp-mvpa8jm8,
+.comp-mvpa8jm8 {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  background-color: transparent !important;
+  padding: 10px 0 !important;
+  box-sizing: border-box !important;
+}
+
 ._marqueeUnitContainer_z4m05_32,
 [data-marquee-animation] {
-  animation: _left_z4m05_1 25s linear infinite !important;
+  animation: _left_z4m05_1 60s linear infinite !important;
   animation-play-state: running !important;
   will-change: transform !important;
 }
+
 ._marqueeUnitContainer_z4m05_32:hover,
 [data-marquee-animation]:hover {
   animation-play-state: paused !important;
