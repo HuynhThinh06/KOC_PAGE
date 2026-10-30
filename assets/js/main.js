@@ -5,6 +5,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  normalizeInternalLinks();
   initHeroVideo();
   initSmoothScroll();
   initWixFAQ();
@@ -925,4 +926,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 if (document.readyState === 'interactive' || document.readyState === 'complete') {
   checkAuthState();
+}
+
+
+// 0a. ĐẢM BẢO MỌI NÚT ĐẶT HÀNG & LINK NỘI BỘ TRỎ VỀ TRANG CON TRÊN WEB HIỆN TẠI (KHÔNG CHUYỂN SANG WIX GỐC)
+function normalizeInternalLinks() {
+  document.querySelectorAll('a[href*="neptocthorakao.wixsite.com"]').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    if (href.includes('/product-page/')) {
+      a.setAttribute('href', 'product.html');
+    } else if (href.includes('privacy-policy-1-1')) {
+      a.setAttribute('href', 'chinh-sach-doi-tra.html');
+    } else if (href.includes('privacy-policy-1')) {
+      a.setAttribute('href', 'chinh-sach-van-chuyen.html');
+    } else if (href.includes('privacy-policy')) {
+      a.setAttribute('href', 'chinh-sach-quyen-rieng-tu.html');
+    } else {
+      a.setAttribute('href', 'index.html');
+    }
+  });
 }
