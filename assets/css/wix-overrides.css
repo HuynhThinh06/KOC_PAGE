@@ -1785,3 +1785,25 @@ div[data-hook="Form-wrapper"] {
   object-fit: contain !important;
   display: block !important;
 }
+
+
+/* 14. HIỆU ỨNG CHUYỂN ĐỘNG LÊN XUỐNG NHẸ CHO NÚT CHAT "TRÒ CHUYỆN VỚI CHÚNG TÔI" */
+@keyframes wixChatFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+#comp-mvmnaz9r_r_comp-mvmnauny,
+.wix-floating-chat-launcher {
+  animation: wixChatFloat 2.6s ease-in-out infinite !important;
+  will-change: transform !important;
+}
+
+#comp-mvmnaz9r_r_comp-mvmnauny:hover,
+.wix-floating-chat-launcher:hover {
+  animation-play-state: paused !important;
+}

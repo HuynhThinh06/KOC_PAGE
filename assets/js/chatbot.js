@@ -741,34 +741,40 @@ function ensureChatWidgetExistsOnPage() {
 
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `
-    <button type="button" class="minimizedButtonV2" onclick="toggleWixChat()" style="position:fixed;bottom:24px;right:24px;z-index:99998;background:#ffc800;color:#1c1917;border:none;border-radius:30px;padding:12px 22px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;display:flex;align-items:center;gap:8px;">
-      <span>💬</span> <span>Trò chuyện với chúng tôi</span>
-    </button>
+    <div id="comp-mvmnaz9r" class="wix-floating-chat-launcher" style="position:fixed;bottom:20px;right:20px;z-index:99998;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:'Montserrat',sans-serif;">
+      <div class="notificationBubbleV2" data-hook="popover-content" role="tooltip" aria-label="Chú giải công cụ thông báo" style="background:#ffc800;color:#222222;border-radius:6px;padding:12px 34px 12px 14px;width:230px;box-sizing:border-box;box-shadow:0 4px 12px rgba(0,0,0,0.15);position:relative;cursor:pointer;font-size:13px;font-weight:600;line-height:1.4;">
+        <span class="_text_1h9p7_79">Cần trợ giúp? Hỏi tôi bất cứ điều gì.</span>
+        <button type="button" aria-label="Đóng thông báo" class="_closeButton_1h9p7_89" onclick="event.stopPropagation(); this.parentElement.style.display='none';" style="position:absolute;top:8px;right:8px;background:transparent;border:none;color:#444444;cursor:pointer;padding:4px;line-height:1;font-size:14px;">&times;</button>
+      </div>
+      <button type="button" class="minimizedButtonV2" aria-label="Trò chuyện với chúng tôi" style="background:#ffc800;color:#1c1917;border:none;border-radius:999px;padding:14px 24px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,0.18);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1.2;">
+        <span class="minimizedButtonText">Trò chuyện với chúng tôi</span>
+      </button>
+    </div>
     <div class="wix-chat-popup" id="wixChatPopup" style="display: none;">
       <div class="wix-chat-popup-header">
         <div style="display: flex; align-items: center; gap: 8px;">
           <span style="font-size: 18px;">✨</span>
           <div>
             <h5 style="margin: 0; font-size: 14px; font-weight: 700; color: #222;">Trợ lý Thorakao</h5>
-            <span style="font-size: 11px; color: #444;">Trả lời tự động theo dữ liệu Website</span>
+            <span style="font-size: 11px; color: #444;">Trực tuyến sẵn sàng hỗ trợ</span>
           </div>
         </div>
         <button type="button" class="wix-chat-close-btn" onclick="closeWixChat()" title="Đóng chat" aria-label="Đóng chat">&times;</button>
       </div>
       <div class="wix-chat-popup-body" id="wixChatMessages">
         <div class="wix-chat-msg bot">
-          Xin chào bạn! 👋 Mình là Trợ lý tư vấn chiến dịch <strong>Nếp Tóc Thorakao</strong>.<br><br>
-          Bạn có thể nhập bất kỳ câu hỏi nào về <strong>Dầu gội bồ kết 750ml (113.000₫)</strong>, thành phần, cách chăm sóc tóc, chính sách Freeship hay đổi trả nhé!
+          Xin chào bạn! 👋 Mình là <strong>Trợ lý AI chiến dịch Nếp Tóc Thorakao</strong>.<br><br>
+          Mình được tích hợp toàn bộ dữ liệu trên website (sản phẩm Dầu gội Bồ Kết 750ml, giá &amp; phí ship, thành phần Saponin, bài Quiz Nếp Tóc, chiến dịch <em>"Thử món mẹ từng dùng"</em>, FAQ &amp; chính sách). Bạn hãy nhập bất kỳ câu hỏi nào nhé!
         </div>
         <div class="wix-chat-chips">
-          <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Dầu gội bồ kết giá bao nhiêu và mua 2 chai tính sao?')">🧴 Giá & Ưu đãi 2 chai?</button>
-          <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Thành phần và công dụng của dầu gội bồ kết Thorakao?')">🌿 Thành phần & Công dụng</button>
-          <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Tóc hay bết dầu hoặc gãy rụng dùng có hợp không?')">✨ Tư vấn theo loại tóc</button>
-          <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Chính sách vận chuyển và đổi trả thế nào?')">🚚 Vận chuyển & Đổi trả</button>
+          <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Dầu gội bồ kết 750ml giá bao nhiêu? Mua 2 chai tính tiền thế nào?')">🧴 Giá &amp; tính tiền 2 chai</button>
+          <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Chính sách phí ship và freeship thế nào?')">🚚 Chính sách Freeship</button>
+          <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Tóc bết dầu và rụng tóc dùng bồ kết có hợp không?')">🌿 Tư vấn tóc bết / rụng</button>
+          <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Chiến dịch Giữ nếp xưa Tỏ nếp mình là gì?')">✨ Về chiến dịch &amp; Quiz</button>
         </div>
       </div>
       <form class="wix-chat-input-bar" onsubmit="event.preventDefault(); sendWixChatMessage();">
-        <input type="text" id="wixChatInput" placeholder="Nhập mọi câu hỏi của bạn..." autocomplete="off">
+        <input type="text" id="wixChatInput" placeholder="Nhập câu hỏi của bạn..." autocomplete="off">
         <button type="submit" aria-label="Gửi">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
         </button>
