@@ -5,86 +5,409 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chính Sách Đổi Trả Hàng | Nếp Tóc Thorakao</title>
   <link rel="icon" href="assets/images/logo-thorakao.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/wix-overrides.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+  <style>
+    /* Đồng bộ nền đỏ gạch vân giấy chuẩn giống trang sản phẩm & giỏ hàng */
+    body {
+      background-color: #b44637 !important;
+      background-image: url('assets/images/red-paper-bg.png') !important;
+      background-repeat: repeat !important;
+      background-size: 320px auto !important;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: #333333;
+    }
+
+    .policy-page-wrapper {
+      padding: 60px 20px 90px;
+      min-height: calc(100vh - 450px);
+      box-sizing: border-box;
+    }
+
+    .policy-card {
+      max-width: 920px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      padding: 50px 45px;
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+      line-height: 1.8;
+      color: #2b2b2b;
+      box-sizing: border-box;
+    }
+
+    .policy-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #933827;
+      margin-top: 0;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #e8d7c3;
+      padding-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .policy-card h2, .policy-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      color: #933827;
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      font-size: 19px;
+    }
+
+    .policy-card p {
+      margin-bottom: 16px;
+      font-size: 15px;
+      line-height: 1.75;
+      color: #3a3a3a;
+    }
+
+    .policy-card ul {
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+
+    .policy-card li {
+      margin-bottom: 10px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #3a3a3a;
+    }
+
+    .policy-card a {
+      color: #933827;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .policy-card a:hover {
+      color: #b44637;
+    }
+
+    .policy-highlight-box {
+      background: #fff8f0;
+      border-left: 4px solid #933827;
+      padding: 18px 22px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .policy-page-wrapper {
+        padding: 30px 14px 60px;
+      }
+      .policy-card {
+        padding: 30px 20px;
+      }
+      .policy-title {
+        font-size: 22px;
+      }
+      .policy-card h2, .policy-card h3 {
+        font-size: 17px;
+      }
+      .policy-card p, .policy-card li {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="header-container">
-      <a href="index.html" class="header-brand">
-        <img src="assets/images/logo-thorakao.png" alt="Thorakao Logo" class="header-logo">
+  <!-- ==================== HEADER (ĐỒNG BỘ 100% VỚI HOME/INDEX) ==================== -->
+  <header id="comp-mb7ogqrp" class="wix-synced-header">
+    <div class="wix-synced-header-inner">
+      <!-- Logo Thorakao bên trái -->
+      <a href="index.html" class="wix-synced-logo" aria-label="Trang chủ Thorakao">
+        <img src="assets/images/logo-thorakao.png" alt="Thorakao">
       </a>
-      <nav class="header-nav">
-        <a href="index.html" class="nav-link">Trang chủ</a>
-        <a href="product.html" class="nav-link">Sản Phẩm</a>
-        <a href="index.html#quizz" class="nav-link">Quizz</a>
-        <a href="index.html#faq" class="nav-link">FAQ</a>
-        <a href="index.html#contact" class="nav-link">Liên Hệ</a>
+
+      <!-- Menu điều hướng chính giữa -->
+      <nav class="wix-synced-nav" aria-label="Trang web">
+        <a href="https://thorakao.com/" target="_blank" rel="noopener">WEBSITE</a>
+        <a href="index.html">TRANG CHỦ</a>
+        <a href="index.html#quizz">QUIZZ</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contact">LIÊN HỆ</a>
       </nav>
-      <div class="header-actions">
-        <button type="button" class="cart-icon-btn" onclick="openCartDrawer()">🛒<span class="cart-badge" style="display:none;">0</span></button>
+
+      <!-- Cụm Đăng nhập & Giỏ hàng bên phải -->
+      <div class="wix-synced-right">
+        <div id="comp-mb7ogqrp_r_comp-mpbn4c1x" style="position: relative; display: flex; align-items: center;">
+          <button type="button" id="loginHeaderBtn" class="wix-synced-login-btn" aria-label="Thanh đăng nhập" onclick="handleWixLoginClick(event)">
+            <div class="wix-synced-avatar-icon" id="loginAvatarIconWrap">
+              <div id="defaultAvatar-comp-mb7ogqrp_r_comp-mpbn4c1x">
+                <svg data-bbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 50 50">
+                  <g><path d="M25 48.077c-5.924 0-11.31-2.252-15.396-5.921 2.254-5.362 7.492-8.267 15.373-8.267 7.889 0 13.139 3.044 15.408 8.418-4.084 3.659-9.471 5.77-15.385 5.77m.278-35.3c4.927 0 8.611 3.812 8.611 8.878 0 5.21-3.875 9.456-8.611 9.456s-8.611-4.246-8.611-9.456c0-5.066 3.684-8.878 8.611-8.878M25 0C11.193 0 0 11.193 0 25c0 .915.056 1.816.152 2.705.032.295.091.581.133.873.085.589.173 1.176.298 1.751.073.338.169.665.256.997.135.515.273 1.027.439 1.529.114.342.243.675.37 1.01.18.476.369.945.577 1.406.149.331.308.657.472.98.225.446.463.883.714 1.313.182.312.365.619.56.922.272.423.56.832.856 1.237.207.284.41.568.629.841.325.408.671.796 1.02 1.182.22.244.432.494.662.728.405.415.833.801 1.265 1.186.173.154.329.325.507.475l.004-.011A24.886 24.886 0 0 0 25 50a24.881 24.881 0 0 0 16.069-5.861.126.126 0 0 1 .003.01c.172-.144.324-.309.49-.458.442-.392.88-.787 1.293-1.209.228-.232.437-.479.655-.72.352-.389.701-.78 1.028-1.191.218-.272.421-.556.627-.838.297-.405.587-.816.859-1.24a26.104 26.104 0 0 0 1.748-3.216c.208-.461.398-.93.579-1.406.127-.336.256-.669.369-1.012.167-.502.305-1.014.44-1.53.087-.332.183-.659.256-.996.126-.576.214-1.164.299-1.754.042-.292.101-.577.133-.872.095-.89.152-1.791.152-2.707C50 11.193 38.807 0 25 0"></path></g>
+                </svg>
+              </div>
+            </div>
+            <span id="loginHeaderLabel">Đăng nhập</span>
+          </button>
+
+          <!-- Dropdown Thành viên -->
+          <div class="wix-member-dropdown" id="wixMemberDropdown" style="display: none;">
+            <a href="account.html" class="member-dropdown-item" onclick="closeMemberDropdown()">Account Settings</a>
+            <a href="cart.html" class="member-dropdown-item" onclick="closeMemberDropdown()">My Orders</a>
+            <div class="member-dropdown-divider"></div>
+            <button type="button" class="member-dropdown-item logout" onclick="handleMemberLogout()">Log Out</button>
+          </div>
+        </div>
+
+        <!-- Nút Giỏ hàng chuẩn Wix -->
+        <a class="wix-synced-bag-btn" data-hook="cart-icon-button" role="button" aria-label="Giỏ hàng" href="cart.html" id="open-header-cart">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 105.5 126.1" preserveAspectRatio="xMinYMax meet" data-hook="svg-icon-1">
+            <path d="M102.143 118.16L93.812 48.2067C93.386 44.66 90.3566 42 86.7591 42H79.1382V56H74.4047V42H31.8032V56H27.0697V42H19.4488C15.8513 42 12.8219 44.66 12.3959 48.16L4.06489 118.16C3.78088 120.167 4.44357 122.173 5.76895 123.667C7.14167 125.16 9.0824 126 11.0705 126H95.1374C97.1255 126 99.0662 125.16 100.439 123.667C101.764 122.173 102.427 120.167 102.143 118.16Z"></path>
+            <path d="M32.0594 25.6667C32.0594 14.0933 41.506 4.66667 53.1039 4.66667C64.7018 4.66667 74.1485 14.0933 74.1485 25.6667V42H78.825V25.6667C78.825 11.5267 67.2739 0 53.1039 0C38.9339 0 27.3828 11.5267 27.3828 25.6667V42H32.0594V25.6667Z"></path>
+            <text x="53" y="85.5" dy=".35em" text-anchor="middle" class="uxskpx" data-hook="items-count">0</text>
+          </svg>
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- CONTENT -->
-  <main style="padding: 60px 0;">
-    <div class="container container-narrow">
-      <div style="background: #FFF; padding: 48px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); line-height: 1.8;">
-        
-        <h1 style="font-family: var(--font-heading); font-size: 2rem; color: var(--color-primary-dark); margin-bottom: 24px; text-transform: uppercase; border-bottom: 2px solid var(--color-accent); padding-bottom: 12px;">
-          Chính Sách Đổi Trả Hàng
-        </h1>
+  <!-- ==================== POLICY CONTENT ==================== -->
+  <main class="policy-page-wrapper">
+    <div class="policy-card">
+      <h1 class="policy-title">Chính Sách Đổi Trả Hàng</h1>
+      
+      <h3>1. Cam kết của Thorakao</h3>
+      <p>Thorakao cam kết:</p>
+      <ul>
+        <li>Sản phẩm được giao đến Quý khách nguyên vẹn, đúng sản phẩm và đúng số lượng theo đơn hàng đã xác nhận.</li>
+        <li>Thông tin và hướng dẫn sử dụng sản phẩm được cung cấp đầy đủ và cập nhật theo thông tin mới nhất của nhà sản xuất, được thể hiện trên website Thorakao hoặc trên bao bì sản phẩm tại thời điểm Quý khách đặt hàng.</li>
+      </ul>
 
-        <h3 style="color: var(--color-primary); margin-top: 24px; margin-bottom: 10px;">1. Cam kết của Thorakao</h3>
-        <p>Thorakao cam kết:</p>
-        <ul style="list-style: disc; padding-left: 20px; margin-bottom: 16px;">
-          <li>Sản phẩm được giao đến Quý khách nguyên vẹn, đúng sản phẩm và đúng số lượng theo đơn hàng đã xác nhận.</li>
-          <li>Thông tin và hướng dẫn sử dụng sản phẩm được cung cấp đầy đủ và cập nhật theo thông tin mới nhất của nhà sản xuất, được thể hiện trên website Thorakao hoặc trên bao bì sản phẩm tại thời điểm Quý khách đặt hàng.</li>
-        </ul>
+      <h3>2. Giữ nguyên hiện trạng sản phẩm khi yêu cầu đổi trả</h3>
+      <p>Thorakao luôn kiểm soát và đóng gói sản phẩm cẩn thận trước khi giao đến Quý khách.</p>
+      <p>Trong trường hợp Quý khách nhận được sản phẩm có dấu hiệu hư hỏng, lỗi hoặc không đúng với đơn hàng, vui lòng giữ nguyên hiện trạng sản phẩm và liên hệ với Thorakao trong thời gian sớm nhất để được hỗ trợ.</p>
+      <p>Để đảm bảo quá trình kiểm tra và xử lý được chính xác, Quý khách vui lòng không tự ý sửa chữa, thay đổi, sử dụng tiếp hoặc tác động đến sản phẩm trước khi Thorakao hoàn tất việc kiểm tra và xác nhận tình trạng.</p>
 
-        <h3 style="color: var(--color-primary); margin-top: 24px; margin-bottom: 10px;">2. Giữ nguyên hiện trạng sản phẩm khi yêu cầu đổi trả</h3>
-        <p>Thorakao luôn kiểm soát và đóng gói sản phẩm cẩn thận trước khi giao đến Quý khách.</p>
-        <p>Trong trường hợp Quý khách nhận được sản phẩm có dấu hiệu hư hỏng, lỗi bao bì hoặc không đúng với đơn hàng, vui lòng giữ nguyên hiện trạng sản phẩm và liên hệ với Thorakao trong thời gian sớm nhất để được hỗ trợ.</p>
-        <p>Để đảm bảo quá trình kiểm tra và xử lý được chính xác, Quý khách vui lòng không tự ý can thiệp, thay đổi, sử dụng tiếp hoặc tác động đến sản phẩm trước khi Thorakao hoàn tất việc kiểm tra và xác nhận tình trạng.</p>
+      <h3>3. Các trường hợp không được đổi trả hàng</h3>
+      <ul>
+        <li>Sản phẩm sử dụng sai mục đích, sai cách hoặc không đúng hướng dẫn của nhà sản xuất.</li>
+        <li>Sản phẩm bị bảo quản không đúng cách hoặc chịu các điều kiện bảo quản không phù hợp.</li>
+        <li>Sản phẩm hư hỏng do tai nạn, tác động ngoại lực hoặc các nguyên nhân phát sinh sau khi giao hàng.</li>
+        <li>Sản phẩm đã bị tự ý sửa chữa, thay đổi hoặc can thiệp vào cấu trúc, bao bì hoặc sản phẩm.</li>
+        <li>Sản phẩm bị hao mòn, biến dạng hoặc hư hỏng do quá trình sử dụng thông thường sau khi được giao đến Quý khách.</li>
+        <li>Các trường hợp khác được xác định là không thuộc phạm vi hỗ trợ đổi trả theo chính sách của Thorakao.</li>
+      </ul>
 
-        <h3 style="color: var(--color-primary); margin-top: 24px; margin-bottom: 10px;">3. Các trường hợp không được đổi trả hàng</h3>
-        <ul style="list-style: disc; padding-left: 20px; margin-bottom: 16px;">
-          <li>Sản phẩm sử dụng sai mục đích, sai cách hoặc không đúng hướng dẫn của nhà sản xuất.</li>
-          <li>Sản phẩm bị bảo quản không đúng cách hoặc chịu các điều kiện môi trường không phù hợp (nhiệt độ quá cao, ánh nắng trực tiếp, nơi ẩm mốc).</li>
-          <li>Sản phẩm hư hỏng do tai nạn, tác động ngoại lực sau khi đã ký nhận bàn giao nguyên vẹn từ đơn vị vận chuyển.</li>
-          <li>Khách hàng không cung cấp được thông tin xác thực đơn hàng mua tại hệ thống phân phối của Thorakao.</li>
-        </ul>
+      <h3>4. Thời gian xử lý đổi trả</h3>
+      <ul>
+        <li><strong>Đối với yêu cầu đổi trả thông thường:</strong> Thời gian xử lý từ 2-3 ngày làm việc, kể từ ngày THORAKAO tiếp nhận đầy đủ thông tin và xác nhận yêu cầu đổi trả.<br><em>* Thời gian trên không bao gồm thời gian vận chuyển.</em></li>
+        <li><strong>Đối với sản phẩm cần kiểm tra về chất lượng:</strong> Thời gian xử lý từ 3-5 ngày làm việc, kể từ ngày THORAKAO tiếp nhận sản phẩm cần kiểm tra trở lại.</li>
+      </ul>
 
-        <h3 style="color: var(--color-primary); margin-top: 24px; margin-bottom: 10px;">4. Thông tin liên hệ hỗ trợ đổi trả</h3>
-        <p>Mọi thắc mắc hoặc yêu cầu hỗ trợ đổi trả hàng, Quý khách vui lòng liên hệ:</p>
-        <div style="background: var(--bg-parchment); padding: 18px; border-radius: var(--radius-sm); margin-top: 12px;">
-          <p>📍 <strong>Địa chỉ tiếp nhận:</strong> 241 bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP. Hồ Chí Minh</p>
-          <p>📞 <strong>Hotline Chăm sóc khách hàng:</strong> 028 8887 3241</p>
-          <p>✉️ <strong>Email:</strong> info@thorakao.com</p>
-        </div>
-
-        <div style="margin-top: 36px; text-align: center;">
-          <a href="index.html" class="btn btn-primary">Quay lại Trang Chủ</a>
-        </div>
-
+      <div class="policy-highlight-box">
+        <h3>5. Liên hệ hỗ trợ đổi trả</h3>
+        <p>Quý khách nhận được sản phẩm có dấu hiệu hư hỏng, lỗi hoặc không đúng với đơn hàng, vui lòng giữ nguyên hiện trạng sản phẩm và liên hệ với THORAKAO trong thời gian sớm nhất để được hỗ trợ:</p>
+        <p><strong>Hotline:</strong> <a href="tel:02888873241">(028) 88 873 241</a> - Tư vấn &amp; Hỗ trợ nhanh chóng.</p>
+        <p><strong>Facebook:</strong> Nhắn tin trực tiếp Fanpage Mỹ Phẩm THORAKAO: <a href="https://www.facebook.com/MyPhamThorakao/" target="_blank" rel="noopener noreferrer">https://www.facebook.com/MyPhamThorakao/</a></p>
+        <p><strong>Zalo OA:</strong> Nhắn tin Kênh Zalo THORAKAO</p>
       </div>
+
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-overlay"></div>
-    <div class="footer-container">
-      <div class="footer-bottom">
-        <p>© 2026 Nếp Tóc Thorakao. Giữ Nếp Xưa - Tỏ Nếp Mình.</p>
+  <!-- ==================== FOOTER (ĐỒNG BỘ 100% VỚI TRANG HOME/INDEX) ==================== -->
+  <footer id="comp-kbgakxmn" class="wix-synced-footer">
+    <img src="assets/images/footer-art.png" alt="Footer Art" class="wix-synced-footer-bg">
+    <div class="wix-synced-footer-content">
+      <!-- Logo Thorakao lớn giống trang chủ -->
+      <a href="index.html" class="wix-footer-logo-link" id="comp-kbgakxmn_r_comp-mpbn5rko">
+        <img src="assets/images/logo-thorakao.png" alt="Thorakao">
+      </a>
+
+      <!-- Ô nền trắng Đăng ký nhận thông tin về chiến dịch -->
+      <div class="wix-footer-form-box" id="footer-newsletter-box">
+        <h3 class="wix-footer-form-title">Đăng ký nhận thông tin về chiến dịch</h3>
+        <form id="newsletter-form">
+          <label for="newsletter-email" class="wix-footer-email-label">Email *</label>
+          <input type="email" id="newsletter-email" class="wix-footer-email-input" required>
+          <label class="wix-footer-checkbox-row">
+            <input type="checkbox" id="newsletter-agree" required>
+            <span>Tôi muốn đăng ký nhận bản tin của bạn. *</span>
+          </label>
+          <div class="wix-footer-submit-wrap">
+            <button type="submit" class="wix-footer-submit-btn">Đăng ký</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 3 Liên kết Chính sách màu đỏ gạch chân -->
+      <div class="wix-footer-policies" id="comp-kbgakxmn_r_comp-mvrqf3um">
+        <a href="chinh-sach-doi-tra.html">Chính sách đổi trả hàng</a>
+        <a href="chinh-sach-van-chuyen.html">Chính sách vận chuyển</a>
+        <a href="chinh-sach-quyen-rieng-tu.html">Chính sách quyền riêng tư</a>
+      </div>
+
+      <!-- Thông tin địa chỉ, hotline, email màu đỏ -->
+      <div class="wix-footer-contact-block" id="comp-kbgakxmn_r_comp-mvrfv02a">
+        <p>241 bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP. HCM</p>
+        <p><span style="text-decoration: underline;">028 8887 3241</span></p>
+        <p><a href="mailto:info@thorakao.com">info@thorakao.com</a></p>
+      </div>
+
+      <!-- Các biểu tượng Mạng xã hội chuẩn trang chủ (Facebook, TikTok, Threads) -->
+      <div class="wix-footer-socials">
+        <a href="https://www.facebook.com/neptocthorakao/" target="_blank" rel="noreferrer noopener" class="wix-footer-social-link" aria-label="Facebook">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="99" fill="#1877F2"/>
+            <path d="M199 101.473c0-55.011-44.324-99.605-99-99.605S1 46.462 1 101.473c0 49.716 36.203 90.923 83.531 98.395v-69.603H59.394v-28.792h25.137V79.529c0-24.964 14.78-38.753 37.394-38.753 10.832 0 22.161 1.945 22.161 1.945v24.512h-12.484c-12.298 0-16.133 7.678-16.133 15.555v18.684h27.457l-4.389 28.792h-23.068v69.603C162.797 192.395 199 151.188 199 101.472Z" fill="#ffffff"/>
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@neptoc.thorakao?_r=1&_t=ZS-9AsfZet6sB4" target="_blank" rel="noreferrer noopener" class="wix-footer-social-link" aria-label="TikTok">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 1C45.332 1 1 45.322 1 100s44.332 99 99 99 99-44.322 99-99-44.322-99-99-99m50.294 73.333v15.412a47.17 47.17 0 0 1-27.589-8.872v40.3c0 20.126-16.374 36.5-36.499 36.5a36.3 36.3 0 0 1-20.918-6.615c-9.412-6.608-15.582-17.536-15.582-29.885 0-20.126 16.373-36.5 36.5-36.5 1.67 0 3.307.137 4.918.356v20.245a16.4 16.4 0 0 0-4.918-.771c-9.191 0-16.67 7.478-16.67 16.67 0 6.4 3.631 11.962 8.937 14.754a16.55 16.55 0 0 0 7.732 1.915c8.979 0 16.304-7.143 16.637-16.042l.032-79.473h19.83c0 1.719.166 3.399.468 5.032 1.399 7.556 5.883 14.038 12.097 18.089a27.4 27.4 0 0 0 15.024 4.468v4.418Z" fill="#1c1917"/>
+          </svg>
+        </a>
+        <a href="https://www.threads.com/@neptoc.thorakao" target="_blank" rel="noreferrer noopener" class="wix-footer-social-link" aria-label="Threads">
+          <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" fill-rule="evenodd" fill="#1c1917" d="m386 152-1 1-20 1-1 1-11 1-1 1h-4l-1 1-15 3-21 7-3 2-7 2-9 5h-2l-23 13-20 14-13 11-19 19-14 17-17 26-12 24-5 15-2 3-1 6-3 7-3 15-1 1-1 10-1 1v6l-1 1-1 19-1 1v27l1 1v11l1 1v7l1 1v6l1 1 1 10 1 1 3 15 2 4v3l4 9 1 5 2 3v2l2 3v2l12 24 12 19 19 24 20 20 16 13 26 17 24 12 15 5 3 2 6 2h3l4 2 15 3 1 1 10 1 1 1h6l1 1h6l1 1h12l1 1h27l1-1h11l1-1 14-1 1-1h5l1-1h4l1-1 15-3 21-7 3-2 7-2 11-6h2l2-2 9-4 2-2 8-4 16-11 17-14 19-19 17-21 14-22 4-9 2-2v-2l6-11v-2l6-13 3-9v-3l2-4 3-15 1-1 2-16 1-1 1-20 1-1v-27l-1-1v-12l-1-1-1-13-1-1-1-10-3-9v-4l-8-24-2-3-2-7-5-9v-2l-13-23-11-16-13-16-20-20-17-14-26-17-9-4-2-2h-2l-11-6h-2l-13-6-9-3h-3l-4-2h-3l-4-2h-4l-1-1-8-1-1-1h-5l-1-1h-6l-1-1h-6l-1-1h-12l-1-1Zm-10 59h9l1-1h36l1 1h7l1 1 11 1 1 1 11 2 4 2h3l9 3 12 6h2l16 9 17 13 11 11 12 15 6 9 10 19v2l3 5 5 15v3l1 1v2l-4 2h-4l-1 1h-4l-1 1h-4l-1 1-13 2-6-18-8-16-10-15-14-15-13-10-15-8h-2l-5-3-12-4h-3l-9-3h-4l-1-1h-5l-1-1h-11l-1-1-30 1-1 1h-6l-1 1-10 1-1 1-7 1-15 5-15 7-15 11-11 12-12 18-12 27-1 6-3 8v3l-1 1v4l-1 1v6l-1 1v6l-1 1v9l-1 1v14l-1 1v20l1 1 1 25 1 1 1 11 1 1v4l2 5v4l3 7v3l2 3 1 5 4 7v2l3 4 2 5 15 20 11 10 13 9 14 7h2l3 2 12 4h4l1 1 9 1 1 1h5l1 1h11l1 1h18l1-1 18-1 1-1h5l1-1h4l12-4h3l3-2 9-3 2-2 11-6 20-19 9-14v-2l4-9 1-8 1-1v-21l-1-1-2-10-8-14-11-11-8-5-1 8-1 1-1 7-4 12-11 20-15 16-9 6-11 5-10 2-1 1-13 1-1 1-18-1-1-1h-4l-1-1-7-1-16-7-9-6-12-12-7-12-3-9v-4l-1-1v-19l1-1 1-8 8-16 13-13 18-10 9-3h3l1-1h4l1-1h7l1-1h42l1 1 14 1-4-15-6-11-9-9-12-6-18-2-1 1h-8l-1 1-8 1-9 4-7 5-7 9-4-1-5-4-20-12 4-6 14-14 7-5 12-6 9-3 8-1 1-1h6l1-1h20l1 1h6l1 1h4l9 3 9 4 9 6 13 13 8 12 7 17v3l2 4v5l2 6v9l1 2 6 3h2l2 2 10 5 8 6 15 15 8 12 5 11 3 9v3l1 1 1 12 1 1v15l-1 1v7l-1 1v5l-1 1-1 7-4 9v2l-6 12-10 14-11 12-13 11-12 8-16 8-15 5h-3l-9 3h-4l-1 1h-5l-1 1-15 1-1 1h-36l-1-1-15-1-1-1h-4l-1-1h-4l-1-1-7-1-15-5-21-10-19-13-14-13-11-13-10-15-11-23-5-15v-3l-3-8-1-9-1-1-1-11-1-1-1-19-1-1v-43l1-1v-11l1-1 1-15 1-1 2-14 1-1v-3l4-11 1-6 7-15v-2l9-17 14-20 9-9v-1l11-10 13-9 18-9h2l3-2 15-5h3l9-3h4l1-1 11-1Zm77 197-12-1-1-1h-10l-1-1h-25l-1 1-14 1-1 1h-3l-6 2-6 3-8 8-3 6v3l-1 1v8l1 1 1 6 2 4 7 7 11 6h3l4 2h5l1 1h13l1-1h5l1-1 6-1 9-5 11-12 5-10 3-9Z"/>
+          </svg>
+        </a>
       </div>
     </div>
   </footer>
 
+  <!-- ==================== SIDE-DRAWER GIỎ HÀNG ==================== -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" onclick="closeCartDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3 class="cart-drawer-title">Giỏ Hàng Của Bạn</h3>
+        <button type="button" class="cart-drawer-close" onclick="closeCartDrawer()">✕</button>
+      </div>
+      <div class="cart-drawer-body">
+        <div class="cart-shipping-notice" id="cart-drawer-ship-notice"></div>
+        <div id="cart-drawer-items"></div>
+      </div>
+      <div class="cart-drawer-footer">
+        <div class="cart-subtotal-row">
+          <span>Tạm tính:</span>
+          <span id="cart-drawer-subtotal" style="color: var(--color-primary);">0₫</span>
+        </div>
+        <a href="cart.html" class="btn btn-primary cart-checkout-btn" id="cart-drawer-checkout-btn">
+          Tiến hành thanh toán
+        </a>
+      </div>
+    </div>
+  </div>
+
+<!-- WIX MEMBER LOGIN / REGISTER MODAL -->
+<div class="wix-login-modal-backdrop" id="wixLoginModal" style="display: none;" onclick="if(event.target===this)closeWixLoginModal()">
+  <div class="wix-login-modal">
+    <button type="button" class="wix-login-close" id="wixModalCloseBtn" onclick="closeWixLoginModal()" aria-label="Đóng">&times;</button>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+      <div style="display: inline-block; background: #ffffff; padding: 8px 18px; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
+        <img src="assets/images/logo-thorakao.png" alt="Thorakao" style="height: 44px; width: auto; object-fit: contain; display: block;">
+      </div>
+      <h3 id="wixAuthTitle" style="margin: 0; font-size: 20px; font-weight: 700; color: #fff8eb; font-family: 'Montserrat', sans-serif;">Đăng nhập tài khoản</h3>
+      <p id="wixAuthSubtitle" style="margin: 6px 0 0; font-size: 13px; color: rgba(255, 248, 235, 0.88);">Chào mừng bạn đến với Thorakao - Giữ nếp tóc Việt</p>
+    </div>
+
+    <!-- Dual Tab: Đăng nhập / Đăng ký -->
+    <div class="wix-auth-tabs">
+      <button type="button" class="wix-auth-tab-btn active" id="tabBtnLogin" onclick="switchWixAuthTab('login')">Đăng nhập</button>
+      <button type="button" class="wix-auth-tab-btn" id="tabBtnRegister" onclick="switchWixAuthTab('register')">Đăng ký</button>
+    </div>
+
+    <!-- Social Login Buttons -->
+    <div class="wix-auth-socials">
+      <button type="button" class="wix-social-btn google" onclick="handleSocialLogin('Google')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        <span>Tiếp tục với Google</span>
+      </button>
+      <button type="button" class="wix-social-btn facebook" onclick="handleSocialLogin('Facebook')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span>Tiếp tục với Facebook</span>
+      </button>
+    </div>
+
+    <div class="wix-auth-divider">
+      <span>hoặc sử dụng email</span>
+    </div>
+
+    <!-- Login Form -->
+    <form id="wixLoginForm" onsubmit="handleMemberSubmit(event)" style="display: block;">
+      <div class="wix-auth-field">
+        <label for="wixLoginEmail">Email</label>
+        <input type="email" id="wixLoginEmail" required placeholder="Nhập email của bạn">
+      </div>
+      <div class="wix-auth-field">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <label for="wixLoginPass" style="margin: 0;">Mật khẩu</label>
+          <a href="#" onclick="handleForgotPassword(event)" style="font-size: 12px; color: #ffc800; text-decoration: none; font-weight: 600;">Quên mật khẩu?</a>
+        </div>
+        <div style="position: relative;">
+          <input type="password" id="wixLoginPass" required placeholder="Nhập mật khẩu">
+          <button type="button" class="wix-toggle-pw" onclick="togglePasswordVisibility('wixLoginPass', this)" aria-label="Hiện/ẩn mật khẩu">👁️</button>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #fff8eb; cursor: pointer; margin: 0;">
+          <input type="checkbox" id="wixRememberMe" checked style="accent-color: #ffc800; width: 16px; height: 16px;">
+          <span>Ghi nhớ đăng nhập</span>
+        </label>
+      </div>
+      <button type="submit" class="wix-auth-submit-btn">Đăng nhập</button>
+      <div style="margin-top: 14px; text-align: center; font-size: 13px; color: rgba(255, 248, 235, 0.9);">
+        Chưa có tài khoản? <a href="#" onclick="event.preventDefault(); switchWixAuthTab('register')" style="color: #ffc800; font-weight: 700; text-decoration: underline;">Đăng ký ngay</a>
+      </div>
+    </form>
+
+    <!-- Register Form -->
+    <form id="wixRegisterForm" onsubmit="handleMemberRegister(event)" style="display: none;">
+      <div class="wix-auth-field">
+        <label for="wixRegName">Họ và tên</label>
+        <input type="text" id="wixRegName" required placeholder="Ví dụ: Nguyễn Văn A">
+      </div>
+      <div class="wix-auth-field">
+        <label for="wixRegEmail">Email</label>
+        <input type="email" id="wixRegEmail" required placeholder="name@example.com">
+      </div>
+      <div class="wix-auth-field">
+        <label for="wixRegPhone">Số điện thoại</label>
+        <input type="tel" id="wixRegPhone" placeholder="0912 345 678">
+      </div>
+      <div class="wix-auth-field">
+        <label for="wixRegPass">Mật khẩu</label>
+        <div style="position: relative;">
+          <input type="password" id="wixRegPass" required placeholder="Tối thiểu 6 ký tự">
+          <button type="button" class="wix-toggle-pw" onclick="togglePasswordVisibility('wixRegPass', this)" aria-label="Hiện/ẩn mật khẩu">👁️</button>
+        </div>
+      </div>
+      <div style="margin-bottom: 16px;">
+        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #fff8eb; cursor: pointer;">
+          <input type="checkbox" id="wixRegTerms" required checked style="accent-color: #ffc800; width: 15px; height: 15px; margin-top: 2px;">
+          <span>Tôi đồng ý với <a href="chinh-sach-quyen-rieng-tu.html" target="_blank" style="color: #ffc800; text-decoration: underline;">Điều khoản & Chính sách quyền riêng tư</a> của Thorakao</span>
+        </label>
+      </div>
+      <button type="submit" class="wix-auth-submit-btn">Đăng ký tài khoản</button>
+      <div style="margin-top: 14px; text-align: center; font-size: 13px; color: rgba(255, 248, 235, 0.9);">
+        Đã có tài khoản? <a href="#" onclick="event.preventDefault(); switchWixAuthTab('login')" style="color: #ffc800; font-weight: 700; text-decoration: underline;">Đăng nhập ngay</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+  <!-- Scripts -->
   <script src="assets/js/config.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+  <script src="assets/js/auth-ui.js"></script>
   <script src="assets/js/cart.js"></script>
+  <script src="assets/js/chatbot.js"></script>
+  <script src="assets/js/main.js"></script>
+
 </body>
 </html>
