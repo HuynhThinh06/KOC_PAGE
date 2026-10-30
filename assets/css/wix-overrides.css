@@ -62,16 +62,27 @@ div[data-testid="wix-ads"] {
   background: #fbf6ec !important;
 }
 
-#comp-mpbn2o28,
+#comp-mpbn2nv6 {
+  width: 100% !important;
+  min-height: 900px !important;
+  height: calc(88vh + 113px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #fbf6ec !important;
+}
+
+#comp-mpbn2o28 ._backgroundLayer_1xyyz_25,
 #comp-mpbn2o2e,
 #comp-mpbn2o2e ._media_x7ip3_25,
 #comp-mpbn2o2e ._bg-video-container_x7ip3_52,
 #comp-mpbn2o2e wow-video {
   position: absolute !important;
-  top: 0 !important;
+  top: 113px !important;
   left: 0 !important;
   width: 100% !important;
-  height: 100% !important;
+  height: calc(100% - 113px) !important;
   margin: 0 !important;
   padding: 0 !important;
   transform: none !important;
@@ -768,7 +779,7 @@ a, button, [role="button"], input, textarea, select {
 
 ._marqueeUnitContainer_z4m05_32,
 [data-marquee-animation] {
-  animation: _left_z4m05_1 60s linear infinite !important;
+  animation: _left_z4m05_1 120s linear infinite !important;
   animation-play-state: running !important;
   will-change: transform !important;
 }
