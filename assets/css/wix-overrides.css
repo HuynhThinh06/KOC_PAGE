@@ -94,7 +94,7 @@ div[data-testid="wix-ads"] {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: center bottom !important;
+  object-position: center top !important;
   display: block !important;
 }
 
@@ -741,12 +741,14 @@ a, button, [role="button"], input, textarea, select {
 #comp-mvpa1nna,
 .comp-mvpa1nna {
   width: 100% !important;
+  height: 94.17px !important;
   position: relative !important;
   overflow: hidden !important;
   background-color: #ad402e !important;
   border-radius: 0px !important;
   box-sizing: border-box !important;
-  display: block !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 #comp-mvpa1nnh,
@@ -755,6 +757,8 @@ a, button, [role="button"], input, textarea, select {
   height: 100% !important;
   position: relative !important;
   background-color: transparent !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 #comp-mvpa1nnh ._backgroundLayer_1xyyz_25,
@@ -775,7 +779,8 @@ a, button, [role="button"], input, textarea, select {
   z-index: 2 !important;
   width: 100% !important;
   background-color: transparent !important;
-  padding: 10px 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
   box-sizing: border-box !important;
 }
 
