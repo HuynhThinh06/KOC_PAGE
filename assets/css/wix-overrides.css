@@ -229,18 +229,46 @@ a, button, [role="button"], input, textarea, select {
   pointer-events: auto !important;
 }
 
-/* 6. DROPDOWN THÀNH VIÊN ĐÃ ĐĂNG NHẬP (Chuẩn 100% Web Gốc Wix) */
+/* 6. DROPDOWN THÀNH VIÊN ĐÃ ĐĂNG NHẬP & HEADER (Chuẩn 100% Web Gốc Wix) */
+:root,
+#SITE_CONTAINER,
+#main_MF,
+#site-root,
+#masterPage {
+  --wix-ads-height: 0px !important;
+  --wix-ads-top-height: 0px !important;
+  --sticky-offset: 0px !important;
+  --wix-top-inset: 0px !important;
+}
+
+#site-root {
+  top: 0px !important;
+  margin-top: 0px !important;
+}
+
 #comp-mb7ogqrp,
 #comp-mb7ogqrp_r_comp-mb7ogqqn,
 #comp-mb7ogqrp_r_comp-mdr142kt,
-.comp-mb7ogqrp_r_comp-mpbn4c1x-presets-wrapper,
 #comp-mb7ogqrp_r_comp-mpbn4c1x {
   overflow: visible !important;
 }
 
+.comp-mb7ogqrp_r_comp-mpbn4c1x-presets-wrapper {
+  display: contents !important;
+}
+
 #comp-mb7ogqrp {
   position: relative !important;
+  top: 0px !important;
+  margin-top: 0px !important;
+  background-color: #ffffff !important;
+  --alpha-bg: 1 !important;
   z-index: 9999 !important;
+}
+
+#comp-mb7ogqrp_r_comp-mb7ogqqn {
+  background-color: #ffffff !important;
+  --alpha-bg: 1 !important;
 }
 
 #comp-mb7ogqrp_r_comp-mpbn4c1x {
