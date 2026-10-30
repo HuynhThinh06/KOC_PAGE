@@ -64,9 +64,9 @@ div[data-testid="wix-ads"] {
 
 #comp-mpbn2nv6 {
   width: 100% !important;
-  min-height: 80vh !important;
-  height: 88vh !important;
-  max-height: 960px !important;
+  height: 879.17px !important;
+  min-height: 879.17px !important;
+  max-height: none !important;
   position: relative !important;
   overflow: hidden !important;
   margin: 0 !important;
@@ -94,7 +94,7 @@ div[data-testid="wix-ads"] {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: center top !important;
+  object-position: 50% 50% !important;
   display: block !important;
 }
 
