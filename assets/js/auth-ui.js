@@ -101,8 +101,12 @@
       btnWrap = document.createElement("div");
       btnWrap.className = "auth-nav";
       const host = document.querySelector(".header-actions");
-      if (host) host.insertBefore(btnWrap, host.firstChild);
-      else { btnWrap.classList.add("auth-nav-floating"); document.body.appendChild(btnWrap); }
+      if (host) {
+        host.insertBefore(btnWrap, host.firstChild);
+      } else {
+        // Không tạo nút nổi gây trùng lặp với header Wix
+        return;
+      }
     }
     if (!user) {
       btnWrap.innerHTML = '<button type="button" class="btn btn-outline auth-login-btn">Đăng nhập</button>';
