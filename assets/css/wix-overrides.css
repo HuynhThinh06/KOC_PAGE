@@ -154,16 +154,32 @@ div[data-testid="wix-ads"] {
   border: none !important;
 }
 
-/* Ô nhập email chân trang */
+/* Sửa ô nhập email chân trang chuẩn 100% Wix (loại bỏ viền đôi, viền đỏ lệch) */
 #comp-kbgakxmn_r_comp-mvq7204e input[type="email"],
 #comp-kbgakxmn_r_comp-mvq7204e input {
-  background: #ffffff !important;
-  border: 1.5px solid #8c2d19 !important;
-  border-radius: 4px !important;
-  padding: 10px 14px !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0px !important;
+  padding: 0 10px !important;
   color: #1c1917 !important;
   font-family: inherit !important;
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
 }
+
+#comp-kbgakxmn_r_comp-mvq7204e .svEXDbE {
+  border: 1px solid rgba(54, 26, 13, 0.6) !important;
+  background-color: #ffffff !important;
+  border-radius: 0px !important;
+  height: 35px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
 
 /* Nút Đăng ký chân trang */
 #comp-kbgakxmn_r_comp-mvq7204e button[type="submit"],
