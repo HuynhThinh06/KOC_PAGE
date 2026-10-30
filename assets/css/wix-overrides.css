@@ -767,12 +767,27 @@ a, button, [role="button"], input, textarea, select {
 .comp-mvq8yag3_ooi,
 [data-hook="faq-root"],
 .sSChNLR,
-.szXe2ld,
+.szXe2ld {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
 #faqAccordionSanPham,
 #faqAccordionMuaHang {
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
+}
+
+#faqAccordionSanPham.is-hidden,
+#faqAccordionMuaHang.is-hidden {
+  display: none !important;
+}
+
+#faqAccordionSanPham.is-visible,
+#faqAccordionMuaHang.is-visible {
   display: block !important;
 }
 

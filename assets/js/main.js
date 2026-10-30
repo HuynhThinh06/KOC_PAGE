@@ -87,8 +87,16 @@ function initWixFAQ() {
         tabMuaHang.setAttribute('data-tab-active', 'false');
         tabMuaHang.classList.remove('oW7Yi2b--isActive');
       }
-      if (groupSanPham) groupSanPham.style.display = 'block';
-      if (groupMuaHang) groupMuaHang.style.display = 'none';
+      if (groupSanPham) {
+        groupSanPham.classList.remove('is-hidden');
+        groupSanPham.classList.add('is-visible');
+        groupSanPham.style.setProperty('display', 'block', 'important');
+      }
+      if (groupMuaHang) {
+        groupMuaHang.classList.remove('is-visible');
+        groupMuaHang.classList.add('is-hidden');
+        groupMuaHang.style.setProperty('display', 'none', 'important');
+      }
       updateIndicator(tabSanPham);
     } else {
       if (tabMuaHang) {
@@ -101,8 +109,16 @@ function initWixFAQ() {
         tabSanPham.setAttribute('data-tab-active', 'false');
         tabSanPham.classList.remove('oW7Yi2b--isActive');
       }
-      if (groupSanPham) groupSanPham.style.display = 'none';
-      if (groupMuaHang) groupMuaHang.style.display = 'block';
+      if (groupSanPham) {
+        groupSanPham.classList.remove('is-visible');
+        groupSanPham.classList.add('is-hidden');
+        groupSanPham.style.setProperty('display', 'none', 'important');
+      }
+      if (groupMuaHang) {
+        groupMuaHang.classList.remove('is-hidden');
+        groupMuaHang.classList.add('is-visible');
+        groupMuaHang.style.setProperty('display', 'block', 'important');
+      }
       updateIndicator(tabMuaHang);
     }
   }
