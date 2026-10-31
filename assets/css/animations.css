@@ -1,305 +1,213 @@
 /* ==========================================================================
-   ANIMATIONS.CSS - HIỆU ỨNG NGHỆ THUẬT ĐỘNG (INTERACTIVE ART & UI/UX MOTION)
-   Nếp Tóc Thorakao: Cành đào, hoa rơi, đàn cò bay, suối tóc sóng sánh, 3D Tilt
+   ANIMATIONS.CSS - HIỆU ỨNG NGHỆ THUẬT ĐỘNG (INTERACTIVE ART & MOTION)
+   Nếp Tóc Thorakao:
+   - Cánh hoa đào rơi tại THÔNG TIN CHIẾN DỊCH
+   - 3D Interactive Parallax Tilt tại GIỚI THIỆU SẢN PHẨM
+   - Suối tóc sóng sánh & sao lấp lánh tại HƯỚNG DẪN SỬ DỤNG
+   - Chải tóc óng mượt & lá bồ kết đung đưa tại FOOTER
    ========================================================================== */
 
-/* 1. LỚP OVERLAY CHỨA CÁC CHI TIẾT CHUYỂN ĐỘNG TRÊN CÁC SECTION */
-.art-motion-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 10;
+/* 1. CÁNH HOA ĐÀO RƠI TẠI SECTION "THÔNG TIN CHIẾN DỊCH" */
+.sakura-canvas-campaign {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 99 !important;
 }
 
-/* 2. HIỆU ỨNG CÀNH ĐÀO ĐUNG ĐƯA (BRAND STORY & TOP) */
-.peach-branch-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 55%;
-  max-width: 620px;
-  height: 50%;
-  pointer-events: none;
-  transform-origin: top left;
-  animation: branchSway 6.5s ease-in-out infinite alternate;
-  opacity: 0.96;
+/* 2. HIỆU ỨNG 3D PARALLAX TILT TẠI PHẦN SẢN PHẨM */
+#comp-mpbn2o2z {
+  perspective: 1200px !important;
+  transform-style: preserve-3d !important;
 }
 
-@keyframes branchSway {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    transform: rotate(1.2deg) scale(1.008) translateY(2px);
-  }
-  100% {
-    transform: rotate(-0.8deg) scale(0.995) translateY(-1px);
-  }
+.product-3d-wrap {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform-style: preserve-3d !important;
+  cursor: pointer !important;
 }
 
-/* Canvas cánh hoa đào rơi tự nhiên */
-.sakura-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 12;
+.product-3d-wrap img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.15s ease-out, filter 0.3s ease !important;
+  will-change: transform !important;
 }
 
-/* 3. HIỆU ỨNG ĐÀN CÒ VỖ CÁNH BAY TRÊN BẦU TRỜI (BRAND STORY) */
-.storks-flight-wrap {
-  position: absolute;
-  top: 18%;
-  left: 20%;
-  width: 45%;
-  height: 35%;
-  pointer-events: none;
-  z-index: 15;
-  animation: storksGlide 16s ease-in-out infinite alternate;
+/* Vệt sáng bóng phản quang chuyển động theo chuột */
+.product-specular-glare {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.35s ease !important;
+  z-index: 50 !important;
+  mix-blend-mode: overlay !important;
 }
 
-@keyframes storksGlide {
-  0% {
-    transform: translate(0, 0) scale(0.98);
-  }
-  50% {
-    transform: translate(35px, -18px) scale(1.02);
-  }
-  100% {
-    transform: translate(-20px, 12px) scale(0.99);
-  }
+.product-3d-wrap:hover .product-specular-glare {
+  opacity: 1 !important;
 }
 
-.stork-single {
-  position: absolute;
-  display: inline-block;
-  transform-origin: center center;
+/* Vệt ánh kim lướt qua thân chai 3D định kỳ */
+.bottle-shine-beam {
+  position: absolute !important;
+  top: 0 !important;
+  left: -120% !important;
+  width: 50% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent) !important;
+  transform: skewX(-25deg) !important;
+  pointer-events: none !important;
+  z-index: 45 !important;
+  animation: shineBeamLoop 5.5s ease-in-out infinite !important;
 }
 
-.stork-lead {
-  width: 110px;
-  height: 90px;
-  top: 15%;
-  left: 20%;
-  animation: storkFlap 1.4s ease-in-out infinite alternate;
-}
-
-.stork-follow {
-  width: 78px;
-  height: 65px;
-  top: 32%;
-  left: 55%;
-  animation: storkFlap 1.4s ease-in-out infinite alternate 0.35s;
-}
-
-@keyframes storkFlap {
-  0% {
-    transform: scaleY(1) rotate(0deg);
-  }
-  50% {
-    transform: scaleY(0.72) rotate(-3deg) translateY(-4px);
-  }
-  100% {
-    transform: scaleY(1.08) rotate(3deg) translateY(3px);
-  }
-}
-
-/* 4. HIỆU ỨNG MÁI TÓC BỒNG BỀNH & SAO LẤP LÁNH (HƯỚNG DẪN SỬ DỤNG) */
-.sleeping-hair-overlay {
-  position: absolute;
-  bottom: 6%;
-  right: 5%;
-  width: 75%;
-  height: 70%;
-  pointer-events: none;
-  z-index: 12;
-  mix-blend-mode: screen;
-}
-
-.hair-glow-shimmer {
-  position: absolute;
-  bottom: 12%;
-  left: 28%;
-  width: 58%;
-  height: 52%;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 70%);
-  border-radius: 50%;
-  filter: blur(8px);
-  animation: hairBreath 4.5s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-@keyframes hairBreath {
-  0% {
-    opacity: 0.25;
-    transform: scale(0.96) translateY(4px);
-  }
-  50% {
-    opacity: 0.65;
-    transform: scale(1.03) translateY(-2px);
-  }
-  100% {
-    opacity: 0.35;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* Ngôi sao nhỏ lấp lánh trên mái tóc */
-.star-sparkle {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  pointer-events: none;
-  animation: sparkleTwinkle 3s ease-in-out infinite;
-}
-
-.star-1 { top: 38%; left: 42%; animation-delay: 0.2s; }
-.star-2 { top: 52%; left: 56%; animation-delay: 1.1s; }
-.star-3 { top: 68%; left: 70%; animation-delay: 2.0s; }
-.star-4 { top: 46%; left: 82%; animation-delay: 1.6s; }
-
-@keyframes sparkleTwinkle {
-  0%, 100% {
-    opacity: 0.2;
-    transform: scale(0.6) rotate(0deg);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.3) rotate(90deg);
-    filter: drop-shadow(0 0 6px #ffffff);
-  }
-}
-
-/* 5. HIỆU ỨNG CÔ GÁI CHẢI TÓC & LÁ BỒ KẾT ĐUNG ĐƯA (FOOTER) */
-.footer-lady-motion {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* Cành lá bồ kết phía trên đung đưa nhẹ */
-.boket-leaves-sway {
-  position: absolute;
-  top: 6%;
-  right: 18%;
-  width: 320px;
-  height: 240px;
-  transform-origin: top center;
-  animation: leavesBreeze 5.5s ease-in-out infinite alternate;
-  opacity: 0.85;
-}
-
-@keyframes leavesBreeze {
-  0% {
-    transform: rotate(0deg) skewX(0deg);
-  }
-  50% {
-    transform: rotate(1.8deg) skewX(1deg) translateY(2px);
-  }
-  100% {
-    transform: rotate(-1.4deg) skewX(-1deg) translateY(-2px);
-  }
-}
-
-/* Vệt sáng chải tóc êm ả lướt dọc theo suối tóc */
-.hair-comb-stroke {
-  position: absolute;
-  top: 22%;
-  left: 20%;
-  width: 160px;
-  height: 380px;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.comb-light-beam {
-  width: 100%;
-  height: 70px;
-  background: linear-gradient(180deg, rgba(255, 235, 180, 0) 0%, rgba(255, 240, 200, 0.45) 50%, rgba(255, 235, 180, 0) 100%);
-  border-radius: 50%;
-  filter: blur(6px);
-  transform: translateY(-80px) rotate(-15deg);
-  animation: combSlide 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-@keyframes combSlide {
-  0% {
-    transform: translateY(-70px) rotate(-15deg);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.8;
-  }
-  80% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(340px) rotate(-10deg);
-    opacity: 0;
-  }
-}
-
-/* 6. HIỆU ỨNG 3D PARALLAX TILT CHO CHAI DẦU GỘI THORAKAO */
-.product-3d-card-wrap {
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.product-3d-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-  border-radius: 8px;
-}
-
-.product-3d-glare {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0) 70%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-  border-radius: inherit;
-  z-index: 20;
-}
-
-.product-3d-card-wrap:hover .product-3d-glare {
-  opacity: 1;
-}
-
-/* Ánh phản chiếu óng ả lướt qua thân chai */
-.bottle-shine-effect {
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
-  transform: skewX(-25deg);
-  pointer-events: none;
-  z-index: 15;
-  animation: bottleShineLoop 6s ease-in-out infinite;
-}
-
-@keyframes bottleShineLoop {
-  0%, 70% {
+@keyframes shineBeamLoop {
+  0%, 65% {
     left: -120%;
   }
   85%, 100% {
     left: 200%;
+  }
+}
+
+/* 3. HIỆU ỨNG SUỐI TÓC BỒNG BỀNH & SAO LẤP LÁNH TẠI HƯỚNG DẪN SỬ DỤNG */
+.hair-motion-layer {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 99 !important;
+}
+
+.hair-wave-glow {
+  position: absolute !important;
+  bottom: 8% !important;
+  right: 6% !important;
+  width: 60% !important;
+  height: 48% !important;
+  background: radial-gradient(ellipse at center, rgba(255, 240, 210, 0.22) 0%, rgba(255, 255, 255, 0) 70%) !important;
+  border-radius: 50% !important;
+  filter: blur(12px) !important;
+  animation: hairBreathMotion 4s ease-in-out infinite alternate !important;
+}
+
+@keyframes hairBreathMotion {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.96) translateY(5px);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04) translateY(-3px);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.hair-star-twinkle {
+  position: absolute !important;
+  width: 22px !important;
+  height: 22px !important;
+  pointer-events: none !important;
+  animation: starTwinkle 2.8s ease-in-out infinite !important;
+}
+
+.h-star-1 { bottom: 32% !important; right: 44% !important; animation-delay: 0s !important; }
+.h-star-2 { bottom: 24% !important; right: 28% !important; animation-delay: 0.9s !important; }
+.h-star-3 { bottom: 14% !important; right: 14% !important; animation-delay: 1.8s !important; }
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4) rotate(90deg);
+    filter: drop-shadow(0 0 8px #ffffff);
+  }
+}
+
+/* 4. HIỆU ỨNG CÔ GÁI CHẢI TÓC & LÁ BỒ KẾT TẠI FOOTER */
+.footer-motion-layer {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+
+/* Vệt sáng lướt chải mái tóc óng ả */
+.comb-sweep-wrap {
+  position: absolute !important;
+  top: 15% !important;
+  left: 8% !important;
+  width: 240px !important;
+  height: 480px !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.comb-sweep-glow {
+  width: 100% !important;
+  height: 90px !important;
+  background: linear-gradient(180deg, rgba(255, 230, 160, 0) 0%, rgba(255, 240, 180, 0.5) 50%, rgba(255, 230, 160, 0) 100%) !important;
+  border-radius: 50% !important;
+  filter: blur(8px) !important;
+  transform: translateY(-100px) rotate(-18deg) !important;
+  animation: combMotion 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
+}
+
+@keyframes combMotion {
+  0% {
+    transform: translateY(-90px) rotate(-18deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  75% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(420px) rotate(-12deg);
+    opacity: 0;
+  }
+}
+
+/* Lá bồ kết đung đưa theo gió */
+.footer-leaf-breeze {
+  position: absolute !important;
+  top: 4% !important;
+  left: 22% !important;
+  width: 180px !important;
+  height: 120px !important;
+  transform-origin: top left !important;
+  animation: leafBreezeLoop 5s ease-in-out infinite alternate !important;
+}
+
+@keyframes leafBreezeLoop {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg) translateY(3px);
+  }
+  100% {
+    transform: rotate(-2.5deg) translateY(-2px);
   }
 }
