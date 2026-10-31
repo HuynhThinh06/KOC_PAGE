@@ -2245,13 +2245,12 @@ html, body {
   max-height: min(92vh, 640px) !important;
 }
 
-
 /* ==========================================================================
-   5. TỐI ƯU GIAO DIỆN MOBILE (RESPONSIVE CHO ĐIỆN THOẠI 360px - 768px)
-   Khắc phục hiện tượng lệch lề, tràn viền ngang và vỡ bố cục Header/FAQ/Quiz
+   5. TỐI ƯU GIAO DIỆN MOBILE HOÀN CHỈNH (RESPONSIVE CHO ĐIỆN THOẠI 360px - 768px)
+   Khắc phục hiện tượng cắt nửa icon avatar, hamburger lệch, chồng chéo footer & tràn lề
    ========================================================================== */
 
-/* Ngăn chặn triệt để thanh cuộn ngang và khoảng xám 15px */
+/* 1. Ngăn chặn triệt để thanh cuộn ngang và khoảng xám 15px */
 html, body {
   overflow-x: hidden !important;
   max-width: 100vw !important;
@@ -2262,7 +2261,9 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* --- 5.1 HEADER MOBILE: Cân đối, căn giữa dọc, không đè icon --- */
+  /* ==========================================================================
+     A. HEADER MOBILE: Cân đối, căn giữa dọc 60px, không cắt xén, không đè icon
+     ========================================================================== */
   #comp-mb7ogqrp {
     position: sticky !important;
     top: 0 !important;
@@ -2288,25 +2289,26 @@ body {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    height: 100% !important;
+    height: 60px !important;
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 16px !important;
     box-sizing: border-box !important;
     margin: 0 !important;
+    position: relative !important;
   }
 
-  /* Logo Thorakao */
+  /* 1. Logo Thorakao */
   #comp-mb7ogqrp_r_comp-mpjsoyu5,
   .comp-mb7ogqrp_r_comp-mpjsoyu5 {
+    order: 1 !important;
     display: flex !important;
     align-items: center !important;
-    height: 100% !important;
+    height: 60px !important;
     width: auto !important;
     margin: 0 !important;
     padding: 0 !important;
     position: static !important;
-    order: 1 !important;
   }
 
   #comp-mb7ogqrp_r_comp-mpjsoyu5 a,
@@ -2324,97 +2326,148 @@ body {
     display: block !important;
   }
 
-  /* Cụm chức năng bên phải: Giỏ hàng -> Tài khoản -> Nút Menu Hamburger */
+  /* 2. Giỏ hàng */
   #comp-mb7ogqrp_r_comp-mpmdd30r {
-    margin: 0 !important;
-    position: static !important;
+    order: 2 !important;
     display: flex !important;
     align-items: center !important;
-    order: 2 !important;
-    margin-left: auto !important;
-    margin-right: 12px !important;
+    justify-content: center !important;
+    height: 60px !important;
+    width: auto !important;
+    margin: 0 14px 0 auto !important;
+    position: static !important;
   }
 
   #comp-mb7ogqrp_r_comp-mpmdd30r a.tx4Jvn {
     display: flex !important;
     align-items: center !important;
-    width: 32px !important;
-    height: 32px !important;
+    justify-content: center !important;
+    height: 36px !important;
+    width: 36px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #comp-mb7ogqrp_r_comp-mpmdd30r svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  /* 3. Icon Đăng nhập / Avatar */
+  .comp-mb7ogqrp_r_comp-mpbn4c1x-presets-wrapper {
+    order: 3 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 60px !important;
+    width: auto !important;
+    margin: 0 14px 0 0 !important;
+    position: static !important;
   }
 
   #comp-mb7ogqrp_r_comp-mpbn4c1x {
-    margin: 0 !important;
-    position: static !important;
-    display: flex !important;
-    align-items: center !important;
-    order: 3 !important;
-    margin-right: 12px !important;
-  }
-
-  #comp-mb7ogqrp_r_comp-mpbn4c1x button,
-  #comp-mb7ogqrp_r_comp-mpbn4c1x ._buttonNavigation_15sgs_16 {
-    padding: 0 !important;
-    margin: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     height: 36px !important;
+    width: 36px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+  }
+
+  #comp-mb7ogqrp_r_comp-mpbn4c1x button,
+  #comp-mb7ogqrp_r_comp-mpbn4c1x ._login_1j3j6_1,
+  #comp-mb7ogqrp_r_comp-mpbn4c1x ._buttonNavigation_15sgs_16 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 36px !important;
+    width: 36px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    top: 0 !important;
+    position: static !important;
     background: transparent !important;
     border: none !important;
   }
 
-  /* Ẩn chữ 'Đăng nhập' tràn màn hình trên mobile, chỉ giữ icon Avatar */
-  #comp-mb7ogqrp_r_comp-mpbn4c1x #loginHeaderLabel,
-  #comp-mb7ogqrp_r_comp-mpbn4c1x ._label_15sgs_48 {
-    display: none !important;
-  }
-
-  #comp-mb7ogqrp_r_comp-mpbn4c1x ._icon_15sgs_26 {
+  #comp-mb7ogqrp_r_comp-mpbn4c1x .wixui-login-social-bar__avatar-icon,
+  #comp-mb7ogqrp_r_comp-mpbn4c1x ._avatar_amy81_7 {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    height: 28px !important;
+    width: 28px !important;
     margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
     position: static !important;
   }
 
   #comp-mb7ogqrp_r_comp-mpbn4c1x svg {
     width: 28px !important;
     height: 28px !important;
+    position: static !important;
   }
 
+  #comp-mb7ogqrp_r_comp-mpbn4c1x #loginHeaderLabel,
+  #comp-mb7ogqrp_r_comp-mpbn4c1x ._label_15sgs_48 {
+    display: none !important;
+  }
+
+  /* 4. Hamburger Menu */
   .comp-mb7ogqrp_r_comp-mpccff0z-presets-wrapper {
     order: 4 !important;
     display: flex !important;
     align-items: center !important;
+    justify-content: center !important;
+    height: 60px !important;
     margin: 0 !important;
+    position: static !important;
   }
 
   #comp-mb7ogqrp_r_comp-mpccff0z {
-    margin: 0 !important;
-    position: static !important;
-    width: 36px !important;
-    height: 36px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    height: 60px !important;
+    width: auto !important;
+    margin: 0 !important;
+    position: static !important;
+  }
+
+  #comp-mb7ogqrp_r_comp-mpccff0z-menu-content {
+    display: none !important;
   }
 
   #comp-mb7ogqrp_r_comp-mpccff0z ._openButtonNavigation_15sgs_79,
-  #comp-mb7ogqrp_r_comp-mpccff0z .hamburger-open-button {
-    width: 36px !important;
-    height: 36px !important;
+  #comp-mb7ogqrp_r_comp-mpccff0z .hamburgerOpenButton-presets-wrapper {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    height: 60px !important;
+  }
+
+  #comp-mb7ogqrp_r_comp-mpccff0z .hamburger-open-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 36px !important;
+    width: 36px !important;
+    padding: 0 !important;
     margin: 0 !important;
   }
 
   #comp-mb7ogqrp_r_comp-mpccff0z .hamburger-open-button svg {
     width: 26px !important;
     height: 26px !important;
+    display: block !important;
   }
 
-  /* --- 5.2 QUIZ TRẮC NGHIỆM MOBILE: Cân đối giữa màn hình --- */
+  /* ==========================================================================
+     B. QUIZ TRẮC NGHIỆM MOBILE: Cân đối giữa màn hình
+     ========================================================================== */
   .quiz-custom-section,
   #quizSectionContainer {
     width: 100% !important;
@@ -2433,7 +2486,9 @@ body {
     box-sizing: border-box !important;
   }
 
-  /* --- 5.3 FAQ MOBILE: Cân giữa đối xứng 100% --- */
+  /* ==========================================================================
+     C. FAQ MOBILE: Cân giữa đối xứng 100%
+     ========================================================================== */
   #comp-mvq8wnvx {
     padding: 30px 0 40px !important;
     box-sizing: border-box !important;
@@ -2473,22 +2528,109 @@ body {
     box-sizing: border-box !important;
   }
 
-  /* --- 5.4 FOOTER MOBILE: Căn giữa form liên hệ --- */
+  /* ==========================================================================
+     D. FOOTER MOBILE: Căn giữa dạng cột dọc, triệt tiêu chồng chữ
+     ========================================================================== */
   #comp-kbgakxmn {
     width: 100% !important;
     max-width: 100vw !important;
     overflow: hidden !important;
+    height: auto !important;
+    min-height: 800px !important;
+    padding: 40px 0 60px !important;
+    position: relative !important;
   }
 
-  #comp-kbgakxmn_r_comp-mvq7204e,
+  #comp-kbgakxmn_r_comp-kbgakgyt,
+  #comp-kbgakxmn_r_comp-mdr13kdg {
+    height: auto !important;
+    min-height: 100% !important;
+    display: block !important;
+  }
+
+  .comp-kbgakxmn_r_comp-mdr13kdg-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 40px 16px !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+  }
+
+  #comp-kbgakxmn_r_comp-mpbn5rko {
+    display: none !important;
+  }
+
+  #comp-kbgakxmn_r_comp-mvq7204e {
+    order: 1 !important;
+    margin: 0 auto 30px !important;
+    width: 100% !important;
+    max-width: 358px !important;
+    position: static !important;
+  }
+
   .wix-footer-form-box {
+    margin: 0 auto !important;
+  }
+
+  #comp-kbgakxmn_r_comp-mvrfv02a {
+    order: 2 !important;
+    margin: 0 auto 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    position: static !important;
+  }
+
+  #comp-kbgakxmn_r_comp-mvrfv02a * {
+    text-align: center !important;
+  }
+
+  .comp-kbgakxmn_r_comp-mpbn5rlu-presets-wrapper {
+    order: 3 !important;
+    margin: 0 auto 24px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: static !important;
+    width: 100% !important;
+  }
+
+  #comp-kbgakxmn_r_comp-mpbn5rlu {
+    position: static !important;
+    margin: 0 auto !important;
+  }
+
+  #comp-kbgakxmn_r_comp-mvrqf3um {
+    order: 4 !important;
+    margin: 0 auto 24px !important;
     width: 100% !important;
     max-width: calc(100vw - 32px) !important;
-    margin: 20px auto 0 !important;
-    box-sizing: border-box !important;
+    text-align: center !important;
+    position: static !important;
   }
 
-  /* --- 5.5 CHATBOT MOBILE: Thu gọn bong bóng, tránh che màn hình --- */
+  #comp-kbgakxmn_r_comp-mvrqf3um * {
+    text-align: center !important;
+  }
+
+  .comp-kbgakxmn_r_comp-mvte363p-presets-wrapper,
+  #comp-kbgakxmn_r_comp-mvte363p {
+    order: 5 !important;
+    margin: 0 auto 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: static !important;
+    width: 100% !important;
+  }
+
+  /* ==========================================================================
+     E. CHATBOT MOBILE: Thu gọn bong bóng, tránh che màn hình
+     ========================================================================== */
   .notificationBubbleV2,
   ._bubble_1h9p7_10 {
     display: none !important;
