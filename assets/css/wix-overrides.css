@@ -2262,7 +2262,7 @@ body {
 
 @media (max-width: 768px) {
   /* ==========================================================================
-     A. HEADER MOBILE: Cân đối, căn giữa dọc 60px, không cắt xén, không đè icon
+     A. HEADER MOBILE: Cân đối, căn giữa dọc 60px hoàn hảo (centerY = 30px)
      ========================================================================== */
   #comp-mb7ogqrp {
     position: sticky !important;
@@ -2327,7 +2327,9 @@ body {
   }
 
   /* 2. Giỏ hàng */
-  #comp-mb7ogqrp_r_comp-mpmdd30r {
+  #comp-mb7ogqrp_r_comp-mpmdd30r,
+  #comp-mb7ogqrp_r_comp-mpmdd30r .comp-mb7ogqrp_r_comp-mpmdd30r-presets-wrapper,
+  #comp-mb7ogqrp_r_comp-mpmdd30r a.tx4Jvn {
     order: 2 !important;
     display: flex !important;
     align-items: center !important;
@@ -2335,57 +2337,41 @@ body {
     height: 60px !important;
     width: auto !important;
     margin: 0 14px 0 auto !important;
+    padding: 0 !important;
     position: static !important;
   }
 
-  #comp-mb7ogqrp_r_comp-mpmdd30r a.tx4Jvn {
+  #comp-mb7ogqrp_r_comp-mpmdd30r .Q8TtId {
+    padding-bottom: 0 !important;
+    width: 24px !important;
+    height: 28px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 36px !important;
-    width: 36px !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    position: static !important;
   }
 
   #comp-mb7ogqrp_r_comp-mpmdd30r svg {
+    position: static !important;
+    display: block !important;
     width: 24px !important;
-    height: 24px !important;
+    height: 28px !important;
   }
 
   /* 3. Icon Đăng nhập / Avatar */
-  .comp-mb7ogqrp_r_comp-mpbn4c1x-presets-wrapper {
+  .comp-mb7ogqrp_r_comp-mpbn4c1x-presets-wrapper,
+  #comp-mb7ogqrp_r_comp-mpbn4c1x,
+  #comp-mb7ogqrp_r_comp-mpbn4c1x ._buttonNavigation_15sgs_16,
+  #comp-mb7ogqrp_r_comp-mpbn4c1x button,
+  #comp-mb7ogqrp_r_comp-mpbn4c1x ._login_1j3j6_1 {
     order: 3 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     height: 60px !important;
-    width: auto !important;
+    width: 36px !important;
     margin: 0 14px 0 0 !important;
-    position: static !important;
-  }
-
-  #comp-mb7ogqrp_r_comp-mpbn4c1x {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 36px !important;
-    width: 36px !important;
-    margin: 0 !important;
     padding: 0 !important;
-    position: static !important;
-  }
-
-  #comp-mb7ogqrp_r_comp-mpbn4c1x button,
-  #comp-mb7ogqrp_r_comp-mpbn4c1x ._login_1j3j6_1,
-  #comp-mb7ogqrp_r_comp-mpbn4c1x ._buttonNavigation_15sgs_16 {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 36px !important;
-    width: 36px !important;
-    padding: 0 !important;
-    margin: 0 !important;
     top: 0 !important;
     position: static !important;
     background: transparent !important;
@@ -2408,6 +2394,8 @@ body {
   #comp-mb7ogqrp_r_comp-mpbn4c1x svg {
     width: 28px !important;
     height: 28px !important;
+    display: block !important;
+    margin: 0 !important;
     position: static !important;
   }
 
@@ -2417,52 +2405,49 @@ body {
   }
 
   /* 4. Hamburger Menu */
-  .comp-mb7ogqrp_r_comp-mpccff0z-presets-wrapper {
+  .comp-mb7ogqrp_r_comp-mpccff0z-presets-wrapper,
+  #comp-mb7ogqrp_r_comp-mpccff0z,
+  #comp-mb7ogqrp_r_comp-mpccff0z ._openButtonNavigation_15sgs_79,
+  #comp-mb7ogqrp_r_comp-mpccff0z .hamburgerOpenButton-presets-wrapper,
+  #comp-mb7ogqrp_r_comp-mpccff0z .hamburger-open-button {
     order: 4 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     height: 60px !important;
+    width: 36px !important;
     margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
     position: static !important;
-  }
-
-  #comp-mb7ogqrp_r_comp-mpccff0z {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 60px !important;
-    width: auto !important;
-    margin: 0 !important;
-    position: static !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
   }
 
   #comp-mb7ogqrp_r_comp-mpccff0z-menu-content {
     display: none !important;
   }
 
-  #comp-mb7ogqrp_r_comp-mpccff0z ._openButtonNavigation_15sgs_79,
-  #comp-mb7ogqrp_r_comp-mpccff0z .hamburgerOpenButton-presets-wrapper {
+  #comp-mb7ogqrp_r_comp-mpccff0z ._animatedIcon_jg4gf_2,
+  #comp-mb7ogqrp_r_comp-mpccff0z #animated-icon,
+  #comp-mb7ogqrp_r_comp-mpccff0z #animated-icon > div {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 60px !important;
-  }
-
-  #comp-mb7ogqrp_r_comp-mpccff0z .hamburger-open-button {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 36px !important;
-    width: 36px !important;
-    padding: 0 !important;
+    height: 26px !important;
+    width: 26px !important;
     margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
   }
 
-  #comp-mb7ogqrp_r_comp-mpccff0z .hamburger-open-button svg {
+  #comp-mb7ogqrp_r_comp-mpccff0z svg {
     width: 26px !important;
     height: 26px !important;
     display: block !important;
+    margin: 0 !important;
+    position: static !important;
   }
 
   /* ==========================================================================
@@ -2529,7 +2514,7 @@ body {
   }
 
   /* ==========================================================================
-     D. FOOTER MOBILE: Căn giữa dạng cột dọc, triệt tiêu chồng chữ
+     D. FOOTER MOBILE: Tách biệt Card Đăng ký và Card Thông tin liên hệ
      ========================================================================== */
   #comp-kbgakxmn {
     width: 100% !important;
@@ -2537,7 +2522,7 @@ body {
     overflow: hidden !important;
     height: auto !important;
     min-height: 800px !important;
-    padding: 40px 0 60px !important;
+    padding: 30px 0 50px !important;
     position: relative !important;
   }
 
@@ -2555,7 +2540,7 @@ body {
     justify-content: flex-start !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 40px 16px !important;
+    padding: 20px 16px 40px !important;
     box-sizing: border-box !important;
     height: auto !important;
   }
@@ -2564,34 +2549,69 @@ body {
     display: none !important;
   }
 
+  /* Form Đăng ký nhận tin */
   #comp-kbgakxmn_r_comp-mvq7204e {
     order: 1 !important;
-    margin: 0 auto 30px !important;
+    margin: 16px auto 20px auto !important;
     width: 100% !important;
-    max-width: 358px !important;
+    max-width: 360px !important;
     position: static !important;
   }
 
-  .wix-footer-form-box {
-    margin: 0 auto !important;
+  #comp-kbgakxmn_r_comp-mvq7204e .sN4uTVR {
+    border-radius: 18px !important;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12) !important;
+    padding: 22px 18px !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
   }
 
-  #comp-kbgakxmn_r_comp-mvrfv02a {
+  #comp-kbgakxmn_r_comp-mvq7204e h2 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #8c2d19 !important;
+    margin-bottom: 12px !important;
+    text-align: center !important;
+    display: block !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Card thông tin liên hệ, mạng xã hội và chính sách */
+  .mobile-footer-info-card {
     order: 2 !important;
-    margin: 0 auto 16px !important;
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto !important;
+    background: rgba(254, 252, 248, 0.94) !important;
+    border: 1px solid rgba(198, 156, 109, 0.45) !important;
+    border-radius: 18px !important;
+    padding: 22px 18px !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 8px 25px rgba(80, 40, 20, 0.12) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .mobile-footer-info-card #comp-kbgakxmn_r_comp-mvrfv02a {
+    margin: 0 0 16px 0 !important;
+    width: 100% !important;
     text-align: center !important;
     position: static !important;
   }
 
-  #comp-kbgakxmn_r_comp-mvrfv02a * {
+  .mobile-footer-info-card #comp-kbgakxmn_r_comp-mvrfv02a * {
     text-align: center !important;
+    color: #38402e !important;
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
   }
 
-  .comp-kbgakxmn_r_comp-mpbn5rlu-presets-wrapper {
-    order: 3 !important;
-    margin: 0 auto 24px !important;
+  .mobile-footer-info-card .comp-kbgakxmn_r_comp-mpbn5rlu-presets-wrapper {
+    margin: 0 0 16px 0 !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -2599,28 +2619,29 @@ body {
     width: 100% !important;
   }
 
-  #comp-kbgakxmn_r_comp-mpbn5rlu {
+  .mobile-footer-info-card #comp-kbgakxmn_r_comp-mpbn5rlu {
     position: static !important;
     margin: 0 auto !important;
   }
 
-  #comp-kbgakxmn_r_comp-mvrqf3um {
-    order: 4 !important;
-    margin: 0 auto 24px !important;
+  .mobile-footer-info-card #comp-kbgakxmn_r_comp-mvrqf3um {
+    margin: 0 0 14px 0 !important;
     width: 100% !important;
-    max-width: calc(100vw - 32px) !important;
     text-align: center !important;
     position: static !important;
   }
 
-  #comp-kbgakxmn_r_comp-mvrqf3um * {
+  .mobile-footer-info-card #comp-kbgakxmn_r_comp-mvrqf3um * {
     text-align: center !important;
+    color: #8c2d19 !important;
+    font-size: 13px !important;
+    line-height: 1.8 !important;
+    font-weight: 600 !important;
   }
 
-  .comp-kbgakxmn_r_comp-mvte363p-presets-wrapper,
-  #comp-kbgakxmn_r_comp-mvte363p {
-    order: 5 !important;
-    margin: 0 auto 20px !important;
+  .mobile-footer-info-card .comp-kbgakxmn_r_comp-mvte363p-presets-wrapper,
+  .mobile-footer-info-card #comp-kbgakxmn_r_comp-mvte363p {
+    margin: 0 !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -2643,4 +2664,148 @@ body {
     font-size: 13px !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
   }
+}
+
+/* ==========================================================================
+   MOBILE NAV DRAWER (Toàn trang)
+   ========================================================================== */
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 15, 10, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-nav-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(320px, 85vw);
+  background: #ffffff;
+  z-index: 999999;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.mobile-nav-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(198, 156, 109, 0.2);
+  background: #faf7f2;
+}
+
+.mobile-nav-logo {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mobile-nav-close {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38402e;
+  font-size: 20px;
+  font-weight: 700;
+  transition: background 0.2s, color 0.2s;
+}
+
+.mobile-nav-close:hover {
+  background: rgba(140, 45, 25, 0.12);
+  color: #8c2d19;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #38402e;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, padding-left 0.2s;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  background: #fdfaf5;
+  color: #8c2d19;
+  padding-left: 26px;
+}
+
+.mobile-nav-link svg {
+  opacity: 0.4;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.mobile-nav-link:hover svg {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+.mobile-nav-footer {
+  padding: 20px;
+  background: #faf7f2;
+  border-top: 1px solid rgba(198, 156, 109, 0.2);
+  text-align: center;
+}
+
+.mobile-nav-hotline {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #8c2d19;
+  margin-bottom: 6px;
+  text-decoration: none;
+}
+
+.mobile-nav-email {
+  display: block;
+  font-size: 13px;
+  color: #7b8570;
+  text-decoration: none;
 }

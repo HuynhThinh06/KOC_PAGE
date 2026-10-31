@@ -4,16 +4,24 @@
  * Wix AI Chat, Quiz Modal, Video Hero, Toast
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   normalizeInternalLinks();
   initHeroVideo();
   initSmoothScroll();
   initWixFAQ();
   initWixChat();
   initWixCartDrawer();
+  initMobileMenu();
+  initMobileFooterLayout();
   initNotificationTooltip();
   updateHeaderCartCount();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
 
 // 0. KHỞI TẠO VIDEO CÂY BỒ KẾT HERO (TĂNG TỐC 2X THEO YÊU CẦU NGƯỜI DÙNG)
 function initHeroVideo() {
@@ -1115,3 +1123,164 @@ function normalizeInternalLinks() {
     }
   });
 }
+
+
+// ==========================================================================
+// 13. MENU HAMBURGER CHO MOBILE (SLIDE-OUT DRAWER HOÀN CHỈNH)
+// ==========================================================================
+function initMobileMenu() {
+  let backdrop = document.getElementById('mobileNavBackdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.id = 'mobileNavBackdrop';
+    backdrop.className = 'mobile-nav-backdrop';
+    document.body.appendChild(backdrop);
+  }
+
+  let drawer = document.getElementById('mobileNavDrawer');
+  if (!drawer) {
+    drawer = document.createElement('div');
+    drawer.id = 'mobileNavDrawer';
+    drawer.className = 'mobile-nav-drawer';
+    drawer.innerHTML = `
+      <div class="mobile-nav-header">
+        <a href="index.html" style="display:flex;align-items:center;">
+          <img src="assets/images/logo-thorakao.png" alt="Thorakao" class="mobile-nav-logo">
+        </a>
+        <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Đóng menu">✕</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link" data-nav="home">Trang chủ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li class="mobile-nav-item"><a href="product.html" class="mobile-nav-link" data-nav="product">Sản phẩm <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li class="mobile-nav-item"><a href="index.html#quizz" class="mobile-nav-link" data-nav="quiz">Quizz <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li class="mobile-nav-item"><a href="index.html#faq" class="mobile-nav-link" data-nav="faq">FAQ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li class="mobile-nav-item"><a href="index.html#contact" class="mobile-nav-link" data-nav="contact">Liên hệ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li class="mobile-nav-item"><a href="cart.html" class="mobile-nav-link" id="mobileNavCartLink">Giỏ hàng <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li class="mobile-nav-item"><a href="account.html" class="mobile-nav-link" id="mobileNavAccountLink">Tài khoản <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li class="mobile-nav-item"><a href="https://thorakao.com/" target="_blank" rel="noopener" class="mobile-nav-link">Website Thorakao ↗</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <a href="tel:02888873241" class="mobile-nav-hotline">Hotline: 028 8887 3241</a>
+        <a href="mailto:info@thorakao.com" class="mobile-nav-email">info@thorakao.com</a>
+      </div>
+    `;
+    document.body.appendChild(drawer);
+  }
+
+  function openDrawer() {
+    backdrop.classList.add('open');
+    drawer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    backdrop.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Gắn sự kiện cho nút hamburger
+  document.querySelectorAll('.hamburger-open-button, #animated-icon, [aria-label="Menu"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openDrawer();
+    });
+  });
+
+  const closeBtn = document.getElementById('mobileNavClose');
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  backdrop.addEventListener('click', closeDrawer);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeDrawer();
+    }
+  });
+
+  // Điều hướng mượt và đóng drawer khi click vào link
+  drawer.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (link.id === 'mobileNavCartLink') {
+        if (typeof openCartDrawer === 'function') {
+          e.preventDefault();
+          closeDrawer();
+          setTimeout(() => openCartDrawer(), 200);
+          return;
+        }
+      }
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        closeDrawer();
+        const target = document.querySelector(href);
+        if (target) {
+          setTimeout(() => {
+            const headerOffset = 65;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          }, 200);
+        }
+      } else if (href && href.startsWith('index.html#')) {
+        const hash = href.replace('index.html', '');
+        const target = document.querySelector(hash);
+        if (target) {
+          e.preventDefault();
+          closeDrawer();
+          setTimeout(() => {
+            const headerOffset = 65;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          }, 200);
+        }
+      } else {
+        closeDrawer();
+      }
+    });
+  });
+}
+
+// ==========================================================================
+// 14. GOM CARD LIÊN HỆ MOBILE CHO FOOTER (TÁCH BIỆT KHÔNG ĐÈ LÊN TRANH)
+// ==========================================================================
+function initMobileFooterLayout() {
+  function checkAndWrap() {
+    if (window.innerWidth <= 768) {
+      const container = document.querySelector('.comp-kbgakxmn_r_comp-mdr13kdg-container');
+      if (!container || document.getElementById('mobileFooterInfoCard')) return;
+
+      const addr = document.getElementById('comp-kbgakxmn_r_comp-mvrfv02a');
+      const socials = document.querySelector('.comp-kbgakxmn_r_comp-mpbn5rlu-presets-wrapper') || document.getElementById('comp-kbgakxmn_r_comp-mpbn5rlu');
+      const policies = document.getElementById('comp-kbgakxmn_r_comp-mvrqf3um');
+      const threads = document.querySelector('.comp-kbgakxmn_r_comp-mvte363p-presets-wrapper') || document.getElementById('comp-kbgakxmn_r_comp-mvte363p');
+
+      if (addr && policies) {
+        const card = document.createElement('div');
+        card.id = 'mobileFooterInfoCard';
+        card.className = 'mobile-footer-info-card';
+        card.appendChild(addr);
+        if (socials) card.appendChild(socials);
+        card.appendChild(policies);
+        if (threads) card.appendChild(threads);
+        container.appendChild(card);
+      }
+    } else {
+      const card = document.getElementById('mobileFooterInfoCard');
+      const container = document.querySelector('.comp-kbgakxmn_r_comp-mdr13kdg-container');
+      if (card && container) {
+        while (card.firstChild) {
+          container.appendChild(card.firstChild);
+        }
+        card.remove();
+      }
+    }
+  }
+
+  checkAndWrap();
+  window.addEventListener('resize', checkAndWrap);
+}
+
+window.initMobileMenu = initMobileMenu;
+window.initMobileFooterLayout = initMobileFooterLayout;
