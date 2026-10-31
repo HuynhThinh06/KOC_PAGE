@@ -1,9 +1,13 @@
 /* ==========================================================================
-   ANIMATIONS.CSS - HIỆU ỨNG CÁNH HOA ĐÀO RƠI
-   Nếp Tóc Thorakao:
-   - Cánh hoa đào rơi tại SECTION "THÔNG TIN CHIẾN DỊCH" (#comp-mvq57pzq)
+   ANIMATIONS.CSS - HỆ THỐNG HIỆU ỨNG NGHỆ THUẬT NẾP TÓC THORAKAO
+   1. Cánh hoa đào rơi tại SECTION "THÔNG TIN CHIẾN DỊCH" (#comp-mvq57pzq)
+   2. Thanh tiến trình "Sợi chỉ đỏ thêu hoa" (Silk Thread Scroll Progress)
+   3. Gợn sóng nước khi Click chuột (Herbal Water Ripple)
+   4. Bụi nắng ấm & Đốm sáng hổ phách (Sunlight Dust & Ambient Depth)
+   5. Nút bấm dát vàng ánh kim (Gold Sheen on CTA Buttons)
    ========================================================================== */
 
+/* 1. CÁNH HOA ĐÀO RƠI TẠI SECTION "THÔNG TIN CHIẾN DỊCH" */
 #comp-mvq57pzq {
   position: relative !important;
 }
@@ -18,4 +22,131 @@
   pointer-events: none !important;
   z-index: 25 !important;
   display: block !important;
+}
+
+/* 2. THANH TIẾN TRÌNH CUỘN "SỢI CHỈ ĐỎ THÊU HOA" */
+.koc-scroll-progress-bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 0% !important;
+  height: 3.5px !important;
+  background: linear-gradient(90deg, #933827 0%, #b8432a 50%, #e8a838 100%) !important;
+  z-index: 9999999 !important;
+  pointer-events: none !important;
+  box-shadow: 0 1px 6px rgba(184, 67, 42, 0.45) !important;
+  transition: width 0.08s ease-out !important;
+}
+
+.koc-scroll-flower-tip {
+  position: absolute !important;
+  right: -8px !important;
+  top: -6px !important;
+  width: 16px !important;
+  height: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25)) !important;
+  animation: flowerSpin 6s linear infinite !important;
+}
+
+@keyframes flowerSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 3. GỢN SÓNG NƯỚC KHI CLICK CHUỘT (HERBAL WATER RIPPLE) */
+.koc-water-ripple {
+  position: fixed !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+  transform: translate(-50%, -50%) scale(0) !important;
+  animation: waterRippleExpand 0.85s cubic-bezier(0.2, 0.7, 0.35, 1) forwards !important;
+  z-index: 9999998 !important;
+  border: 1.5px solid rgba(232, 168, 56, 0.65) !important;
+  background: radial-gradient(circle, rgba(255, 238, 195, 0.25) 0%, rgba(232, 168, 56, 0.1) 40%, rgba(255, 255, 255, 0) 70%) !important;
+  box-shadow: 0 0 14px rgba(232, 168, 56, 0.3) !important;
+}
+
+@keyframes waterRippleExpand {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  60% {
+    opacity: 0.6;
+  }
+  100% {
+    width: 90px;
+    height: 90px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* 4. BỤI NẮNG ẤM & ĐỐM SÁNG HỔ PHÁCH (SUNLIGHT DUST CANVAS) */
+.koc-sunlight-dust-canvas {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 15 !important;
+  display: block !important;
+}
+
+/* 5. NÚT BẤM DÁT VÀNG ÁNH KIM (GOLD SHEEN CTA) */
+button[type="submit"],
+.wix-footer-submit-btn,
+.checkout-btn,
+.cart-checkout-btn,
+.btn-primary {
+  position: relative !important;
+  overflow: hidden !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+button[type="submit"]:hover,
+.wix-footer-submit-btn:hover,
+.checkout-btn:hover,
+.cart-checkout-btn:hover,
+.btn-primary:hover {
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 18px rgba(140, 45, 25, 0.35) !important;
+}
+
+/* Dải sáng kim loại lướt qua nút mỗi 4.5 giây */
+button[type="submit"]::after,
+.wix-footer-submit-btn::after,
+.checkout-btn::after,
+.cart-checkout-btn::after,
+.btn-primary::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -50% !important;
+  left: -120% !important;
+  width: 50% !important;
+  height: 200% !important;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 240, 180, 0.42) 50%,
+    rgba(255, 255, 255, 0) 100%
+  ) !important;
+  transform: rotate(28deg) !important;
+  pointer-events: none !important;
+  animation: goldSheenSweep 4.5s ease-in-out infinite !important;
+}
+
+@keyframes goldSheenSweep {
+  0%, 70% {
+    left: -120%;
+  }
+  85%, 100% {
+    left: 220%;
+  }
 }
