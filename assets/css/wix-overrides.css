@@ -375,10 +375,9 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .wix-login-modal {
-  background-color: #b44637 !important;
-  background-image: url('../images/red-paper-bg.png') !important;
-  background-repeat: repeat !important;
-  background-size: 320px auto !important;
+  background-color: #8c2d19 !important;
+  background: #8c2d19 !important;
+  background-image: none !important;
   border: 1.5px solid rgba(255, 200, 0, 0.35) !important;
   border-radius: 20px !important;
   width: 440px !important;
