@@ -3357,7 +3357,7 @@ a#comp-mvq917uo,
     min-height: auto !important;
     width: auto !important;
     margin-left: 36.316287878787875% !important;
-    margin-top: max(0.5px, 0.32 * (var(--scaling-factor) - var(--scrollbar-width))) !important;
+    margin-top: max(0.5px, 0.34 * (var(--scaling-factor) - var(--scrollbar-width))) !important;
     padding: clamp(4px, 1.3vw, 7px) clamp(14px, 4.2vw, 24px) !important;
   }
 
