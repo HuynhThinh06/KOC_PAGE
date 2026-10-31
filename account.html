@@ -842,11 +842,22 @@
         // Tải lịch sử đơn hàng
         try {
           let orders = [];
+          const uid = (activeUser && activeUser.uid) || (A && A.user && A.user.uid) || '';
+          const userEmail = (email || '').trim().toLowerCase();
+
           if (A && A.user && A.getOrders) {
             orders = await A.getOrders();
-          } else {
+          } else if (userEmail || uid) {
             const allLocal = JSON.parse(localStorage.getItem('thorakao_koc_orders') || '[]');
-            orders = allLocal.filter((o) => !o.email || o.email.toLowerCase() === email.toLowerCase());
+            orders = allLocal.filter((o) => {
+              const orderEmail = (o.email || '').trim().toLowerCase();
+              const orderUid = (o.uid || '').trim();
+              if (uid && orderUid && uid === orderUid) return true;
+              if (userEmail && orderEmail && userEmail === orderEmail) return true;
+              return false;
+            });
+          } else {
+            orders = [];
           }
 
           if (orders.length > 0) {
@@ -952,7 +963,14 @@
       });
 
       window.addEventListener('auth:changed', (e) => renderAccountPage(e.detail));
-      document.addEventListener('DOMContentLoaded', () => renderAccountPage());
+      window.addEventListener('auth:ready', () => {
+        if (window.ThorakaoAuth && window.ThorakaoAuth.user) {
+          renderAccountPage(window.ThorakaoAuth.user);
+        }
+      });
+      document.addEventListener('DOMContentLoaded', () => {
+        renderAccountPage();
+      });
       renderAccountPage();
     })();
   </script>
