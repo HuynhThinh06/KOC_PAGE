@@ -346,6 +346,14 @@ button[aria-label*="Trò chuyện"].chat-hover-active path {
   font-weight: 700 !important;
   z-index: 10 !important;
   position: relative !important;
+  transition: color 0.2s ease !important;
+}
+
+#comp-kbgakxmn_r_comp-mvrfv02a a:hover,
+#comp-kbgakxmn_r_comp-mvrfv02a a:active,
+#comp-kbgakxmn_r_comp-mvrfv02a a:focus {
+  color: #ffc800 !important;
+  text-decoration: underline !important;
 }
 
 #comp-kbgakxmn_r_comp-mpbn5rlu,
@@ -355,9 +363,49 @@ button[aria-label*="Trò chuyện"].chat-hover-active path {
   position: relative !important;
 }
 
-#comp-kbgakxmn_r_comp-mvrqf3um a {
+/* Chính sách Footer: Mặc định màu đỏ #ad402e, khi di chuột (hover) hoặc nhấn vào (active/focus) đổi sang màu vàng #ffc800 */
+#comp-kbgakxmn_r_comp-mvrqf3um a,
+.wix-footer-policies a,
+#comp-kbgakxmn_r_comp-mvrfuy2j a,
+a[href*="chinh-sach-doi-tra"],
+a[href*="chinh-sach-van-chuyen"],
+a[href*="chinh-sach-quyen-rieng-tu"] {
   color: #ad402e !important;
   font-weight: 700 !important;
+  text-decoration: underline !important;
+  transition: color 0.2s ease, text-shadow 0.2s ease !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: rgba(255, 200, 0, 0.3) !important;
+}
+
+#comp-kbgakxmn_r_comp-mvrqf3um a:hover,
+#comp-kbgakxmn_r_comp-mvrqf3um a:active,
+#comp-kbgakxmn_r_comp-mvrqf3um a:focus,
+#comp-kbgakxmn_r_comp-mvrqf3um a:hover *,
+#comp-kbgakxmn_r_comp-mvrqf3um a:active *,
+#comp-kbgakxmn_r_comp-mvrqf3um a:focus *,
+.wix-footer-policies a:hover,
+.wix-footer-policies a:active,
+.wix-footer-policies a:focus,
+.wix-footer-policies a:hover *,
+.wix-footer-policies a:active *,
+.wix-footer-policies a:focus *,
+#comp-kbgakxmn_r_comp-mvrfuy2j a:hover,
+#comp-kbgakxmn_r_comp-mvrfuy2j a:active,
+#comp-kbgakxmn_r_comp-mvrfuy2j a:focus,
+#comp-kbgakxmn_r_comp-mvrfuy2j a:hover *,
+#comp-kbgakxmn_r_comp-mvrfuy2j a:active *,
+#comp-kbgakxmn_r_comp-mvrfuy2j a:focus *,
+a[href*="chinh-sach-doi-tra"]:hover,
+a[href*="chinh-sach-doi-tra"]:active,
+a[href*="chinh-sach-doi-tra"]:focus,
+a[href*="chinh-sach-van-chuyen"]:hover,
+a[href*="chinh-sach-van-chuyen"]:active,
+a[href*="chinh-sach-van-chuyen"]:focus,
+a[href*="chinh-sach-quyen-rieng-tu"]:hover,
+a[href*="chinh-sach-quyen-rieng-tu"]:active,
+a[href*="chinh-sach-quyen-rieng-tu"]:focus {
+  color: #ffc800 !important;
   text-decoration: underline !important;
 }
 
