@@ -1048,6 +1048,15 @@ async function handleMemberLogout() {
   checkAuthState();
   closeMemberDropdown();
   showToast('Đã đăng xuất tài khoản thành công!');
+
+  // Tự động chuyển hướng về trang chủ sau khi đăng xuất
+  const currentPath = window.location.pathname.toLowerCase();
+  const isHome = currentPath.endsWith('/') || currentPath.endsWith('/index.html') || currentPath.endsWith('index.html');
+  if (!isHome) {
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 450);
+  }
 }
 
 function closeMemberDropdown() {
