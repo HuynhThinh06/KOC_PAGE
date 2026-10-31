@@ -3080,3 +3080,37 @@ body {
   color: #7b8570;
   text-decoration: none;
 }
+
+/* ==========================================================================
+   ĐỒNG BỘ KÍCH CỠ ICON MẠNG XÃ HỘI Ở CHÂN TRANG (FACEBOOK, TIKTOK, THREADS)
+   Đảm bảo cả 3 icon có cùng kích thước 32px trên tất cả các trang
+   ========================================================================== */
+.wix-footer-socials {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+.wix-footer-social-link {
+  width: 34px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.2s ease !important;
+}
+
+.wix-footer-social-link:hover {
+  transform: scale(1.1) !important;
+}
+
+.wix-footer-social-link svg {
+  width: 32px !important;
+  height: 32px !important;
+  display: block !important;
+}
+
+.wix-footer-social-link[aria-label="Threads"] svg {
+  width: 32px !important;
+  height: 32px !important;
+}
