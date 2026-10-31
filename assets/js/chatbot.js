@@ -487,7 +487,52 @@ function escapeChatAttr(str) {
 // Tùy chọn gọi AI qua Google Apps Script hoặc Gemini API nếu được cấu hình
 async function queryOptionalAIProxy(userMessage) {
   const cfg = typeof THORAKAO_CONFIG !== 'undefined' ? THORAKAO_CONFIG : {};
-  // Nếu có cấu hình GEMINI_API_KEY trong THORAKAO_CONFIG
+
+  // 1. Gửi qua Google Apps Script Webhook (Option A - Serverless AI Proxy an toàn)
+  if (cfg.GOOGLE_SHEET_WEBHOOK_URL && cfg.GOOGLE_SHEET_WEBHOOK_URL.startsWith('http')) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 12000); // 12s timeout
+
+      // Trích xuất 4 lượt hội thoại gần nhất
+      const history = [];
+      const container = getChatMessagesContainer();
+      if (container) {
+        const msgs = container.querySelectorAll('.wix-chat-msg:not(.wix-chat-typing)');
+        const sliceMsgs = Array.from(msgs).slice(-4);
+        for (const m of sliceMsgs) {
+          const isUser = m.classList.contains('user');
+          const txt = (m.innerText || m.textContent || '').trim();
+          if (txt && !txt.includes('Chào bạn! 👋')) {
+            history.push({ role: isUser ? 'user' : 'model', text: txt.slice(0, 300) });
+          }
+        }
+      }
+
+      const resp = await fetch(cfg.GOOGLE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          type: 'CHATBOT',
+          message: userMessage,
+          history: history
+        }),
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+
+      if (resp.ok) {
+        const resData = await resp.json();
+        if (resData && resData.status === 'success' && resData.reply) {
+          return formatAiReplyHtml(resData.reply);
+        }
+      }
+    } catch (err) {
+      console.warn('[Thorakao Chatbot] Webhook AI proxy error or timeout, switching to local knowledge engine:', err);
+    }
+  }
+
+  // 2. Thử gọi trực tiếp bằng Client Key nếu có (Option B)
   if (cfg.GEMINI_API_KEY) {
     try {
       const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${cfg.GEMINI_API_KEY}`, {
@@ -506,14 +551,30 @@ async function queryOptionalAIProxy(userMessage) {
         const data = await resp.json();
         const aiText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
         if (aiText) {
-          return aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>') + buildContextualActions(['price_buy', 'quiz_campaign_koc']);
+          return formatAiReplyHtml(aiText);
         }
       }
     } catch (e) {
-      // Fallback mượt về bộ máy dữ liệu nội bộ
+      // Fallback
     }
   }
+
   return null;
+}
+
+function formatAiReplyHtml(rawText) {
+  let html = rawText
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/\n\s*[-*•]\s*(.*?)(?=\n|$)/g, '<br>• $1')
+    .replace(/\n{2,}/g, '<br><br>')
+    .replace(/\n/g, '<br>');
+
+  html += buildContextualActions(['price_buy', 'quiz_campaign_koc']);
+  return html;
 }
 
 // Gửi thông tin câu hỏi + SĐT của khách về Google Sheets (Tab LienHe)
