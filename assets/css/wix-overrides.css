@@ -1402,6 +1402,7 @@ a, button, [role="button"], input, textarea, select {
   transition: transform 0.2s ease !important;
   margin-left: auto !important;
   letter-spacing: 1px !important;
+  text-align: center !important;
 }
 
 .quiz-cta-cursive:hover {
@@ -2134,6 +2135,36 @@ div[data-hook="Form-wrapper"] {
     font-size: 13px !important;
     white-space: nowrap !important;
   }
+
+  .quiz-result-footer {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .quiz-restart-btn {
+    margin: 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .quiz-cta-cursive,
+  #quizResCta {
+    display: block !important;
+    text-align: center !important;
+    margin: 10px auto 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    line-height: 1.35 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    font-size: clamp(20px, 5.2vw, 28px) !important;
+  }
 }
 
 /* WIX FOOTER ĐỒNG BỘ */
@@ -2760,6 +2791,38 @@ body {
     margin: 0 auto !important;
     padding: 24px 16px !important;
     box-sizing: border-box !important;
+  }
+
+  .quiz-result-footer {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .quiz-restart-btn {
+    margin: 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .quiz-cta-cursive,
+  #quizResCta {
+    display: block !important;
+    text-align: center !important;
+    margin: 10px auto 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    line-height: 1.35 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    font-size: clamp(20px, 5.2vw, 28px) !important;
   }
 
   /* ==========================================================================
