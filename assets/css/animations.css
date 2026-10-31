@@ -1,10 +1,10 @@
 /* ==========================================================================
    ANIMATIONS.CSS - HỆ THỐNG HIỆU ỨNG NGHỆ THUẬT NẾP TÓC THORAKAO
    1. Cánh hoa đào rơi tại SECTION "THÔNG TIN CHIẾN DỊCH" (#comp-mvq57pzq)
-   2. Thanh tiến trình "Sợi chỉ đỏ thêu hoa" (Silk Thread Scroll Progress)
-   3. Gợn sóng nước khi Click chuột (Herbal Water Ripple)
-   4. Bụi nắng ấm & Đốm sáng hổ phách (Sunlight Dust & Ambient Depth)
-   5. Nút bấm dát vàng ánh kim (Gold Sheen on CTA Buttons)
+   2. Bụi nắng ấm & Đốm sáng hổ phách tại SẢN PHẨM / HERO
+   3. Thanh tiến trình "Sợi chỉ đỏ thêu hoa" (Silk Thread Scroll Progress)
+   4. Gợn sóng nước giọt thảo mộc khi Click (Herbal Water Droplet Ripple)
+   5. Nút bấm dát vàng ánh kim (Gold Sheen on All CTA Buttons & Links)
    ========================================================================== */
 
 /* 1. CÁNH HOA ĐÀO RƠI TẠI SECTION "THÔNG TIN CHIẾN DỊCH" */
@@ -24,70 +24,7 @@
   display: block !important;
 }
 
-/* 2. THANH TIẾN TRÌNH CUỘN "SỢI CHỈ ĐỎ THÊU HOA" */
-.koc-scroll-progress-bar {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 0% !important;
-  height: 3.5px !important;
-  background: linear-gradient(90deg, #933827 0%, #b8432a 50%, #e8a838 100%) !important;
-  z-index: 9999999 !important;
-  pointer-events: none !important;
-  box-shadow: 0 1px 6px rgba(184, 67, 42, 0.45) !important;
-  transition: width 0.08s ease-out !important;
-}
-
-.koc-scroll-flower-tip {
-  position: absolute !important;
-  right: -8px !important;
-  top: -6px !important;
-  width: 16px !important;
-  height: 16px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25)) !important;
-  animation: flowerSpin 6s linear infinite !important;
-}
-
-@keyframes flowerSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* 3. GỢN SÓNG NƯỚC KHI CLICK CHUỘT (HERBAL WATER RIPPLE) */
-.koc-water-ripple {
-  position: fixed !important;
-  border-radius: 50% !important;
-  pointer-events: none !important;
-  transform: translate(-50%, -50%) scale(0) !important;
-  animation: waterRippleExpand 0.85s cubic-bezier(0.2, 0.7, 0.35, 1) forwards !important;
-  z-index: 9999998 !important;
-  border: 1.5px solid rgba(232, 168, 56, 0.65) !important;
-  background: radial-gradient(circle, rgba(255, 238, 195, 0.25) 0%, rgba(232, 168, 56, 0.1) 40%, rgba(255, 255, 255, 0) 70%) !important;
-  box-shadow: 0 0 14px rgba(232, 168, 56, 0.3) !important;
-}
-
-@keyframes waterRippleExpand {
-  0% {
-    width: 0px;
-    height: 0px;
-    opacity: 0.95;
-    transform: translate(-50%, -50%) scale(0);
-  }
-  60% {
-    opacity: 0.6;
-  }
-  100% {
-    width: 90px;
-    height: 90px;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-/* 4. BỤI NẮNG ẤM & ĐỐM SÁNG HỔ PHÁCH (SUNLIGHT DUST CANVAS) */
+/* 2. BỤI NẮNG ẤM & ĐỐM SÁNG HỔ PHÁCH */
 .koc-sunlight-dust-canvas {
   position: absolute !important;
   top: 0 !important;
@@ -99,54 +36,176 @@
   display: block !important;
 }
 
-/* 5. NÚT BẤM DÁT VÀNG ÁNH KIM (GOLD SHEEN CTA) */
+/* 3. THANH TIẾN TRÌNH CUỘN "SỢI CHỈ ĐỎ THÊU HOA"
+   Gắn cố định ngay dưới chân thanh Header (top: 76px trên máy tính, và thích ứng sticky) */
+.koc-scroll-progress-bar {
+  position: fixed !important;
+  top: 75px !important;
+  left: 0 !important;
+  width: 0% !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #8c2415 0%, #b8432a 40%, #ffbe3b 85%, #fff1b8 100%) !important;
+  z-index: 9999999 !important;
+  pointer-events: none !important;
+  box-shadow: 0 2px 10px rgba(184, 67, 42, 0.65), 0 0 6px rgba(255, 190, 59, 0.8) !important;
+  transition: width 0.1s cubic-bezier(0.1, 0.7, 0.1, 1) !important;
+}
+
+@media (max-width: 860px) {
+  .koc-scroll-progress-bar {
+    top: 60px !important;
+    height: 3.5px !important;
+  }
+}
+
+.koc-scroll-flower-tip {
+  position: absolute !important;
+  right: -11px !important;
+  top: -9px !important;
+  width: 22px !important;
+  height: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35)) !important;
+  animation: flowerSpinTip 5s linear infinite !important;
+}
+
+@keyframes flowerSpinTip {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 4. GỢN SÓNG NƯỚC GIỌT THẢO MỘC KHI CLICK CHUỘT (HERBAL WATER RIPPLE) */
+.koc-ripple-container {
+  position: fixed !important;
+  pointer-events: none !important;
+  z-index: 99999999 !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Giọt nước vàng óng bừng sáng tại tâm click */
+.koc-ripple-drop {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  background: #ffdd77 !important;
+  box-shadow: 0 0 14px #ffbe3b, 0 0 6px #ffffff !important;
+  transform: translate(-50%, -50%) scale(1) !important;
+  animation: rippleDropFade 0.5s ease-out forwards !important;
+}
+
+@keyframes rippleDropFade {
+  0% { transform: translate(-50%, -50%) scale(1.4); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+}
+
+/* Vòng sóng chính mở rộng */
+.koc-ripple-wave-1 {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  border-radius: 50% !important;
+  border: 2.5px solid #e8a838 !important;
+  background: radial-gradient(circle, rgba(255, 235, 170, 0.35) 0%, rgba(232, 168, 56, 0.12) 50%, rgba(255, 255, 255, 0) 75%) !important;
+  box-shadow: 0 0 16px rgba(232, 168, 56, 0.5) !important;
+  transform: translate(-50%, -50%) scale(0) !important;
+  animation: rippleWaveMain 0.9s cubic-bezier(0.15, 0.8, 0.35, 1) forwards !important;
+}
+
+@keyframes rippleWaveMain {
+  0% { width: 0px; height: 0px; opacity: 1; transform: translate(-50%, -50%) scale(0); }
+  60% { opacity: 0.75; }
+  100% { width: 140px; height: 140px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Vòng sóng phụ lăn tăn phía trong */
+.koc-ripple-wave-2 {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  border-radius: 50% !important;
+  border: 1.5px solid rgba(255, 240, 200, 0.85) !important;
+  transform: translate(-50%, -50%) scale(0) !important;
+  animation: rippleWaveEcho 0.75s cubic-bezier(0.2, 0.85, 0.4, 1) 0.12s forwards !important;
+}
+
+@keyframes rippleWaveEcho {
+  0% { width: 0px; height: 0px; opacity: 0.9; transform: translate(-50%, -50%) scale(0); }
+  100% { width: 85px; height: 85px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* 5. NÚT BẤM DÁT VÀNG ÁNH KIM (GOLD SHEEN CTA)
+   Phủ trên tất cả các nút: Đặt hàng, Mua ngay, Đăng ký, Gửi form, Đăng nhập */
+a[href*="product.html"],
+button[data-hook="submit-button"],
 button[type="submit"],
 .wix-footer-submit-btn,
+.wix-auth-submit-btn,
 .checkout-btn,
 .cart-checkout-btn,
-.btn-primary {
+.buy-now-btn,
+.add-to-cart-btn,
+#btn-login-header,
+.quiz-restart-btn {
   position: relative !important;
   overflow: hidden !important;
   transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  box-shadow: 0 4px 12px rgba(140, 45, 25, 0.22) !important;
 }
 
+a[href*="product.html"]:hover,
+button[data-hook="submit-button"]:hover,
 button[type="submit"]:hover,
 .wix-footer-submit-btn:hover,
+.wix-auth-submit-btn:hover,
 .checkout-btn:hover,
 .cart-checkout-btn:hover,
-.btn-primary:hover {
-  transform: translateY(-1.5px) !important;
-  box-shadow: 0 6px 18px rgba(140, 45, 25, 0.35) !important;
+.buy-now-btn:hover,
+.add-to-cart-btn:hover,
+#btn-login-header:hover,
+.quiz-restart-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(140, 45, 25, 0.45), 0 0 12px rgba(255, 190, 59, 0.4) !important;
 }
 
-/* Dải sáng kim loại lướt qua nút mỗi 4.5 giây */
+/* Vệt quét ánh kim vàng lướt qua nút mỗi 3.8 giây */
+a[href*="product.html"]::after,
+button[data-hook="submit-button"]::after,
 button[type="submit"]::after,
 .wix-footer-submit-btn::after,
+.wix-auth-submit-btn::after,
 .checkout-btn::after,
 .cart-checkout-btn::after,
-.btn-primary::after {
+.buy-now-btn::after,
+.add-to-cart-btn::after,
+#btn-login-header::after,
+.quiz-restart-btn::after {
   content: "" !important;
   position: absolute !important;
-  top: -50% !important;
-  left: -120% !important;
-  width: 50% !important;
-  height: 200% !important;
+  top: -60% !important;
+  left: -140% !important;
+  width: 65% !important;
+  height: 220% !important;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 240, 180, 0.42) 50%,
+    rgba(255, 245, 200, 0.55) 50%,
     rgba(255, 255, 255, 0) 100%
   ) !important;
-  transform: rotate(28deg) !important;
+  transform: rotate(26deg) !important;
   pointer-events: none !important;
-  animation: goldSheenSweep 4.5s ease-in-out infinite !important;
+  animation: goldSheenSweep 3.8s ease-in-out infinite !important;
 }
 
 @keyframes goldSheenSweep {
-  0%, 70% {
-    left: -120%;
+  0%, 65% {
+    left: -140%;
   }
   85%, 100% {
-    left: 220%;
+    left: 240%;
   }
 }
