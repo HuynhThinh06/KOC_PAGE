@@ -1,213 +1,87 @@
 /* ==========================================================================
-   ANIMATIONS.CSS - HIỆU ỨNG NGHỆ THUẬT ĐỘNG (INTERACTIVE ART & MOTION)
-   Nếp Tóc Thorakao:
-   - Cánh hoa đào rơi tại THÔNG TIN CHIẾN DỊCH
-   - 3D Interactive Parallax Tilt tại GIỚI THIỆU SẢN PHẨM
-   - Suối tóc sóng sánh & sao lấp lánh tại HƯỚNG DẪN SỬ DỤNG
-   - Chải tóc óng mượt & lá bồ kết đung đưa tại FOOTER
+   ANIMATIONS.CSS - HỆ THỐNG HIỆU ỨNG NGHỆ THUẬT ĐỘNG (60 FPS CANVAS & 3D)
+   Nếp Tóc Thorakao - Giữ nếp xưa, Tỏ nếp mình:
+   1. Cánh hoa đào rơi & Cành đào đung đưa tại THÔNG TIN CHIẾN DỊCH (#comp-mvq57pzq)
+   2. Khung sản phẩm & Chai dầu gội Thorakao 3D nổi khối tại GIỚI THIỆU SẢN PHẨM (#comp-mpbn2o2z)
+   3. Suối tóc cô gái nằm gợn sóng bồng bềnh & Sao lấp lánh tại HƯỚNG DẪN SỬ DỤNG (#comp-mvpfzoii)
+   4. Cô gái chải tóc óng mượt & Lá bồ kết đung đưa tại FOOTER (#comp-kbgakxmn_r_comp-kbgakgyt)
    ========================================================================== */
 
-/* 1. CÁNH HOA ĐÀO RƠI TẠI SECTION "THÔNG TIN CHIẾN DỊCH" */
-.sakura-canvas-campaign {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  pointer-events: none !important;
-  z-index: 99 !important;
-}
-
-/* 2. HIỆU ỨNG 3D PARALLAX TILT TẠI PHẦN SẢN PHẨM */
-#comp-mpbn2o2z {
-  perspective: 1200px !important;
-  transform-style: preserve-3d !important;
-}
-
-.product-3d-wrap {
+/* Đảm bảo các Section mục tiêu có position: relative và cho phép hiển thị lớp Canvas nghệ thuật */
+#comp-mvq57pzq,
+#comp-mpbn2o2z,
+#comp-mvpfzoii,
+#comp-kbgakxmn_r_comp-kbgakgyt,
+.wix-synced-footer {
   position: relative !important;
-  width: 100% !important;
-  height: 100% !important;
-  transform-style: preserve-3d !important;
-  cursor: pointer !important;
 }
 
-.product-3d-wrap img {
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  transition: transform 0.15s ease-out, filter 0.3s ease !important;
-  will-change: transform !important;
-}
-
-/* Vệt sáng bóng phản quang chuyển động theo chuột */
-.product-specular-glare {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
-  transition: opacity 0.35s ease !important;
-  z-index: 50 !important;
-  mix-blend-mode: overlay !important;
-}
-
-.product-3d-wrap:hover .product-specular-glare {
-  opacity: 1 !important;
-}
-
-/* Vệt ánh kim lướt qua thân chai 3D định kỳ */
-.bottle-shine-beam {
+/* Lớp Canvas nghệ thuật phủ chuẩn xác lên từng Section */
+.koc-art-canvas {
   position: absolute !important;
   top: 0 !important;
-  left: -120% !important;
-  width: 50% !important;
-  height: 100% !important;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent) !important;
-  transform: skewX(-25deg) !important;
-  pointer-events: none !important;
-  z-index: 45 !important;
-  animation: shineBeamLoop 5.5s ease-in-out infinite !important;
-}
-
-@keyframes shineBeamLoop {
-  0%, 65% {
-    left: -120%;
-  }
-  85%, 100% {
-    left: 200%;
-  }
-}
-
-/* 3. HIỆU ỨNG SUỐI TÓC BỒNG BỀNH & SAO LẤP LÁNH TẠI HƯỚNG DẪN SỬ DỤNG */
-.hair-motion-layer {
-  position: absolute !important;
-  inset: 0 !important;
+  left: 0 !important;
   width: 100% !important;
   height: 100% !important;
   pointer-events: none !important;
-  z-index: 99 !important;
+  z-index: 25 !important;
+  display: block !important;
 }
 
-.hair-wave-glow {
+/* ==========================================================================
+   SÂN KHẤU 3D NỔI KHỐI CHO SẢN PHẨM DẦU GỘI THORAKAO (#comp-mpbn2o2z)
+   ========================================================================== */
+#comp-mpbn2o2z {
+  perspective: 1100px !important;
+}
+
+.koc-3d-product-stage {
   position: absolute !important;
-  bottom: 8% !important;
-  right: 6% !important;
-  width: 60% !important;
-  height: 48% !important;
-  background: radial-gradient(ellipse at center, rgba(255, 240, 210, 0.22) 0%, rgba(255, 255, 255, 0) 70%) !important;
-  border-radius: 50% !important;
-  filter: blur(12px) !important;
-  animation: hairBreathMotion 4s ease-in-out infinite alternate !important;
-}
-
-@keyframes hairBreathMotion {
-  0% {
-    opacity: 0.2;
-    transform: scale(0.96) translateY(5px);
-  }
-  50% {
-    opacity: 0.75;
-    transform: scale(1.04) translateY(-3px);
-  }
-  100% {
-    opacity: 0.3;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.hair-star-twinkle {
-  position: absolute !important;
-  width: 22px !important;
-  height: 22px !important;
+  z-index: 28 !important;
   pointer-events: none !important;
-  animation: starTwinkle 2.8s ease-in-out infinite !important;
+  transform-style: preserve-3d !important;
+  will-change: transform, filter !important;
+  border-radius: 6px !important;
 }
 
-.h-star-1 { bottom: 32% !important; right: 44% !important; animation-delay: 0s !important; }
-.h-star-2 { bottom: 24% !important; right: 28% !important; animation-delay: 0.9s !important; }
-.h-star-3 { bottom: 14% !important; right: 14% !important; animation-delay: 1.8s !important; }
+.koc-3d-product-stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  border-radius: 6px !important;
+}
 
-@keyframes starTwinkle {
+/* Huy hiệu 3D Interactive nhỏ gọn góc dưới khung ảnh sản phẩm */
+.koc-3d-badge {
+  position: absolute !important;
+  bottom: 14px !important;
+  right: 14px !important;
+  background: rgba(40, 20, 12, 0.78) !important;
+  color: #ffe39f !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  padding: 5px 11px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 215, 130, 0.55) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+  pointer-events: none !important;
+  z-index: 35 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  backdrop-filter: blur(4px) !important;
+  animation: badgePulse3D 2.5s ease-in-out infinite !important;
+}
+
+@keyframes badgePulse3D {
   0%, 100% {
-    opacity: 0.25;
-    transform: scale(0.6) rotate(0deg);
+    transform: translateZ(40px) scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 8px rgba(255, 200, 90, 0.3);
   }
   50% {
-    opacity: 1;
-    transform: scale(1.4) rotate(90deg);
-    filter: drop-shadow(0 0 8px #ffffff);
-  }
-}
-
-/* 4. HIỆU ỨNG CÔ GÁI CHẢI TÓC & LÁ BỒ KẾT TẠI FOOTER */
-.footer-motion-layer {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  pointer-events: none !important;
-  z-index: 10 !important;
-}
-
-/* Vệt sáng lướt chải mái tóc óng ả */
-.comb-sweep-wrap {
-  position: absolute !important;
-  top: 15% !important;
-  left: 8% !important;
-  width: 240px !important;
-  height: 480px !important;
-  overflow: hidden !important;
-  pointer-events: none !important;
-}
-
-.comb-sweep-glow {
-  width: 100% !important;
-  height: 90px !important;
-  background: linear-gradient(180deg, rgba(255, 230, 160, 0) 0%, rgba(255, 240, 180, 0.5) 50%, rgba(255, 230, 160, 0) 100%) !important;
-  border-radius: 50% !important;
-  filter: blur(8px) !important;
-  transform: translateY(-100px) rotate(-18deg) !important;
-  animation: combMotion 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
-}
-
-@keyframes combMotion {
-  0% {
-    transform: translateY(-90px) rotate(-18deg);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.85;
-  }
-  75% {
-    opacity: 0.85;
-  }
-  100% {
-    transform: translateY(420px) rotate(-12deg);
-    opacity: 0;
-  }
-}
-
-/* Lá bồ kết đung đưa theo gió */
-.footer-leaf-breeze {
-  position: absolute !important;
-  top: 4% !important;
-  left: 22% !important;
-  width: 180px !important;
-  height: 120px !important;
-  transform-origin: top left !important;
-  animation: leafBreezeLoop 5s ease-in-out infinite alternate !important;
-}
-
-@keyframes leafBreezeLoop {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(3deg) translateY(3px);
-  }
-  100% {
-    transform: rotate(-2.5deg) translateY(-2px);
+    transform: translateZ(40px) scale(1.06);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), 0 0 16px rgba(255, 215, 120, 0.65);
   }
 }
