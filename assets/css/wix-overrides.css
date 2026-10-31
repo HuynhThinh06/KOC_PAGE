@@ -2365,6 +2365,51 @@ html, body {
   max-height: min(92vh, 640px) !important;
 }
 
+
+/* ==========================================================================
+   KHẮC PHỤC TRIỆT ĐỂ LỖI LOGO HEADER THORAKAO BỊ MẤT CHỮ TRÊN DESKTOP
+   ========================================================================== */
+#comp-mb7ogqrp_r_comp-mpjsoyu5,
+.comp-mb7ogqrp_r_comp-mpjsoyu5 {
+  overflow: visible !important;
+  width: auto !important;
+  min-width: 70px !important;
+  height: 56px !important;
+  max-height: 56px !important;
+  aspect-ratio: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  z-index: 10 !important;
+}
+
+#comp-mb7ogqrp_r_comp-mpjsoyu5 ._logo_ackza_1,
+.comp-mb7ogqrp_r_comp-mpjsoyu5 ._logo_ackza_1 {
+  overflow: visible !important;
+  width: auto !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+#comp-mb7ogqrp_r_comp-mpjsoyu5 a,
+#comp-mb7ogqrp_r_comp-mpjsoyu5 ._linkLayer_ackza_12 {
+  overflow: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  width: auto !important;
+}
+
+#comp-mb7ogqrp_r_comp-mpjsoyu5 img {
+  height: 48px !important;
+  max-height: 50px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
 /* ==========================================================================
    5. TỐI ƯU GIAO DIỆN MOBILE HOÀN CHỈNH (RESPONSIVE CHO ĐIỆN THOẠI 360px - 768px)
    Khắc phục hiện tượng cắt nửa icon avatar, hamburger lệch, chồng chéo footer & tràn lề
