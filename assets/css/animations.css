@@ -1,7 +1,12 @@
 /* ==========================================================================
-   ANIMATIONS.CSS - HỆ THỐNG HIỆU ỨNG NGHỆ THUẬT NẾP TÓC THORAKAO
+   ANIMATIONS.CSS - HỆ THỐNG NGHỆ THUẬT & TRẢI NGHIỆM 3D NẾP TÓC THORAKAO
    1. Cánh hoa đào rơi tại SECTION "THÔNG TIN CHIẾN DỊCH" (#comp-mvq57pzq)
    2. Bụi nắng ấm & Đốm sáng hổ phách tại SẢN PHẨM (#comp-mpbn2o2z)
+   3. Lá bồ kết rơi tại THÀNH PHẦN & CÔNG DỤNG (#comp-mvq65b7f)
+   4. Đom đóm vàng làng quê tại CÂU CHUYỆN THƯƠNG HIỆU (#comp-mpbn2o51)
+   5. Kết cấu giấy dó truyền thống (Paper Grain Texture)
+   6. Cuộn trang mở êm dịu (Scroll Reveal)
+   7. Khối Showcase 3D Tương tác 360° Chai Dầu Gội Thorakao 750ml
    ========================================================================== */
 
 /* 1. CÁNH HOA ĐÀO RƠI TẠI SECTION "THÔNG TIN CHIẾN DỊCH" */
@@ -35,4 +40,315 @@
   pointer-events: none !important;
   z-index: 15 !important;
   display: block !important;
+}
+
+/* 3. LÁ BỒ KẾT RƠI TẠI THÀNH PHẦN & CÔNG DỤNG */
+#comp-mvq65b7f {
+  position: relative !important;
+}
+
+.koc-leaves-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 25 !important;
+  display: block !important;
+}
+
+/* 4. ĐOM ĐÓM VÀNG LÀNG QUÊ TẠI CÂU CHUYỆN THƯƠNG HIỆU */
+#comp-mpbn2o51 {
+  position: relative !important;
+}
+
+.koc-fireflies-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 25 !important;
+  display: block !important;
+}
+
+/* 5. KẾT CẤU GIẤY DÓ TRUYỀN THỐNG (SUBTLE PAPER GRAIN) */
+.koc-paper-grain-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 999999 !important;
+  opacity: 0.038 !important;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
+  mix-blend-mode: multiply !important;
+}
+
+/* 6. HIỆU ỨNG CUỘN TRANG MỞ TỰ NHIÊN (SCROLL REVEAL) */
+.koc-reveal-target {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, transform !important;
+}
+
+.koc-revealed {
+  opacity: 1 !important;
+  transform: translateY(0px) !important;
+}
+
+/* ==========================================================================
+   7. KHỐI SHOWCASE 3D TƯƠNG TÁC XOAY 360° CHAI DẦU GỘI THORAKAO 750ML
+   ========================================================================== */
+.koc-3d-showcase-section {
+  width: 100% !important;
+  background: radial-gradient(circle at 50% 30%, #fbf4e6 0%, #ecdcc0 70%, #d8be9a 100%) !important;
+  padding: 60px 20px 80px 20px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-top: 1px solid rgba(147, 56, 39, 0.15) !important;
+  border-bottom: 1px solid rgba(147, 56, 39, 0.15) !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.koc-3d-showcase-container {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Header tiêu đề khối */
+.koc-3d-header {
+  text-align: center !important;
+  margin-bottom: 30px !important;
+}
+
+.koc-3d-badge-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: rgba(147, 56, 39, 0.08) !important;
+  color: #933827 !important;
+  border: 1px solid rgba(147, 56, 39, 0.3) !important;
+  padding: 6px 16px !important;
+  border-radius: 30px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  margin-bottom: 14px !important;
+  text-transform: uppercase !important;
+}
+
+.koc-3d-title {
+  font-family: 'Cinzel Decorative', 'Montserrat', serif, sans-serif !important;
+  font-size: 34px !important;
+  font-weight: 700 !important;
+  color: #3b1c10 !important;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.25 !important;
+}
+
+.koc-3d-subtitle {
+  font-size: 16px !important;
+  color: #634335 !important;
+  margin: 0 !important;
+  max-width: 620px !important;
+}
+
+/* Sân khấu 3D Canvas */
+.koc-3d-stage-wrapper {
+  position: relative !important;
+  width: 520px !important;
+  max-width: 95vw !important;
+  height: 600px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  user-select: none !important;
+  touch-action: none !important;
+  cursor: grab !important;
+}
+
+.koc-3d-stage-wrapper:active {
+  cursor: grabbing !important;
+}
+
+.koc-bottle-3d-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+/* Lời gợi ý kéo xoay 360° */
+.koc-3d-hint {
+  position: absolute !important;
+  bottom: 25px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(30, 20, 15, 0.72) !important;
+  color: #ffdda0 !important;
+  padding: 8px 18px !important;
+  border-radius: 20px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  backdrop-filter: blur(6px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+  pointer-events: none !important;
+  animation: hintPulse 2.8s ease-in-out infinite !important;
+}
+
+@keyframes hintPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Các điểm tương tác Hotspots 3D */
+.koc-hotspot {
+  position: absolute !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  z-index: 30 !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+.hs-dot {
+  width: 20px !important;
+  height: 20px !important;
+  background: #ffc800 !important;
+  border: 3px solid #ffffff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 14px rgba(255, 200, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.35) !important;
+  animation: hotspotPulse 2s ease-in-out infinite !important;
+}
+
+@keyframes hotspotPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 200, 0, 0.8);
+  }
+  50% {
+    transform: scale(1.22);
+    box-shadow: 0 0 20px rgba(255, 200, 0, 1), 0 0 8px #ffffff;
+  }
+}
+
+.hs-card {
+  position: absolute !important;
+  left: 28px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: #ffffff !important;
+  color: #3b1c10 !important;
+  padding: 8px 14px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(147, 56, 39, 0.18) !important;
+  pointer-events: none !important;
+}
+
+.hs-card::before {
+  content: "" !important;
+  position: absolute !important;
+  right: 100% !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  border-width: 6px !important;
+  border-style: solid !important;
+  border-color: transparent #ffffff transparent transparent !important;
+}
+
+/* Vị trí các Hotspot quanh chai */
+.hs-cap { top: 90px !important; left: calc(50% + 55px) !important; }
+.hs-label { top: 280px !important; left: calc(50% + 120px) !important; }
+.hs-base { top: 460px !important; left: calc(50% + 115px) !important; }
+
+/* Thanh hành động (Giá + Nút mua) */
+.koc-3d-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 28px !important;
+  margin-top: 20px !important;
+  background: #ffffff !important;
+  padding: 16px 32px !important;
+  border-radius: 40px !important;
+  box-shadow: 0 8px 25px rgba(60, 30, 20, 0.12) !important;
+  border: 1px solid rgba(147, 56, 39, 0.15) !important;
+}
+
+.koc-3d-price-tag {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+}
+
+.koc-3d-price-label {
+  font-size: 14px !important;
+  color: #715545 !important;
+  font-weight: 500 !important;
+}
+
+.koc-3d-price-val {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: #933827 !important;
+}
+
+.koc-3d-vol {
+  font-size: 13px !important;
+  color: #8c7365 !important;
+}
+
+.koc-3d-cta-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: #933827 !important;
+  color: #ffc800 !important;
+  text-decoration: none !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  padding: 12px 28px !important;
+  border-radius: 25px !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 15px rgba(147, 56, 39, 0.35) !important;
+}
+
+.koc-3d-cta-btn:hover {
+  background: #7a2b1c !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(147, 56, 39, 0.5) !important;
+}
+
+@media (max-width: 768px) {
+  .koc-3d-title { font-size: 26px !important; }
+  .koc-3d-stage-wrapper { height: 500px !important; }
+  .koc-3d-actions {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 18px 24px !important;
+    border-radius: 20px !important;
+  }
 }
