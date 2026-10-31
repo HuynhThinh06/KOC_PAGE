@@ -2271,90 +2271,106 @@ html, body {
   margin-right: 0 !important;
 }
 
-/* 3. Tự động điều chỉnh chiều cao theo tỷ lệ ảnh cho các Section minh họa lớn khi màn hình > 1920px (Thu nhỏ trình duyệt)
-   Ngăn chặn triệt để tình trạng ảnh bị cắt xén (object-fit: cover cắt đầu cắt đuôi) gây đè lấn nội dung */
-@media screen and (min-width: 1921px) {
-  /* Section Sản phẩm: san-pham.png (1920x1080 -> 56.25vw) */
-  #comp-mpbn2o2z,
-  #comp-mpbn2o2z .comp-mpbn2o36-container,
-  #comp-mpbn2o36 {
-    height: 56.25vw !important;
-    min-height: 56.25vw !important;
-    max-width: 100vw !important;
-  }
-  #comp-mpbn2o2z img {
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: contain !important;
-  }
+/* 3. PHƯƠNG ÁN 1: CHUẨN RESPONSIVE HIỆN ĐẠI (FLUID ASPECT-RATIO & SAFE CONTENT CONSTRAINTS)
+   Áp dụng trên mọi độ phân giải & mức thu/phóng (Zoom 50% - 200%, Windows Scale 125% - 150%)
+   Bảo đảm: 100% không cắt xén mép ảnh, không kéo dài quá khổ, không đè lấn layout */
 
-  /* Section Thành phần & Công dụng: thanh-phan-cong-dung.jpg (1920x1080 -> 56.25vw) */
-  #comp-mvq65b7f,
-  #comp-mvq65b7f .comp-mvq65b81-container,
-  #comp-mvq65b81 {
-    height: 56.25vw !important;
-    min-height: 56.25vw !important;
-    max-width: 100vw !important;
-  }
-  #comp-mvq65b7f img {
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: contain !important;
-  }
-
-  /* Section Giá bán: gia-ban.jpg (1920x1080 -> 56.25vw) */
-  #comp-mpbn2o4g,
-  #comp-mpbn2o4g .comp-mpbn2o4m-container,
-  #comp-mpbn2o4m {
-    height: 56.25vw !important;
-    min-height: 56.25vw !important;
-    max-width: 100vw !important;
-  }
-  #comp-mpbn2o4g img {
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: contain !important;
-  }
-
-  /* Section Hướng dẫn sử dụng: huong-dan-su-dung.png (1920x1080 -> 56.25vw) */
-  #comp-mvpfzoii,
-  #comp-mvpfzoii-container {
-    height: 56.25vw !important;
-    min-height: 56.25vw !important;
-    max-width: 100vw !important;
-  }
-  #comp-mvpfzoii img {
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: contain !important;
-  }
-
-  /* Section Thông tin chiến dịch: thong-tin-chien-dich.png */
-  #comp-mvq57pzq {
-    height: 56.25vw !important;
-    min-height: 56.25vw !important;
-    max-width: 100vw !important;
-  }
-  #comp-mvq57pzq img {
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: contain !important;
-  }
-
-  /* Section Brand Story: story-bao-co.jpg (1920x2450 -> 127.6vw) */
-  #comp-mpbn2o51 {
-    height: 127.6vw !important;
-    min-height: 127.6vw !important;
-    max-width: 100vw !important;
-  }
-  #comp-mpbn2o51 img {
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: contain !important;
-  }
+/* A. Khống chế và tự động co giãn theo tỷ lệ 16:9 cho 5 Section Infographic lớn */
+#comp-mpbn2o2z,
+#comp-mvq65b7f,
+#comp-mpbn2o4g,
+#comp-mvpfzoii,
+#comp-mvq57pzq {
+  width: 100% !important;
+  max-width: 100vw !important;
+  height: auto !important;
+  min-height: auto !important;
+  box-sizing: border-box !important;
 }
 
-/* 4. Giới hạn an toàn cho Chatbot Popup và Login Modal khi phóng to (Zoom in 150% - 200%) */
+#comp-mpbn2o2z .comp-mpbn2o36-container,
+#comp-mvq65b7f .comp-mvq65b81-container,
+#comp-mpbn2o4g .comp-mpbn2o4m-container,
+#comp-mvpfzoii .comp-mvpfzoio-container,
+#comp-mvq57pzq .comp-mvq57q0h-container,
+#comp-mpbn2o2z ._internalContainerRoot_1xyyz_1,
+#comp-mvq65b7f ._internalContainerRoot_1xyyz_1,
+#comp-mpbn2o4g ._internalContainerRoot_1xyyz_1,
+#comp-mvpfzoii ._internalContainerRoot_1xyyz_1,
+#comp-mvq57pzq ._internalContainerRoot_1xyyz_1 {
+  width: 100% !important;
+  max-width: 1600px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  min-height: auto !important;
+  position: relative !important;
+}
+
+#comp-mpbn2o2z img,
+#comp-mvq65b7f img,
+#comp-mpbn2o4g img,
+#comp-mvpfzoii img,
+#comp-mvq57pzq img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* B. Section Brand Story (Tỷ lệ đứng tự nhiên 1920x2450) */
+#comp-mpbn2o51 {
+  width: 100% !important;
+  max-width: 100vw !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+#comp-mpbn2o51 .comp-mpbn2o56-container,
+#comp-mpbn2o51 ._internalContainerRoot_1xyyz_1 {
+  width: 100% !important;
+  max-width: 1600px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  aspect-ratio: 1920 / 2450 !important;
+  height: auto !important;
+  min-height: auto !important;
+  position: relative !important;
+}
+
+#comp-mpbn2o51 img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* C. Hero Video: Cân bằng chiều cao tầm mắt người dùng (không chiếm quá tầm nhìn khi zoom) */
+#comp-mpbn2nv6 {
+  max-height: min(85vh, 760px) !important;
+  min-height: 480px !important;
+  overflow: hidden !important;
+}
+
+#comp-mpbn2nv6_video,
+#comp-mpbn2nv6 video {
+  max-height: min(85vh, 760px) !important;
+  min-height: 480px !important;
+  object-fit: cover !important;
+}
+
+/* D. Footer Container: Giới hạn an toàn để không bị văng xa khi zoom out */
+#comp-kbgakxmn_r_comp-kbgakgyt,
+.comp-kbgakxmn_r_comp-kbgakgyt-container {
+  max-width: 1600px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 4. Giới hạn an toàn cho Chatbot Popup và Login Modal khi phóng to (Zoom in 125% - 200%) */
 .wix-chat-popup {
   max-width: min(380px, calc(100vw - 24px)) !important;
   max-height: min(560px, calc(100vh - 100px)) !important;
