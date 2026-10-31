@@ -1414,20 +1414,20 @@
 
 .wix-chat-msg.user {
   align-self: flex-end !important;
-  background: #8c2415 !important;
+  background: #ad402e !important;
   color: #ffffff !important;
   border-bottom-right-radius: 4px !important;
-  box-shadow: 0 2px 8px rgba(140, 36, 21, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(173, 64, 46, 0.2) !important;
 }
 
 .wix-chat-msg a {
-  color: #8c2415 !important;
+  color: #ad402e !important;
   font-weight: 700 !important;
   text-decoration: underline !important;
 }
 
 .wix-chat-msg.user a {
-  color: #ffbe3b !important;
+  color: #ffc800 !important;
 }
 
 .wix-chat-chips {
@@ -1453,9 +1453,9 @@
 }
 
 .wix-chip-btn:hover {
-  background: #8c2415 !important;
+  background: #ad402e !important;
   color: #ffffff !important;
-  border-color: #8c2415 !important;
+  border-color: #ad402e !important;
   transform: translateY(-1px) !important;
 }
 
@@ -1484,7 +1484,7 @@
 }
 
 .wix-chat-input-bar input:focus {
-  border-color: #8c2415 !important;
+  border-color: #ad402e !important;
   background: #ffffff !important;
 }
 
@@ -1492,7 +1492,7 @@
   width: 38px !important;
   height: 38px !important;
   border-radius: 50% !important;
-  background: #8c2415 !important;
+  background: #ad402e !important;
   color: #ffc800 !important;
   border: none !important;
   display: flex !important;
@@ -1519,7 +1519,7 @@
 .wix-chat-typing span {
   width: 7px !important;
   height: 7px !important;
-  background: #8c2415 !important;
+  background: #ad402e !important;
   border-radius: 50% !important;
   display: inline-block !important;
   opacity: 0.4 !important;
@@ -1559,7 +1559,7 @@
 }
 
 .wix-chat-action-btn.primary {
-  background: #8c2415 !important;
+  background: #ad402e !important;
   color: #ffc800 !important;
 }
 

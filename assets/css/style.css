@@ -7,13 +7,13 @@
 
 :root {
   /* Bảng màu chính */
-  --color-primary: #7A2737;
+  --color-primary: #ad402e;
   --color-primary-dark: #581925;
   --color-primary-light: #9B364A;
-  --color-accent: #E5A823;
+  --color-accent: #ffc800;
   --color-accent-hover: #D4971A;
   --color-accent-light: #FFF2D1;
-  --color-gold: #F2BA36;
+  --color-gold: #ffc800;
   
   /* Màu nền & Trung tính */
   --bg-parchment: #F7F1E5;
@@ -23,7 +23,7 @@
   --text-muted: #6B625E;
   --text-light: #FFFFFF;
   --border-color: #E2D7C5;
-  --border-red: #A33C4E;
+  --border-red: #ad402e;
 
   /* Font chữ */
   --font-heading: 'Montserrat', 'Be Vietnam Pro', sans-serif;

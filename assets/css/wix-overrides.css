@@ -186,9 +186,9 @@ div[data-testid="wix-ads"] {
 #comp-kbgakxmn_r_comp-mvq7204e button[type="submit"],
 #comp-kbgakxmn_r_comp-mvq7204e button[data-hook="submit-button"],
 #comp-kbgakxmn_r_comp-mvq7204e button {
-  background: #8c2d19 !important;
-  background-color: #8c2d19 !important;
-  color: #ffbe3b !important;
+  background: #ad402e !important;
+  background-color: #ad402e !important;
+  color: #ffc800 !important;
   font-weight: 700 !important;
   border-radius: 4px !important;
   border: 1px solid transparent !important;
@@ -209,7 +209,7 @@ div[data-testid="wix-ads"] {
 #comp-kbgakxmn_r_comp-mvq7204e button.btn-hover-active {
   background: #ffc800 !important;
   background-color: #ffc800 !important;
-  color: #8c2d19 !important;
+  color: #ad402e !important;
   border-color: #ffc800 !important;
   box-shadow: 0 4px 15px rgba(255, 200, 0, 0.45) !important;
   transform: translateY(-1px) !important;
@@ -223,7 +223,7 @@ div[data-testid="wix-ads"] {
 #comp-kbgakxmn_r_comp-mvq7204e button:active *,
 #comp-kbgakxmn_r_comp-mvq7204e button:focus-visible *,
 #comp-kbgakxmn_r_comp-mvq7204e button.btn-hover-active * {
-  color: #8c2d19 !important;
+  color: #ad402e !important;
 }
 
 /* Hiệu ứng nút Trò chuyện với chúng tôi / Chatbot: hover/active/focus đổi sang màu đỏ chữ vàng */
@@ -245,10 +245,10 @@ button[aria-label*="Trò chuyện"]:hover,
 button[aria-label*="Trò chuyện"]:active,
 button[aria-label*="Trò chuyện"]:focus-visible,
 button[aria-label*="Trò chuyện"].chat-hover-active {
-  background: #8c2d19 !important;
-  background-color: #8c2d19 !important;
+  background: #ad402e !important;
+  background-color: #ad402e !important;
   color: #ffc800 !important;
-  box-shadow: 0 6px 20px rgba(140, 45, 25, 0.45) !important;
+  box-shadow: 0 6px 20px rgba(173, 64, 46, 0.45) !important;
   transform: translateY(-2px) !important;
 }
 
@@ -325,7 +325,7 @@ button[aria-label*="Trò chuyện"].chat-hover-active path {
 #comp-kbgakxmn_r_comp-mvrfv02a p,
 #comp-kbgakxmn_r_comp-mvrfv02a span,
 #comp-kbgakxmn_r_comp-mvrfv02a a {
-  color: #ad3d2a !important;
+  color: #ad402e !important;
   font-weight: 700 !important;
   z-index: 10 !important;
   position: relative !important;
@@ -339,7 +339,7 @@ button[aria-label*="Trò chuyện"].chat-hover-active path {
 }
 
 #comp-kbgakxmn_r_comp-mvrqf3um a {
-  color: #8c2415 !important;
+  color: #ad402e !important;
   font-weight: 700 !important;
   text-decoration: underline !important;
 }
@@ -495,8 +495,8 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .wix-login-modal {
-  background-color: #8c2d19 !important;
-  background: #8c2d19 !important;
+  background-color: #ad402e !important;
+  background: #ad402e !important;
   background-image: none !important;
   border: 1.5px solid rgba(255, 200, 0, 0.35) !important;
   border-radius: 20px !important;
@@ -630,7 +630,7 @@ a, button, [role="button"], input, textarea, select {
 
 .wix-auth-divider span {
   position: relative !important;
-  background: #b44637 !important;
+  background: #ad402e !important;
   padding: 0 12px !important;
   color: #fff8eb !important;
 }
@@ -803,20 +803,20 @@ a, button, [role="button"], input, textarea, select {
 
 .wix-chat-msg.user {
   align-self: flex-end !important;
-  background: #8c2415 !important;
+  background: #ad402e !important;
   color: #ffffff !important;
   border-bottom-right-radius: 4px !important;
-  box-shadow: 0 2px 8px rgba(140, 36, 21, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(173, 64, 46, 0.2) !important;
 }
 
 .wix-chat-msg a {
-  color: #8c2415 !important;
+  color: #ad402e !important;
   font-weight: 700 !important;
   text-decoration: underline !important;
 }
 
 .wix-chat-msg.user a {
-  color: #ffbe3b !important;
+  color: #ffc800 !important;
 }
 
 .wix-chat-chips {
@@ -842,9 +842,9 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .wix-chip-btn:hover {
-  background: #8c2415 !important;
+  background: #ad402e !important;
   color: #ffffff !important;
-  border-color: #8c2415 !important;
+  border-color: #ad402e !important;
   transform: translateY(-1px) !important;
 }
 
@@ -873,7 +873,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .wix-chat-input-bar input:focus {
-  border-color: #8c2415 !important;
+  border-color: #ad402e !important;
   background: #ffffff !important;
 }
 
@@ -881,7 +881,7 @@ a, button, [role="button"], input, textarea, select {
   width: 38px !important;
   height: 38px !important;
   border-radius: 50% !important;
-  background: #8c2415 !important;
+  background: #ad402e !important;
   color: #ffc800 !important;
   border: none !important;
   display: flex !important;
@@ -908,7 +908,7 @@ a, button, [role="button"], input, textarea, select {
 .wix-chat-typing span {
   width: 7px !important;
   height: 7px !important;
-  background: #8c2415 !important;
+  background: #ad402e !important;
   border-radius: 50% !important;
   display: inline-block !important;
   opacity: 0.4 !important;
@@ -948,7 +948,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .wix-chat-action-btn.primary {
-  background: #8c2415 !important;
+  background: #ad402e !important;
   color: #ffc800 !important;
 }
 
@@ -1060,7 +1060,7 @@ a, button, [role="button"], input, textarea, select {
   font-family: 'Montserrat', 'Arial Black', sans-serif !important;
   font-weight: 900 !important;
   font-size: clamp(48px, 6vw, 76px) !important;
-  color: #ad3d2a !important;
+  color: #ad402e !important;
   letter-spacing: 4px !important;
   line-height: 1 !important;
   display: inline-block !important;
@@ -1072,7 +1072,7 @@ a, button, [role="button"], input, textarea, select {
   left: 20% !important;
   width: 42% !important;
   height: 6px !important;
-  background: #ad3d2a !important;
+  background: #ad402e !important;
   border-radius: 3px !important;
 }
 
@@ -1091,7 +1091,7 @@ a, button, [role="button"], input, textarea, select {
 .quiz-red-frame {
   width: 100% !important;
   max-width: 1540px !important;
-  background: #aa3d2d !important;
+  background: #ad402e !important;
   border-radius: 10px !important;
   padding: clamp(24px, 3.5vw, 42px) clamp(20px, 3.8vw, 48px) !important;
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.25) !important;
@@ -1112,7 +1112,7 @@ a, button, [role="button"], input, textarea, select {
   font-style: italic !important;
   font-weight: 700 !important;
   font-size: clamp(24px, 3vw, 36px) !important;
-  color: #ffbe3b !important;
+  color: #ffc800 !important;
   text-shadow: 1.5px 1.5px 0 #1b435b, -1.5px -1.5px 0 #1b435b, 1.5px -1.5px 0 #1b435b, -1.5px 1.5px 0 #1b435b !important;
   white-space: nowrap !important;
 }
@@ -1140,7 +1140,7 @@ a, button, [role="button"], input, textarea, select {
   right: 10px !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  color: #aa3d2d !important;
+  color: #ffc800 !important;
   font-size: 18px !important;
   line-height: 1 !important;
   pointer-events: none !important;
@@ -1149,7 +1149,7 @@ a, button, [role="button"], input, textarea, select {
 /* Inner Peach Box */
 .quiz-inner-card {
   background: #f4ddd3 !important;
-  border: 2.5px dashed #aa3d2d !important;
+  border: 2.5px dashed #ad402e !important;
   border-radius: 8px !important;
   padding: clamp(28px, 4vw, 50px) clamp(22px, 3.8vw, 48px) !important;
   box-sizing: border-box !important;
@@ -1157,10 +1157,10 @@ a, button, [role="button"], input, textarea, select {
 
 /* Question Pill (Terracotta Red) */
 .quiz-q-pill {
-  background: #b24130 !important;
+  background: #ad402e !important;
   border: 2px solid #5a190f !important;
   border-radius: 10px !important;
-  color: #ffbe3b !important;
+  color: #ffc800 !important;
   font-size: clamp(18px, 2.5vw, 28px) !important;
   font-weight: 700 !important;
   padding: 20px 32px !important;
@@ -1179,7 +1179,7 @@ a, button, [role="button"], input, textarea, select {
 
 .quiz-opt-btn {
   background: #ffffff !important;
-  border: 2.5px dotted #b24130 !important;
+  border: 2.5px dotted #ad402e !important;
   border-radius: 10px !important;
   padding: 22px 32px !important;
   font-size: clamp(16px, 2.2vw, 24px) !important;
@@ -1200,7 +1200,7 @@ a, button, [role="button"], input, textarea, select {
 .quiz-opt-btn:hover {
   background: #fff8f5 !important;
   border-style: solid !important;
-  border-color: #8c2415 !important;
+  border-color: #ad402e !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 6px 18px rgba(178, 65, 48, 0.18) !important;
 }
@@ -1223,8 +1223,8 @@ a, button, [role="button"], input, textarea, select {
 
 .quiz-prev-btn {
   background: none !important;
-  border: 2px solid #aa3d2d !important;
-  color: #aa3d2d !important;
+  border: 2px solid #ad402e !important;
+  color: #ad402e !important;
   padding: 10px 22px !important;
   border-radius: 8px !important;
   font-size: 15px !important;
@@ -1234,7 +1234,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .quiz-prev-btn:hover {
-  background: #aa3d2d !important;
+  background: #ad402e !important;
   color: #ffffff !important;
 }
 
@@ -1246,7 +1246,7 @@ a, button, [role="button"], input, textarea, select {
   font-family: 'Montserrat', 'Arial Black', sans-serif !important;
   font-weight: 900 !important;
   font-size: clamp(24px, 3.8vw, 44px) !important;
-  color: #ffbe3b !important;
+  color: #ffc800 !important;
   letter-spacing: 3px !important;
   text-align: center !important;
   text-transform: uppercase !important;
@@ -1279,7 +1279,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .quiz-star-icon {
-  color: #aa3d2d !important;
+  color: #ad402e !important;
   font-size: clamp(20px, 2.5vw, 26px) !important;
   line-height: 1.3 !important;
   flex-shrink: 0 !important;
@@ -1303,8 +1303,8 @@ a, button, [role="button"], input, textarea, select {
 
 .quiz-restart-btn {
   background: #ffffff !important;
-  border: 2px solid #aa3d2d !important;
-  color: #aa3d2d !important;
+  border: 2px solid #ad402e !important;
+  color: #ad402e !important;
   padding: 12px 26px !important;
   border-radius: 25px !important;
   font-size: 15px !important;
@@ -1314,7 +1314,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .quiz-restart-btn:hover {
-  background: #aa3d2d !important;
+  background: #ad402e !important;
   color: #ffffff !important;
 }
 
@@ -1405,7 +1405,7 @@ a, button, [role="button"], input, textarea, select {
    10. SECTION 10 FAQ TABS & ACCORDION (100% GIAO DIỆN GỐC TỪ SCREENSHOT)
    ========================================================================== */
 #comp-mvq8wnvx {
-  background-color: #aa3d2d !important;
+  background-color: #ad402e !important;
   width: 100% !important;
   padding: 40px 0 60px 0 !important;
   box-sizing: border-box !important;
@@ -2155,7 +2155,7 @@ div[data-hook="Form-wrapper"] {
 .wix-footer-checkbox-row input[type="checkbox"] {
   width: 16px !important;
   height: 16px !important;
-  accent-color: #8c2d19 !important;
+  accent-color: #ad402e !important;
   cursor: pointer !important;
 }
 .wix-footer-submit-wrap {
@@ -2164,8 +2164,8 @@ div[data-hook="Form-wrapper"] {
   margin-top: 20px !important;
 }
 .wix-footer-submit-btn {
-  background: #8c2d19 !important;
-  color: #ffbe3b !important;
+  background: #ad402e !important;
+  color: #ffc800 !important;
   font-family: 'Montserrat', sans-serif !important;
   font-size: 15px !important;
   font-weight: 700 !important;
@@ -2176,7 +2176,7 @@ div[data-hook="Form-wrapper"] {
   transition: all 0.2s ease !important;
 }
 .wix-footer-submit-btn:hover {
-  background: #6e2010 !important;
+  background: #ad402e !important;
   color: #ffffff !important;
 }
 .wix-footer-policies {
@@ -2858,8 +2858,8 @@ body {
 }
 
 .mobile-nav-close:hover {
-  background: rgba(140, 45, 25, 0.12);
-  color: #8c2d19;
+  background: rgba(173, 64, 46, 0.12);
+  color: #ad402e;
 }
 
 .mobile-nav-list {
@@ -2891,7 +2891,7 @@ body {
 .mobile-nav-link:hover,
 .mobile-nav-link:active {
   background: #fdfaf5;
-  color: #8c2d19;
+  color: #ad402e;
   padding-left: 26px;
 }
 
@@ -2917,7 +2917,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
   font-weight: 700;
-  color: #8c2d19;
+  color: #ad402e;
   margin-bottom: 6px;
   text-decoration: none;
 }
