@@ -1536,6 +1536,7 @@ a, button, [role="button"], input, textarea, select {
   color: #ffc800 !important;
   letter-spacing: 2px !important;
   margin: 0 0 20px 0 !important;
+  white-space: nowrap !important;
 }
 
 /* Tabs: Sản phẩm / Mua hàng */
@@ -2801,6 +2802,24 @@ body {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+  }
+
+  /* Tiêu đề FAQ trên Mobile: Nằm gọn gàng trên 1 hàng duy nhất theo yêu cầu khách hàng */
+  .snHKBk3,
+  .snHKBk3 * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .snHKBk3 h2,
+  .sf4zzLJ[data-hook="title"] {
+    font-size: clamp(16px, 5.4vw, 24px) !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.25 !important;
+    margin: 0 0 16px 0 !important;
+    display: block !important;
+    overflow: visible !important;
   }
 
   
