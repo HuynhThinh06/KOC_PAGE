@@ -3134,3 +3134,127 @@ body {
   width: 32px !important;
   height: 32px !important;
 }
+
+
+/* ==========================================================================
+   13. NÚT "ĐẶT HÀNG" NỔI BẬT & THU HÚT ÁNH NHÌN (SECTION GIÁ BÁN - COMP-MVQ917UO)
+   Hiệu ứng chuyển động (Pulse, Radar Glow, Shimmer Light Sweep) thu hút ánh nhìn
+   ========================================================================== */
+
+/* Keyframe 1: Nhịp đập & Hào quang vàng lan tỏa (Radar Pulse) */
+@keyframes dathangPulseGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 200, 0, 0.85), 0 4px 15px rgba(0, 0, 0, 0.35);
+  }
+  40% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 16px rgba(255, 200, 0, 0), 0 8px 25px rgba(255, 200, 0, 0.5);
+  }
+  70% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 0 rgba(255, 200, 0, 0), 0 4px 15px rgba(0, 0, 0, 0.35);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 200, 0, 0), 0 4px 15px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Keyframe 2: Vệt sáng lướt qua mặt nút (Shimmer Beam) */
+@keyframes dathangShimmer {
+  0%, 20% {
+    left: -120%;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  55% {
+    left: 160%;
+    opacity: 1;
+  }
+  60%, 100% {
+    left: 160%;
+    opacity: 0;
+  }
+}
+
+#comp-mvq917uo,
+a#comp-mvq917uo,
+.comp-mvq917uo,
+[data-semantic-classname="button"]#comp-mvq917uo {
+  position: relative !important;
+  overflow: hidden !important;
+  background: #285572 !important;
+  background-color: #285572 !important;
+  border: 2.5px solid #ffc800 !important;
+  border-radius: 9999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  animation: dathangPulseGlow 2.4s infinite ease-in-out !important;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  z-index: 10 !important;
+  padding: 8px 28px !important;
+  box-sizing: border-box !important;
+  -webkit-tap-highlight-color: rgba(255, 200, 0, 0.4) !important;
+}
+
+#comp-mvq917uo::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -120% !important;
+  width: 50% !important;
+  height: 100% !important;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.65) 50%,
+    rgba(255, 255, 255, 0) 100%
+  ) !important;
+  transform: skewX(-25deg) !important;
+  animation: dathangShimmer 3s infinite ease-in-out !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+#comp-mvq917uo .label,
+#comp-mvq917uo span,
+#comp-mvq917uo [data-testid="stylablebutton-label"] {
+  color: #ffc800 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  transition: color 0.25s ease !important;
+}
+
+/* Hiệu ứng khi rê chuột (Hover) hoặc tập trung (Focus) */
+#comp-mvq917uo:hover,
+#comp-mvq917uo:focus-visible {
+  transform: scale(1.15) !important;
+  background: #ffc800 !important;
+  background-color: #ffc800 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 25px rgba(255, 200, 0, 0.95), 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+  animation-play-state: paused !important;
+}
+
+#comp-mvq917uo:hover .label,
+#comp-mvq917uo:hover span,
+#comp-mvq917uo:focus-visible .label,
+#comp-mvq917uo:focus-visible span {
+  color: #ad402e !important;
+  text-shadow: none !important;
+}
+
+/* Hiệu ứng khi bấm chuột / chạm ngón tay (Active) */
+#comp-mvq917uo:active {
+  transform: scale(0.96) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
