@@ -3340,3 +3340,31 @@ a#comp-mvq917uo,
   transform: scale(0.96) !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
+
+
+/* ==========================================================================
+   TỐI ƯU HÓA NÚT "ĐẶT HÀNG" TRÊN GIAO DIỆN MOBILE & TABLET (< 1024px)
+   Tránh đè lên dòng giá bán "[750 ML/CHAI]" trên nền giấy rách
+   ========================================================================== */
+@media screen and (max-width: 1023px) {
+  #comp-mvq917uo,
+  a#comp-mvq917uo,
+  .comp-mvq917uo,
+  [data-semantic-classname="button"]#comp-mvq917uo {
+    grid-area: 1/1/2/2 !important;
+    align-self: start !important;
+    justify-self: start !important;
+    min-height: auto !important;
+    width: auto !important;
+    margin-left: 36.316287878787875% !important;
+    margin-top: max(0.5px, 0.32 * (var(--scaling-factor) - var(--scrollbar-width))) !important;
+    padding: clamp(4px, 1.3vw, 7px) clamp(14px, 4.2vw, 24px) !important;
+  }
+
+  #comp-mvq917uo .label,
+  #comp-mvq917uo span,
+  #comp-mvq917uo [data-testid="stylablebutton-label"] {
+    font-size: clamp(12px, 3.5vw, 16px) !important;
+    line-height: 1.2 !important;
+  }
+}
