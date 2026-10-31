@@ -12,7 +12,6 @@ function initApp() {
   initWixChat();
   initWixCartDrawer();
   initMobileMenu();
-  initMobileFooterLayout();
   initNotificationTooltip();
   updateHeaderCartCount();
 }
@@ -26,34 +25,54 @@ if (document.readyState === 'loading') {
 // 0. KHỞI TẠO VIDEO CÂY BỒ KẾT HERO (TĂNG TỐC 2X THEO YÊU CẦU NGƯỜI DÙNG)
 function initHeroVideo() {
   const video = document.getElementById('comp-mpbn2nv6_video') || document.querySelector('video');
-  if (video) {
-    video.playbackRate = 2.0; // Tăng tốc 2x
-    video.defaultPlaybackRate = 2.0;
+  if (!video) return;
 
-    // Đảm bảo video tự động phát mượt mà
+  video.muted = true;
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
+  video.setAttribute('muted', '');
+
+  const startPlayback = () => {
     video.muted = true;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay policy fallback: click anywhere to play
-        document.addEventListener('click', () => {
-          video.play();
-        }, { once: true });
+    const p = video.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch(() => {
+        // Unlock on user interaction (iOS Low Power Mode fallback)
+        const unlock = () => {
+          video.play().catch(() => {});
+          ['touchstart', 'touchend', 'scroll', 'click'].forEach(evt => {
+            window.removeEventListener(evt, unlock, { capture: true });
+          });
+        };
+        ['touchstart', 'touchend', 'scroll', 'click'].forEach(evt => {
+          window.addEventListener(evt, unlock, { capture: true, once: true, passive: true });
+        });
       });
     }
+  };
 
-    // Luôn giữ playbackRate 2x ngay cả khi video loop lại
-    video.addEventListener('ratechange', () => {
-      if (video.playbackRate !== 2.0) {
-        video.playbackRate = 2.0;
-      }
-    });
+  startPlayback();
 
-    video.addEventListener('ended', () => {
-      video.playbackRate = 2.0;
-      video.play();
-    });
-  }
+  // Retry when page becomes visible
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) startPlayback();
+  });
+
+  // Playback speed
+  try {
+    video.playbackRate = 2.0;
+    video.defaultPlaybackRate = 2.0;
+  } catch (e) {}
+
+  video.addEventListener('loadedmetadata', () => {
+    try { video.playbackRate = 2.0; } catch (e) {}
+  });
+
+  video.addEventListener('ratechange', () => {
+    if (video.playbackRate !== 2.0) {
+      try { video.playbackRate = 2.0; } catch (e) {}
+    }
+  });
 }
 
 // 1. SMOOTH SCROLLING CHO CÁC LIÊN KẾT ANCHOR MENU
@@ -1242,45 +1261,4 @@ function initMobileMenu() {
   });
 }
 
-// ==========================================================================
-// 14. GOM CARD LIÊN HỆ MOBILE CHO FOOTER (TÁCH BIỆT KHÔNG ĐÈ LÊN TRANH)
-// ==========================================================================
-function initMobileFooterLayout() {
-  function checkAndWrap() {
-    if (window.innerWidth <= 768) {
-      const container = document.querySelector('.comp-kbgakxmn_r_comp-mdr13kdg-container');
-      if (!container || document.getElementById('mobileFooterInfoCard')) return;
 
-      const addr = document.getElementById('comp-kbgakxmn_r_comp-mvrfv02a');
-      const socials = document.querySelector('.comp-kbgakxmn_r_comp-mpbn5rlu-presets-wrapper') || document.getElementById('comp-kbgakxmn_r_comp-mpbn5rlu');
-      const policies = document.getElementById('comp-kbgakxmn_r_comp-mvrqf3um');
-      const threads = document.querySelector('.comp-kbgakxmn_r_comp-mvte363p-presets-wrapper') || document.getElementById('comp-kbgakxmn_r_comp-mvte363p');
-
-      if (addr && policies) {
-        const card = document.createElement('div');
-        card.id = 'mobileFooterInfoCard';
-        card.className = 'mobile-footer-info-card';
-        card.appendChild(addr);
-        if (socials) card.appendChild(socials);
-        card.appendChild(policies);
-        if (threads) card.appendChild(threads);
-        container.appendChild(card);
-      }
-    } else {
-      const card = document.getElementById('mobileFooterInfoCard');
-      const container = document.querySelector('.comp-kbgakxmn_r_comp-mdr13kdg-container');
-      if (card && container) {
-        while (card.firstChild) {
-          container.appendChild(card.firstChild);
-        }
-        card.remove();
-      }
-    }
-  }
-
-  checkAndWrap();
-  window.addEventListener('resize', checkAndWrap);
-}
-
-window.initMobileMenu = initMobileMenu;
-window.initMobileFooterLayout = initMobileFooterLayout;
