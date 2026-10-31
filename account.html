@@ -3,94 +3,889 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tài khoản của tôi | Thorakao</title>
+  <title>Tài Khoản Của Tôi | Nếp Tóc Thorakao</title>
+  <link rel="icon" href="assets/images/logo-thorakao.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/wix-overrides.css">
   <link rel="stylesheet" href="assets/css/auth.css">
+  <style>
+    /* Đồng bộ Header 100% với trang Home/Index */
+    #comp-mb7ogqrp.wix-synced-header {
+      background-color: #ffffff !important;
+      width: 100% !important;
+      height: 76px !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 99999 !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    .wix-synced-header-inner {
+      max-width: 100%;
+      height: 100%;
+      padding: 0 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+    .wix-synced-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .wix-synced-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .wix-synced-nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #933827;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      padding: 4px 0;
+      transition: opacity 0.2s ease;
+    }
+    .wix-synced-nav a:hover,
+    .wix-synced-nav a.active {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 2px;
+    }
+    .wix-synced-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .wix-synced-login-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px 6px;
+      font-family: 'Montserrat', sans-serif;
+      color: #285572;
+    }
+    .wix-synced-avatar-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #285572;
+      fill: #285572;
+      flex-shrink: 0;
+    }
+    .wix-synced-avatar-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: #285572;
+      display: block;
+    }
+    #loginHeaderLabel {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #285572;
+      max-width: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .wix-synced-bag-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 36px;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+    }
+    .wix-synced-bag-btn svg {
+      width: 29px;
+      height: 35px;
+      display: block;
+      fill: #285572;
+    }
+    .wix-synced-bag-btn svg text {
+      fill: #ffc800;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 46px;
+      font-weight: 600;
+    }
+    @media (max-width: 860px) {
+      .wix-synced-header-inner { padding: 0 16px; }
+      .wix-synced-nav { gap: 14px; overflow-x: auto; }
+      .wix-synced-nav a { font-size: 13px; white-space: nowrap; }
+    }
+
+    /* Footer chuẩn Home/Index */
+    .wix-synced-footer {
+      position: relative;
+      width: 100%;
+      min-height: 820px;
+      background-color: #cba46a;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      padding: 40px 0 60px;
+      box-sizing: border-box;
+    }
+    .wix-synced-footer-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center right;
+      display: block;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .wix-synced-footer-content {
+      position: relative;
+      z-index: 5;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 32px;
+      box-sizing: border-box;
+    }
+    .wix-footer-logo-link {
+      display: inline-block;
+      width: 147px;
+      height: 98px;
+      margin-bottom: 28px;
+    }
+    .wix-footer-logo-link img {
+      width: 147px;
+      height: 98px;
+      object-fit: contain;
+      display: block;
+    }
+    .wix-footer-form-box {
+      background-color: #ffffff !important;
+      width: 590px;
+      max-width: 100%;
+      padding: 34px 36px;
+      box-sizing: border-box;
+      border-radius: 0px;
+      margin-left: 20px;
+    }
+    .wix-footer-form-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: #000000;
+      margin: 0 0 24px 0;
+      line-height: 1.3;
+    }
+    .wix-footer-email-label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 400;
+      color: #361a0d;
+      margin-bottom: 8px;
+    }
+    .wix-footer-email-input {
+      width: 100%;
+      height: 35px;
+      border: 1px solid rgba(54, 26, 13, 0.6) !important;
+      background-color: #ffffff !important;
+      border-radius: 0px !important;
+      padding: 0 10px;
+      font-size: 14px;
+      color: #1c1917;
+      box-sizing: border-box;
+      outline: none;
+    }
+    .wix-footer-checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+      font-size: 13.5px;
+      color: #000000;
+      cursor: pointer;
+    }
+    .wix-footer-checkbox-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #8c2d19;
+      cursor: pointer;
+    }
+    .wix-footer-submit-wrap {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+    .wix-footer-submit-btn {
+      background: #8c2d19 !important;
+      color: #ffbe3b !important;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 44px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .wix-footer-submit-btn:hover {
+      background: #6e2010 !important;
+      color: #ffffff !important;
+    }
+    .wix-footer-policies {
+      margin-left: 20px;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .wix-footer-policies a {
+      color: #ad402e !important;
+      font-size: 19px;
+      font-weight: 700;
+      text-decoration: underline !important;
+      line-height: 1.4;
+      width: fit-content;
+    }
+    .wix-footer-contact-block {
+      margin-left: 20px;
+      margin-top: 32px;
+      color: #ad402e !important;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.75;
+    }
+    .wix-footer-contact-block p {
+      margin: 0 0 4px 0;
+      color: #ad402e !important;
+    }
+    .wix-footer-contact-block a {
+      color: #ad402e !important;
+      text-decoration: underline;
+    }
+    .wix-footer-socials {
+      margin-left: 20px;
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .wix-footer-social-link {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+    .wix-footer-social-link:hover { transform: scale(1.1); }
+    .wix-footer-social-link svg { width: 32px; height: 32px; display: block; }
+
+    /* Nền đỏ gạch truyền thống */
+    body {
+      background-color: #b44637 !important;
+      background-image: url('assets/images/red-paper-bg.png') !important;
+      background-repeat: repeat !important;
+      background-size: 320px auto !important;
+      margin: 0;
+      padding: 0;
+      padding-top: 76px !important;
+      font-family: 'Montserrat', sans-serif;
+      color: #333333;
+    }
+
+    .account-page-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+      min-height: calc(100vh - 380px);
+      box-sizing: border-box;
+    }
+    .account-page-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff8eb;
+      text-transform: uppercase;
+      margin: 0 0 24px 0;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.22);
+      letter-spacing: 0.5px;
+    }
+    .account-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+      border: none;
+    }
+    .account-card h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: #933827;
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 0 20px 0;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f0e4d4;
+    }
+    .account-user-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .account-user-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .account-user-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #933827;
+      color: #ffbe3b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid #e8d7c3;
+    }
+    .account-user-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .account-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .account-card label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #361a0d;
+      margin: 12px 0 6px;
+    }
+    .account-card input,
+    .account-card textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 11px 14px;
+      border: 1.5px solid #e2d7c5;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+    .account-card input:focus,
+    .account-card textarea:focus {
+      outline: none;
+      border-color: #933827;
+    }
+    .account-card input[readonly] {
+      background: #FAF7F2;
+      color: #6B625E;
+      cursor: not-allowed;
+    }
+    .account-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: #933827;
+      color: #ffbe3b;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .account-btn-primary:hover {
+      background: #781816;
+      color: #ffffff;
+    }
+    .account-btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: #fff8f0;
+      color: #933827;
+      border: 1.5px solid #933827;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .account-btn-outline:hover {
+      background: #933827;
+      color: #ffffff;
+    }
+    .orders-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .orders-table th,
+    .orders-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #eee2d3;
+      text-align: left;
+    }
+    .orders-table th {
+      background: #faf6f0;
+      color: #933827;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+    .order-status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #ecfdf5;
+      color: #047857;
+    }
+    @media (max-width: 768px) {
+      .account-grid-2 { grid-template-columns: 1fr; gap: 6px; }
+      .account-card { padding: 22px 18px; }
+      .wix-footer-form-box, .wix-footer-policies, .wix-footer-contact-block, .wix-footer-socials { margin-left: 0; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-container">
-      <a href="index.html" class="header-brand">
-        <img src="assets/images/logo-thorakao.png" alt="Thorakao Logo" class="header-logo">
+
+  <!-- ==================== HEADER (ĐỒNG BỘ 100% VỚI HOME/INDEX) ==================== -->
+  <header id="comp-mb7ogqrp" class="wix-synced-header">
+    <div class="wix-synced-header-inner">
+      <a href="index.html" class="wix-synced-logo" aria-label="Trang chủ Thorakao">
+        <img src="assets/images/logo-thorakao.png" alt="Thorakao">
       </a>
-      <div class="header-actions">
-        <a href="product.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem;">Sản phẩm</a>
-        <a href="cart.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem;">Giỏ hàng</a>
+
+      <nav class="wix-synced-nav" aria-label="Trang web">
+        <a href="https://thorakao.com/" target="_blank" rel="noopener">WEBSITE</a>
+        <a href="index.html">TRANG CHỦ</a>
+        <a href="index.html#quizz">QUIZZ</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contact">LIÊN HỆ</a>
+      </nav>
+
+      <div class="wix-synced-right">
+        <div id="comp-mb7ogqrp_r_comp-mpbn4c1x" style="position: relative; display: flex; align-items: center;">
+          <button type="button" id="loginHeaderBtn" class="wix-synced-login-btn" aria-label="Thanh đăng nhập" onclick="handleWixLoginClick(event)">
+            <div class="wix-synced-avatar-icon" id="loginAvatarIconWrap">
+              <div id="defaultAvatar-comp-mb7ogqrp_r_comp-mpbn4c1x">
+                <svg data-bbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 50 50">
+                  <g><path d="M25 48.077c-5.924 0-11.31-2.252-15.396-5.921 2.254-5.362 7.492-8.267 15.373-8.267 7.889 0 13.139 3.044 15.408 8.418-4.084 3.659-9.471 5.77-15.385 5.77m.278-35.3c4.927 0 8.611 3.812 8.611 8.878 0 5.21-3.875 9.456-8.611 9.456s-8.611-4.246-8.611-9.456c0-5.066 3.684-8.878 8.611-8.878M25 0C11.193 0 0 11.193 0 25c0 .915.056 1.816.152 2.705.032.295.091.581.133.873.085.589.173 1.176.298 1.751.073.338.169.665.256.997.135.515.273 1.027.439 1.529.114.342.243.675.37 1.01.18.476.369.945.577 1.406.149.331.308.657.472.98.225.446.463.883.714 1.313.182.312.365.619.56.922.272.423.56.832.856 1.237.207.284.41.568.629.841.325.408.671.796 1.02 1.182.22.244.432.494.662.728.405.415.833.801 1.265 1.186.173.154.329.325.507.475l.004-.011A24.886 24.886 0 0 0 25 50a24.881 24.881 0 0 0 16.069-5.861.126.126 0 0 1 .003.01c.172-.144.324-.309.49-.458.442-.392.88-.787 1.293-1.209.228-.232.437-.479.655-.72.352-.389.701-.78 1.028-1.191.218-.272.421-.556.627-.838.297-.405.587-.816.859-1.24a26.104 26.104 0 0 0 1.748-3.216c.208-.461.398-.93.579-1.406.127-.336.256-.669.369-1.012.167-.502.305-1.014.44-1.53.087-.332.183-.659.256-.996.126-.576.214-1.164.299-1.754.042-.292.101-.577.133-.872.095-.89.152-1.791.152-2.707C50 11.193 38.807 0 25 0"></path></g>
+                </svg>
+              </div>
+            </div>
+            <span id="loginHeaderLabel">Đăng nhập</span>
+          </button>
+
+          <div class="wix-member-dropdown" id="wixMemberDropdown" style="display: none;">
+            <a href="account.html" class="member-dropdown-item" onclick="closeMemberDropdown()">Tài khoản của tôi</a>
+            <a href="account.html#orders" class="member-dropdown-item" onclick="closeMemberDropdown()">Đơn hàng của tôi</a>
+            <div class="member-dropdown-divider"></div>
+            <button type="button" class="member-dropdown-item logout" onclick="handleMemberLogout()">Đăng xuất</button>
+          </div>
+        </div>
+
+        <a class="wix-synced-bag-btn" data-hook="cart-icon-button" role="button" aria-label="Giỏ hàng" href="cart.html" id="open-header-cart">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 105.5 126.1" preserveAspectRatio="xMinYMax meet" data-hook="svg-icon-1">
+            <path d="M102.143 118.16L93.812 48.2067C93.386 44.66 90.3566 42 86.7591 42H79.1382V56H74.4047V42H31.8032V56H27.0697V42H19.4488C15.8513 42 12.8219 44.66 12.3959 48.16L4.06489 118.16C3.78088 120.167 4.44357 122.173 5.76895 123.667C7.14167 125.16 9.0824 126 11.0705 126H95.1374C97.1255 126 99.0662 125.16 100.439 123.667C101.764 122.173 102.427 120.167 102.143 118.16Z"></path>
+            <path d="M32.0594 25.6667C32.0594 14.0933 41.506 4.66667 53.1039 4.66667C64.7018 4.66667 74.1485 14.0933 74.1485 25.6667V42H78.825V25.6667C78.825 11.5267 67.2739 0 53.1039 0C38.9339 0 27.3828 11.5267 27.3828 25.6667V42H32.0594V25.6667Z"></path>
+            <text x="53" y="85.5" dy=".35em" text-anchor="middle" class="uxskpx" data-hook="items-count">0</text>
+          </svg>
+        </a>
       </div>
     </div>
   </header>
 
-  <main class="account-wrap">
-    <h1 class="section-title" style="margin-bottom: 20px;">Tài khoản của tôi</h1>
+  <!-- ==================== ACCOUNT MAIN CONTENT ==================== -->
+  <main class="account-page-wrapper">
+    <h1 class="account-page-title">Tài Khoản Của Tôi</h1>
 
-    <div id="account-guest" class="account-card" style="display:none;">
-      <p>Vui lòng đăng nhập để xem tài khoản và lịch sử đơn hàng.</p>
-      <button type="button" class="account-save" onclick="window.openAuthModal && openAuthModal('login')">Đăng nhập / Đăng ký</button>
+    <!-- Giao diện khi chưa đăng nhập -->
+    <div id="account-guest" class="account-card" style="display: none; text-align: center; padding: 48px 28px;">
+      <div style="font-size: 48px; margin-bottom: 12px;">🌿</div>
+      <h2 style="border: none; padding-bottom: 0; margin-bottom: 10px;">Chào mừng bạn đến với Nếp Tóc Thorakao</h2>
+      <p style="color: #555; font-size: 15px; max-width: 520px; margin: 0 auto 24px; line-height: 1.6;">
+        Đăng nhập hoặc tạo tài khoản để lưu địa chỉ nhận hàng mặc định, tự động điền thông tin khi đặt hàng và theo dõi lịch sử đơn hàng của bạn.
+      </p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <button type="button" class="account-btn-primary" onclick="openWixLoginModal('login')">Đăng nhập tài khoản</button>
+        <button type="button" class="account-btn-outline" onclick="openWixLoginModal('register')">Đăng ký tài khoản mới</button>
+      </div>
     </div>
 
-    <div id="account-disabled" class="account-card" style="display:none;">
-      <p>Tính năng đăng nhập chưa được cấu hình. Xem <code>HUONG-DAN-FIREBASE-AUTH.md</code>.</p>
-    </div>
-
-    <div id="account-content" style="display:none;">
+    <!-- Giao diện khi đã đăng nhập -->
+    <div id="account-content" style="display: none;">
+      <!-- Banner tóm tắt tài khoản -->
       <section class="account-card">
-        <h2>Thông tin cá nhân</h2>
+        <div class="account-user-banner">
+          <div class="account-user-info">
+            <div class="account-user-avatar" id="acc-avatar">T</div>
+            <div>
+              <div id="acc-display-name" style="font-size: 19px; font-weight: 800; color: #933827;">Khách hàng Thorakao</div>
+              <div id="acc-display-email" style="font-size: 13.5px; color: #666; margin-top: 4px;"></div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="product.html" class="account-btn-outline">Mua sắm ngay</a>
+            <button type="button" class="account-btn-outline" id="btn-reset-pw">Đổi mật khẩu</button>
+            <button type="button" class="account-btn-outline" id="btn-logout" style="border-color: #b91c1c; color: #b91c1c;">Đăng xuất</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Form Thông tin cá nhân -->
+      <section class="account-card">
+        <h2>Thông Tin Cá Nhân &amp; Địa Chỉ Nhận Hàng</h2>
         <form id="profile-form">
-          <label for="p-email">Email</label>
-          <input id="p-email" type="email" readonly>
-          <label for="p-name">Họ và tên</label>
-          <input id="p-name" type="text" required>
-          <label for="p-phone">Số điện thoại</label>
-          <input id="p-phone" type="tel">
-          <label for="p-address">Địa chỉ nhận hàng mặc định</label>
-          <textarea id="p-address" rows="2"></textarea>
-          <button type="submit" class="account-save">Lưu thay đổi</button>
-          <span id="p-status" class="account-status"></span>
+          <div class="account-grid-2">
+            <div>
+              <label for="p-name">Họ và tên *</label>
+              <input id="p-name" type="text" required placeholder="Nhập họ và tên của bạn">
+            </div>
+            <div>
+              <label for="p-email">Địa chỉ Email</label>
+              <input id="p-email" type="email" readonly>
+            </div>
+          </div>
+          <div class="account-grid-2">
+            <div>
+              <label for="p-phone">Số điện thoại nhận hàng</label>
+              <input id="p-phone" type="tel" placeholder="Ví dụ: 0912 345 678">
+            </div>
+            <div>
+              <label for="p-address">Địa chỉ nhận hàng mặc định</label>
+              <input id="p-address" type="text" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố">
+            </div>
+          </div>
+          <div style="margin-top: 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <button type="submit" class="account-btn-primary" id="btn-save-profile">Lưu thông tin</button>
+            <span id="p-status" style="font-size: 14px; font-weight: 700; color: #047857;"></span>
+          </div>
         </form>
       </section>
 
+      <!-- Danh sách Đơn hàng của tôi -->
       <section class="account-card" id="orders">
-        <h2>Đơn hàng của tôi</h2>
-        <div id="orders-list" class="account-empty">Đang tải...</div>
+        <h2>Lịch Sử Đơn Hàng Của Tôi</h2>
+        <div id="orders-list" class="account-empty">Đang tải lịch sử đơn hàng...</div>
       </section>
-      <button type="button" class="account-save" id="btn-logout" style="background:#6B625E;">Đăng xuất</button>
     </div>
   </main>
 
+  <!-- ==================== FOOTER (ĐỒNG BỘ 100% VỚI TRANG HOME/INDEX) ==================== -->
+  <footer id="comp-kbgakxmn" class="wix-synced-footer">
+    <img src="assets/images/footer-art.png" alt="Footer Art" class="wix-synced-footer-bg">
+    <div class="wix-synced-footer-content">
+      <a href="index.html" class="wix-footer-logo-link" id="comp-kbgakxmn_r_comp-mpbn5rko">
+        <img src="assets/images/logo-thorakao.png" alt="Thorakao">
+      </a>
+
+      <div class="wix-footer-form-box" id="footer-newsletter-box">
+        <h3 class="wix-footer-form-title">Đăng ký nhận thông tin về chiến dịch</h3>
+        <form id="newsletter-form">
+          <label for="newsletter-email" class="wix-footer-email-label">Email *</label>
+          <input type="email" id="newsletter-email" class="wix-footer-email-input" required>
+          <label class="wix-footer-checkbox-row">
+            <input type="checkbox" id="newsletter-agree" required>
+            <span>Tôi muốn đăng ký nhận bản tin của bạn. *</span>
+          </label>
+          <div class="wix-footer-submit-wrap">
+            <button type="submit" class="wix-footer-submit-btn">Đăng ký</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="wix-footer-policies" id="comp-kbgakxmn_r_comp-mvrqf3um">
+        <a href="chinh-sach-doi-tra.html">Chính sách đổi trả hàng</a>
+        <a href="chinh-sach-van-chuyen.html">Chính sách vận chuyển</a>
+        <a href="chinh-sach-quyen-rieng-tu.html">Chính sách quyền riêng tư</a>
+      </div>
+
+      <div class="wix-footer-contact-block" id="comp-kbgakxmn_r_comp-mvrfv02a">
+        <p>241 bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP. HCM</p>
+        <p><span style="text-decoration: underline;">028 8887 3241</span></p>
+        <p><a href="mailto:info@thorakao.com">info@thorakao.com</a></p>
+      </div>
+
+      <div class="wix-footer-socials">
+        <a href="https://www.facebook.com/neptocthorakao/" target="_blank" rel="noreferrer noopener" class="wix-footer-social-link" aria-label="Facebook">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="99" fill="#1877F2"/>
+            <path d="M199 101.473c0-55.011-44.324-99.605-99-99.605S1 46.462 1 101.473c0 49.716 36.203 90.923 83.531 98.395v-69.603H59.394v-28.792h25.137V79.529c0-24.964 14.78-38.753 37.394-38.753 10.832 0 22.161 1.945 22.161 1.945v24.512h-12.484c-12.298 0-16.133 7.678-16.133 15.555v18.684h27.457l-4.389 28.792h-23.068v69.603C162.797 192.395 199 151.188 199 101.472Z" fill="#ffffff"/>
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@neptoc.thorakao?_r=1&_t=ZS-9AsfZet6sB4" target="_blank" rel="noreferrer noopener" class="wix-footer-social-link" aria-label="TikTok">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 1C45.332 1 1 45.322 1 100s44.332 99 99 99 99-44.322 99-99-44.322-99-99-99m50.294 73.333v15.412a47.17 47.17 0 0 1-27.589-8.872v40.3c0 20.126-16.374 36.5-36.499 36.5a36.3 36.3 0 0 1-20.918-6.615c-9.412-6.608-15.582-17.536-15.582-29.885 0-20.126 16.373-36.5 36.5-36.5 1.67 0 3.307.137 4.918.356v20.245a16.4 16.4 0 0 0-4.918-.771c-9.191 0-16.67 7.478-16.67 16.67 0 6.4 3.631 11.962 8.937 14.754a16.55 16.55 0 0 0 7.732 1.915c8.979 0 16.304-7.143 16.637-16.042l.032-79.473h19.83c0 1.719.166 3.399.468 5.032 1.399 7.556 5.883 14.038 12.097 18.089a27.4 27.4 0 0 0 15.024 4.468v4.418Z" fill="#1c1917"/>
+          </svg>
+        </a>
+        <a href="https://www.threads.com/@neptoc.thorakao" target="_blank" rel="noreferrer noopener" class="wix-footer-social-link" aria-label="Threads">
+          <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" fill-rule="evenodd" fill="#1c1917" d="m386 152-1 1-20 1-1 1-11 1-1 1h-4l-1 1-15 3-21 7-3 2-7 2-9 5h-2l-23 13-20 14-13 11-19 19-14 17-17 26-12 24-5 15-2 3-1 6-3 7-3 15-1 1-1 10-1 1v6l-1 1-1 19-1 1v27l1 1v11l1 1v7l1 1v6l1 1 1 10 1 1 3 15 2 4v3l4 9 1 5 2 3v2l2 3v2l12 24 12 19 19 24 20 20 16 13 26 17 24 12 15 5 3 2 6 2h3l4 2 15 3 1 1 10 1 1 1h6l1 1h6l1 1h12l1 1h27l1-1h11l1-1 14-1 1-1h5l1-1h4l1-1 15-3 21-7 3-2 7-2 11-6h2l2-2 9-4 2-2 8-4 16-11 17-14 19-19 17-21 14-22 4-9 2-2v-2l6-11v-2l6-13 3-9v-3l2-4 3-15 1-1 2-16 1-1 1-20 1-1v-27l-1-1v-12l-1-1-1-13-1-1-1-10-3-9v-4l-8-24-2-3-2-7-5-9v-2l-13-23-11-16-13-16-20-20-17-14-26-17-9-4-2-2h-2l-11-6h-2l-13-6-9-3h-3l-4-2h-3l-4-2h-4l-1-1-8-1-1-1h-5l-1-1h-6l-1-1h-6l-1-1h-12l-1-1Zm-10 59h9l1-1h36l1 1h7l1 1 11 1 1 1 11 2 4 2h3l9 3 12 6h2l16 9 17 13 11 11 12 15 6 9 10 19v2l3 5 5 15v3l1 1v2l-4 2h-4l-1 1h-4l-1 1h-4l-1 1-13 2-6-18-8-16-10-15-14-15-13-10-15-8h-2l-5-3-12-4h-3l-9-3h-4l-1-1h-5l-1-1h-11l-1-1-30 1-1 1h-6l-1 1-10 1-1 1-7 1-15 5-15 7-15 11-11 12-12 18-12 27-1 6-3 8v3l-1 1v4l-1 1v6l-1 1v6l-1 1v9l-1 1v14l-1 1v20l1 1 1 25 1 1 1 11 1 1v4l2 5v4l3 7v3l2 3 1 5 4 7v2l3 4 2 5 15 20 11 10 13 9 14 7h2l3 2 12 4h4l1 1 9 1 1 1h5l1 1h11l1 1h18l1-1 18-1 1-1h5l1-1h4l12-4h3l3-2 9-3 2-2 11-6 20-19 9-14v-2l4-9 1-8 1-1v-21l-1-1-2-10-8-14-11-11-8-5-1 8-1 1-1 7-4 12-11 20-15 16-9 6-11 5-10 2-1 1-13 1-1 1-18-1-1-1h-4l-1-1-7-1-16-7-9-6-12-12-7-12-3-9v-4l-1-1v-19l1-1 1-8 8-16 13-13 18-10 9-3h3l1-1h4l1-1h7l1-1h42l1 1 14 1-4-15-6-11-9-9-12-6-18-2-1 1h-8l-1 1-8 1-9 4-7 5-7 9-4-1-5-4-20-12 4-6 14-14 7-5 12-6 9-3 8-1 1-1h6l1-1h20l1 1h6l1 1h4l9 3 9 4 9 6 13 13 8 12 7 17v3l2 4v5l2 6v9l1 2 6 3h2l2 2 10 5 8 6 15 15 8 12 5 11 3 9v3l1 1 1 12 1 1v15l-1 1v7l-1 1v5l-1 1-1 7-4 9v2l-6 12-10 14-11 12-13 11-12 8-16 8-15 5h-3l-9 3h-4l-1 1h-5l-1 1-15 1-1 1h-36l-1-1-15-1-1-1h-4l-1-1h-4l-1-1-7-1-15-5-21-10-19-13-14-13-11-13-10-15-11-23-5-15v-3l-3-8-1-9-1-1-1-11-1-1-1-19-1-1v-43l1-1v-11l1-1 1-15 1-1 2-14 1-1v-3l4-11 1-6 7-15v-2l9-17 14-20 9-9v-1l11-10 13-9 18-9h2l3-2 15-5h3l9-3h4l1-1 11-1Zm77 197-12-1-1-1h-10l-1-1h-25l-1 1-14 1-1 1h-3l-6 2-6 3-8 8-3 6v3l-1 1v8l1 1 1 6 2 4 7 7 11 6h3l4 2h5l1 1h13l1-1h5l1-1 6-1 9-5 11-12 5-10 3-9Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SIDE-DRAWER GIỎ HÀNG ==================== -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" onclick="closeCartDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3 class="cart-drawer-title">Giỏ Hàng Của Bạn</h3>
+        <button type="button" class="cart-drawer-close" onclick="closeCartDrawer()">✕</button>
+      </div>
+      <div class="cart-drawer-body">
+        <div class="cart-shipping-notice" id="cart-drawer-ship-notice"></div>
+        <div id="cart-drawer-items"></div>
+      </div>
+      <div class="cart-drawer-footer">
+        <div class="cart-subtotal-row">
+          <span>Tạm tính:</span>
+          <span id="cart-drawer-subtotal" style="color: var(--color-primary);">0₫</span>
+        </div>
+        <a href="cart.html" class="btn btn-primary cart-checkout-btn" id="cart-drawer-checkout-btn">
+          Tiến hành thanh toán
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WIX MEMBER LOGIN / REGISTER MODAL -->
+  <div class="wix-login-modal-backdrop" id="wixLoginModal" style="display: none;" onclick="if(event.target===this)closeWixLoginModal()">
+    <div class="wix-login-modal">
+      <button type="button" class="wix-login-close" id="wixModalCloseBtn" onclick="closeWixLoginModal()" aria-label="Đóng">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="display: inline-block; background: #ffffff; padding: 8px 18px; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
+          <img src="assets/images/logo-thorakao.png" alt="Thorakao" style="height: 44px; width: auto; object-fit: contain; display: block;">
+        </div>
+        <h3 id="wixAuthTitle" style="margin: 0; font-size: 20px; font-weight: 700; color: #fff8eb; font-family: 'Montserrat', sans-serif;">Đăng nhập tài khoản</h3>
+        <p id="wixAuthSubtitle" style="margin: 6px 0 0; font-size: 13px; color: rgba(255, 248, 235, 0.88);">Chào mừng bạn đến với Thorakao - Giữ nếp tóc Việt</p>
+      </div>
+
+      <div class="wix-auth-tabs">
+        <button type="button" class="wix-auth-tab-btn active" id="tabBtnLogin" onclick="switchWixAuthTab('login')">Đăng nhập</button>
+        <button type="button" class="wix-auth-tab-btn" id="tabBtnRegister" onclick="switchWixAuthTab('register')">Đăng ký</button>
+      </div>
+
+      <div class="wix-auth-socials">
+        <button type="button" class="wix-social-btn google" onclick="handleSocialLogin('Google')">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          <span>Tiếp tục với Google</span>
+        </button>
+        <button type="button" class="wix-social-btn facebook" onclick="handleSocialLogin('Facebook')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span>Tiếp tục với Facebook</span>
+        </button>
+      </div>
+
+      <div class="wix-auth-divider">
+        <span>hoặc sử dụng email</span>
+      </div>
+
+      <form id="wixLoginForm" onsubmit="handleMemberSubmit(event)" style="display: block;">
+        <div class="wix-auth-field">
+          <label for="wixLoginEmail">Email</label>
+          <input type="email" id="wixLoginEmail" required placeholder="Nhập email của bạn">
+        </div>
+        <div class="wix-auth-field">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label for="wixLoginPass" style="margin: 0;">Mật khẩu</label>
+            <a href="#" onclick="handleForgotPassword(event)" style="font-size: 12px; color: #ffc800; text-decoration: none; font-weight: 600;">Quên mật khẩu?</a>
+          </div>
+          <div style="position: relative;">
+            <input type="password" id="wixLoginPass" required placeholder="Nhập mật khẩu">
+            <button type="button" class="wix-toggle-pw" onclick="togglePasswordVisibility('wixLoginPass', this)" aria-label="Hiện/ẩn mật khẩu">👁️</button>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #fff8eb; cursor: pointer; margin: 0;">
+            <input type="checkbox" id="wixRememberMe" checked style="accent-color: #ffc800; width: 16px; height: 16px;">
+            <span>Ghi nhớ đăng nhập</span>
+          </label>
+        </div>
+        <button type="submit" class="wix-auth-submit-btn">Đăng nhập</button>
+        <div style="margin-top: 14px; text-align: center; font-size: 13px; color: rgba(255, 248, 235, 0.9);">
+          Chưa có tài khoản? <a href="#" onclick="event.preventDefault(); switchWixAuthTab('register')" style="color: #ffc800; font-weight: 700; text-decoration: underline;">Đăng ký ngay</a>
+        </div>
+      </form>
+
+      <form id="wixRegisterForm" onsubmit="handleMemberRegister(event)" style="display: none;">
+        <div class="wix-auth-field">
+          <label for="wixRegName">Họ và tên</label>
+          <input type="text" id="wixRegName" required placeholder="Ví dụ: Nguyễn Văn A">
+        </div>
+        <div class="wix-auth-field">
+          <label for="wixRegEmail">Email</label>
+          <input type="email" id="wixRegEmail" required placeholder="name@example.com">
+        </div>
+        <div class="wix-auth-field">
+          <label for="wixRegPhone">Số điện thoại</label>
+          <input type="tel" id="wixRegPhone" placeholder="0912 345 678">
+        </div>
+        <div class="wix-auth-field">
+          <label for="wixRegPass">Mật khẩu</label>
+          <div style="position: relative;">
+            <input type="password" id="wixRegPass" required placeholder="Tối thiểu 6 ký tự">
+            <button type="button" class="wix-toggle-pw" onclick="togglePasswordVisibility('wixRegPass', this)" aria-label="Hiện/ẩn mật khẩu">👁️</button>
+          </div>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #fff8eb; cursor: pointer;">
+            <input type="checkbox" id="wixRegTerms" required checked style="accent-color: #ffc800; width: 15px; height: 15px; margin-top: 2px;">
+            <span>Tôi đồng ý với <a href="chinh-sach-quyen-rieng-tu.html" target="_blank" style="color: #ffc800; text-decoration: underline;">Điều khoản &amp; Chính sách quyền riêng tư</a> của Thorakao</span>
+          </label>
+        </div>
+        <button type="submit" class="wix-auth-submit-btn">Đăng ký tài khoản</button>
+        <div style="margin-top: 14px; text-align: center; font-size: 13px; color: rgba(255, 248, 235, 0.9);">
+          Đã có tài khoản? <a href="#" onclick="event.preventDefault(); switchWixAuthTab('login')" style="color: #ffc800; font-weight: 700; text-decoration: underline;">Đăng nhập ngay</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="assets/js/config.js"></script>
   <script type="module" src="assets/js/auth.js"></script>
-  <script src="assets/js/auth-ui.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/chatbot.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     (function () {
       const $ = (id) => document.getElementById(id);
       const fmt = (n) => (Number(n) || 0).toLocaleString('vi-VN') + '₫';
       const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-      let loadedFor = null;
 
-      async function render(user) {
+      function formatOrderDate(o) {
+        if (o.createdAt && typeof o.createdAt.toDate === 'function') {
+          return o.createdAt.toDate().toLocaleDateString('vi-VN');
+        }
+        if (o.createdAtISO) {
+          try { return new Date(o.createdAtISO).toLocaleDateString('vi-VN'); } catch (e) {}
+        }
+        return 'Hôm nay';
+      }
+
+      async function renderAccountPage(firebaseUser) {
         const A = window.ThorakaoAuth;
-        if (!A || !A.enabled) { $('account-disabled').style.display = ''; return; }
-        $('account-guest').style.display = user ? 'none' : '';
-        $('account-content').style.display = user ? '' : 'none';
-        if (!user || loadedFor === user.uid) return;
-        loadedFor = user.uid;
+        const cachedUser = typeof getLoggedInUser === 'function' ? getLoggedInUser() : null;
+        const activeUser = firebaseUser || (A && A.user) || cachedUser;
 
-        const profile = (await A.getProfile().catch(() => null)) || {};
-        $('p-email').value = user.email || profile.email || '';
-        $('p-name').value = profile.fullName || user.displayName || '';
-        $('p-phone').value = profile.phone || '';
-        $('p-address').value = profile.address || '';
+        $('account-guest').style.display = activeUser ? 'none' : 'block';
+        $('account-content').style.display = activeUser ? 'block' : 'none';
 
+        if (!activeUser) return;
+
+        let profile = {};
+        if (A && A.user && A.getProfile) {
+          profile = (await A.getProfile().catch(() => null)) || {};
+        }
+
+        const email = activeUser.email || profile.email || (cachedUser && cachedUser.email) || '';
+        const name = profile.fullName || activeUser.displayName || activeUser.name || (cachedUser && cachedUser.name) || (email ? email.split('@')[0] : 'Khách hàng');
+        const phone = profile.phone || activeUser.phone || (cachedUser && cachedUser.phone) || '';
+        const address = profile.address || activeUser.address || (cachedUser && cachedUser.address) || '';
+        const photoURL = activeUser.photoURL || (cachedUser && cachedUser.photoURL) || '';
+
+        $('acc-display-name').textContent = name;
+        $('acc-display-email').textContent = email;
+        if (photoURL) {
+          $('acc-avatar').innerHTML = `<img src="${esc(photoURL)}" alt="${esc(name)}" referrerpolicy="no-referrer">`;
+        } else {
+          $('acc-avatar').textContent = (name.charAt(0) || 'T').toUpperCase();
+        }
+
+        $('p-email').value = email;
+        $('p-name').value = name;
+        $('p-phone').value = phone;
+        $('p-address').value = address;
+
+        // Tải lịch sử đơn hàng
         try {
-          const orders = await A.getOrders();
-          $('orders-list').innerHTML = orders.length
-            ? '<div style="overflow-x:auto"><table class="orders-table"><thead><tr><th>Mã đơn</th><th>Ngày</th><th>SL</th><th>Tổng tiền</th><th>Thanh toán</th></tr></thead><tbody>' +
-              orders.map((o) => '<tr><td>' + esc(o.orderId) + '</td><td>' +
-                (o.createdAt && o.createdAt.toDate ? o.createdAt.toDate().toLocaleDateString('vi-VN') : '') +
-                '</td><td>' + esc(o.quantity) + '</td><td>' + fmt(o.totalPrice) + '</td><td>' + esc(o.paymentMethod) + '</td></tr>').join('') +
-              '</tbody></table></div>'
-            : 'Bạn chưa có đơn hàng nào.';
+          let orders = [];
+          if (A && A.user && A.getOrders) {
+            orders = await A.getOrders();
+          } else {
+            const allLocal = JSON.parse(localStorage.getItem('thorakao_koc_orders') || '[]');
+            orders = allLocal.filter((o) => !o.email || o.email.toLowerCase() === email.toLowerCase());
+          }
+
+          if (orders.length > 0) {
+            $('orders-list').innerHTML = `
+              <div style="overflow-x:auto">
+                <table class="orders-table">
+                  <thead>
+                    <tr>
+                      <th>Mã đơn</th>
+                      <th>Ngày đặt</th>
+                      <th>Sản phẩm</th>
+                      <th>Địa chỉ nhận</th>
+                      <th>Tổng tiền</th>
+                      <th>Thanh toán</th>
+                      <th>Trạng thái</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${orders.map((o) => `
+                      <tr>
+                        <td><strong>${esc(o.orderId || 'THO-NEW')}</strong></td>
+                        <td>${esc(formatOrderDate(o))}</td>
+                        <td>Dầu Gội Bồ Kết 750ml &times; <strong>${esc(o.quantity || 1)}</strong></td>
+                        <td style="max-width: 220px;">${esc(o.address || '')}</td>
+                        <td style="color: #933827; font-weight: 700;">${fmt(o.totalPrice)}</td>
+                        <td>${esc(o.paymentMethod || 'COD')}</td>
+                        <td><span class="order-status-badge">Đã tiếp nhận</span></td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>`;
+          } else {
+            $('orders-list').innerHTML = `
+              <div style="text-align: center; padding: 28px 10px;">
+                <p style="margin-bottom: 14px; color: #666;">Bạn chưa có đơn hàng nào được ghi nhận.</p>
+                <a href="product.html" class="account-btn-primary">Đặt mua Dầu Gội Bồ Kết ngay</a>
+              </div>`;
+          }
         } catch (e) {
           $('orders-list').textContent = 'Không tải được đơn hàng. Vui lòng thử lại sau.';
         }
@@ -98,19 +893,67 @@
 
       $('profile-form').addEventListener('submit', async (e) => {
         e.preventDefault();
-        try {
-          await window.ThorakaoAuth.updateProfileData({
-            fullName: $('p-name').value.trim(), phone: $('p-phone').value.trim(), address: $('p-address').value.trim()
-          });
-          $('p-status').textContent = 'Đã lưu!';
-        } catch (err) { $('p-status').textContent = 'Lưu thất bại.'; }
-        setTimeout(() => ($('p-status').textContent = ''), 2500);
-      });
-      $('btn-logout').onclick = async () => { await window.ThorakaoAuth.logout(); location.href = 'index.html'; };
+        const saveBtn = $('btn-save-profile');
+        const newName = $('p-name').value.trim();
+        const newPhone = $('p-phone').value.trim();
+        const newAddress = $('p-address').value.trim();
 
-      window.addEventListener('auth:changed', (e) => render(e.detail));
-      window.addEventListener('auth:ready', () => { if (!window.ThorakaoAuth.enabled) render(null); });
-      if (window.ThorakaoAuth && !window.ThorakaoAuth.enabled) render(null);
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Đang lưu...';
+
+        try {
+          if (window.ThorakaoAuth && window.ThorakaoAuth.user && window.ThorakaoAuth.updateProfileData) {
+            await window.ThorakaoAuth.updateProfileData({
+              fullName: newName,
+              phone: newPhone,
+              address: newAddress
+            });
+          } else {
+            const cur = JSON.parse(localStorage.getItem('thorakao_user') || '{}');
+            const updated = { ...cur, name: newName, fullName: newName, phone: newPhone, address: newAddress, loggedIn: true };
+            localStorage.setItem('thorakao_user', JSON.stringify(updated));
+          }
+          $('acc-display-name').textContent = newName;
+          $('p-status').textContent = '✓ Đã lưu thay đổi thành công!';
+          if (typeof checkAuthState === 'function') checkAuthState();
+          if (typeof showToast === 'function') showToast('Đã cập nhật thông tin tài khoản thành công!');
+        } catch (err) {
+          $('p-status').textContent = 'Lưu thất bại, vui lòng thử lại.';
+          if (typeof showToast === 'function') showToast('Lưu thông tin thất bại!', true);
+        } finally {
+          saveBtn.disabled = false;
+          saveBtn.textContent = 'Lưu thông tin';
+          setTimeout(() => { $('p-status').textContent = ''; }, 3500);
+        }
+      });
+
+      $('btn-reset-pw').addEventListener('click', async () => {
+        const email = $('p-email').value.trim();
+        if (!email) return;
+        try {
+          if (window.ThorakaoAuth && window.ThorakaoAuth.resetPassword) {
+            await window.ThorakaoAuth.resetPassword(email);
+          }
+          if (typeof showToast === 'function') {
+            showToast(`Đã gửi liên kết đổi mật khẩu tới ${email}! Vui lòng kiểm tra hộp thư.`);
+          }
+        } catch (err) {
+          if (typeof showToast === 'function') {
+            showToast('Không thể gửi email đổi mật khẩu lúc này.', true);
+          }
+        }
+      });
+
+      $('btn-logout').addEventListener('click', async () => {
+        if (typeof handleMemberLogout === 'function') {
+          await handleMemberLogout();
+        }
+        renderAccountPage(null);
+      });
+
+      window.addEventListener('auth:changed', (e) => renderAccountPage(e.detail));
+      document.addEventListener('DOMContentLoaded', () => renderAccountPage());
+      renderAccountPage();
     })();
   </script>
 </body>

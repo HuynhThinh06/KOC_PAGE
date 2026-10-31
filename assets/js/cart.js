@@ -201,13 +201,14 @@ async function submitOrder(orderData) {
     shippingFee: orderData.shippingFee,
     totalPrice: orderData.total,
     paymentMethod: orderData.paymentMethod || 'COD',
-    note: orderData.note || ''
+    note: orderData.note || '',
+    createdAtISO: new Date().toISOString()
   };
 
   // Gắn tài khoản (nếu khách đã đăng nhập)
-  const authUser = window.ThorakaoAuth && window.ThorakaoAuth.user;
+  const authUser = (window.ThorakaoAuth && window.ThorakaoAuth.user) || (typeof getLoggedInUser === 'function' ? getLoggedInUser() : null);
   if (authUser) {
-    payload.uid = authUser.uid;
+    payload.uid = authUser.uid || '';
     payload.email = authUser.email || '';
   }
 
@@ -218,9 +219,22 @@ async function submitOrder(orderData) {
     localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(existingOrders));
   } catch (e) {}
 
-  // 1b. Lưu đơn vào Firestore để xem lịch sử trên trang tài khoản (chỉ khi đã đăng nhập)
-  if (authUser && window.ThorakaoAuth.saveOrder) {
-    try { await window.ThorakaoAuth.saveOrder(payload); } catch (e) { console.warn('Lưu đơn lên tài khoản thất bại:', e); }
+  // 1b. Lưu đơn vào Firestore & tự động bổ sung SĐT/Địa chỉ vào hồ sơ nếu chưa có
+  if (window.ThorakaoAuth && window.ThorakaoAuth.user) {
+    if (window.ThorakaoAuth.saveOrder) {
+      try { await window.ThorakaoAuth.saveOrder(payload); } catch (e) { console.warn('Lưu đơn lên tài khoản thất bại:', e); }
+    }
+    if (window.ThorakaoAuth.updateProfileData) {
+      try {
+        const curProf = (await window.ThorakaoAuth.getProfile()) || {};
+        const updates = {};
+        if (!curProf.phone && orderData.phone) updates.phone = orderData.phone;
+        if (!curProf.address && orderData.address) updates.address = orderData.address;
+        if (Object.keys(updates).length > 0) {
+          await window.ThorakaoAuth.updateProfileData(updates);
+        }
+      } catch (e) {}
+    }
   }
 
   // 2. Gửi Webhook Google Sheet (Nếu đã cài đặt URL)
@@ -243,25 +257,36 @@ async function submitOrder(orderData) {
   return { success: true, orderId: orderId };
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartUI();
-});
-
 // Tự điền form đặt hàng bằng hồ sơ khi khách đã đăng nhập (không bắt buộc đăng nhập để đặt hàng)
 async function prefillOrderForm(user) {
   const nameEl = document.getElementById('order-fullname');
-  if (!user || !nameEl || !window.ThorakaoAuth || !window.ThorakaoAuth.getProfile) return;
+  if (!nameEl) return;
+  const set = (id, v) => {
+    const el = document.getElementById(id);
+    if (el && !el.value && v) el.value = v;
+  };
+
   try {
-    const p = (await window.ThorakaoAuth.getProfile()) || {};
-    const set = (id, v) => {
-      const el = document.getElementById(id);
-      if (el && !el.value && v) el.value = v;
-    };
-    set('order-fullname', p.fullName || user.displayName);
-    set('order-phone', p.phone);
-    set('order-address', p.address);
+    const cached = typeof getLoggedInUser === 'function' ? getLoggedInUser() : null;
+    if (cached) {
+      set('order-fullname', cached.fullName || cached.name);
+      set('order-phone', cached.phone);
+      set('order-address', cached.address);
+    }
+    const activeUser = user || (window.ThorakaoAuth && window.ThorakaoAuth.user);
+    if (activeUser && window.ThorakaoAuth && window.ThorakaoAuth.getProfile) {
+      const p = (await window.ThorakaoAuth.getProfile()) || {};
+      set('order-fullname', p.fullName || activeUser.displayName);
+      set('order-phone', p.phone);
+      set('order-address', p.address);
+    }
   } catch (e) {
     console.warn('Prefill error:', e);
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartUI();
+  prefillOrderForm();
+});
 window.addEventListener('auth:changed', (e) => prefillOrderForm(e.detail));

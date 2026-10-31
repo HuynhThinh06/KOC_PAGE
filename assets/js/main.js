@@ -685,11 +685,25 @@ function initNotificationTooltip() {
 
 
 // ==========================================
-// 11. WIX MEMBER AUTH (LOGIN / REGISTER MODAL)
+// 11. WIX MEMBER AUTH (FIREBASE + LOCAL SYNC)
 // ==========================================
 
 function getLoggedInUser() {
   try {
+    if (window.ThorakaoAuth && window.ThorakaoAuth.user) {
+      const u = window.ThorakaoAuth.user;
+      const raw = localStorage.getItem('thorakao_user');
+      const cached = raw ? JSON.parse(raw) : {};
+      return {
+        uid: u.uid,
+        email: u.email || cached.email || '',
+        name: cached.name || u.displayName || (u.email ? u.email.split('@')[0] : 'Khách hàng'),
+        phone: cached.phone || '',
+        address: cached.address || '',
+        photoURL: u.photoURL || cached.photoURL || '',
+        loggedIn: true
+      };
+    }
     const raw = localStorage.getItem('thorakao_user');
     if (!raw) return null;
     const user = JSON.parse(raw);
@@ -699,10 +713,44 @@ function getLoggedInUser() {
   }
 }
 
+function showWixModalFeedback(msgText, isError = true) {
+  const modal = document.querySelector('#wixLoginModal .wix-login-modal');
+  if (!modal) return;
+  let box = document.getElementById('wixAuthFeedbackBox');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'wixAuthFeedbackBox';
+    box.style.cssText = 'padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 14px; display: none; line-height: 1.4;';
+    const tabs = modal.querySelector('.wix-auth-tabs');
+    if (tabs && tabs.nextSibling) {
+      modal.insertBefore(box, tabs.nextSibling);
+    } else {
+      modal.prepend(box);
+    }
+  }
+  if (!msgText) {
+    box.style.display = 'none';
+    box.textContent = '';
+    return;
+  }
+  box.style.display = 'block';
+  if (isError) {
+    box.style.background = 'rgba(255, 235, 235, 0.95)';
+    box.style.color = '#b91c1c';
+    box.style.border = '1px solid #fca5a5';
+  } else {
+    box.style.background = 'rgba(236, 253, 245, 0.95)';
+    box.style.color = '#047857';
+    box.style.border = '1px solid #6ee7b7';
+  }
+  box.textContent = msgText;
+}
+
 function checkAuthState() {
   const user = getLoggedInUser();
   const label = document.getElementById('loginHeaderLabel');
   const avatarWrap = document.getElementById('loginAvatarIconWrap');
+  const dropdown = document.getElementById('wixMemberDropdown');
 
   const wixDefaultSvg = `
     <div id="defaultAvatar-comp-mb7ogqrp_r_comp-mpbn4c1x" class="_avatarPlaceholder_amy81_32 wixui-vector-image">
@@ -714,16 +762,36 @@ function checkAuthState() {
     </div>
   `;
 
-  if (avatarWrap && !avatarWrap.querySelector('svg')) {
-    avatarWrap.innerHTML = wixDefaultSvg;
-  }
-
   if (user) {
+    if (avatarWrap) {
+      if (user.photoURL) {
+        avatarWrap.innerHTML = `<img src="${user.photoURL}" alt="${user.name}" referrerpolicy="no-referrer" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid #285572; display: block;">`;
+      } else if (!avatarWrap.querySelector('svg')) {
+        avatarWrap.innerHTML = wixDefaultSvg;
+      }
+    }
     if (label) {
-      label.textContent = '';
-      label.style.display = 'none';
+      label.textContent = user.name || 'Tài khoản';
+      label.style.display = '';
+    }
+    if (dropdown) {
+      const safeName = (user.name || 'Khách hàng').replace(/[<>&"']/g, '');
+      const safeEmail = (user.email || '').replace(/[<>&"']/g, '');
+      dropdown.innerHTML = `
+        <div style="padding: 10px 16px; border-bottom: 1px solid #eee; background: #faf7f2;">
+          <div style="font-weight: 700; font-size: 13px; color: #7A2737; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 190px;">${safeName}</div>
+          ${safeEmail ? `<div style="font-size: 11px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 190px; margin-top: 2px;">${safeEmail}</div>` : ''}
+        </div>
+        <a href="account.html" class="member-dropdown-item" onclick="closeMemberDropdown()">Tài khoản của tôi</a>
+        <a href="account.html#orders" class="member-dropdown-item" onclick="closeMemberDropdown()">Đơn hàng của tôi</a>
+        <div class="member-dropdown-divider"></div>
+        <button type="button" class="member-dropdown-item logout" onclick="handleMemberLogout()">Đăng xuất</button>
+      `;
     }
   } else {
+    if (avatarWrap && (!avatarWrap.querySelector('svg') || avatarWrap.querySelector('img'))) {
+      avatarWrap.innerHTML = wixDefaultSvg;
+    }
     if (label) {
       label.textContent = 'Đăng nhập';
       label.style.display = '';
@@ -752,6 +820,7 @@ function handleLoginHeaderClick(e) {
 function openWixLoginModal(tab = 'login') {
   const modal = document.getElementById('wixLoginModal');
   if (modal) {
+    showWixModalFeedback('');
     modal.style.display = 'flex';
     modal.classList.add('open');
     switchWixAuthTab(tab);
@@ -762,6 +831,7 @@ function openWixLoginModal(tab = 'login') {
 function closeWixLoginModal() {
   const modal = document.getElementById('wixLoginModal');
   if (modal) {
+    showWixModalFeedback('');
     modal.classList.remove('open');
     modal.style.display = 'none';
     document.body.style.overflow = '';
@@ -775,6 +845,7 @@ function switchWixAuthTab(tab) {
   const formReg = document.getElementById('wixRegisterForm');
   const title = document.getElementById('wixAuthTitle');
   const subtitle = document.getElementById('wixAuthSubtitle');
+  showWixModalFeedback('');
 
   if (tab === 'register') {
     if (tabReg) tabReg.classList.add('active');
@@ -793,42 +864,69 @@ function switchWixAuthTab(tab) {
   }
 }
 
-function handleMemberSubmit(e) {
+async function handleMemberSubmit(e) {
   if (e) e.preventDefault();
   const emailInput = document.getElementById('wixLoginEmail');
   const passInput = document.getElementById('wixLoginPass');
+  const rememberInput = document.getElementById('wixRememberMe');
+  const submitBtn = document.querySelector('#wixLoginForm .wix-auth-submit-btn');
+
   const email = emailInput ? emailInput.value.trim() : '';
   const pass = passInput ? passInput.value : '';
+  const rememberMe = rememberInput ? rememberInput.checked : true;
 
   if (!email) {
-    showToast('Vui lòng nhập địa chỉ email!', true);
+    showWixModalFeedback('Vui lòng nhập địa chỉ email!');
     return;
   }
   if (!pass) {
-    showToast('Vui lòng nhập mật khẩu!', true);
+    showWixModalFeedback('Vui lòng nhập mật khẩu!');
     return;
   }
 
-  const name = email.split('@')[0];
-  const user = {
-    email: email,
-    name: name,
-    loggedIn: true,
-    loginTime: new Date().toISOString()
-  };
+  const origText = submitBtn ? submitBtn.textContent : 'Đăng nhập';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Đang đăng nhập...';
+  }
+  showWixModalFeedback('');
 
-  localStorage.setItem('thorakao_user', JSON.stringify(user));
-  checkAuthState();
-  closeWixLoginModal();
-  showToast(`Chào mừng bạn ${name} đã đăng nhập thành công!`);
+  try {
+    if (window.ThorakaoAuth && window.ThorakaoAuth.enabled && window.ThorakaoAuth.login) {
+      const cred = await window.ThorakaoAuth.login(email, pass, rememberMe);
+      const displayName = (cred.user && cred.user.displayName) || email.split('@')[0];
+      checkAuthState();
+      closeWixLoginModal();
+      showToast(`Chào mừng ${displayName} đã đăng nhập thành công!`);
+    } else {
+      const name = email.split('@')[0];
+      const user = { email, name, loggedIn: true, loginTime: new Date().toISOString() };
+      localStorage.setItem('thorakao_user', JSON.stringify(user));
+      checkAuthState();
+      closeWixLoginModal();
+      showToast(`Chào mừng ${name} đã đăng nhập thành công!`);
+    }
+  } catch (err) {
+    const errMsg = (window.ThorakaoAuth && window.ThorakaoAuth.translateError)
+      ? window.ThorakaoAuth.translateError(err)
+      : 'Email hoặc mật khẩu không đúng.';
+    showWixModalFeedback(errMsg, true);
+    showToast(errMsg, true);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = origText;
+    }
+  }
 }
 
-function handleMemberRegister(e) {
+async function handleMemberRegister(e) {
   if (e) e.preventDefault();
   const nameInput = document.getElementById('wixRegName');
   const emailInput = document.getElementById('wixRegEmail');
   const phoneInput = document.getElementById('wixRegPhone');
   const passInput = document.getElementById('wixRegPass');
+  const submitBtn = document.querySelector('#wixRegisterForm .wix-auth-submit-btn');
 
   const name = nameInput ? nameInput.value.trim() : '';
   const email = emailInput ? emailInput.value.trim() : '';
@@ -836,51 +934,101 @@ function handleMemberRegister(e) {
   const pass = passInput ? passInput.value : '';
 
   if (!name) {
-    showToast('Vui lòng nhập họ và tên!', true);
+    showWixModalFeedback('Vui lòng nhập họ và tên!');
     return;
   }
   if (!email) {
-    showToast('Vui lòng nhập email!', true);
+    showWixModalFeedback('Vui lòng nhập địa chỉ email!');
     return;
   }
   if (!pass || pass.length < 6) {
-    showToast('Mật khẩu tối thiểu 6 ký tự!', true);
+    showWixModalFeedback('Mật khẩu cần tối thiểu 6 ký tự!');
     return;
   }
 
-  const user = {
-    email: email,
-    name: name,
-    phone: phone,
-    loggedIn: true,
-    loginTime: new Date().toISOString()
-  };
+  const origText = submitBtn ? submitBtn.textContent : 'Tạo tài khoản';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Đang tạo tài khoản...';
+  }
+  showWixModalFeedback('');
 
-  localStorage.setItem('thorakao_user', JSON.stringify(user));
-  checkAuthState();
-  closeWixLoginModal();
-  showToast(`Đăng ký tài khoản thành công! Chào mừng ${name}!`);
+  try {
+    if (window.ThorakaoAuth && window.ThorakaoAuth.enabled && window.ThorakaoAuth.register) {
+      await window.ThorakaoAuth.register(name, email, pass, phone);
+      checkAuthState();
+      closeWixLoginModal();
+      showToast(`Đăng ký tài khoản thành công! Chào mừng ${name}!`);
+    } else {
+      const user = { email, name, phone, loggedIn: true, loginTime: new Date().toISOString() };
+      localStorage.setItem('thorakao_user', JSON.stringify(user));
+      checkAuthState();
+      closeWixLoginModal();
+      showToast(`Đăng ký tài khoản thành công! Chào mừng ${name}!`);
+    }
+  } catch (err) {
+    const errMsg = (window.ThorakaoAuth && window.ThorakaoAuth.translateError)
+      ? window.ThorakaoAuth.translateError(err)
+      : 'Không thể tạo tài khoản. Vui lòng thử lại.';
+    showWixModalFeedback(errMsg, true);
+    showToast(errMsg, true);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = origText;
+    }
+  }
 }
 
-function handleSocialLogin(provider) {
-  const mockUser = {
-    email: provider.toLowerCase() + '_user@thorakao.vn',
-    name: `Khách hàng ${provider}`,
-    loggedIn: true,
-    provider: provider,
-    loginTime: new Date().toISOString()
-  };
-  localStorage.setItem('thorakao_user', JSON.stringify(mockUser));
-  checkAuthState();
-  closeWixLoginModal();
-  showToast(`Đăng nhập thành công qua ${provider}!`);
+async function handleSocialLogin(provider) {
+  showWixModalFeedback('Đang kết nối với ' + provider + '...', false);
+  try {
+    if (window.ThorakaoAuth && window.ThorakaoAuth.enabled) {
+      const cred = provider === 'Google'
+        ? await window.ThorakaoAuth.loginGoogle()
+        : await window.ThorakaoAuth.loginFacebook();
+      const u = cred && cred.user;
+      const displayName = (u && (u.displayName || (u.email && u.email.split('@')[0]))) || `Khách hàng ${provider}`;
+      checkAuthState();
+      closeWixLoginModal();
+      showToast(`Chào mừng ${displayName} đã đăng nhập qua ${provider}!`);
+    } else {
+      showWixModalFeedback('Tính năng đăng nhập mạng xã hội cần chạy trên môi trường web (http/https).', true);
+    }
+  } catch (err) {
+    const errMsg = (window.ThorakaoAuth && window.ThorakaoAuth.translateError)
+      ? window.ThorakaoAuth.translateError(err)
+      : `Không thể đăng nhập qua ${provider}.`;
+    showWixModalFeedback(errMsg, true);
+    showToast(errMsg, true);
+  }
 }
 
-function handleForgotPassword(e) {
+async function handleForgotPassword(e) {
   if (e) e.preventDefault();
-  const email = prompt('Vui lòng nhập email đã đăng ký để nhận mã xác nhận đổi mật khẩu:');
-  if (email) {
-    showToast(`Đã gửi liên kết đặt lại mật khẩu đến ${email}! Vui lòng kiểm tra hộp thư.`);
+  const emailInput = document.getElementById('wixLoginEmail');
+  let email = emailInput ? emailInput.value.trim() : '';
+
+  if (!email) {
+    showWixModalFeedback('Vui lòng nhập địa chỉ Email của bạn vào ô Email bên dưới rồi bấm lại "Quên mật khẩu?".', true);
+    if (emailInput) emailInput.focus();
+    return;
+  }
+
+  showWixModalFeedback('Đang gửi liên kết khôi phục mật khẩu...', false);
+  try {
+    if (window.ThorakaoAuth && window.ThorakaoAuth.enabled && window.ThorakaoAuth.resetPassword) {
+      await window.ThorakaoAuth.resetPassword(email);
+    }
+    const okMsg = `Đã gửi liên kết đặt lại mật khẩu đến ${email}! Vui lòng kiểm tra hộp thư (kể cả mục Spam/Quảng cáo).`;
+    showWixModalFeedback(okMsg, false);
+    showToast(okMsg);
+  } catch (err) {
+    const errMsg = (window.ThorakaoAuth && window.ThorakaoAuth.translateError)
+      ? window.ThorakaoAuth.translateError(err)
+      : 'Không thể gửi email khôi phục mật khẩu.';
+    showWixModalFeedback(errMsg, true);
+    showToast(errMsg, true);
   }
 }
 
@@ -896,8 +1044,13 @@ function togglePasswordVisibility(inputId, btn) {
   }
 }
 
-function handleMemberLogout() {
+async function handleMemberLogout() {
   localStorage.removeItem('thorakao_user');
+  if (window.ThorakaoAuth && window.ThorakaoAuth.logout) {
+    try {
+      await window.ThorakaoAuth.logout();
+    } catch (e) {}
+  }
   checkAuthState();
   closeMemberDropdown();
   showToast('Đã đăng xuất tài khoản thành công!');
@@ -915,6 +1068,7 @@ function closeMemberDropdown() {
 window.handleLoginHeaderClick = handleLoginHeaderClick;
 window.handleWixLoginClick = handleLoginHeaderClick;
 window.openWixLoginModal = openWixLoginModal;
+window.openAuthModal = openWixLoginModal;
 window.closeWixLoginModal = closeWixLoginModal;
 window.switchWixAuthTab = switchWixAuthTab;
 window.handleMemberSubmit = handleMemberSubmit;
@@ -926,6 +1080,11 @@ window.handleMemberLogout = handleMemberLogout;
 window.closeMemberDropdown = closeMemberDropdown;
 window.checkAuthState = checkAuthState;
 window.getLoggedInUser = getLoggedInUser;
+
+// Lắng nghe sự kiện thay đổi trạng thái từ Firebase Auth (auth.js)
+window.addEventListener('auth:changed', () => {
+  checkAuthState();
+});
 
 // Gọi checkAuthState khi DOM sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
