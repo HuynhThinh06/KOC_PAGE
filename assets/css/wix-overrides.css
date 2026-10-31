@@ -182,22 +182,142 @@ div[data-testid="wix-ads"] {
 
 
 /* Nút Đăng ký chân trang */
+/* Nút Đăng ký chân trang: Mặc định nền đỏ chữ vàng kim, khi hover/active/focus đổi sang nền vàng chữ đỏ */
 #comp-kbgakxmn_r_comp-mvq7204e button[type="submit"],
+#comp-kbgakxmn_r_comp-mvq7204e button[data-hook="submit-button"],
 #comp-kbgakxmn_r_comp-mvq7204e button {
   background: #8c2d19 !important;
+  background-color: #8c2d19 !important;
   color: #ffbe3b !important;
   font-weight: 700 !important;
   border-radius: 4px !important;
-  border: none !important;
+  border: 1px solid transparent !important;
   padding: 10px 24px !important;
   cursor: pointer !important;
-  transition: all 0.2s ease !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 #comp-kbgakxmn_r_comp-mvq7204e button[type="submit"]:hover,
-#comp-kbgakxmn_r_comp-mvq7204e button:hover {
-  background: #6e2010 !important;
-  color: #ffffff !important;
+#comp-kbgakxmn_r_comp-mvq7204e button[type="submit"]:active,
+#comp-kbgakxmn_r_comp-mvq7204e button[type="submit"]:focus-visible,
+#comp-kbgakxmn_r_comp-mvq7204e button[data-hook="submit-button"]:hover,
+#comp-kbgakxmn_r_comp-mvq7204e button[data-hook="submit-button"]:active,
+#comp-kbgakxmn_r_comp-mvq7204e button[data-hook="submit-button"]:focus-visible,
+#comp-kbgakxmn_r_comp-mvq7204e button:hover,
+#comp-kbgakxmn_r_comp-mvq7204e button:active,
+#comp-kbgakxmn_r_comp-mvq7204e button:focus-visible,
+#comp-kbgakxmn_r_comp-mvq7204e button.btn-hover-active {
+  background: #ffc800 !important;
+  background-color: #ffc800 !important;
+  color: #8c2d19 !important;
+  border-color: #ffc800 !important;
+  box-shadow: 0 4px 15px rgba(255, 200, 0, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+#comp-kbgakxmn_r_comp-mvq7204e button:hover span,
+#comp-kbgakxmn_r_comp-mvq7204e button:active span,
+#comp-kbgakxmn_r_comp-mvq7204e button:focus-visible span,
+#comp-kbgakxmn_r_comp-mvq7204e button.btn-hover-active span,
+#comp-kbgakxmn_r_comp-mvq7204e button:hover *,
+#comp-kbgakxmn_r_comp-mvq7204e button:active *,
+#comp-kbgakxmn_r_comp-mvq7204e button:focus-visible *,
+#comp-kbgakxmn_r_comp-mvq7204e button.btn-hover-active * {
+  color: #8c2d19 !important;
+}
+
+/* Hiệu ứng nút Trò chuyện với chúng tôi / Chatbot: hover/active/focus đổi sang màu đỏ chữ vàng */
+.minimizedButtonV2,
+._chatButton_no1cy_34,
+button[aria-label*="Trò chuyện"] {
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, transform 0.2s ease !important;
+}
+
+.minimizedButtonV2:hover,
+.minimizedButtonV2:active,
+.minimizedButtonV2:focus-visible,
+.minimizedButtonV2.chat-hover-active,
+._chatButton_no1cy_34:hover,
+._chatButton_no1cy_34:active,
+._chatButton_no1cy_34:focus-visible,
+._chatButton_no1cy_34.chat-hover-active,
+button[aria-label*="Trò chuyện"]:hover,
+button[aria-label*="Trò chuyện"]:active,
+button[aria-label*="Trò chuyện"]:focus-visible,
+button[aria-label*="Trò chuyện"].chat-hover-active {
+  background: #8c2d19 !important;
+  background-color: #8c2d19 !important;
+  color: #ffc800 !important;
+  box-shadow: 0 6px 20px rgba(140, 45, 25, 0.45) !important;
+  transform: translateY(-2px) !important;
+}
+
+.minimizedButtonV2:hover .minimizedButtonText,
+.minimizedButtonV2:active .minimizedButtonText,
+.minimizedButtonV2:focus-visible .minimizedButtonText,
+.minimizedButtonV2.chat-hover-active .minimizedButtonText,
+.minimizedButtonV2:hover ._buttonText_no1cy_69,
+.minimizedButtonV2:active ._buttonText_no1cy_69,
+.minimizedButtonV2:focus-visible ._buttonText_no1cy_69,
+.minimizedButtonV2.chat-hover-active ._buttonText_no1cy_69,
+._chatButton_no1cy_34:hover .minimizedButtonText,
+._chatButton_no1cy_34:active .minimizedButtonText,
+._chatButton_no1cy_34:focus-visible .minimizedButtonText,
+._chatButton_no1cy_34.chat-hover-active .minimizedButtonText,
+._chatButton_no1cy_34:hover ._buttonText_no1cy_69,
+._chatButton_no1cy_34:active ._buttonText_no1cy_69,
+._chatButton_no1cy_34:focus-visible ._buttonText_no1cy_69,
+._chatButton_no1cy_34.chat-hover-active ._buttonText_no1cy_69,
+button[aria-label*="Trò chuyện"]:hover span,
+button[aria-label*="Trò chuyện"]:active span,
+button[aria-label*="Trò chuyện"]:focus-visible span,
+button[aria-label*="Trò chuyện"].chat-hover-active span {
+  color: #ffc800 !important;
+}
+
+.minimizedButtonV2:hover svg,
+.minimizedButtonV2:active svg,
+.minimizedButtonV2:focus-visible svg,
+.minimizedButtonV2.chat-hover-active svg,
+.minimizedButtonV2:hover .minimizedButtonIcon,
+.minimizedButtonV2:active .minimizedButtonIcon,
+.minimizedButtonV2:focus-visible .minimizedButtonIcon,
+.minimizedButtonV2.chat-hover-active .minimizedButtonIcon,
+._chatButton_no1cy_34:hover svg,
+._chatButton_no1cy_34:active svg,
+._chatButton_no1cy_34:focus-visible svg,
+._chatButton_no1cy_34.chat-hover-active svg,
+button[aria-label*="Trò chuyện"]:hover svg,
+button[aria-label*="Trò chuyện"]:active svg,
+button[aria-label*="Trò chuyện"]:focus-visible svg,
+button[aria-label*="Trò chuyện"].chat-hover-active svg {
+  fill: #ffc800 !important;
+  color: #ffc800 !important;
+}
+
+.minimizedButtonV2:hover path,
+.minimizedButtonV2:active path,
+.minimizedButtonV2:focus-visible path,
+.minimizedButtonV2.chat-hover-active path,
+.minimizedButtonV2:hover .illus-clr-2,
+.minimizedButtonV2:active .illus-clr-2,
+.minimizedButtonV2:focus-visible .illus-clr-2,
+.minimizedButtonV2.chat-hover-active .illus-clr-2,
+._chatButton_no1cy_34:hover path,
+._chatButton_no1cy_34:active path,
+._chatButton_no1cy_34:focus-visible path,
+._chatButton_no1cy_34.chat-hover-active path,
+button[aria-label*="Trò chuyện"]:hover path,
+button[aria-label*="Trò chuyện"]:active path,
+button[aria-label*="Trò chuyện"]:focus-visible path,
+button[aria-label*="Trò chuyện"].chat-hover-active path {
+  fill: #ffc800 !important;
+}
+
+/* Ẩn triệt để widget Threads độc lập để không bao giờ bị đè */
+.comp-kbgakxmn_r_comp-mvte363p-presets-wrapper,
+#comp-kbgakxmn_r_comp-mvte363p {
+  display: none !important;
 }
 
 /* Địa chỉ, hotline, email chân trang đổi thành màu đỏ theo yêu cầu */

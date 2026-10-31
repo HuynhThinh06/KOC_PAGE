@@ -14,6 +14,7 @@ function initApp() {
   initMobileMenu();
   initNotificationTooltip();
   updateHeaderCartCount();
+  initButtonHoverEffects();
 }
 
 if (document.readyState === 'loading') {
@@ -1262,3 +1263,53 @@ function initMobileMenu() {
 }
 
 
+
+// TƯƠNG TÁC HOVER & CLICK NÚT "ĐĂNG KÝ" VÀ "TRÒ CHUYỆN VỚI CHÚNG TÔI"
+function initButtonHoverEffects() {
+  // 1. Nút Đăng ký ở footer
+  const setupSubmitBtn = () => {
+    const submitBtns = document.querySelectorAll('#comp-kbgakxmn_r_comp-mvq7204e button, [data-hook="submit-button"]');
+    submitBtns.forEach(btn => {
+      if (btn.dataset.hoverBound) return;
+      btn.dataset.hoverBound = 'true';
+      
+      const onEnter = () => btn.classList.add('btn-hover-active');
+      const onLeave = () => btn.classList.remove('btn-hover-active');
+      
+      btn.addEventListener('pointerenter', onEnter);
+      btn.addEventListener('pointerleave', onLeave);
+      btn.addEventListener('touchstart', onEnter, { passive: true });
+      btn.addEventListener('touchend', onLeave, { passive: true });
+      btn.addEventListener('focus', onEnter);
+      btn.addEventListener('blur', onLeave);
+    });
+  };
+
+  // 2. Nút Trò chuyện với chúng tôi / Chatbot launcher
+  const setupChatBtn = () => {
+    const chatBtns = document.querySelectorAll('.minimizedButtonV2, ._chatButton_no1cy_34, button[aria-label*="Trò chuyện"]');
+    chatBtns.forEach(btn => {
+      if (btn.dataset.chatHoverBound) return;
+      btn.dataset.chatHoverBound = 'true';
+
+      const onEnter = () => btn.classList.add('chat-hover-active');
+      const onLeave = () => btn.classList.remove('chat-hover-active');
+
+      btn.addEventListener('pointerenter', onEnter);
+      btn.addEventListener('pointerleave', onLeave);
+      btn.addEventListener('touchstart', onEnter, { passive: true });
+      btn.addEventListener('touchend', onLeave, { passive: true });
+      btn.addEventListener('focus', onEnter);
+      btn.addEventListener('blur', onLeave);
+    });
+  };
+
+  setupSubmitBtn();
+  setupChatBtn();
+  // Observer for dynamically added buttons
+  const observer = new MutationObserver(() => {
+    setupSubmitBtn();
+    setupChatBtn();
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+}
