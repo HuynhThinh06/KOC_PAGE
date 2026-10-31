@@ -197,7 +197,7 @@ function doPost(e) {
 
 // ==================== HÀM GỌI GOOGLE GEMINI AI ====================
 function callGeminiAI(userMessage, apiKey, history) {
-  var url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + apiKey;
+  var url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=" + apiKey;
   
   var systemPrompt = "Bạn là Trợ lý tư vấn AI chính thức của thương hiệu 'Nếp Tóc Thorakao'.\n"
     + "Phong cách: Thân thiện, duyên dáng, tinh tế, am hiểu về chăm sóc tóc truyền thống và hiện đại.\n"
