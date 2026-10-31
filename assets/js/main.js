@@ -775,13 +775,7 @@ function checkAuthState() {
       label.style.display = '';
     }
     if (dropdown) {
-      const safeName = (user.name || 'Khách hàng').replace(/[<>&"']/g, '');
-      const safeEmail = (user.email || '').replace(/[<>&"']/g, '');
       dropdown.innerHTML = `
-        <div style="padding: 10px 16px; border-bottom: 1px solid #eee; background: #faf7f2;">
-          <div style="font-weight: 700; font-size: 13px; color: #7A2737; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 190px;">${safeName}</div>
-          ${safeEmail ? `<div style="font-size: 11px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 190px; margin-top: 2px;">${safeEmail}</div>` : ''}
-        </div>
         <a href="account.html" class="member-dropdown-item" onclick="closeMemberDropdown()">Tài khoản của tôi</a>
         <a href="account.html#orders" class="member-dropdown-item" onclick="closeMemberDropdown()">Đơn hàng của tôi</a>
         <div class="member-dropdown-divider"></div>
