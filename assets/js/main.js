@@ -1268,7 +1268,7 @@ function initMobileMenu() {
 function initButtonHoverEffects() {
   // 1. Nút Đăng ký ở footer
   const setupSubmitBtn = () => {
-    const submitBtns = document.querySelectorAll('#comp-kbgakxmn_r_comp-mvq7204e button, [data-hook="submit-button"]');
+    const submitBtns = document.querySelectorAll('#comp-kbgakxmn_r_comp-mvq7204e button, [data-hook="submit-button"], .wix-footer-submit-btn');
     submitBtns.forEach(btn => {
       if (btn.dataset.hoverBound) return;
       btn.dataset.hoverBound = 'true';

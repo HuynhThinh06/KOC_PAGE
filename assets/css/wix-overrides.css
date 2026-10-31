@@ -202,7 +202,8 @@ div[data-testid="wix-ads"] {
 /* Nút Đăng ký chân trang: Mặc định nền đỏ chữ vàng kim, khi hover/active/focus đổi sang nền vàng chữ đỏ */
 #comp-kbgakxmn_r_comp-mvq7204e button[type="submit"],
 #comp-kbgakxmn_r_comp-mvq7204e button[data-hook="submit-button"],
-#comp-kbgakxmn_r_comp-mvq7204e button {
+#comp-kbgakxmn_r_comp-mvq7204e button,
+.wix-footer-submit-btn {
   background: #ad402e !important;
   background-color: #ad402e !important;
   color: #ffc800 !important;
@@ -223,7 +224,12 @@ div[data-testid="wix-ads"] {
 #comp-kbgakxmn_r_comp-mvq7204e button:hover,
 #comp-kbgakxmn_r_comp-mvq7204e button:active,
 #comp-kbgakxmn_r_comp-mvq7204e button:focus-visible,
-#comp-kbgakxmn_r_comp-mvq7204e button.btn-hover-active {
+#comp-kbgakxmn_r_comp-mvq7204e button.btn-hover-active,
+.wix-footer-submit-btn:hover,
+.wix-footer-submit-btn:active,
+.wix-footer-submit-btn:focus,
+.wix-footer-submit-btn:focus-visible,
+.wix-footer-submit-btn.btn-hover-active {
   background: #ffc800 !important;
   background-color: #ffc800 !important;
   color: #ad402e !important;
@@ -2240,9 +2246,23 @@ div[data-hook="Form-wrapper"] {
   cursor: pointer !important;
   transition: all 0.2s ease !important;
 }
-.wix-footer-submit-btn:hover {
-  background: #ad402e !important;
-  color: #ffffff !important;
+.wix-footer-submit-btn:hover,
+.wix-footer-submit-btn:active,
+.wix-footer-submit-btn:focus,
+.wix-footer-submit-btn:focus-visible,
+.wix-footer-submit-btn.btn-hover-active {
+  background: #ffc800 !important;
+  background-color: #ffc800 !important;
+  color: #ad402e !important;
+  border-color: #ffc800 !important;
+  box-shadow: 0 4px 15px rgba(255, 200, 0, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+.wix-footer-submit-btn:hover *,
+.wix-footer-submit-btn:active *,
+.wix-footer-submit-btn.btn-hover-active * {
+  color: #ad402e !important;
 }
 .wix-footer-policies {
   margin-left: 20px !important;

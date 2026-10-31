@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/wix-overrides.css?v=20261031_threads_equal_v13">
+  <link rel="stylesheet" href="assets/css/wix-overrides.css?v=20261031_dangky_hover_v14">
   <link rel="stylesheet" href="assets/css/auth.css">
   <style>
     /* Đồng bộ Header 100% với trang Home/Index */
@@ -244,9 +244,20 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .wix-footer-submit-btn:hover {
-      background: #ad402e !important;
-      color: #ffffff !important;
+    .wix-footer-submit-btn:hover,
+    .wix-footer-submit-btn:active,
+    .wix-footer-submit-btn:focus,
+    .wix-footer-submit-btn.btn-hover-active {
+      background: #ffc800 !important;
+      background-color: #ffc800 !important;
+      color: #ad402e !important;
+      border-color: #ffc800 !important;
+      box-shadow: 0 4px 15px rgba(255, 200, 0, 0.45) !important;
+    }
+    .wix-footer-submit-btn:hover *,
+    .wix-footer-submit-btn:active *,
+    .wix-footer-submit-btn.btn-hover-active * {
+      color: #ad402e !important;
     }
     .wix-footer-policies {
       margin-left: 20px;
@@ -788,7 +799,7 @@
   <script type="module" src="assets/js/auth.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/chatbot.js"></script>
-  <script src="assets/js/main.js?v=20261031_threads_equal_v13"></script>
+  <script src="assets/js/main.js?v=20261031_dangky_hover_v14"></script>
   <script>
     (function () {
       const $ = (id) => document.getElementById(id);
