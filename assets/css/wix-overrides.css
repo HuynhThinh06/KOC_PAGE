@@ -2887,24 +2887,68 @@ body {
   }
 
   
-  /* HERO VIDEO MOBILE: Bảo toàn khung hình video, tránh cắt xén mất hình */
+  /* HERO VIDEO MOBILE: Bảo toàn khung hình 16:9, banner đỏ ở trên không đè mất ngọn cây, triệt tiêu hoàn toàn khoảng trắng thừa bên dưới */
   #comp-mpbn2nv6 {
-    height: clamp(320px, 75vw, 520px) !important;
-    min-height: unset !important;
+    height: auto !important;
+    min-height: auto !important;
     max-height: none !important;
+    background: #fbf6ec !important;
   }
 
-  #comp-mpbn2nv6_video {
+  #comp-mpbn2o28,
+  #comp-mpbn2nv6 ._internalContainerRoot_1xyyz_1 {
+    aspect-ratio: auto !important;
+    height: calc(94.17px + 56.25vw) !important;
+    min-height: calc(94.17px + 56.25vw) !important;
+    max-height: none !important;
+    position: relative !important;
+  }
+
+  .comp-mpbn2o28-container.max-width-container {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 94.17px !important;
+    z-index: 2 !important;
+  }
+
+  #comp-mpbn2o28 ._backgroundLayer_1xyyz_25 {
+    position: absolute !important;
+    top: 94.17px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 56.25vw !important;
+    bottom: auto !important;
+    right: auto !important;
+    transform: none !important;
+  }
+
+  #comp-mpbn2o2e,
+  #comp-mpbn2o2e ._media_x7ip3_25,
+  #comp-mpbn2o2e ._bg-video-container_x7ip3_52,
+  #comp-mpbn2o2e wow-video {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+  }
+
+  #comp-mpbn2nv6_video,
+  #comp-mpbn2nv6 video {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
     object-position: center center !important;
-  }
-
-  #comp-mpbn2o28 {
-    height: 100% !important;
-    aspect-ratio: auto !important;
-    max-width: 100% !important;
+    display: block !important;
+    transform: none !important;
   }
 
   /* ==========================================================================
