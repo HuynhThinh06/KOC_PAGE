@@ -1546,12 +1546,12 @@ a, button, [role="button"], input, textarea, select {
 
 .snHKBk3 h2,
 .sf4zzLJ[data-hook="title"] {
-  font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
-  font-size: clamp(28px, 3.8vw, 42px) !important;
-  font-weight: 900 !important;
+  font-family: wfont_f97a8e_24acf02110094c79ba9064ce8b9e061a, wf_24acf02110094c79ba9064ce8, orig_barber_fill, sans-serif !important;
+  font-size: clamp(28px, 3.8vw, 45px) !important;
+  font-weight: 400 !important;
   text-transform: uppercase !important;
   color: #ffc800 !important;
-  letter-spacing: 2px !important;
+  letter-spacing: 0px !important;
   margin: 0 0 20px 0 !important;
   white-space: nowrap !important;
 }
@@ -3344,6 +3344,17 @@ a#comp-mvq917uo,
   padding: 8px 28px !important;
   box-sizing: border-box !important;
   -webkit-tap-highlight-color: rgba(255, 200, 0, 0.4) !important;
+}
+
+/* Khóa cứng vị trí nút Đặt hàng trên Desktop khi zoom in/out (tính % theo chiều rộng khung ảnh 16:9) */
+@media screen and (min-width: 1024px) {
+  #main_MF #comp-mvq917uo,
+  #comp-mpbn2o4g #comp-mvq917uo {
+    margin-top: 37.2719% !important;
+    margin-left: 43.7302% !important;
+    width: 15.82% !important;
+    max-width: 255px !important;
+  }
 }
 
 #comp-mvq917uo::before {
