@@ -348,7 +348,7 @@ function detectAndCalculateQuantityOrder(rawText) {
   return `<strong>🧮 Bảng tính chi phí cho ${qty} chai Dầu Gội Bồ Kết Thorakao 750ml:</strong><br>
 • Tiền hàng (${qty} chai × 113.000₫): <strong>${fmt(subtotal)}</strong><br>
 • Phí vận chuyển toàn quốc: <strong>${shipFee === 0 ? '0₫ (Được MIỄN PHÍ VẬN CHUYỂN 🎉)' : fmt(shipFee) + ' (Mua từ 2 chai để được Freeship!)'}</strong><br>
-• 👉 <strong>Tổng thanh toán khi nhận hàng: <span style="color:#8c2415;font-size:15px;">${fmt(total)}</span></strong>`;
+• 👉 <strong>Tổng thanh toán khi nhận hàng: <span style="color:#ad402e;font-size:15px;">${fmt(total)}</span></strong>`;
 }
 
 // Tạo các nút hành động thông minh đính kèm cuối câu trả lời

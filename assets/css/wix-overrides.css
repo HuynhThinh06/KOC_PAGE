@@ -758,7 +758,7 @@ a, button, [role="button"], input, textarea, select {
 
 .wix-auth-submit-btn {
   width: 100% !important;
-  background: #781816 !important;
+  background: #ad402e !important;
   color: #ffc800 !important;
   padding: 12px !important;
   border: 1.5px solid rgba(255, 200, 0, 0.5) !important;
@@ -900,7 +900,7 @@ a, button, [role="button"], input, textarea, select {
 .wix-chip-btn {
   background: #ffffff !important;
   border: 1.5px solid #d8c2a3 !important;
-  color: #781816 !important;
+  color: #ad402e !important;
   font-family: 'Montserrat', sans-serif !important;
   font-size: 12px !important;
   font-weight: 600 !important;
@@ -1030,7 +1030,7 @@ a, button, [role="button"], input, textarea, select {
 
 .wix-chat-action-btn.secondary {
   background: #f5efe6 !important;
-  color: #781816 !important;
+  color: #ad402e !important;
   border: 1px solid #d8c2a3 !important;
 }
 
@@ -1279,9 +1279,9 @@ a, button, [role="button"], input, textarea, select {
 .quiz-opt-btn.selected {
   background: #fde8e4 !important;
   border-style: solid !important;
-  border-color: #781816 !important;
+  border-color: #ad402e !important;
   font-weight: 700 !important;
-  color: #781816 !important;
+  color: #ad402e !important;
   box-shadow: 0 6px 18px rgba(120, 24, 22, 0.22) !important;
 }
 
@@ -1800,8 +1800,8 @@ a, button, [role="button"], input, textarea, select {
   display: block;
   width: 100%;
   padding: 14px 20px;
-  background-color: #8B1E1E;
-  color: #ffffff;
+  background-color: #ad402e !important;
+  color: #ffffff !important;
   border: none;
   border-radius: 6px;
   font-size: 15px;
@@ -1809,11 +1809,11 @@ a, button, [role="button"], input, textarea, select {
   text-align: center;
   cursor: pointer;
   margin-bottom: 10px;
-  transition: background-color 0.2s ease;
-}
+  transition: all 0.25s ease;
 
 .wix-cart-btn-primary:hover {
-  background-color: #721616;
+  background-color: #ffc800 !important;
+  color: #ad402e !important;
 }
 
 .wix-cart-btn-secondary {
@@ -2046,7 +2046,7 @@ div[data-hook="Form-wrapper"] {
   font-family: 'Montserrat', sans-serif !important;
   font-size: 16px !important;
   font-weight: 700 !important;
-  color: #933827 !important;
+  color: #ad402e !important;
   text-transform: uppercase !important;
   text-decoration: none !important;
   letter-spacing: 0.02em !important;
@@ -2312,7 +2312,7 @@ div[data-hook="Form-wrapper"] {
   width: fit-content !important;
 }
 .wix-footer-policies a:hover {
-  color: #781816 !important;
+  color: #ffc800 !important;
 }
 .wix-footer-contact-block {
   margin-left: 20px !important;

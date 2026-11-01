@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/wix-overrides.css?v=20261031_order_btn_pos_v19">
+  <link rel="stylesheet" href="assets/css/wix-overrides.css?v=20261101_brand_colors_v20">
   <link rel="stylesheet" href="assets/css/auth.css">
   <style>
     /* Đồng bộ Header 100% với trang Home/Index */
@@ -50,7 +50,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 16px;
       font-weight: 700;
-      color: #933827;
+      color: #ad402e;
       text-transform: uppercase;
       text-decoration: none;
       letter-spacing: 0.02em;
@@ -348,7 +348,7 @@
     }
     .account-card h2 {
       font-family: 'Montserrat', sans-serif;
-      color: #933827;
+      color: #ad402e;
       font-size: 20px;
       font-weight: 800;
       margin: 0 0 20px 0;
@@ -371,7 +371,7 @@
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: #933827;
+      background: #ad402e;
       color: #ffc800;
       display: flex;
       align-items: center;
@@ -413,7 +413,7 @@
     .account-card input:focus,
     .account-card textarea:focus {
       outline: none;
-      border-color: #933827;
+      border-color: #ad402e;
     }
     .account-card input[readonly] {
       background: #FAF7F2;
@@ -426,7 +426,7 @@
       justify-content: center;
       gap: 8px;
       padding: 12px 28px;
-      background: #933827;
+      background: #ad402e;
       color: #ffc800;
       border: none;
       border-radius: 8px;
@@ -438,8 +438,9 @@
       text-decoration: none;
     }
     .account-btn-primary:hover {
-      background: #781816;
-      color: #ffffff;
+      background: #ffc800;
+      color: #ad402e;
+      border-color: #ffc800;
     }
     .account-btn-outline {
       display: inline-flex;
@@ -448,8 +449,8 @@
       gap: 8px;
       padding: 10px 20px;
       background: #fff8f0;
-      color: #933827;
-      border: 1.5px solid #933827;
+      color: #ad402e;
+      border: 1.5px solid #ad402e;
       border-radius: 8px;
       font-family: 'Montserrat', sans-serif;
       font-size: 13px;
@@ -459,8 +460,9 @@
       text-decoration: none;
     }
     .account-btn-outline:hover {
-      background: #933827;
+      background: #ad402e;
       color: #ffffff;
+      border-color: #ad402e;
     }
     .orders-table {
       width: 100%;
@@ -475,7 +477,7 @@
     }
     .orders-table th {
       background: #faf6f0;
-      color: #933827;
+      color: #ad402e;
       font-weight: 700;
       font-size: 13px;
       text-transform: uppercase;
@@ -570,7 +572,7 @@
           <div class="account-user-info">
             <div class="account-user-avatar" id="acc-avatar">T</div>
             <div>
-              <div id="acc-display-name" style="font-size: 19px; font-weight: 800; color: #933827;">Khách hàng Thorakao</div>
+              <div id="acc-display-name" style="font-size: 19px; font-weight: 800; color: #ad402e;">Khách hàng Thorakao</div>
               <div id="acc-display-email" style="font-size: 13.5px; color: #666; margin-top: 4px;"></div>
             </div>
           </div>
@@ -799,7 +801,7 @@
   <script type="module" src="assets/js/auth.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/chatbot.js"></script>
-  <script src="assets/js/main.js?v=20261031_order_btn_pos_v19"></script>
+  <script src="assets/js/main.js?v=20261101_brand_colors_v20"></script>
   <script>
     (function () {
       const $ = (id) => document.getElementById(id);
@@ -893,7 +895,7 @@
                         <td>${esc(formatOrderDate(o))}</td>
                         <td>Dầu Gội Bồ Kết 750ml &times; <strong>${esc(o.quantity || 1)}</strong></td>
                         <td style="max-width: 220px;">${esc(o.address || '')}</td>
-                        <td style="color: #933827; font-weight: 700;">${fmt(o.totalPrice)}</td>
+                        <td style="color: #ad402e; font-weight: 700;">${fmt(o.totalPrice)}</td>
                         <td>${esc(o.paymentMethod || 'COD')}</td>
                         <td><span class="order-status-badge">Đã tiếp nhận</span></td>
                       </tr>

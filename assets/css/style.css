@@ -1,6 +1,6 @@
 /* ==========================================================================
    STYLE.CSS - THIẾT KẾ MASTER CHO DỰ ÁN CHIẾN DỊCH "NẾP TÓC THORAKAO"
-   Tone màu: Đỏ rượu vang bồ kết (#7A2737), Vàng mù tạt (#E5A823), Giấy Kraft (#F7F1E5)
+   Tone màu: Đỏ rượu vang bồ kết (#ad402e), Vàng mù tạt (#ffc800), Giấy Kraft (#F7F1E5)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap');
@@ -8,10 +8,10 @@
 :root {
   /* Bảng màu chính */
   --color-primary: #ad402e;
-  --color-primary-dark: #581925;
-  --color-primary-light: #9B364A;
+  --color-primary-dark: #8c2415;
+  --color-primary-light: #c4523e;
   --color-accent: #ffc800;
-  --color-accent-hover: #D4971A;
+  --color-accent-hover: #ffc800;
   --color-accent-light: #FFF2D1;
   --color-gold: #ffc800;
   
