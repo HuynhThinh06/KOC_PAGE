@@ -15,6 +15,7 @@ function initApp() {
   initNotificationTooltip();
   updateHeaderCartCount();
   initButtonHoverEffects();
+  initContactDropdown();
 }
 
 if (document.readyState === 'loading') {
@@ -1312,4 +1313,71 @@ function initButtonHoverEffects() {
     setupChatBtn();
   });
   observer.observe(document.body, { childList: true, subtree: true });
+}
+
+
+// ==========================================================================
+// 14. KHỞI TẠO COMBOBOX CHỦ ĐỀ LIÊN HỆ ("Chúng tôi có thể giúp gì cho bạn?")
+// ==========================================================================
+function initContactDropdown() {
+  const container = document.querySelector('.custom-contact-dropdown');
+  if (!container) return;
+  if (container.dataset.dropdownInit) return;
+  container.dataset.dropdownInit = 'true';
+
+  const toggle = container.querySelector('.custom-contact-dropdown-toggle');
+  const selectedText = container.querySelector('.custom-contact-dropdown-selected');
+  const hiddenInput = container.querySelector('input[type="hidden"]');
+  const items = container.querySelectorAll('.custom-contact-dropdown-item');
+
+  if (!toggle) return;
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = container.classList.contains('is-open');
+    if (isOpen) {
+      container.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      container.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  toggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle.click();
+    } else if (e.key === 'Escape') {
+      container.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  items.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const val = item.getAttribute('data-value') || item.innerText.trim();
+      if (hiddenInput) {
+        hiddenInput.value = val;
+        // Trigger change event if listeners exist
+        hiddenInput.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      if (selectedText) {
+        selectedText.textContent = val;
+        selectedText.classList.add('has-value');
+      }
+      items.forEach(i => i.classList.remove('is-selected'));
+      item.classList.add('is-selected');
+      container.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!container.contains(e.target)) {
+      container.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
 }

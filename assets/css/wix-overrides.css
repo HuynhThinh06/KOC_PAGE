@@ -3440,3 +3440,105 @@ a#comp-mvq917uo,
     line-height: 1.2 !important;
   }
 }
+
+
+/* ==========================================================================
+   CUSTOM COMBOBOX: "CHÚNG TÔI CÓ THỂ GIÚP GÌ CHO BẠN?"
+   Khôi phục dropdown chọn chủ đề theo đúng thiết kế gốc và tương tác mượt mà
+   ========================================================================== */
+.custom-contact-dropdown {
+  position: relative;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  font-family: montserrat, sans-serif !important;
+}
+
+.custom-contact-dropdown-toggle {
+  width: 100% !important;
+  height: 35px !important;
+  background-color: rgb(230, 221, 214) !important;
+  border: 1px solid rgba(54, 26, 13, 0.6) !important;
+  border-radius: 0px !important;
+  padding: 0px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-contact-dropdown-toggle:focus,
+.custom-contact-dropdown.is-open .custom-contact-dropdown-toggle {
+  border-color: #79241b !important;
+}
+
+.custom-contact-dropdown-selected {
+  font-family: montserrat, sans-serif !important;
+  font-size: 14px !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: rgb(116, 94, 83) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  user-select: none !important;
+}
+
+.custom-contact-dropdown-selected.has-value {
+  color: rgb(54, 26, 13) !important;
+  font-style: normal !important;
+}
+
+.custom-contact-dropdown-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: rgb(54, 26, 13) !important;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.custom-contact-dropdown.is-open .custom-contact-dropdown-icon {
+  transform: rotate(180deg) !important;
+}
+
+.custom-contact-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100% !important;
+  background-color: rgb(230, 221, 214) !important;
+  border: 1px solid rgba(54, 26, 13, 0.6) !important;
+  border-top: none !important;
+  box-sizing: border-box !important;
+  z-index: 1000 !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
+  margin: 0 !important;
+  padding: 4px 0 !important;
+  list-style: none !important;
+}
+
+.custom-contact-dropdown.is-open .custom-contact-dropdown-menu {
+  display: block !important;
+}
+
+.custom-contact-dropdown-item {
+  padding: 9px 14px !important;
+  font-family: montserrat, sans-serif !important;
+  font-size: 14px !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: rgb(54, 26, 13) !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  user-select: none !important;
+  line-height: 1.4 !important;
+}
+
+.custom-contact-dropdown-item:hover,
+.custom-contact-dropdown-item.is-selected {
+  background-color: rgba(121, 36, 27, 0.12) !important;
+  color: #79241b !important;
+}
