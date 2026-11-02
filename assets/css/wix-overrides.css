@@ -3605,3 +3605,51 @@ a#comp-mvq917uo,
   background: #ffc800 !important;
   color: #ad402e !important;
 }
+
+
+/* ===== HIỆU ỨNG CHUYỂN ĐỘNG MƯỢT MÀ CHO MENU HEADER (QUIZZ, FAQ, LIÊN HỆ) ===== */
+nav[data-part="navbar"] a[data-part="menu-item-link"],
+._navbar_cohan_1 a {
+  position: relative;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+nav[data-part="navbar"] a[data-part="menu-item-link"]:hover,
+._navbar_cohan_1 a:hover {
+  transform: translateY(-2px) !important;
+  color: #ffc800 !important;
+}
+
+nav[data-part="navbar"] a[data-part="menu-item-link"] .item-label,
+._navbar_cohan_1 a .item-label {
+  position: relative;
+  display: inline-block;
+  transition: color 0.25s ease;
+}
+
+nav[data-part="navbar"] a[data-part="menu-item-link"]:hover .item-label,
+._navbar_cohan_1 a:hover .item-label {
+  color: #ffc800 !important;
+}
+
+nav[data-part="navbar"] a[data-part="menu-item-link"] .item-label::after,
+._navbar_cohan_1 a .item-label::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: #ffc800;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav[data-part="navbar"] a[data-part="menu-item-link"]:hover .item-label::after,
+._navbar_cohan_1 a:hover .item-label::after {
+  transform: scaleX(1);
+}

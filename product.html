@@ -353,23 +353,54 @@
       box-shadow: var(--shadow-sm);
       overflow: hidden;
     }
+        /* Mở rộng đồng bộ container khối sản phẩm và khối tabs */
+    .product-page-section .container {
+      max-width: 1300px;
+    }
     .product-tab-headers {
       display: flex;
       background: #FAF7F2;
       border-bottom: 1px solid var(--border-color);
-      overflow-x: auto;
+      overflow-x: hidden;
+      width: 100%;
+      box-sizing: border-box;
     }
     .p-tab-btn {
-      padding: 16px 28px;
+      flex: 1 1 0px;
+      padding: 14px 10px;
       font-family: var(--font-heading);
-      font-size: 1rem;
+      font-size: 0.88rem;
+      letter-spacing: 0.2px;
       font-weight: 700;
       color: var(--text-muted);
       background: none;
       cursor: pointer;
-      white-space: nowrap;
+      white-space: normal;
+      line-height: 1.3;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       border-bottom: 3px solid transparent;
       transition: var(--transition);
+      box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+      .product-tab-headers {
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .product-tab-headers::-webkit-scrollbar {
+        display: none;
+      }
+      .p-tab-btn {
+        flex: 0 0 auto;
+        padding: 12px 18px;
+        font-size: 0.82rem;
+        white-space: nowrap;
+      }
     }
     .p-tab-btn.active {
       color: var(--color-primary);

@@ -92,8 +92,38 @@ function scrollToSectionById(sectionId, headerOffset) {
   const el = document.getElementById(sectionId);
   if (!el) return false;
   const offset = headerOffset !== undefined ? headerOffset : 80;
-  const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  const targetTop = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - offset);
+  const startTop = window.pageYOffset;
+  const distance = targetTop - startTop;
+
+  // Nếu khoảng cách rất nhỏ thì không cần animation dài
+  if (Math.abs(distance) < 10) {
+    window.scrollTo(0, targetTop);
+    return true;
+  }
+
+  // Thời lượng tính toán theo khoảng cách (từ 650ms đến 1100ms) để lướt mượt mà
+  const duration = Math.min(1100, Math.max(650, Math.abs(distance) * 0.14));
+  let startTime = null;
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function animation(currentTime) {
+    if (!startTime) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    const ease = easeInOutCubic(progress);
+    window.scrollTo(0, startTop + distance * ease);
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    } else {
+      window.scrollTo(0, targetTop);
+    }
+  }
+
+  requestAnimationFrame(animation);
   return true;
 }
 
@@ -347,7 +377,6 @@ function openQuizModal() {
     // Đang ở trang phụ: chuyển hướng về trang chủ với hash #quizz
     window.location.href = 'index.html#quizz';
   }
-}
 }
 
 function closeQuizModal() {

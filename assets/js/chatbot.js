@@ -384,6 +384,7 @@ function generateGroundedWebsiteReply(userText) {
     setTimeout(() => { if (typeof showChatContactForm === 'function') showChatContactForm(); }, 300);
     return 'Dạ, bạn vui lòng để lại thông tin vào biểu mẫu dưới đây, nhân viên tư vấn của Thorakao sẽ liên hệ hỗ trợ bạn ngay nhé! 👇';
   }
+  html += `<button type="button" class="wix-chat-action-btn secondary" onclick="showChatContactForm()">👩‍💼 Liên hệ nhân viên</button>`;
 
   // 1. Kiểm tra chào hỏi xã giao
   if (/^(xin chao|chao|hi|hello|shop oi|alo|ad oi|ban oi|chao shop)$/.test(norm)) {
@@ -619,7 +620,17 @@ async function submitChatLeadToSheet(questionText) {
 
   const container = getChatMessagesContainer();
   if (container) {
-    const botMsg = document.createElement('div');
+    // Tự động bổ sung tùy chọn form liên hệ nhân viên sau mỗi câu trả lời
+  if (!replyHtml.includes('showChatContactForm') && !replyHtml.includes('chatContactFormMsg')) {
+    replyHtml += `
+      <div class="wix-chat-action-row" style="margin-top: 8px;">
+        <button type="button" class="wix-chat-action-btn secondary" onclick="showChatContactForm()" style="font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
+          👩‍💼 Liên hệ nhân viên
+        </button>
+      </div>`;
+  }
+
+  const botMsg = document.createElement('div');
     botMsg.className = 'wix-chat-msg bot';
     botMsg.innerHTML = `✅ Cảm ơn bạn! Hệ thống đã ghi nhận thông tin liên hệ <strong>${escapeChatHtml(contactVal)}</strong> cùng câu hỏi của bạn. Chuyên viên Thorakao sẽ phản hồi bạn sớm nhất nhé!`;
     container.appendChild(botMsg);
