@@ -848,11 +848,11 @@ function ensureChatWidgetExistsOnPage() {
           Mình được tích hợp toàn bộ dữ liệu trên website (sản phẩm Dầu gội Bồ Kết 750ml, giá &amp; phí ship, thành phần Saponin, bài Quiz Nếp Tóc, chiến dịch <em>"Thử món mẹ từng dùng"</em>, FAQ &amp; chính sách). Bạn hãy nhập bất kỳ câu hỏi nào nhé!
         </div>
         <div class="wix-chat-chips">
+          <button type="button" class="wix-chip-btn" onclick="showChatContactForm()">👩‍💼 Liên hệ nhân viên</button>
           <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Dầu gội bồ kết 750ml giá bao nhiêu? Mua 2 chai tính tiền thế nào?')">🧴 Giá &amp; tính tiền 2 chai</button>
           <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Chính sách phí ship và freeship thế nào?')">🚚 Chính sách Freeship</button>
           <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Tóc bết dầu và rụng tóc dùng bồ kết có hợp không?')">🌿 Tư vấn tóc bết / rụng</button>
           <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Chiến dịch Giữ nếp xưa Tỏ nếp mình là gì?')">✨ Về chiến dịch &amp; Quiz</button>
-          <button type="button" class="wix-chip-btn" onclick="showChatContactForm()">👩‍💼 Liên hệ nhân viên</button>
         </div>
       </div>
       <form class="wix-chat-input-bar" onsubmit="event.preventDefault(); sendWixChatMessage();">
@@ -926,21 +926,30 @@ function showChatContactForm() {
     container.scrollTop = container.scrollHeight;
     return;
   }
+
+  // 1. Tin nhắn mở đầu từ trợ lý
+  const introMsg = document.createElement('div');
+  introMsg.className = 'wix-chat-msg bot';
+  introMsg.innerHTML = 'Dạ, chúng tôi sẽ chuyển yêu cầu của bạn đến nhân viên hỗ trợ ngay nhé! 👩‍💼<br><br>Bạn hãy điền đầy đủ các thông tin bên dưới để nhân viên Thorakao có thể liên hệ và tư vấn chi tiết cho bạn sớm nhất ạ:';
+  container.appendChild(introMsg);
+
+  // 2. Khung Form điền thông tin
   const formMsg = document.createElement('div');
   formMsg.className = 'wix-chat-msg bot';
   formMsg.id = 'chatContactFormMsg';
   const user = (typeof getLoggedInUser === 'function') ? getLoggedInUser() : null;
   formMsg.innerHTML = `
-    <div style="font-weight:700;margin-bottom:10px;color:#ad402e;">👩‍💼 Liên hệ nhân viên Thorakao</div>
+    <div style="font-weight:700;margin-bottom:10px;color:#ad402e;font-size:14px;">📋 Thông tin liên hệ nhân viên Thorakao</div>
     <div style="display:flex;flex-direction:column;gap:8px;">
       <input type="text" id="chatContactName" placeholder="Họ và tên *" value="${user && user.name ? user.name : ''}" style="width:100%;padding:8px 10px;border:1px solid #d8c2a3;border-radius:6px;font-size:13px;font-family:Montserrat,sans-serif;box-sizing:border-box;">
       <input type="email" id="chatContactEmail" placeholder="Email *" value="${user && user.email ? user.email : ''}" style="width:100%;padding:8px 10px;border:1px solid #d8c2a3;border-radius:6px;font-size:13px;font-family:Montserrat,sans-serif;box-sizing:border-box;">
       <input type="tel" id="chatContactPhone" placeholder="Số điện thoại *" value="${user && user.phone ? user.phone : ''}" style="width:100%;padding:8px 10px;border:1px solid #d8c2a3;border-radius:6px;font-size:13px;font-family:Montserrat,sans-serif;box-sizing:border-box;">
-      <textarea id="chatContactMsg" placeholder="Nội dung tin nhắn *" rows="3" style="width:100%;padding:8px 10px;border:1px solid #d8c2a3;border-radius:6px;font-size:13px;font-family:Montserrat,sans-serif;box-sizing:border-box;resize:vertical;"></textarea>
+      <textarea id="chatContactMsg" placeholder="Nội dung cần hỗ trợ / tin nhắn *" rows="3" style="width:100%;padding:8px 10px;border:1px solid #d8c2a3;border-radius:6px;font-size:13px;font-family:Montserrat,sans-serif;box-sizing:border-box;resize:vertical;"></textarea>
       <button type="button" onclick="submitChatContactForm()" style="background:#ad402e;color:#ffc800;border:none;border-radius:6px;padding:9px 18px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;cursor:pointer;width:100%;transition:all 0.2s;" onmouseover="this.style.background='#ffc800';this.style.color='#ad402e';" onmouseout="this.style.background='#ad402e';this.style.color='#ffc800';">Gửi thông tin</button>
     </div>`;
   container.appendChild(formMsg);
   container.scrollTop = container.scrollHeight;
+  if (typeof saveChatHistoryToSession === 'function') saveChatHistoryToSession();
 }
 
 async function submitChatContactForm() {
@@ -971,6 +980,7 @@ async function submitChatContactForm() {
   successMsg.className = 'wix-chat-msg bot';
   successMsg.innerHTML = '✅ <strong>Đã gửi thông tin thành công!</strong> Nhân viên Thorakao sẽ liên hệ bạn trong thời gian sớm nhất. Cảm ơn bạn! 🙏';
   if (container) { container.appendChild(successMsg); container.scrollTop = container.scrollHeight; }
+  if (typeof saveChatHistoryToSession === 'function') saveChatHistoryToSession();
 }
 window.showChatContactForm = showChatContactForm;
 window.submitChatContactForm = submitChatContactForm;
