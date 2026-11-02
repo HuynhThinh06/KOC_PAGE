@@ -31,7 +31,6 @@ h1.page-main-title {
 
 /* CareeraScript cho chữ nghiêng và slogan */
 .section-subtitle,
-.policy-card em,
 em.script-accent,
 .italic-script {
   font-family: 'CareeraScript', 'Playfair Display', Georgia, serif !important;
@@ -3608,48 +3607,49 @@ a#comp-mvq917uo,
 
 
 /* ===== HIỆU ỨNG CHUYỂN ĐỘNG MƯỢT MÀ CHO MENU HEADER (QUIZZ, FAQ, LIÊN HỆ) ===== */
-nav[data-part="navbar"] a[data-part="menu-item-link"],
-._navbar_cohan_1 a {
-  position: relative;
-  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s ease !important;
-  display: inline-flex !important;
-  align-items: center !important;
+nav[data-part="navbar"] ._labelContainer_1xgw8_18 {
+  cursor: pointer;
 }
-
-nav[data-part="navbar"] a[data-part="menu-item-link"]:hover,
-._navbar_cohan_1 a:hover {
-  transform: translateY(-2px) !important;
-  color: #ffc800 !important;
-}
-
-nav[data-part="navbar"] a[data-part="menu-item-link"] .item-label,
-._navbar_cohan_1 a .item-label {
+nav[data-part="navbar"] .item-label,
+._navbar_cohan_1 .item-label {
   position: relative;
   display: inline-block;
-  transition: color 0.25s ease;
+  transition: transform 0.25s ease, color 0.25s ease;
 }
-
-nav[data-part="navbar"] a[data-part="menu-item-link"]:hover .item-label,
-._navbar_cohan_1 a:hover .item-label {
+nav[data-part="navbar"] a:hover .item-label,
+._navbar_cohan_1 a:hover .item-label,
+nav[data-part="navbar"] ._labelContainer_1xgw8_18:hover .item-label {
+  transform: translateY(-2px);
   color: #ffc800 !important;
 }
-
-nav[data-part="navbar"] a[data-part="menu-item-link"] .item-label::after,
-._navbar_cohan_1 a .item-label::after {
+nav[data-part="navbar"] .item-label::after,
+._navbar_cohan_1 .item-label::after {
   content: '';
   position: absolute;
   bottom: -4px;
   left: 0;
   width: 100%;
-  height: 2.5px;
+  height: 2px;
   background-color: #ffc800;
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: center;
-  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ease;
+}
+nav[data-part="navbar"] a:hover .item-label::after,
+._navbar_cohan_1 a:hover .item-label::after,
+nav[data-part="navbar"] ._labelContainer_1xgw8_18:hover .item-label::after {
+  transform: scaleX(1);
 }
 
-nav[data-part="navbar"] a[data-part="menu-item-link"]:hover .item-label::after,
-._navbar_cohan_1 a:hover .item-label::after {
-  transform: scaleX(1);
+
+/* Ghi chú trong trang chính sách: dùng Montserrat nghiêng rõ nét, dễ đọc */
+.policy-card em {
+  font-family: 'Montserrat', sans-serif !important;
+  font-style: italic !important;
+  font-size: 0.88rem !important;
+  color: #555555 !important;
+  line-height: 1.6 !important;
+  display: inline-block;
+  margin-top: 4px;
 }

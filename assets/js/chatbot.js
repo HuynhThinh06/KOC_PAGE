@@ -365,6 +365,9 @@ function buildContextualActions(matchedIds = [], detectedQty = null) {
     html += `<button type="button" class="wix-chat-action-btn primary" onclick="closeWixChat(); if(document.getElementById('comp-mvqu69vk')){ openQuizModal(); } else { window.location.href='index.html#quizz'; }">🎯 Làm Mini Quiz Nếp Tóc</button>`;
   }
 
+  // Luôn luôn có tùy chọn Liên hệ nhân viên
+  html += `<button type="button" class="wix-chat-action-btn secondary" onclick="showChatContactForm()">👩‍💼 Liên hệ nhân viên</button>`;
+
   if (matchedIds.includes('contact_info') || matchedIds.includes('return_policy')) {
     html += `<a href="https://www.facebook.com/neptocthorakao/" target="_blank" rel="noopener" class="wix-chat-action-btn secondary">💬 Nhắn Fanpage</a>`;
   }
@@ -384,8 +387,6 @@ function generateGroundedWebsiteReply(userText) {
     setTimeout(() => { if (typeof showChatContactForm === 'function') showChatContactForm(); }, 300);
     return 'Dạ, bạn vui lòng để lại thông tin vào biểu mẫu dưới đây, nhân viên tư vấn của Thorakao sẽ liên hệ hỗ trợ bạn ngay nhé! 👇';
   }
-  html += `<button type="button" class="wix-chat-action-btn secondary" onclick="showChatContactForm()">👩‍💼 Liên hệ nhân viên</button>`;
-
   // 1. Kiểm tra chào hỏi xã giao
   if (/^(xin chao|chao|hi|hello|shop oi|alo|ad oi|ban oi|chao shop)$/.test(norm)) {
     return `Chào bạn! 👋 Mình là <strong>Trợ lý Nếp Tóc Thorakao</strong>.<br>
@@ -620,15 +621,7 @@ async function submitChatLeadToSheet(questionText) {
 
   const container = getChatMessagesContainer();
   if (container) {
-    // Tự động bổ sung tùy chọn form liên hệ nhân viên sau mỗi câu trả lời
-  if (!replyHtml.includes('showChatContactForm') && !replyHtml.includes('chatContactFormMsg')) {
-    replyHtml += `
-      <div class="wix-chat-action-row" style="margin-top: 8px;">
-        <button type="button" class="wix-chat-action-btn secondary" onclick="showChatContactForm()" style="font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
-          👩‍💼 Liên hệ nhân viên
-        </button>
-      </div>`;
-  }
+    
 
   const botMsg = document.createElement('div');
     botMsg.className = 'wix-chat-msg bot';
@@ -787,6 +780,16 @@ async function sendWixChatMessage(predefinedText = null) {
 
   if (typingEl && typingEl.parentNode) {
     typingEl.parentNode.removeChild(typingEl);
+  }
+
+  // Tự động bổ sung tùy chọn form liên hệ nhân viên sau mỗi câu trả lời
+  if (!replyHtml.includes('showChatContactForm') && !replyHtml.includes('chatContactFormMsg')) {
+    replyHtml += `
+      <div class="wix-chat-action-row" style="margin-top: 8px;">
+        <button type="button" class="wix-chat-action-btn secondary" onclick="showChatContactForm()" style="font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
+          👩‍💼 Liên hệ nhân viên
+        </button>
+      </div>`;
   }
 
   const botMsg = document.createElement('div');

@@ -89,95 +89,114 @@ const ANCHOR_SECTION_MAP = {
 };
 
 function scrollToSectionById(sectionId, headerOffset) {
-  const el = document.getElementById(sectionId);
+  const el = document.getElementById(sectionId) || document.querySelector(`[name="${sectionId}"]`);
   if (!el) return false;
-  const offset = headerOffset !== undefined ? headerOffset : 80;
-  const targetTop = Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - offset);
-  const startTop = window.pageYOffset;
-  const distance = targetTop - startTop;
 
-  // Nếu khoảng cách rất nhỏ thì không cần animation dài
-  if (Math.abs(distance) < 10) {
+  const offset = headerOffset !== undefined ? headerOffset : 80;
+
+  // 1. Thử dùng scrollIntoView chuẩn trình duyệt (tự động nhận scroll-margin-top)
+  try {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch (e) {}
+
+  // 2. Dự phòng cuộn mượt đa container (window + documentElement + body)
+  const currentScrollTop = window.pageYOffset || (document.documentElement ? document.documentElement.scrollTop : 0) || (document.body ? document.body.scrollTop : 0) || 0;
+  const targetTop = Math.max(0, el.getBoundingClientRect().top + currentScrollTop - offset);
+  const distance = targetTop - currentScrollTop;
+
+  if (Math.abs(distance) < 15) {
     window.scrollTo(0, targetTop);
+    if (document.documentElement) document.documentElement.scrollTop = targetTop;
+    if (document.body) document.body.scrollTop = targetTop;
     return true;
   }
 
-  // Thời lượng tính toán theo khoảng cách (từ 650ms đến 1100ms) để lướt mượt mà
-  const duration = Math.min(1100, Math.max(650, Math.abs(distance) * 0.14));
+  const duration = Math.min(1000, Math.max(500, Math.abs(distance) * 0.12));
   let startTime = null;
 
   function easeInOutCubic(t) {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
-  function animation(currentTime) {
+  function step(currentTime) {
     if (!startTime) startTime = currentTime;
-    const timeElapsed = currentTime - startTime;
-    const progress = Math.min(timeElapsed / duration, 1);
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
     const ease = easeInOutCubic(progress);
-    window.scrollTo(0, startTop + distance * ease);
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
+    const val = currentScrollTop + distance * ease;
+
+    window.scrollTo(0, val);
+    if (document.documentElement) document.documentElement.scrollTop = val;
+    if (document.body) document.body.scrollTop = val;
+
+    if (elapsed < duration) {
+      requestAnimationFrame(step);
     } else {
       window.scrollTo(0, targetTop);
+      if (document.documentElement) document.documentElement.scrollTop = targetTop;
+      if (document.body) document.body.scrollTop = targetTop;
     }
   }
 
-  requestAnimationFrame(animation);
+  requestAnimationFrame(step);
   return true;
 }
 
 function initSmoothScroll() {
-  document.querySelectorAll('a[href*="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (!href) return;
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href*="#"]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (!href) return;
 
-      let targetSelector = '';
-      if (href.startsWith('#')) {
-        targetSelector = href;
-      } else if (href.startsWith('index.html#')) {
-        const hash = '#' + href.split('#')[1];
-        const currentPath = window.location.pathname.toLowerCase();
-        const isHome = currentPath.endsWith('/') || currentPath.endsWith('/index.html') || currentPath.endsWith('index.html') || currentPath === '/';
-        if (isHome) {
-          e.preventDefault();
-          const mappedId = ANCHOR_SECTION_MAP[hash];
-          if (mappedId) {
-            scrollToSectionById(mappedId, 80);
-          } else {
-            const el = document.querySelector(hash);
-            if (el) { const top = el.getBoundingClientRect().top + window.pageYOffset - 80; window.scrollTo({ top: Math.max(0,top), behavior: 'smooth' }); }
-          }
+    let targetSelector = '';
+    if (href.startsWith('#')) {
+      targetSelector = href;
+    } else if (href.startsWith('index.html#')) {
+      const hash = '#' + href.split('#')[1];
+      const currentPath = window.location.pathname.toLowerCase();
+      const isHome = currentPath.endsWith('/') || currentPath.endsWith('/index.html') || currentPath.endsWith('index.html') || currentPath === '';
+      if (isHome) {
+        e.preventDefault();
+        const mappedId = ANCHOR_SECTION_MAP[hash];
+        if (mappedId) {
+          scrollToSectionById(mappedId, 80);
+        } else {
+          const el = document.querySelector(hash);
+          if (el) scrollToSectionById(el.id || hash.slice(1), 80);
         }
-        return;
-      } else if (href.includes('#')) {
-        targetSelector = '#' + href.split('#')[1];
       }
+      return;
+    } else if (href.includes('#')) {
+      targetSelector = '#' + href.split('#')[1];
+    }
 
-      if (!targetSelector || targetSelector === '#') {
+    if (!targetSelector || targetSelector === '#') {
+      e.preventDefault();
+      window.scrollTo(0, 0);
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+      return;
+    }
+
+    // Map alias anchors sang Section ID thực tế để cuộn chính xác
+    const mappedSectionId = ANCHOR_SECTION_MAP[targetSelector];
+    if (mappedSectionId) {
+      const success = scrollToSectionById(mappedSectionId, 80);
+      if (success) {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
+    }
 
-      // Map alias anchors sang Section ID thực tế để cuộn chính xác
-      const mappedSectionId = ANCHOR_SECTION_MAP[targetSelector];
-      if (mappedSectionId) {
-        const success = scrollToSectionById(mappedSectionId, 80);
-        if (success) { e.preventDefault(); return; }
-      }
-
-      let target = document.querySelector(targetSelector) || document.querySelector(`[name="${targetSelector.slice(1)}"]`);
-      if (target) {
-        e.preventDefault();
-        const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-      }
-    });
+    let target = document.querySelector(targetSelector) || document.querySelector(`[name="${targetSelector.slice(1)}"]`);
+    if (target) {
+      e.preventDefault();
+      scrollToSectionById(target.id || targetSelector.slice(1), 80);
+    }
   });
 
-  // Xử lý hash trong URL khi trang vừa tải xong (ví dụ: index.html#quizz từ chatbot ở trang phụ)
+  // Xử lý hash khi tải trang
   function handleHashOnLoad() {
     const hash = window.location.hash;
     if (!hash) return;
@@ -192,6 +211,8 @@ function initSmoothScroll() {
     handleHashOnLoad();
   }
 }
+
+window.scrollToSectionById = scrollToSectionById;
 
 // 2. TƯƠNG TÁC FAQ ACCORDION GỐC CỦA WIX & TAB SWITCHING (SẢN PHẨM & MUA HÀNG)
 // 5. TƯƠNG TÁC SECTION 10: FAQ ACCORDION & TABS (CHUẨN 100% GIAO DIỆN GỐC)
