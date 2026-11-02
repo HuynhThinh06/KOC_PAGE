@@ -5,6 +5,23 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap');
 
+/* Bộ 3 phông chữ thương hiệu Thorakao (Khách hàng yêu cầu đồng bộ toàn trang) */
+@font-face {
+  font-display: swap;
+  font-family: 'BarberFill';
+  src: url("https://static.wixstatic.com/ufonts/f97a8e_24acf02110094c79ba9064ce8b9e061a/woff2/file.woff2") format("woff2"),
+       url("https://static.wixstatic.com/ufonts/f97a8e_24acf02110094c79ba9064ce8b9e061a/woff/file.woff") format("woff"),
+       url("https://static.wixstatic.com/ufonts/f97a8e_24acf02110094c79ba9064ce8b9e061a/ttf/file.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'CareeraScript';
+  src: url("https://static.wixstatic.com/ufonts/36b882_94dff62951c34635aab4a4ee22d5a7a5/woff2/file.woff2") format("woff2"),
+       url("https://static.wixstatic.com/ufonts/36b882_94dff62951c34635aab4a4ee22d5a7a5/woff/file.woff") format("woff"),
+       url("https://static.wixstatic.com/ufonts/36b882_94dff62951c34635aab4a4ee22d5a7a5/ttf/file.ttf") format("truetype");
+}
+
 :root {
   /* Bảng màu chính */
   --color-primary: #ad402e;
@@ -26,8 +43,8 @@
   --border-red: #ad402e;
 
   /* Font chữ */
-  --font-heading: 'Montserrat', 'Be Vietnam Pro', sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-heading: 'BarberFill', 'Montserrat', 'Be Vietnam Pro', sans-serif;
+  --font-serif: 'CareeraScript', 'Playfair Display', Georgia, serif;
   --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Hiệu ứng & Đổ bóng */

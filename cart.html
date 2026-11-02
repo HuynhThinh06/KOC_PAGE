@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -486,6 +486,52 @@
     }
     .cart-page-section .section-title {
       color: #fff8eb !important;
+    }
+
+    /* === CART & CHECKOUT: HOVER COLOR OVERRIDES === */
+    /* Nút Xác Nhận Đặt Hàng: hover → nền vàng chữ đỏ */
+    #btn-submit-order:hover,
+    #btn-submit-order:active,
+    #btn-submit-order:focus {
+      background: #ffc800 !important;
+      background-color: #ffc800 !important;
+      color: #ad402e !important;
+      border-color: #ffc800 !important;
+      box-shadow: 0 6px 20px rgba(255, 200, 0, 0.45) !important;
+      transform: translateY(-1px);
+    }
+
+    /* Nút "Tiến hành thanh toán" trong cart drawer */
+    .cart-checkout-btn:hover,
+    .cart-checkout-btn:active,
+    .cart-checkout-btn:focus {
+      background: #ffc800 !important;
+      background-color: #ffc800 !important;
+      color: #ad402e !important;
+      border-color: #ffc800 !important;
+    }
+
+    /* Nút phụ trong cart (Về Trang Chủ, Xem Thêm Sản Phẩm) */
+    .cart-continue-btn:hover,
+    .cart-continue-btn:active,
+    .order-success-btn.secondary:hover,
+    .order-success-btn.secondary:active {
+      background: #ad402e !important;
+      color: #ffc800 !important;
+      border-color: #ad402e !important;
+    }
+
+    /* Nút thanh toán trong modal */
+    .payment-option:hover,
+    .payment-option.active {
+      border-color: #ffc800 !important;
+      background: rgba(255, 200, 0, 0.08) !important;
+    }
+
+    /* BarberFill cho tiêu đề cart */
+    .cart-box-title,
+    .cart-page-title {
+      font-family: 'BarberFill', 'Montserrat', sans-serif !important;
     }
   </style>
   <link rel="stylesheet" href="assets/css/auth.css">

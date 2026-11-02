@@ -1,9 +1,47 @@
+﻿/* ===== BỘ 3 PHÔNG CHỮ THƯƠNG HIỆU THORAKAO (ĐỒNG BỘ TOÀN TRANG) ===== */
+@font-face {
+  font-display: swap;
+  font-family: 'BarberFill';
+  src: url("https://static.wixstatic.com/ufonts/f97a8e_24acf02110094c79ba9064ce8b9e061a/woff2/file.woff2") format("woff2"),
+       url("https://static.wixstatic.com/ufonts/f97a8e_24acf02110094c79ba9064ce8b9e061a/woff/file.woff") format("woff"),
+       url("https://static.wixstatic.com/ufonts/f97a8e_24acf02110094c79ba9064ce8b9e061a/ttf/file.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'CareeraScript';
+  src: url("https://static.wixstatic.com/ufonts/36b882_94dff62951c34635aab4a4ee22d5a7a5/woff2/file.woff2") format("woff2"),
+       url("https://static.wixstatic.com/ufonts/36b882_94dff62951c34635aab4a4ee22d5a7a5/woff/file.woff") format("woff"),
+       url("https://static.wixstatic.com/ufonts/36b882_94dff62951c34635aab4a4ee22d5a7a5/ttf/file.ttf") format("truetype");
+}
+
+/* Áp dụng BarberFill cho tất cả tiêu đề trên các trang phụ */
+.policy-title,
+.policy-card h2,
+.policy-card h3,
+.cart-box-title,
+.account-page-title,
+.account-card h2,
+.account-card h3,
+.product-title,
+.cart-page-title,
+h1.page-main-title {
+  font-family: 'BarberFill', 'Montserrat', sans-serif !important;
+}
+
+/* CareeraScript cho chữ nghiêng và slogan */
+.section-subtitle,
+.policy-card em,
+em.script-accent,
+.italic-script {
+  font-family: 'CareeraScript', 'Playfair Display', Georgia, serif !important;
+}
 /* ==========================================================================
    WIX OVERRIDES & RESTORATION STYLESHEET
    100% Faithful UI/UX Matching Wix Original Design
    ========================================================================== */
 
-/* 1. TRIỆT TIÊU HOÀN TOÀN QUẢNG CÁO WIX HARMONY */
+/* 1. TRIá»†T TIÃŠU HOÃ€N TOÃ€N QUáº¢NG CÃO WIX HARMONY */
 #WIX_ADS,
 [id="WIX_ADS"],
 .wix-ads-container,
@@ -115,7 +153,7 @@ div[data-testid="wix-ads"] {
   z-index: 2 !important;
 }
 
-/* 4. SECTION 12 (FOOTER) - KHẮC PHỤC TRỌN VẸN GIAO DIỆN GỐC */
+/* 4. SECTION 12 (FOOTER) - KHáº®C PHá»¤C TRá»ŒN Váº¸N GIAO DIá»†N Gá»C */
 #comp-kbgakxmn_r_comp-kbgakgyt {
   width: 100% !important;
   min-height: 820px !important;
@@ -155,7 +193,7 @@ div[data-testid="wix-ads"] {
   display: block !important;
 }
 
-/* Khắc phục hộp form chân trang bị nền trắng đè lên giấy kraft */
+/* Kháº¯c phá»¥c há»™p form chÃ¢n trang bá»‹ ná»n tráº¯ng Ä‘Ã¨ lÃªn giáº¥y kraft */
 #comp-kbgakxmn_r_comp-mvq7204e,
 .comp-kbgakxmn_r_comp-mvq7204e,
 .comp-kbgakxmn_r_comp-mvq7204e_ooi,
@@ -171,7 +209,7 @@ div[data-testid="wix-ads"] {
   border: none !important;
 }
 
-/* Sửa ô nhập email chân trang chuẩn 100% Wix (loại bỏ viền đôi, viền đỏ lệch) */
+/* Sá»­a Ã´ nháº­p email chÃ¢n trang chuáº©n 100% Wix (loáº¡i bá» viá»n Ä‘Ã´i, viá»n Ä‘á» lá»‡ch) */
 #comp-kbgakxmn_r_comp-mvq7204e input[type="email"],
 #comp-kbgakxmn_r_comp-mvq7204e input {
   background: transparent !important;
@@ -198,8 +236,8 @@ div[data-testid="wix-ads"] {
 }
 
 
-/* Nút Đăng ký chân trang */
-/* Nút Đăng ký chân trang: Mặc định nền đỏ chữ vàng kim, khi hover/active/focus đổi sang nền vàng chữ đỏ */
+/* NÃºt ÄÄƒng kÃ½ chÃ¢n trang */
+/* NÃºt ÄÄƒng kÃ½ chÃ¢n trang: Máº·c Ä‘á»‹nh ná»n Ä‘á» chá»¯ vÃ ng kim, khi hover/active/focus Ä‘á»•i sang ná»n vÃ ng chá»¯ Ä‘á» */
 #comp-kbgakxmn_r_comp-mvq7204e button[type="submit"],
 #comp-kbgakxmn_r_comp-mvq7204e button[data-hook="submit-button"],
 #comp-kbgakxmn_r_comp-mvq7204e button,
@@ -265,10 +303,10 @@ div[data-testid="wix-ads"] {
   color: #ad402e !important;
 }
 
-/* Hiệu ứng nút Trò chuyện với chúng tôi / Chatbot: hover/active/focus đổi sang màu đỏ chữ vàng */
+/* Hiá»‡u á»©ng nÃºt TrÃ² chuyá»‡n vá»›i chÃºng tÃ´i / Chatbot: hover/active/focus Ä‘á»•i sang mÃ u Ä‘á» chá»¯ vÃ ng */
 .minimizedButtonV2,
 ._chatButton_no1cy_34,
-button[aria-label*="Trò chuyện"] {
+button[aria-label*="TrÃ² chuyá»‡n"] {
   transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, transform 0.2s ease !important;
 }
 
@@ -280,10 +318,10 @@ button[aria-label*="Trò chuyện"] {
 ._chatButton_no1cy_34:active,
 ._chatButton_no1cy_34:focus-visible,
 ._chatButton_no1cy_34.chat-hover-active,
-button[aria-label*="Trò chuyện"]:hover,
-button[aria-label*="Trò chuyện"]:active,
-button[aria-label*="Trò chuyện"]:focus-visible,
-button[aria-label*="Trò chuyện"].chat-hover-active {
+button[aria-label*="TrÃ² chuyá»‡n"]:hover,
+button[aria-label*="TrÃ² chuyá»‡n"]:active,
+button[aria-label*="TrÃ² chuyá»‡n"]:focus-visible,
+button[aria-label*="TrÃ² chuyá»‡n"].chat-hover-active {
   background: #ad402e !important;
   background-color: #ad402e !important;
   color: #ffc800 !important;
@@ -307,10 +345,10 @@ button[aria-label*="Trò chuyện"].chat-hover-active {
 ._chatButton_no1cy_34:active ._buttonText_no1cy_69,
 ._chatButton_no1cy_34:focus-visible ._buttonText_no1cy_69,
 ._chatButton_no1cy_34.chat-hover-active ._buttonText_no1cy_69,
-button[aria-label*="Trò chuyện"]:hover span,
-button[aria-label*="Trò chuyện"]:active span,
-button[aria-label*="Trò chuyện"]:focus-visible span,
-button[aria-label*="Trò chuyện"].chat-hover-active span {
+button[aria-label*="TrÃ² chuyá»‡n"]:hover span,
+button[aria-label*="TrÃ² chuyá»‡n"]:active span,
+button[aria-label*="TrÃ² chuyá»‡n"]:focus-visible span,
+button[aria-label*="TrÃ² chuyá»‡n"].chat-hover-active span {
   color: #ffc800 !important;
 }
 
@@ -326,10 +364,10 @@ button[aria-label*="Trò chuyện"].chat-hover-active span {
 ._chatButton_no1cy_34:active svg,
 ._chatButton_no1cy_34:focus-visible svg,
 ._chatButton_no1cy_34.chat-hover-active svg,
-button[aria-label*="Trò chuyện"]:hover svg,
-button[aria-label*="Trò chuyện"]:active svg,
-button[aria-label*="Trò chuyện"]:focus-visible svg,
-button[aria-label*="Trò chuyện"].chat-hover-active svg {
+button[aria-label*="TrÃ² chuyá»‡n"]:hover svg,
+button[aria-label*="TrÃ² chuyá»‡n"]:active svg,
+button[aria-label*="TrÃ² chuyá»‡n"]:focus-visible svg,
+button[aria-label*="TrÃ² chuyá»‡n"].chat-hover-active svg {
   fill: #ffc800 !important;
   color: #ffc800 !important;
 }
@@ -346,20 +384,20 @@ button[aria-label*="Trò chuyện"].chat-hover-active svg {
 ._chatButton_no1cy_34:active path,
 ._chatButton_no1cy_34:focus-visible path,
 ._chatButton_no1cy_34.chat-hover-active path,
-button[aria-label*="Trò chuyện"]:hover path,
-button[aria-label*="Trò chuyện"]:active path,
-button[aria-label*="Trò chuyện"]:focus-visible path,
-button[aria-label*="Trò chuyện"].chat-hover-active path {
+button[aria-label*="TrÃ² chuyá»‡n"]:hover path,
+button[aria-label*="TrÃ² chuyá»‡n"]:active path,
+button[aria-label*="TrÃ² chuyá»‡n"]:focus-visible path,
+button[aria-label*="TrÃ² chuyá»‡n"].chat-hover-active path {
   fill: #ffc800 !important;
 }
 
-/* Ẩn triệt để widget Threads độc lập để không bao giờ bị đè */
+/* áº¨n triá»‡t Ä‘á»ƒ widget Threads Ä‘á»™c láº­p Ä‘á»ƒ khÃ´ng bao giá» bá»‹ Ä‘Ã¨ */
 .comp-kbgakxmn_r_comp-mvte363p-presets-wrapper,
 #comp-kbgakxmn_r_comp-mvte363p {
   display: none !important;
 }
 
-/* Địa chỉ, hotline, email chân trang đổi thành màu đỏ theo yêu cầu */
+/* Äá»‹a chá»‰, hotline, email chÃ¢n trang Ä‘á»•i thÃ nh mÃ u Ä‘á» theo yÃªu cáº§u */
 #comp-kbgakxmn_r_comp-mvrfv02a,
 #comp-kbgakxmn_r_comp-mvrfv02a p,
 #comp-kbgakxmn_r_comp-mvrfv02a span,
@@ -385,7 +423,7 @@ button[aria-label*="Trò chuyện"].chat-hover-active path {
   position: relative !important;
 }
 
-/* Chính sách Footer: Mặc định màu đỏ #ad402e, khi di chuột (hover) hoặc nhấn vào (active/focus) đổi sang màu vàng #ffc800 */
+/* ChÃ­nh sÃ¡ch Footer: Máº·c Ä‘á»‹nh mÃ u Ä‘á» #ad402e, khi di chuá»™t (hover) hoáº·c nháº¥n vÃ o (active/focus) Ä‘á»•i sang mÃ u vÃ ng #ffc800 */
 #comp-kbgakxmn_r_comp-mvrqf3um a,
 .wix-footer-policies a,
 #comp-kbgakxmn_r_comp-mvrfuy2j a,
@@ -431,12 +469,12 @@ a[href*="chinh-sach-quyen-rieng-tu"]:focus {
   text-decoration: underline !important;
 }
 
-/* 5. CÁC NÚT VÀ ELEMENT TƯƠNG TÁC CHUNG */
+/* 5. CÃC NÃšT VÃ€ ELEMENT TÆ¯Æ NG TÃC CHUNG */
 a, button, [role="button"], input, textarea, select {
   pointer-events: auto !important;
 }
 
-/* 6. DROPDOWN THÀNH VIÊN ĐÃ ĐĂNG NHẬP & HEADER (Chuẩn 100% Web Gốc Wix) */
+/* 6. DROPDOWN THÃ€NH VIÃŠN ÄÃƒ ÄÄ‚NG NHáº¬P & HEADER (Chuáº©n 100% Web Gá»‘c Wix) */
 :root,
 #SITE_CONTAINER,
 #main_MF,
@@ -799,7 +837,7 @@ a, button, [role="button"], input, textarea, select {
   display: none !important;
 }
 
-/* 8. WIX AI SITE CHAT POPUP (Chuẩn đóng mở & Dữ liệu Website) */
+/* 8. WIX AI SITE CHAT POPUP (Chuáº©n Ä‘Ã³ng má»Ÿ & Dá»¯ liá»‡u Website) */
 .wix-chat-popup {
   position: fixed !important;
   bottom: 85px !important;
@@ -1104,8 +1142,8 @@ a, button, [role="button"], input, textarea, select {
 }
 
 /* ==========================================================================
-   9. MINI QUIZ NẾP TÓC SECTION 9 - PHÓNG LỚN 100% THEO GIAO DIỆN GỐC
-   Tái hiện trọn vẹn kích thước và tỷ lệ 1920x1080 của Quizz.png & Kết quả quizz.png
+   9. MINI QUIZ Náº¾P TÃ“C SECTION 9 - PHÃ“NG Lá»šN 100% THEO GIAO DIá»†N Gá»C
+   TÃ¡i hiá»‡n trá»n váº¹n kÃ­ch thÆ°á»›c vÃ  tá»· lá»‡ 1920x1080 cá»§a Quizz.png & Káº¿t quáº£ quizz.png
    ========================================================================== */
 
 #comp-mvqu69vk {
@@ -1129,7 +1167,7 @@ a, button, [role="button"], input, textarea, select {
   z-index: 5 !important;
 }
 
-/* Header: QUIZZ + Nếp tóc - Nếp riêng? */
+/* Header: QUIZZ + Náº¿p tÃ³c - Náº¿p riÃªng? */
 .quiz-header-wrap {
   text-align: center !important;
   margin-bottom: 30px !important;
@@ -1326,7 +1364,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 /* ==========================================================================
-   RESULT VIEW (TÁI HIỆN CHÍNH XÁC Kết quả quizz.png - PHÓNG LỚN ĐẦY ĐỦ)
+   RESULT VIEW (TÃI HIá»†N CHÃNH XÃC Káº¿t quáº£ quizz.png - PHÃ“NG Lá»šN Äáº¦Y Äá»¦)
    ========================================================================== */
 
 .quiz-result-top-banner {
@@ -1426,7 +1464,7 @@ a, button, [role="button"], input, textarea, select {
   color: #ffe066 !important;
 }
 
-/* 10. HERO MARQUEE BANNER "GIỮ NẾP XƯA - TỎ NẾP MÌNH" (100% GIAO DIỆN GỐC TỪ WIX) */
+/* 10. HERO MARQUEE BANNER "GIá»® Náº¾P XÆ¯A - Tá»Ž Náº¾P MÃŒNH" (100% GIAO DIá»†N Gá»C Tá»ª WIX) */
 #comp-mvpa1nna,
 .comp-mvpa1nna {
   width: 100% !important;
@@ -1490,7 +1528,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 /* ==========================================================================
-   10. SECTION 10 FAQ TABS & ACCORDION (100% GIAO DIỆN GỐC TỪ SCREENSHOT)
+   10. SECTION 10 FAQ TABS & ACCORDION (100% GIAO DIá»†N Gá»C Tá»ª SCREENSHOT)
    ========================================================================== */
 #comp-mvq8wnvx {
   background-color: #ad402e !important;
@@ -1556,7 +1594,7 @@ a, button, [role="button"], input, textarea, select {
   white-space: nowrap !important;
 }
 
-/* Tabs: Sản phẩm / Mua hàng */
+/* Tabs: Sáº£n pháº©m / Mua hÃ ng */
 .s__0TmFix[data-hook="faq-tabs"] {
   width: 100% !important;
   margin-bottom: 24px !important;
@@ -1672,7 +1710,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 /* ==========================================================================
-   11. WIX CART DRAWER (GIỎ HÀNG SLIDE-OUT 100% GIAO DIỆN GỐC)
+   11. WIX CART DRAWER (GIá»Ž HÃ€NG SLIDE-OUT 100% GIAO DIá»†N Gá»C)
    ========================================================================== */
 .wix-cart-overlay {
   position: fixed;
@@ -1853,7 +1891,7 @@ a, button, [role="button"], input, textarea, select {
   border-color: #c0c0c0;
 }
 
-/* Item trong giỏ hàng */
+/* Item trong giá» hÃ ng */
 .wix-cart-item-row {
   display: flex;
   gap: 14px;
@@ -1924,7 +1962,7 @@ a, button, [role="button"], input, textarea, select {
 }
 
 /* ==========================================================================
-   12. ĐỊA CHỈ CUỐI TRANG & CHÍNH SÁCH MÀU ĐỎ THEO YÊU CẦU NGƯỜI DÙNG
+   12. Äá»ŠA CHá»ˆ CUá»I TRANG & CHÃNH SÃCH MÃ€U Äá»Ž THEO YÃŠU Cáº¦U NGÆ¯á»œI DÃ™NG
    ========================================================================== */
 #comp-kbgakxmn_r_comp-mvrfv02a,
 #comp-kbgakxmn_r_comp-mvrfv02a p,
@@ -1959,7 +1997,7 @@ a, button, [role="button"], input, textarea, select {
   color: #444444 !important;
 }
 
-/* 13. FOOTER LOGO VÀ KHUNG ĐĂNG KÝ FORM TRẮNG CHUẨN 100% WIX */
+/* 13. FOOTER LOGO VÃ€ KHUNG ÄÄ‚NG KÃ FORM TRáº®NG CHUáº¨N 100% WIX */
 #comp-kbgakxmn_r_comp-mvq7204e .sN4uTVR,
 .sN4uTVR,
 div[data-hook="Form-wrapper"] {
@@ -1996,7 +2034,7 @@ div[data-hook="Form-wrapper"] {
 }
 
 
-/* 14. HIỆU ỨNG CHUYỂN ĐỘNG LÊN XUỐNG NHẸ CHO NÚT CHAT "TRÒ CHUYỆN VỚI CHÚNG TÔI" */
+/* 14. HIá»†U á»¨NG CHUYá»‚N Äá»˜NG LÃŠN XUá»NG NHáº¸ CHO NÃšT CHAT "TRÃ’ CHUYá»†N Vá»šI CHÃšNG TÃ”I" */
 @keyframes wixChatFloat {
   0%, 100% {
     transform: translateY(0px);
@@ -2019,7 +2057,7 @@ div[data-hook="Form-wrapper"] {
 
 
 /* ==========================================================================
-   15. ĐỒNG BỘ TOÀN DIỆN HEADER VÀ FOOTER CHO CÁC TRANG CON (PRODUCT, CART, POLICY)
+   15. Äá»’NG Bá»˜ TOÃ€N DIá»†N HEADER VÃ€ FOOTER CHO CÃC TRANG CON (PRODUCT, CART, POLICY)
    ========================================================================== */
 #comp-mb7ogqrp.wix-synced-header {
   background-color: #ffffff !important;
@@ -2184,7 +2222,7 @@ div[data-hook="Form-wrapper"] {
   }
 }
 
-/* WIX FOOTER ĐỒNG BỘ */
+/* WIX FOOTER Äá»’NG Bá»˜ */
 .wix-synced-footer {
   position: relative !important;
   width: 100% !important;
@@ -2384,16 +2422,16 @@ div[data-hook="Form-wrapper"] {
 
 
 /* ==========================================================================
-   16. TỐI ƯU HÓA CO GIÃN TOÀN DIỆN KHI THU NHỎ / PHÓNG TO (ZOOM & MULTI-VIEWPORT)
+   16. Tá»I Æ¯U HÃ“A CO GIÃƒN TOÃ€N DIá»†N KHI THU NHá»Ž / PHÃ“NG TO (ZOOM & MULTI-VIEWPORT)
    ========================================================================== */
 
-/* 1. Ngăn thanh cuộn ngang khi phóng to */
+/* 1. NgÄƒn thanh cuá»™n ngang khi phÃ³ng to */
 html, body {
   overflow-x: clip !important;
   max-width: 100vw !important;
 }
 
-/* 2. Dải Marquee 'Giữ nếp xưa Tỏ nếp mình' tràn 100% không bị viền trắng khi thu nhỏ / màn hình rộng */
+/* 2. Dáº£i Marquee 'Giá»¯ náº¿p xÆ°a Tá» náº¿p mÃ¬nh' trÃ n 100% khÃ´ng bá»‹ viá»n tráº¯ng khi thu nhá» / mÃ n hÃ¬nh rá»™ng */
 .comp-mpbn2o28-container.max-width-container,
 #comp-mvpa1nna,
 #comp-mvpa1nna_r_comp-mvpa1nmt,
@@ -2405,11 +2443,11 @@ html, body {
   margin-right: 0 !important;
 }
 
-/* 3. PHƯƠNG ÁN 1: CHUẨN RESPONSIVE HIỆN ĐẠI (FLUID ASPECT-RATIO & SAFE CONTENT CONSTRAINTS)
-   Áp dụng trên mọi độ phân giải & mức thu/phóng (Zoom 50% - 200%, Windows Scale 125% - 150%)
-   Bảo đảm: 100% không cắt xén mép ảnh, không kéo dài quá khổ, không đè lấn layout */
+/* 3. PHÆ¯Æ NG ÃN 1: CHUáº¨N RESPONSIVE HIá»†N Äáº I (FLUID ASPECT-RATIO & SAFE CONTENT CONSTRAINTS)
+   Ãp dá»¥ng trÃªn má»i Ä‘á»™ phÃ¢n giáº£i & má»©c thu/phÃ³ng (Zoom 50% - 200%, Windows Scale 125% - 150%)
+   Báº£o Ä‘áº£m: 100% khÃ´ng cáº¯t xÃ©n mÃ©p áº£nh, khÃ´ng kÃ©o dÃ i quÃ¡ khá»•, khÃ´ng Ä‘Ã¨ láº¥n layout */
 
-/* A. Khống chế và tự động co giãn theo tỷ lệ 16:9 cho 5 Section Infographic lớn */
+/* A. Khá»‘ng cháº¿ vÃ  tá»± Ä‘á»™ng co giÃ£n theo tá»· lá»‡ 16:9 cho 5 Section Infographic lá»›n */
 #comp-mpbn2o2z,
 #comp-mvq65b7f,
 #comp-mpbn2o4g,
@@ -2455,7 +2493,7 @@ html, body {
   display: block !important;
 }
 
-/* B. Section Brand Story (Tỷ lệ đứng tự nhiên 1920x2450) */
+/* B. Section Brand Story (Tá»· lá»‡ Ä‘á»©ng tá»± nhiÃªn 1920x2450) */
 #comp-mpbn2o51 {
   width: 100% !important;
   max-width: 100vw !important;
@@ -2482,7 +2520,7 @@ html, body {
   display: block !important;
 }
 
-/* C. Hero Video: Tự động co giãn theo tỷ lệ 16:9 đồng bộ hoàn hảo với các Section Infographic */
+/* C. Hero Video: Tá»± Ä‘á»™ng co giÃ£n theo tá»· lá»‡ 16:9 Ä‘á»“ng bá»™ hoÃ n háº£o vá»›i cÃ¡c Section Infographic */
 #comp-mpbn2nv6 {
   width: 100% !important;
   max-width: 100vw !important;
@@ -2520,7 +2558,7 @@ html, body {
   display: block !important;
 }
 
-/* D. Footer Container: Giới hạn an toàn để không bị văng xa khi zoom out */
+/* D. Footer Container: Giá»›i háº¡n an toÃ n Ä‘á»ƒ khÃ´ng bá»‹ vÄƒng xa khi zoom out */
 #comp-kbgakxmn_r_comp-kbgakgyt,
 .comp-kbgakxmn_r_comp-kbgakgyt-container {
   max-width: 1600px !important;
@@ -2528,7 +2566,7 @@ html, body {
   margin-right: auto !important;
 }
 
-/* 4. Giới hạn an toàn cho Chatbot Popup và Login Modal khi phóng to (Zoom in 125% - 200%) */
+/* 4. Giá»›i háº¡n an toÃ n cho Chatbot Popup vÃ  Login Modal khi phÃ³ng to (Zoom in 125% - 200%) */
 .wix-chat-popup {
   max-width: min(380px, calc(100vw - 24px)) !important;
   max-height: min(560px, calc(100vh - 100px)) !important;
@@ -2541,7 +2579,7 @@ html, body {
 
 
 /* ==========================================================================
-   KHẮC PHỤC TRIỆT ĐỂ LỖI LOGO HEADER THORAKAO BỊ MẤT CHỮ TRÊN DESKTOP
+   KHáº®C PHá»¤C TRIá»†T Äá»‚ Lá»–I LOGO HEADER THORAKAO Bá»Š Máº¤T CHá»® TRÃŠN DESKTOP
    ========================================================================== */
 #comp-mb7ogqrp_r_comp-mpjsoyu5,
 .comp-mb7ogqrp_r_comp-mpjsoyu5 {
@@ -2585,11 +2623,11 @@ html, body {
 }
 
 /* ==========================================================================
-   5. TỐI ƯU GIAO DIỆN MOBILE HOÀN CHỈNH (RESPONSIVE CHO ĐIỆN THOẠI 360px - 768px)
-   Khắc phục hiện tượng cắt nửa icon avatar, hamburger lệch, chồng chéo footer & tràn lề
+   5. Tá»I Æ¯U GIAO DIá»†N MOBILE HOÃ€N CHá»ˆNH (RESPONSIVE CHO ÄIá»†N THOáº I 360px - 768px)
+   Kháº¯c phá»¥c hiá»‡n tÆ°á»£ng cáº¯t ná»­a icon avatar, hamburger lá»‡ch, chá»“ng chÃ©o footer & trÃ n lá»
    ========================================================================== */
 
-/* 1. Ngăn chặn triệt để thanh cuộn ngang và khoảng xám 15px */
+/* 1. NgÄƒn cháº·n triá»‡t Ä‘á»ƒ thanh cuá»™n ngang vÃ  khoáº£ng xÃ¡m 15px */
 html, body {
   overflow-x: hidden !important;
   max-width: 100vw !important;
@@ -2601,7 +2639,7 @@ body {
 
 @media (max-width: 768px) {
   /* ==========================================================================
-     A. HEADER MOBILE: Cân đối, căn giữa dọc 60px hoàn hảo (centerY = 30px)
+     A. HEADER MOBILE: CÃ¢n Ä‘á»‘i, cÄƒn giá»¯a dá»c 60px hoÃ n háº£o (centerY = 30px)
      ========================================================================== */
   #comp-mb7ogqrp {
     position: sticky !important;
@@ -2665,7 +2703,7 @@ body {
     display: block !important;
   }
 
-  /* 2. Giỏ hàng */
+  /* 2. Giá» hÃ ng */
   #comp-mb7ogqrp_r_comp-mpmdd30r,
   #comp-mb7ogqrp_r_comp-mpmdd30r .comp-mb7ogqrp_r_comp-mpmdd30r-presets-wrapper,
   #comp-mb7ogqrp_r_comp-mpmdd30r a.tx4Jvn {
@@ -2697,7 +2735,7 @@ body {
     height: 28px !important;
   }
 
-  /* 3. Icon Đăng nhập / Avatar */
+  /* 3. Icon ÄÄƒng nháº­p / Avatar */
   .comp-mb7ogqrp_r_comp-mpbn4c1x-presets-wrapper,
   #comp-mb7ogqrp_r_comp-mpbn4c1x,
   #comp-mb7ogqrp_r_comp-mpbn4c1x ._buttonNavigation_15sgs_16,
@@ -2790,7 +2828,7 @@ body {
   }
 
   /* ==========================================================================
-     B. QUIZ TRẮC NGHIỆM MOBILE: Cân đối giữa màn hình
+     B. QUIZ TRáº®C NGHIá»†M MOBILE: CÃ¢n Ä‘á»‘i giá»¯a mÃ n hÃ¬nh
      ========================================================================== */
   .quiz-custom-section,
   #quizSectionContainer {
@@ -2843,7 +2881,7 @@ body {
   }
 
   /* ==========================================================================
-     C. FAQ MOBILE: Cân giữa đối xứng 100%
+     C. FAQ MOBILE: CÃ¢n giá»¯a Ä‘á»‘i xá»©ng 100%
      ========================================================================== */
   #comp-mvq8wnvx {
     padding: 30px 0 40px !important;
@@ -2884,7 +2922,7 @@ body {
     box-sizing: border-box !important;
   }
 
-  /* Tiêu đề FAQ trên Mobile: Nằm gọn gàng trên 1 hàng duy nhất theo yêu cầu khách hàng */
+  /* TiÃªu Ä‘á» FAQ trÃªn Mobile: Náº±m gá»n gÃ ng trÃªn 1 hÃ ng duy nháº¥t theo yÃªu cáº§u khÃ¡ch hÃ ng */
   .snHKBk3,
   .snHKBk3 * {
     max-width: 100% !important;
@@ -2903,7 +2941,7 @@ body {
   }
 
   
-  /* HERO VIDEO MOBILE: Bảo toàn khung hình 16:9, banner đỏ ở trên không đè mất ngọn cây, triệt tiêu hoàn toàn khoảng trắng thừa bên dưới */
+  /* HERO VIDEO MOBILE: Báº£o toÃ n khung hÃ¬nh 16:9, banner Ä‘á» á»Ÿ trÃªn khÃ´ng Ä‘Ã¨ máº¥t ngá»n cÃ¢y, triá»‡t tiÃªu hoÃ n toÃ n khoáº£ng tráº¯ng thá»«a bÃªn dÆ°á»›i */
   #comp-mpbn2nv6 {
     height: auto !important;
     min-height: auto !important;
@@ -2968,7 +3006,7 @@ body {
   }
 
   /* ==========================================================================
-     D. FOOTER MOBILE: Căn giữa dạng cột dọc gốc, icon Threads chung hàng với Facebook & TikTok
+     D. FOOTER MOBILE: CÄƒn giá»¯a dáº¡ng cá»™t dá»c gá»‘c, icon Threads chung hÃ ng vá»›i Facebook & TikTok
      ========================================================================== */
   #comp-kbgakxmn {
     width: 100% !important;
@@ -3045,7 +3083,7 @@ body {
     max-width: none !important;
   }
 
-  /* Facebook, TikTok, Threads cùng 1 hàng thẳng tắp */
+  /* Facebook, TikTok, Threads cÃ¹ng 1 hÃ ng tháº³ng táº¯p */
   #comp-kbgakxmn_r_comp-mpbn5rlu ul,
   #comp-kbgakxmn_r_comp-mpbn5rlu ul._container_nclkt_13 {
     display: flex !important;
@@ -3084,7 +3122,7 @@ body {
   }
 
   /* ==========================================================================
-     E. CHATBOT MOBILE: Thu gọn bong bóng, tránh che màn hình
+     E. CHATBOT MOBILE: Thu gá»n bong bÃ³ng, trÃ¡nh che mÃ n hÃ¬nh
      ========================================================================== */
   .notificationBubbleV2,
   ._bubble_1h9p7_10 {
@@ -3101,7 +3139,7 @@ body {
 }
 
 /* ==========================================================================
-   MOBILE NAV DRAWER (Toàn trang)
+   MOBILE NAV DRAWER (ToÃ n trang)
    ========================================================================== */
 .mobile-nav-backdrop {
   position: fixed;
@@ -3245,8 +3283,8 @@ body {
 }
 
 /* ==========================================================================
-   ĐỒNG BỘ KÍCH CỠ ICON MẠNG XÃ HỘI Ở CHÂN TRANG (FACEBOOK, TIKTOK, THREADS)
-   Đảm bảo cả 3 icon có cùng kích thước 32px trên tất cả các trang
+   Äá»’NG Bá»˜ KÃCH Cá»  ICON Máº NG XÃƒ Há»˜I á»ž CHÃ‚N TRANG (FACEBOOK, TIKTOK, THREADS)
+   Äáº£m báº£o cáº£ 3 icon cÃ³ cÃ¹ng kÃ­ch thÆ°á»›c 32px trÃªn táº¥t cáº£ cÃ¡c trang
    ========================================================================== */
 .wix-footer-socials {
   display: flex !important;
@@ -3280,11 +3318,11 @@ body {
 
 
 /* ==========================================================================
-   13. NÚT "ĐẶT HÀNG" NỔI BẬT & THU HÚT ÁNH NHÌN (SECTION GIÁ BÁN - COMP-MVQ917UO)
-   Hiệu ứng chuyển động (Pulse, Radar Glow, Shimmer Light Sweep) thu hút ánh nhìn
+   13. NÃšT "Äáº¶T HÃ€NG" Ná»”I Báº¬T & THU HÃšT ÃNH NHÃŒN (SECTION GIÃ BÃN - COMP-MVQ917UO)
+   Hiá»‡u á»©ng chuyá»ƒn Ä‘á»™ng (Pulse, Radar Glow, Shimmer Light Sweep) thu hÃºt Ã¡nh nhÃ¬n
    ========================================================================== */
 
-/* Keyframe 1: Nhịp đập & Hào quang vàng lan tỏa (Radar Pulse) */
+/* Keyframe 1: Nhá»‹p Ä‘áº­p & HÃ o quang vÃ ng lan tá»a (Radar Pulse) */
 @keyframes dathangPulseGlow {
   0% {
     transform: scale(1);
@@ -3304,7 +3342,7 @@ body {
   }
 }
 
-/* Keyframe 2: Vệt sáng lướt qua mặt nút (Shimmer Beam) */
+/* Keyframe 2: Vá»‡t sÃ¡ng lÆ°á»›t qua máº·t nÃºt (Shimmer Beam) */
 @keyframes dathangShimmer {
   0%, 20% {
     left: -120%;
@@ -3346,7 +3384,7 @@ a#comp-mvq917uo,
   -webkit-tap-highlight-color: rgba(255, 200, 0, 0.4) !important;
 }
 
-/* Khóa cứng vị trí nút Đặt hàng trên Desktop khi zoom in/out (tính % theo chiều rộng khung ảnh 16:9) */
+/* KhÃ³a cá»©ng vá»‹ trÃ­ nÃºt Äáº·t hÃ ng trÃªn Desktop khi zoom in/out (tÃ­nh % theo chiá»u rá»™ng khung áº£nh 16:9) */
 @media screen and (min-width: 1024px) {
   #main_MF #comp-mvq917uo,
   #comp-mpbn2o4g #comp-mvq917uo {
@@ -3388,7 +3426,7 @@ a#comp-mvq917uo,
   transition: color 0.25s ease !important;
 }
 
-/* Hiệu ứng khi rê chuột (Hover) hoặc tập trung (Focus) */
+/* Hiá»‡u á»©ng khi rÃª chuá»™t (Hover) hoáº·c táº­p trung (Focus) */
 #comp-mvq917uo:hover,
 #comp-mvq917uo:focus-visible {
   transform: scale(1.15) !important;
@@ -3407,7 +3445,7 @@ a#comp-mvq917uo,
   text-shadow: none !important;
 }
 
-/* Hiệu ứng khi bấm chuột / chạm ngón tay (Active) */
+/* Hiá»‡u á»©ng khi báº¥m chuá»™t / cháº¡m ngÃ³n tay (Active) */
 #comp-mvq917uo:active {
   transform: scale(0.96) !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
@@ -3415,8 +3453,8 @@ a#comp-mvq917uo,
 
 
 /* ==========================================================================
-   TỐI ƯU HÓA NÚT "ĐẶT HÀNG" TRÊN GIAO DIỆN MOBILE & TABLET (< 1024px)
-   Tránh đè lên dòng giá bán "[750 ML/CHAI]" trên nền giấy rách
+   Tá»I Æ¯U HÃ“A NÃšT "Äáº¶T HÃ€NG" TRÃŠN GIAO DIá»†N MOBILE & TABLET (< 1024px)
+   TrÃ¡nh Ä‘Ã¨ lÃªn dÃ²ng giÃ¡ bÃ¡n "[750 ML/CHAI]" trÃªn ná»n giáº¥y rÃ¡ch
    ========================================================================== */
 @media screen and (max-width: 1023px) {
   #comp-mvq917uo,
@@ -3443,8 +3481,8 @@ a#comp-mvq917uo,
 
 
 /* ==========================================================================
-   CUSTOM COMBOBOX: "CHÚNG TÔI CÓ THỂ GIÚP GÌ CHO BẠN?"
-   Khôi phục dropdown chọn chủ đề theo đúng thiết kế gốc và tương tác mượt mà
+   CUSTOM COMBOBOX: "CHÃšNG TÃ”I CÃ“ THá»‚ GIÃšP GÃŒ CHO Báº N?"
+   KhÃ´i phá»¥c dropdown chá»n chá»§ Ä‘á» theo Ä‘Ãºng thiáº¿t káº¿ gá»‘c vÃ  tÆ°Æ¡ng tÃ¡c mÆ°á»£t mÃ 
    ========================================================================== */
 .custom-contact-dropdown {
   position: relative;
@@ -3541,4 +3579,29 @@ a#comp-mvq917uo,
 .custom-contact-dropdown-item.is-selected {
   background-color: rgba(121, 36, 27, 0.12) !important;
   color: #79241b !important;
+}
+
+/* === WIX CART DRAWER: HOVER COLOR OVERRIDES === */
+.wix-cart-btn-primary:hover,
+.wix-cart-btn-primary:active,
+.wix-cart-btn-primary:focus {
+  background: #ffc800 !important;
+  background-color: #ffc800 !important;
+  color: #ad402e !important;
+  border-color: #ffc800 !important;
+}
+
+.wix-cart-btn-secondary:hover,
+.wix-cart-btn-secondary:active,
+.wix-cart-btn-secondary:focus {
+  background: #ad402e !important;
+  background-color: #ad402e !important;
+  color: #ffc800 !important;
+  border-color: #ad402e !important;
+}
+
+.wix-cart-qty-btn:hover,
+.wix-cart-qty-btn:active {
+  background: #ffc800 !important;
+  color: #ad402e !important;
 }

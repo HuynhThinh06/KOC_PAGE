@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -583,6 +583,52 @@
     }
   </style>
   <link rel="stylesheet" href="assets/css/auth.css">
+  <style>
+    /* === PRODUCT PAGE: NÚT & TAB COLOR OVERRIDES === */
+    /* Nút Mua ngay: chữ vàng mặc định */
+    .btn-primary {
+      color: #ffc800 !important;
+    }
+    /* Nút Mua ngay: hover/active → nền vàng chữ đỏ */
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:focus {
+      background-color: #ffc800 !important;
+      background: #ffc800 !important;
+      color: #ad402e !important;
+      border-color: #ffc800 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 200, 0, 0.45) !important;
+    }
+
+    /* Nút Thêm vào giỏ hàng: hover/active → nền đỏ chữ vàng */
+    .btn-outline:hover,
+    .btn-outline:active,
+    .btn-outline:focus {
+      background: #ad402e !important;
+      background-color: #ad402e !important;
+      color: #ffc800 !important;
+      border-color: #ad402e !important;
+    }
+
+    /* Tabs thông tin sản phẩm: tab đang chọn → nền vàng chữ đỏ */
+    .p-tab-btn.active {
+      background: #ffc800 !important;
+      background-color: #ffc800 !important;
+      color: #ad402e !important;
+      border-color: #ffc800 !important;
+      font-weight: 700 !important;
+    }
+    .p-tab-btn:hover {
+      background: rgba(255, 200, 0, 0.15) !important;
+      color: #ad402e !important;
+    }
+
+    /* BarberFill cho tiêu đề trang sản phẩm */
+    .product-title {
+      font-family: 'BarberFill', 'Montserrat', sans-serif !important;
+    }
+  </style>
 </head>
 <body class="product-red-bg">
 
@@ -668,7 +714,6 @@
           <div class="product-badge-row">
             <span class="badge-instock">● Còn hàng</span>
             <span class="badge-volume">Dung tích: 750ml</span>
-            <span style="font-size: 0.85rem; color: var(--text-muted);">Mã: THO-BOKET-750</span>
           </div>
 
           <h1 class="product-title">Dầu Gội Bồ Kết Thorakao 750ml</h1>
