@@ -180,6 +180,15 @@ function doPost(e) {
         data.email || "",
         data.source || "Footer Website"
       ]);
+
+      // Tự động gửi email chào mừng và xác nhận cho khách hàng
+      if (data.email && data.email.indexOf("@") !== -1) {
+        try {
+          sendNewsletterWelcomeEmail(data.email);
+        } catch (mailErr) {
+          console.error("Lỗi gửi email tự động:", mailErr);
+        }
+      }
     }
 
     return ContentService
@@ -284,4 +293,39 @@ function formatMoney(num) {
     return num.toLocaleString("vi-VN") + "₫";
   }
   return num;
+}
+
+
+// ==================== TỰ ĐỘNG GỬI EMAIL CHÀO MỪNG BẢN TIN ====================
+function sendNewsletterWelcomeEmail(recipientEmail) {
+  var subject = "🌿 [Thorakao] Chào mừng bạn đến với chiến dịch Nếp Tóc Việt!";
+  var htmlBody = 
+    '<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">' +
+      '<div style="background-color: #ad402e; padding: 25px 20px; text-align: center;">' +
+        '<h1 style="color: #ffc800; margin: 0; font-size: 24px; font-weight: bold; letter-spacing: 1px;">THORAKAO - NẾP TÓC VIỆT</h1>' +
+        '<p style="color: #fff8eb; margin: 8px 0 0 0; font-size: 14px; font-style: italic;">"Giữ nếp xưa - Tỏ nếp mình"</p>' +
+      '</div>' +
+      '<div style="padding: 30px 25px; color: #333333; line-height: 1.6;">' +
+        '<h2 style="color: #ad402e; margin-top: 0; font-size: 18px;">Xin chào bạn,</h2>' +
+        '<p>Cảm ơn bạn đã đăng ký nhận thông tin về chiến dịch <strong>"Nếp Tóc Thorakao"</strong>. Từ nay, bạn sẽ là một trong những người đầu tiên nhận được:</p>' +
+        '<ul style="padding-left: 20px; color: #4b5563;">' +
+          '<li>Ưu đãi độc quyền và mã giảm giá khi mua <strong>Dầu Gội Bồ Kết Thorakao 750ml</strong>.</li>' +
+          '<li>Bí quyết dưỡng tóc đen mượt, sạch gàu, giảm rụng từ bồ kết & thảo mộc thiên nhiên.</li>' +
+          '<li>Cập nhật các chương trình minigame, quà tặng đặc biệt trong chiến dịch.</li>' +
+        '</ul>' +
+        '<div style="text-align: center; margin: 30px 0;">' +
+          '<a href="https://neptocthorakao.com" style="background-color: #ad402e; color: #ffc800; font-weight: bold; padding: 12px 28px; text-decoration: none; border-radius: 6px; display: inline-block; font-size: 15px;">Khám Phá Website Ngay</a>' +
+        '</div>' +
+        '<p style="margin-bottom: 0; font-size: 13px; color: #6b7280;">Nếu bạn không thực hiện đăng ký này, vui lòng bỏ qua email.<br>Thân mến,<br><strong>Đội ngũ Thorakao</strong></p>' +
+      '</div>' +
+      '<div style="background-color: #f9fafb; padding: 15px; text-align: center; font-size: 12px; color: #9ca3af; border-top: 1px solid #f3f4f6;">' +
+        '241 bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP. Hồ Chí Minh | Hotline: 028 8887 3241' +
+      '</div>' +
+    '</div>';
+
+  MailApp.sendEmail({
+    to: recipientEmail,
+    subject: subject,
+    htmlBody: htmlBody
+  });
 }

@@ -78,15 +78,49 @@ function initHeroVideo() {
 }
 
 // 1. SMOOTH SCROLLING CHO CÁC LIÊN KẾT ANCHOR MENU
+// Bản đồ anchor alias → Section ID thực tế (fix lỗi CSS Grid Wix đẩy <a id="quizz"> xuống dưới Footer)
+const ANCHOR_SECTION_MAP = {
+  '#quizz': 'comp-mvqu69vk',
+  '#faq': 'comp-mvq8wnvx',
+  '#contact': 'comp-mvqw008w',
+  '#featured-categories': 'comp-mvqu69vk',
+  '#phan-11': 'comp-mvq8wnvx',
+  '#phan-12': 'comp-mvqw008w'
+};
+
+function scrollToSectionById(sectionId, headerOffset) {
+  const el = document.getElementById(sectionId);
+  if (!el) return false;
+  const offset = headerOffset !== undefined ? headerOffset : 80;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  return true;
+}
+
 function initSmoothScroll() {
   document.querySelectorAll('a[href*="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (!href) return;
-      
+
       let targetSelector = '';
       if (href.startsWith('#')) {
         targetSelector = href;
+      } else if (href.startsWith('index.html#')) {
+        const hash = '#' + href.split('#')[1];
+        const currentPath = window.location.pathname.toLowerCase();
+        const isHome = currentPath.endsWith('/') || currentPath.endsWith('/index.html') || currentPath.endsWith('index.html') || currentPath === '/';
+        if (isHome) {
+          e.preventDefault();
+          const mappedId = ANCHOR_SECTION_MAP[hash];
+          if (mappedId) {
+            scrollToSectionById(mappedId, 80);
+          } else {
+            const el = document.querySelector(hash);
+            if (el) { const top = el.getBoundingClientRect().top + window.pageYOffset - 80; window.scrollTo({ top: Math.max(0,top), behavior: 'smooth' }); }
+          }
+        }
+        return;
       } else if (href.includes('#')) {
         targetSelector = '#' + href.split('#')[1];
       }
@@ -97,24 +131,36 @@ function initSmoothScroll() {
         return;
       }
 
-      // Map alias anchors sang Section ID tương ứng nếu cần
-      let target = document.querySelector(targetSelector) || document.querySelector(`[name="${targetSelector.slice(1)}"]`);
-      if (!target) {
-        if (targetSelector === '#featured-categories' || targetSelector === '#quizz') {
-          target = document.getElementById('comp-mvqu69vk');
-        } else if (targetSelector === '#phan-11' || targetSelector === '#faq') {
-          target = document.getElementById('comp-mvq8wnvx');
-        } else if (targetSelector === '#phan-12' || targetSelector === '#contact') {
-          target = document.getElementById('comp-mvqw008w');
-        }
+      // Map alias anchors sang Section ID thực tế để cuộn chính xác
+      const mappedSectionId = ANCHOR_SECTION_MAP[targetSelector];
+      if (mappedSectionId) {
+        const success = scrollToSectionById(mappedSectionId, 80);
+        if (success) { e.preventDefault(); return; }
       }
 
+      let target = document.querySelector(targetSelector) || document.querySelector(`[name="${targetSelector.slice(1)}"]`);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       }
     });
   });
+
+  // Xử lý hash trong URL khi trang vừa tải xong (ví dụ: index.html#quizz từ chatbot ở trang phụ)
+  function handleHashOnLoad() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const mappedId = ANCHOR_SECTION_MAP[hash];
+    if (mappedId && document.getElementById(mappedId)) {
+      setTimeout(() => scrollToSectionById(mappedId, 80), 400);
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleHashOnLoad);
+  } else {
+    handleHashOnLoad();
+  }
 }
 
 // 2. TƯƠNG TÁC FAQ ACCORDION GỐC CỦA WIX & TAB SWITCHING (SẢN PHẨM & MUA HÀNG)
@@ -291,11 +337,17 @@ function initWixChat() {
 function openQuizModal() {
   const section = document.getElementById('comp-mvqu69vk') || document.getElementById('quizz');
   if (section) {
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Đang ở trang chủ: cuộn tới section Quiz
+    const top = section.getBoundingClientRect().top + window.pageYOffset - 80;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     if (typeof restartQuiz === 'function') {
-      restartQuiz();
+      setTimeout(() => restartQuiz(), 350);
     }
+  } else {
+    // Đang ở trang phụ: chuyển hướng về trang chủ với hash #quizz
+    window.location.href = 'index.html#quizz';
   }
+}
 }
 
 function closeQuizModal() {
@@ -1245,16 +1297,23 @@ function initMobileMenu() {
         }
       } else if (href && href.startsWith('index.html#')) {
         const hash = href.replace('index.html', '');
-        const target = document.querySelector(hash);
-        if (target) {
-          e.preventDefault();
+        // Nếu đang ở trang chủ: cuộn tới section tương ứng
+        const currentPath = window.location.pathname.toLowerCase();
+        const isHome = currentPath.endsWith('/') || currentPath.endsWith('/index.html') || currentPath.endsWith('index.html') || currentPath === '/';
+        if (isHome) {
+          const mappedId = (typeof ANCHOR_SECTION_MAP !== 'undefined') ? ANCHOR_SECTION_MAP[hash] : null;
+          const target = mappedId ? document.getElementById(mappedId) : document.querySelector(hash);
+          if (target) {
+            e.preventDefault();
+            closeDrawer();
+            setTimeout(() => {
+              const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+              window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            }, 200);
+          }
+        } else {
+          // Ở trang phụ: để trình duyệt tự điều hướng về index.html#hash
           closeDrawer();
-          setTimeout(() => {
-            const headerOffset = 65;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-          }, 200);
         }
       } else {
         closeDrawer();

@@ -362,7 +362,7 @@ function buildContextualActions(matchedIds = [], detectedQty = null) {
   }
 
   if (matchedIds.includes('hair_oily_dandruff') || matchedIds.includes('hair_dry_hairloss') || matchedIds.includes('quiz_campaign_koc')) {
-    html += `<button type="button" class="wix-chat-action-btn primary" onclick="closeWixChat(); openQuizModal();">🎯 Làm Mini Quiz Nếp Tóc</button>`;
+    html += `<button type="button" class="wix-chat-action-btn primary" onclick="closeWixChat(); if(document.getElementById('comp-mvqu69vk')){ openQuizModal(); } else { window.location.href='index.html#quizz'; }">🎯 Làm Mini Quiz Nếp Tóc</button>`;
   }
 
   if (matchedIds.includes('contact_info') || matchedIds.includes('return_policy')) {
@@ -378,6 +378,12 @@ function generateGroundedWebsiteReply(userText) {
   const expanded = expandAbbreviations(userText);
   const lower = expanded.toLowerCase();
   const norm = normalizeVietnamese(expanded);
+
+  // 0. Kiểm tra yêu cầu liên hệ nhân viên
+  if (norm.includes('lien he nhan vien') || norm.includes('gap nhan vien') || norm.includes('tu van vien') || norm.includes('gap tu van') || norm.includes('nhan vien tu van')) {
+    setTimeout(() => { if (typeof showChatContactForm === 'function') showChatContactForm(); }, 300);
+    return 'Dạ, bạn vui lòng để lại thông tin vào biểu mẫu dưới đây, nhân viên tư vấn của Thorakao sẽ liên hệ hỗ trợ bạn ngay nhé! 👇';
+  }
 
   // 1. Kiểm tra chào hỏi xã giao
   if (/^(xin chao|chao|hi|hello|shop oi|alo|ad oi|ban oi|chao shop)$/.test(norm)) {
@@ -832,6 +838,7 @@ function ensureChatWidgetExistsOnPage() {
           <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Chính sách phí ship và freeship thế nào?')">🚚 Chính sách Freeship</button>
           <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Tóc bết dầu và rụng tóc dùng bồ kết có hợp không?')">🌿 Tư vấn tóc bết / rụng</button>
           <button type="button" class="wix-chip-btn" onclick="sendWixChatMessage('Chiến dịch Giữ nếp xưa Tỏ nếp mình là gì?')">✨ Về chiến dịch &amp; Quiz</button>
+          <button type="button" class="wix-chip-btn" onclick="showChatContactForm()">👩‍💼 Liên hệ nhân viên</button>
         </div>
       </div>
       <form class="wix-chat-input-bar" onsubmit="event.preventDefault(); sendWixChatMessage();">
@@ -891,3 +898,65 @@ window.analyzeQuery = analyzeQuery;
 window.analyzeWixQuery = analyzeWixQuery;
 window.handleChatQuickAddToCart = handleChatQuickAddToCart;
 window.submitChatLeadToSheet = submitChatLeadToSheet;
+
+
+// ===== LIÊN HỆ NHÂN VIÊN TRONG CHATBOT =====
+function showChatContactForm() {
+  const popup = typeof getChatPopupElement === 'function' ? getChatPopupElement() : document.getElementById('wixChatPopup');
+  if (popup && !popup.classList.contains('open') && typeof openWixChat === 'function') {
+    openWixChat();
+  }
+  const container = typeof getChatMessagesContainer === 'function' ? getChatMessagesContainer() : document.getElementById('wixChatMessages');
+  if (!container) return;
+  if (document.getElementById('chatContactFormMsg')) {
+    container.scrollTop = container.scrollHeight;
+    return;
+  }
+  const formMsg = document.createElement('div');
+  formMsg.className = 'wix-chat-msg bot';
+  formMsg.id = 'chatContactFormMsg';
+  const user = (typeof getLoggedInUser === 'function') ? getLoggedInUser() : null;
+  formMsg.innerHTML = `
+    <div style="font-weight:700;margin-bottom:10px;color:#ad402e;">👩‍💼 Liên hệ nhân viên Thorakao</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <input type="text" id="chatContactName" placeholder="Họ và tên *" value="${user && user.name ? user.name : ''}" style="width:100%;padding:8px 10px;border:1px solid #d8c2a3;border-radius:6px;font-size:13px;font-family:Montserrat,sans-serif;box-sizing:border-box;">
+      <input type="email" id="chatContactEmail" placeholder="Email *" value="${user && user.email ? user.email : ''}" style="width:100%;padding:8px 10px;border:1px solid #d8c2a3;border-radius:6px;font-size:13px;font-family:Montserrat,sans-serif;box-sizing:border-box;">
+      <input type="tel" id="chatContactPhone" placeholder="Số điện thoại *" value="${user && user.phone ? user.phone : ''}" style="width:100%;padding:8px 10px;border:1px solid #d8c2a3;border-radius:6px;font-size:13px;font-family:Montserrat,sans-serif;box-sizing:border-box;">
+      <textarea id="chatContactMsg" placeholder="Nội dung tin nhắn *" rows="3" style="width:100%;padding:8px 10px;border:1px solid #d8c2a3;border-radius:6px;font-size:13px;font-family:Montserrat,sans-serif;box-sizing:border-box;resize:vertical;"></textarea>
+      <button type="button" onclick="submitChatContactForm()" style="background:#ad402e;color:#ffc800;border:none;border-radius:6px;padding:9px 18px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;cursor:pointer;width:100%;transition:all 0.2s;" onmouseover="this.style.background='#ffc800';this.style.color='#ad402e';" onmouseout="this.style.background='#ad402e';this.style.color='#ffc800';">Gửi thông tin</button>
+    </div>`;
+  container.appendChild(formMsg);
+  container.scrollTop = container.scrollHeight;
+}
+
+async function submitChatContactForm() {
+  const name = (document.getElementById('chatContactName') || {}).value || '';
+  const email = (document.getElementById('chatContactEmail') || {}).value || '';
+  const phone = (document.getElementById('chatContactPhone') || {}).value || '';
+  const msg = (document.getElementById('chatContactMsg') || {}).value || '';
+  if (!name.trim() || !email.trim() || !phone.trim() || !msg.trim()) {
+    alert('Vui lòng điền đầy đủ thông tin bắt buộc (*)');
+    return;
+  }
+  const container = typeof getChatMessagesContainer === 'function' ? getChatMessagesContainer() : document.getElementById('wixChatMessages');
+  const webhookUrl = (typeof THORAKAO_CONFIG !== 'undefined' && THORAKAO_CONFIG.GOOGLE_SHEET_WEBHOOK_URL)
+    ? THORAKAO_CONFIG.GOOGLE_SHEET_WEBHOOK_URL
+    : (typeof GOOGLE_SHEET_WEBHOOK_URL !== 'undefined' ? GOOGLE_SHEET_WEBHOOK_URL : null);
+  if (webhookUrl) {
+    try {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        body: JSON.stringify({ type: 'CONTACT', name, email, phone, message: msg, topic: 'Liên hệ nhân viên (Chatbot)', timestamp: new Date().toISOString() }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+    } catch(e) { /* silent fail */ }
+  }
+  const formEl = document.getElementById('chatContactFormMsg');
+  if (formEl) formEl.remove();
+  const successMsg = document.createElement('div');
+  successMsg.className = 'wix-chat-msg bot';
+  successMsg.innerHTML = '✅ <strong>Đã gửi thông tin thành công!</strong> Nhân viên Thorakao sẽ liên hệ bạn trong thời gian sớm nhất. Cảm ơn bạn! 🙏';
+  if (container) { container.appendChild(successMsg); container.scrollTop = container.scrollHeight; }
+}
+window.showChatContactForm = showChatContactForm;
+window.submitChatContactForm = submitChatContactForm;
