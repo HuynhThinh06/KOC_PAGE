@@ -1524,7 +1524,9 @@ function initNewsletterForm() {
 
 async function handleNewsletterSubmit(e) {
   e.preventDefault();
-  var form = e.target;
+  // Support both event listener (e.target = form) and inline onsubmit (e.target = form)
+  var form = e.target || document.getElementById('newsletter-form');
+  if (!form) return;
   var emailInput = form.querySelector('#newsletter-email');
   var agreeCheckbox = form.querySelector('#newsletter-agree');
   var submitBtn = form.querySelector('.wix-footer-submit-btn, button[type="submit"]');
@@ -1607,4 +1609,5 @@ async function sendNewsletterToWebhook(email, source) {
 }
 
 window.initNewsletterForm = initNewsletterForm;
+window.handleNewsletterSubmit = handleNewsletterSubmit;
 window.sendNewsletterToWebhook = sendNewsletterToWebhook;
