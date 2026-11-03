@@ -1656,9 +1656,9 @@ async function handleIndexNewsletterSubmit(e) {
       checkbox.checked = false;
     }
     if (typeof showToast === 'function') {
-      showToast('🎉 Đăng ký thành công! Email xác nhận đã được gửi đến ' + email);
+      showToast('🎉 Đăng ký thành công! Email đã được gửi đến ' + email);
     } else {
-      alert('Đăng ký thành công! Email xác nhận đã được gửi.');
+      alert('Đăng ký thành công! Email đã được gửi.');
     }
   } else {
     if (typeof showToast === 'function') {
@@ -1714,7 +1714,7 @@ async function handleNewsletterSubmit(e) {
     emailInput.value = '';
     if (agreeCheckbox) agreeCheckbox.checked = false;
     if (typeof showToast === 'function') {
-      showToast('🎉 Đăng ký thành công! Email xác nhận đã được gửi đến ' + email);
+      showToast('🎉 Đăng ký thành công! Email đã được gửi đến ' + email);
     }
   } else {
     if (typeof showToast === 'function') {
