@@ -1613,13 +1613,20 @@ async function handleIndexNewsletterSubmit(e) {
     return;
   }
 
-  // Tự động tick checkbox nếu người dùng chưa tick (tiện lợi và đảm bảo 100% thành công)
+  // Bắt buộc người dùng phải tick chọn checkbox mới cho đăng ký
   if (checkbox && !checkbox.checked) {
-    if (typeof window.toggleWixNewsletterCheckbox === 'function') {
-      window.toggleWixNewsletterCheckbox(true);
+    if (typeof showToast === 'function') {
+      showToast('⚠️ Vui lòng tick chọn "Tôi muốn đăng ký nhận bản tin của bạn"!');
     } else {
-      checkbox.checked = true;
+      alert('Vui lòng tick chọn "Tôi muốn đăng ký nhận bản tin của bạn"!');
     }
+    var chkBoxVisual = container.querySelector('.sTzype5') || container.querySelector('[data-hook="checkbox-core"]');
+    if (chkBoxVisual) {
+      chkBoxVisual.style.outline = '2px solid #ef4444';
+      chkBoxVisual.style.borderRadius = '4px';
+      setTimeout(function() { chkBoxVisual.style.outline = ''; }, 3000);
+    }
+    return;
   }
 
   var origText = btnSpan ? btnSpan.textContent : 'Đăng ký';
@@ -1682,7 +1689,13 @@ async function handleNewsletterSubmit(e) {
     return;
   }
   if (agreeCheckbox && !agreeCheckbox.checked) {
-    agreeCheckbox.checked = true;
+    if (typeof showToast === 'function') {
+      showToast('⚠️ Vui lòng tick chọn đồng ý nhận bản tin!');
+    } else {
+      alert('Vui lòng tick chọn đồng ý nhận bản tin!');
+    }
+    agreeCheckbox.focus();
+    return;
   }
 
   var email = emailInput.value.trim();
