@@ -297,6 +297,7 @@ function formatMoney(num) {
 
 
 // ==================== TỰ ĐỘNG GỬI EMAIL CHÀO MỪNG BẢN TIN ====================
+
 function sendNewsletterWelcomeEmail(recipientEmail) {
   var subject = "🌿 [THORAKAO] Khám Phá Chiến Dịch Giữ Nếp Xưa - Tỏ Nếp Mình";
   var htmlBody = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en"><head><!--[if !mso]><!--><style type="text/css" hs-webfonts="true">@font-face{font-family:'Lato';font-style:normal;font-weight:100;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/100.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:100;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/100italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:300;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/300.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:300;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/300italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:400;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/regular.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:400;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:700;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/700.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:700;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/700italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:900;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/900.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:900;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/900italic.woff2') format('woff2');}</style><!--<![endif]-->
@@ -379,7 +380,7 @@ a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-b
     
 
 
-  <meta name="generator" content="HubSpot"><meta property="og:url" content="https://247864523.hs-sites-na2.com/-temporary-slug-022f071b-549e-45d5-b24a-330bd2a57fe1?hs_preview=brVmzNTJ-420742959829"><meta name="robots" content="noindex,follow"><!--[if !((mso)|(IE))]><!-- --><style type="text/css">@media only print, only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;width:100% !important}
+  <meta property="og:url" content="https://247864523.hs-sites-na2.com/-temporary-slug-022f071b-549e-45d5-b24a-330bd2a57fe1?hs_preview=brVmzNTJ-420742959829"><!--[if !((mso)|(IE))]><!-- --><style type="text/css">@media only print, only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;width:100% !important}
 .display_block_on_small_screens{display:block}.hs_padded{padding-left:20px !important;padding-right:20px !important}
 .hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd{display:table !important}
 }@media only print, only screen and (max-width:639px){.hse-border-m{border-left:1px solid #eaf0f6 !important;border-right:1px solid #eaf0f6 !important;box-sizing:border-box}
@@ -441,7 +442,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="Bộ_nhận_diện_DM_VUA_ĐẦU_BẾT-removebg-preview" src="https://hs-247864523.f.hubspotfree-na2.net/hub/247864523/hubfs/B%E1%BB%99_nh%E1%BA%ADn_di%E1%BB%87n_DM_VUA_%C4%90%E1%BA%A6U_B%E1%BA%BET-removebg-preview.png?width=542&amp;upscale=true&amp;name=B%E1%BB%99_nh%E1%BA%ADn_di%E1%BB%87n_DM_VUA_%C4%90%E1%BA%A6U_B%E1%BA%BET-removebg-preview.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
+        <img alt="Bộ_nhận_diện_DM_VUA_ĐẦU_BẾT-removebg-preview" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
       </td>
     </tr>
   </tbody>
@@ -516,7 +517,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="1793641077815_1928796566126921533_2455810995624308717_392ae274f00b8615c76154c1687162d8" src="https://hs-247864523.f.hubspotfree-na2.net/hub/247864523/hubfs/1793641077815_1928796566126921533_2455810995624308717_392ae274f00b8615c76154c1687162d8.jpg?width=1200&amp;upscale=true&amp;name=1793641077815_1928796566126921533_2455810995624308717_392ae274f00b8615c76154c1687162d8.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="600" align="middle">
+        <img alt="1793641077815_1928796566126921533_2455810995624308717_392ae274f00b8615c76154c1687162d8" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-hero-banner.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="600" align="middle">
       </td>
     </tr>
   </tbody>
@@ -647,7 +648,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px 27px; font-size:0px">
-        <img alt="JbE9aCOzeXmlaKgOQrhAoHbouL_hFm_sW3mLy-1S8Jpy9GHY4zTK8QDVG31SVpBe3uIjXcfRNpI5T5LzCYhxnvJ7dscKvXIMWSEO8jDOpVrZ5zqIzF4CgkSHBX7_2MWYMkQhHumWAmJ1-RasspE5_Sb6wx2kgjqod02z3l8ExSPjn0HUmSQ_FuSt1W8QTwUq" src="https://hs-247864523.f.hubspotfree-na2.net/hub/247864523/hubfs/JbE9aCOzeXmlaKgOQrhAoHbouL_hFm_sW3mLy-1S8Jpy9GHY4zTK8QDVG31SVpBe3uIjXcfRNpI5T5LzCYhxnvJ7dscKvXIMWSEO8jDOpVrZ5zqIzF4CgkSHBX7_2MWYMkQhHumWAmJ1-RasspE5_Sb6wx2kgjqod02z3l8ExSPjn0HUmSQ_FuSt1W8QTwUq.jpg?width=520&amp;upscale=true&amp;name=JbE9aCOzeXmlaKgOQrhAoHbouL_hFm_sW3mLy-1S8Jpy9GHY4zTK8QDVG31SVpBe3uIjXcfRNpI5T5LzCYhxnvJ7dscKvXIMWSEO8jDOpVrZ5zqIzF4CgkSHBX7_2MWYMkQhHumWAmJ1-RasspE5_Sb6wx2kgjqod02z3l8ExSPjn0HUmSQ_FuSt1W8QTwUq.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
+        <img alt="JbE9aCOzeXmlaKgOQrhAoHbouL_hFm_sW3mLy-1S8Jpy9GHY4zTK8QDVG31SVpBe3uIjXcfRNpI5T5LzCYhxnvJ7dscKvXIMWSEO8jDOpVrZ5zqIzF4CgkSHBX7_2MWYMkQhHumWAmJ1-RasspE5_Sb6wx2kgjqod02z3l8ExSPjn0HUmSQ_FuSt1W8QTwUq" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-product-bottle.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
   </tbody>
@@ -709,7 +710,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px; font-size:0px">
-        <img alt="nghe-si-bich-hang1-1643171295" src="https://hs-247864523.f.hubspotfree-na2.net/hub/247864523/hubfs/nghe-si-bich-hang1-1643171295.jpg?width=520&amp;upscale=true&amp;name=nghe-si-bich-hang1-1643171295.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
+        <img alt="nghe-si-bich-hang1-1643171295" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-nghe-si-bich-hang.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
   </tbody>
@@ -771,7 +772,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:20px 20px 10px; font-size:0px">
-        <img alt="Bộ_nhận_diện_DM_VUA_ĐẦU_BẾT-removebg-preview" src="https://hs-247864523.f.hubspotfree-na2.net/hub/247864523/hubfs/B%E1%BB%99_nh%E1%BA%ADn_di%E1%BB%87n_DM_VUA_%C4%90%E1%BA%A6U_B%E1%BA%BET-removebg-preview.png?width=542&amp;upscale=true&amp;name=B%E1%BB%99_nh%E1%BA%ADn_di%E1%BB%87n_DM_VUA_%C4%90%E1%BA%A6U_B%E1%BA%BET-removebg-preview.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
+        <img alt="Bộ_nhận_diện_DM_VUA_ĐẦU_BẾT-removebg-preview" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
       </td>
     </tr>
   </tbody>
@@ -784,7 +785,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.facebook.com/neptoc.thorakao/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HXv5J68N" target="_blank"><img src="https://hs-247864523.f.hubspotfree-na2.net/hs/hsstatic/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Follow+Me+-+Email/facebook_original_white.png" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.facebook.com/neptoc.thorakao/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HXv5J68N" target="_blank"><img src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-icon-facebook.png" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -795,7 +796,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.threads.com/@neptoc.thorakao?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HgASA4bm" target="_blank"><img src="https://hs-247864523.f.hubspotfree-na2.net/hub/247864523/hubfs/logo-threads-vector-2-05-removebg-preview.png?height=50&amp;upscale=true&amp;name=logo-threads-vector-2-05-removebg-preview.png" alt="logo-threads-vector-2-05-removebg-preview" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.threads.com/@neptoc.thorakao?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HgASA4bm" target="_blank"><img src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-icon-threads.png" alt="logo-threads-vector-2-05-removebg-preview" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -806,7 +807,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.tiktok.com/@neptoc.thorakao?&amp;utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="OuuCU9WU" target="_blank"><img src="https://hs-247864523.f.hubspotfree-na2.net/hs/hsstatic/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Follow+Me+-+Email/tiktok_original_white.png" alt="TikTok" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.tiktok.com/@neptoc.thorakao?&amp;utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="OuuCU9WU" target="_blank"><img src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-icon-tiktok.png" alt="TikTok" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -817,7 +818,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://thorakao.com/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="8lqLIaiU" target="_blank"><img src="https://hs-247864523.f.hubspotfree-na2.net/hs/hsstatic/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Follow+Me+-+Email/website_original_white.png" alt="Website" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://thorakao.com/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="8lqLIaiU" target="_blank"><img src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-icon-web.png" alt="Website" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -837,8 +838,8 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           Công ty TNHH Sản Xuất Mỹ Phẩm Lan Hảo, 241bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP HCM,  70000, Việt Nam , 028 8887 3241
         </p>
         <p>
-          <a data-unsubscribe="true" href="https://hs-247864523.s.hubspotfree-na2.net/preferences/en/unsubscribe?data=W2nWGVW47zj_4W4cdWy_1SBrhQW3ddHKV3HdMKRW1Z9ykC4fNMvhW2Pl0tC2WhN5nW3_v-Fx3ZJbBwW3ZDnQB30tYckW1X9R422FDp68W4fLfFz2-MPnsW3Fd62N1LfKpBW3GRdnl3ZHRhVW30Chcd3P1J-GW4ftCLq4t7M4_W38jSvp4tgm39W1Bfgz41_v2d3W2nXR3f2YK2yyW1Q9YJR3X-M7zW3by7VN3XQBfWW3VKWwz2sBwkGW3JL3Qs3LTKNgW2szm3N2t2Y0XW4cQdtw2FRG3wW2PLjVz3dc0csW23psQ0368m2rW4cR46f2-nN6hW2sDDC-2qNKGKW41PDfC41VG3QW3JPSRl3W2m7tW4czhBd39_BRNW45M8Nv3VtVBsW4r7YKS3DNWH8W2KGv2V2Yn-bBW3dtxKN3bsxQNW3P2BLP3QVFwhW4txTjT4thyq4W1N87Jd4cy4lpW30bZjw3R2gZDW1Bg5fj3jt6BtW1_nCck1NzbNHW4pBm-n38mmSGW3DWfzB2KC9dbW3DXXpx41qbq7W2CXS_Q4fLgCKW2MPT5g3d2cT-W49js6k1ZcG10W3651lh45Y4Fz0&amp;utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" data-hs-link-id="0" data-hs-link-id-v2="Mt/VeNiO" target="_blank">Unsubscribe</a>
-          <a data-unsubscribe="true" href="https://hs-247864523.s.hubspotfree-na2.net/preferences/en/manage?data=W2nWGVW47zj_4W4cdWy_1SBrhQW3ddHKV3HdMKRW1Z9ykC4fNMvhW2Pl0tC2WhN5nW3_v-Fx3ZJbBwW3ZDnQB30tYckW1X9R422FDp68W4fLfFz2-MPnsW3Fd62N1LfKpBW3GRdnl3ZHRhVW30Chcd3P1J-GW4ftCLq4t7M4_W38jSvp4tgm39W1Bfgz41_v2d3W2nXR3f2YK2yyW1Q9YJR3X-M7zW3by7VN3XQBfWW3VKWwz2sBwkGW3JL3Qs3LTKNgW2szm3N2t2Y0XW4cQdtw2FRG3wW2PLjVz3dc0csW23psQ0368m2rW4cR46f2-nN6hW2sDDC-2qNKGKW41PDfC41VG3QW3JPSRl3W2m7tW4czhBd39_BRNW45M8Nv3VtVBsW4r7YKS3DNWH8W2KGv2V2Yn-bBW3dtxKN3bsxQNW3P2BLP3QVFwhW4txTjT4thyq4W1N87Jd4cy4lpW30bZjw3R2gZDW1Bg5fj3jt6BtW1_nCck1NzbNHW4pBm-n38mmSGW3DWfzB2KC9dbW3DXXpx41qbq7W2CXS_Q4fLgCKW2MPT5g3d2cT-W49js6k1ZcG10W3651lh45Y4Fz0&amp;utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" data-hs-link-id="0" data-hs-link-id-v2="jxk/Kx13" target="_blank">Manage preferences</a>
+          <a data-unsubscribe="true" href="mailto:neptocthorakao@gmail.com?subject=H%E1%BB%A7y%20%C4%91%C4%83ng%20k%C3%BD%20b%E1%BA%A3n%20tin" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" data-hs-link-id="0" data-hs-link-id-v2="Mt/VeNiO" target="_blank">Unsubscribe</a>
+          <a data-unsubscribe="true" href="mailto:neptocthorakao@gmail.com?subject=C%C3%A0i%20%C4%91%E1%BA%B7t%20nh%E1%BA%ADn%20tin" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" data-hs-link-id="0" data-hs-link-id-v2="jxk/Kx13" target="_blank">Manage preferences</a>
         </p>
       </td>
     </tr>
