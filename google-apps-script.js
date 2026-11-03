@@ -35,6 +35,8 @@ function doGet(e) {
   return ContentService
     .createTextOutput(JSON.stringify({ 
       status: "online", 
+      version: "v6-github-pages-direct",
+      imageHost: "https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/",
       message: "Webhook Nếp Tóc Thorakao đang hoạt động!", 
       features: ["ORDER", "CONTACT", "NEWSLETTER", "CHATBOT_AI"],
       geminiConfigured: !!getGeminiApiKey()
@@ -295,91 +297,12 @@ function formatMoney(num) {
   return num;
 }
 
-// ==================== CÀI ĐẶT ẢNH EMAIL VÀO GOOGLE DRIVE ====================
-// CHẠY HÀM NÀY 1 LẦN: Chọn setupEmailImages -> Nhấn Run
-// Ảnh sẽ được đưa lên Google Drive và tạo link trực tiếp từ CDN chính thức của Google (lh3.googleusercontent.com)
-// Google Image Proxy của Gmail 100% không bao giờ chặn ảnh từ máy chủ của chính Google!
-function setupEmailImages() {
-  var CDN_SOURCE = "https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/";
-  var imageFiles = [
-    { key: "IMG_LOGO",    file: "email-logo-dm-vua.png" },
-    { key: "IMG_BANNER",  file: "email-hero-banner.jpg" },
-    { key: "IMG_PRODUCT", file: "email-product-bottle.jpg" },
-    { key: "IMG_ARTIST",  file: "email-nghe-si-bich-hang.jpg" },
-    { key: "IMG_FB",      file: "email-icon-facebook.png" },
-    { key: "IMG_THREADS", file: "email-icon-threads.png" },
-    { key: "IMG_TIKTOK",  file: "email-icon-tiktok.png" },
-    { key: "IMG_WEB",     file: "email-icon-web.png" }
-  ];
-
-  var folderName = "Thorakao_Email_Images";
-  var folders = DriveApp.getFoldersByName(folderName);
-  var folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(folderName);
-  folder.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW);
-
-  var props = PropertiesService.getScriptProperties();
-
-  imageFiles.forEach(function(item) {
-    try {
-      var blob = UrlFetchApp.fetch(CDN_SOURCE + item.file).getBlob();
-      blob.setName(item.file);
-
-      // Xóa file cũ nếu đã có
-      var existing = folder.getFilesByName(item.file);
-      while (existing.hasNext()) { existing.next().setTrashed(true); }
-
-      // Tạo file mới và set quyền xem công khai
-      var file = folder.createFile(blob);
-      file.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW);
-
-      // QUAN TRỌNG: Link CDN chính thức trực tiếp của Google, mở ảnh gốc (=s0) không cần đăng nhập
-      var directUrl = "https://lh3.googleusercontent.com/d/" + file.getId() + "=s0";
-      props.setProperty(item.key, directUrl);
-      Logger.log("OK: " + item.key + " => " + directUrl);
-    } catch(e) {
-      Logger.log("ERROR " + item.file + ": " + e.toString());
-    }
-  });
-
-  Logger.log("=== CÀI ĐẶT ẢNH HOÀN TẤT 100%! ===");
-}
-
-// Chuyển đổi linh hoạt link Google Drive sang link CDN trực tiếp
-function resolveImageUrl(propKey, fallbackFileName) {
-  var props = PropertiesService.getScriptProperties();
-  var savedUrl = props.getProperty(propKey);
-  
-  if (savedUrl) {
-    // Nếu lưu dạng cũ uc?export=view&id=...
-    var match = savedUrl.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-    if (match) {
-      return "https://lh3.googleusercontent.com/d/" + match[1] + "=s0";
-    }
-    // Nếu đã là lh3
-    if (savedUrl.indexOf("googleusercontent.com") !== -1) {
-      return savedUrl;
-    }
-  }
-
-  // Fallback sang GitHub Pages (nếu đã bật) hoặc jsDelivr
-  return "https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/" + fallbackFileName;
-}
-
 // ==================== TỰ ĐỘNG GỬI EMAIL CHÀO MỪNG BẢN TIN ====================
-// Sử dụng chuẩn 100% mẫu thiết kế THORAKAO của khách hàng
+// Sử dụng chuẩn 100% mẫu thiết kế THORAKAO của khách hàng với link ảnh trực tiếp từ GitHub Pages CDN
 function sendNewsletterWelcomeEmail(recipientEmail) {
   var subject = "🌿 [THORAKAO] Khám Phá Chiến Dịch Giữ Nếp Xưa - Tỏ Nếp Mình";
 
-  var LOGO    = resolveImageUrl("IMG_LOGO", "email-logo-dm-vua.png");
-  var BANNER  = resolveImageUrl("IMG_BANNER", "email-hero-banner.jpg");
-  var PRODUCT = resolveImageUrl("IMG_PRODUCT", "email-product-bottle.jpg");
-  var ARTIST  = resolveImageUrl("IMG_ARTIST", "email-nghe-si-bich-hang.jpg");
-  var FB      = resolveImageUrl("IMG_FB", "email-icon-facebook.png");
-  var THREADS = resolveImageUrl("IMG_THREADS", "email-icon-threads.png");
-  var TIKTOK  = resolveImageUrl("IMG_TIKTOK", "email-icon-tiktok.png");
-  var WEB     = resolveImageUrl("IMG_WEB", "email-icon-web.png");
-
-  var htmlTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en"><head><!--[if !mso]><!--><style type="text/css" hs-webfonts="true">@font-face{font-family:'Lato';font-style:normal;font-weight:100;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/100.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:100;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/100italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:300;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/300.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:300;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/300italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:400;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/regular.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:400;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:700;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/700.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:700;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/700italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:900;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/900.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:900;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/900italic.woff2') format('woff2');}</style><!--<![endif]-->
+  var htmlBody = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en"><head>
     <title>KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]</title>
     <meta property="og:title" content="KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]">
     <meta name="twitter:title" content="KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]">
@@ -459,7 +382,7 @@ a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-b
     
 
 
-  <meta property="og:url" content="https://247864523.hs-sites-na2.com/-temporary-slug-022f071b-549e-45d5-b24a-330bd2a57fe1?hs_preview=brVmzNTJ-420742959829"><!--[if !((mso)|(IE))]><!-- --><style type="text/css">@media only print, only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;width:100% !important}
+  <!--[if !((mso)|(IE))]><!-- --><style type="text/css">@media only print, only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;width:100% !important}
 .display_block_on_small_screens{display:block}.hs_padded{padding-left:20px !important;padding-right:20px !important}
 .hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd{display:table !important}
 }@media only print, only screen and (max-width:639px){.hse-border-m{border-left:1px solid #eaf0f6 !important;border-right:1px solid #eaf0f6 !important;box-sizing:border-box}
@@ -521,7 +444,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="Logo Thorakao" src="{{IMG_LOGO}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
+        <img alt="Logo Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
       </td>
     </tr>
   </tbody>
@@ -596,7 +519,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="Banner Chiến Dịch Thorakao" src="{{IMG_BANNER}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="600" align="middle">
+        <img alt="Banner Chiến Dịch Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-hero-banner.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="600" align="middle">
       </td>
     </tr>
   </tbody>
@@ -662,7 +585,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 40px"><div id="hs_cos_wrapper_module-4-0-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;">
     <tbody><tr>
       <td align="center" valign="middle" bgcolor="#ffc800" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; border-radius:0px; cursor:auto; background-color:#ffc800; mso-padding-alt:12px 18px">
-        <a href="http://neptocthorakao.com/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" target="_blank" style="color:#00a4bd; font-size:21px; font-family:Helvetica,Arial,sans-serif; Margin:0; text-transform:none; letter-spacing:0px; text-decoration:none; padding:12px 18px; display:block" data-hs-link-id="0" data-hs-link-id-v2="bzQlD3av">
+        <a href="https://huynhthinh06.github.io/KOC_PAGE/" target="_blank" style="color:#00a4bd; font-size:21px; font-family:Helvetica,Arial,sans-serif; Margin:0; text-transform:none; letter-spacing:0px; text-decoration:none; padding:12px 18px; display:block" data-hs-link-id="0" data-hs-link-id-v2="bzQlD3av">
           <strong style="color:#ad402e;font-weight:bold;text-decoration:none;font-style:normal;">KHÁM PHÁ CHIẾN DỊCH</strong>
         </a>
       </td>
@@ -727,7 +650,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px 27px; font-size:0px">
-        <img alt="Dầu Gội Bồ Kết Thorakao 750ml" src="{{IMG_PRODUCT}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
+        <img alt="Dầu Gội Bồ Kết Thorakao 750ml" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-product-bottle.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
   </tbody>
@@ -789,7 +712,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px; font-size:0px">
-        <img alt="Nghệ sĩ Bích Hằng" src="{{IMG_ARTIST}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
+        <img alt="Nghệ sĩ Bích Hằng" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-nghe-si-bich-hang.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
   </tbody>
@@ -851,7 +774,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:20px 20px 10px; font-size:0px">
-        <img alt="Logo Thorakao" src="{{IMG_LOGO}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
+        <img alt="Logo Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
       </td>
     </tr>
   </tbody>
@@ -864,7 +787,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.facebook.com/neptoc.thorakao/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HXv5J68N" target="_blank"><img src="{{IMG_FB}}" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.facebook.com/neptoc.thorakao/" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HXv5J68N" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-icon-facebook.png" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -875,7 +798,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.threads.com/@neptoc.thorakao?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HgASA4bm" target="_blank"><img src="{{IMG_THREADS}}" alt="Threads" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.threads.com/@neptoc.thorakao" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HgASA4bm" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-icon-threads.png" alt="Threads" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -886,7 +809,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.tiktok.com/@neptoc.thorakao?&amp;utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="OuuCU9WU" target="_blank"><img src="{{IMG_TIKTOK}}" alt="TikTok" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.tiktok.com/@neptoc.thorakao" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="OuuCU9WU" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-icon-tiktok.png" alt="TikTok" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -897,7 +820,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://thorakao.com/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="8lqLIaiU" target="_blank"><img src="{{IMG_WEB}}" alt="Website" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://thorakao.com/" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="8lqLIaiU" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-icon-web.png" alt="Website" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -941,16 +864,6 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </div>
   
 </body></html>`;
-
-  var htmlBody = htmlTemplate
-    .replace(/\{\{IMG_LOGO\}\}/g, LOGO)
-    .replace(/\{\{IMG_BANNER\}\}/g, BANNER)
-    .replace(/\{\{IMG_PRODUCT\}\}/g, PRODUCT)
-    .replace(/\{\{IMG_ARTIST\}\}/g, ARTIST)
-    .replace(/\{\{IMG_FB\}\}/g, FB)
-    .replace(/\{\{IMG_THREADS\}\}/g, THREADS)
-    .replace(/\{\{IMG_TIKTOK\}\}/g, TIKTOK)
-    .replace(/\{\{IMG_WEB\}\}/g, WEB);
 
   MailApp.sendEmail({
     to: recipientEmail,
