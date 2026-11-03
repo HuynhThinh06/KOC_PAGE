@@ -11,7 +11,7 @@ const THORAKAO_CONFIG = {
   },
 
   // Đường link Webhook Google Sheets (Nếu có thì dán vào đây theo hướng dẫn trong HUONG-DAN-GOOGLE-SHEET.md)
-  GOOGLE_SHEET_WEBHOOK_URL: "https://script.google.com/macros/s/AKfycbxViboZmAXEGUAGrx7flJI75uaPRM6tOxf-Xatohe0oqEf_pd9INPNtiqJXoX2v7PVK/exec",
+  GOOGLE_SHEET_WEBHOOK_URL: "https://script.google.com/macros/s/AKfycbzs6X0CrzywKXlowHWNMzDtxsl_dk2mxyMTkqQr9wm8h6q7GVyfnyQrkYICi66inHx3xA/exec",
 
   // Thông tin sản phẩm chính
   PRODUCT: {
