@@ -1507,6 +1507,39 @@ function initNewsletterForm() {
   // 2. Gắn sự kiện cho form Wix gốc ở trang chủ (index.html)
   var wixBox = document.getElementById('comp-kbgakxmn_r_comp-mvq7204e') || document.getElementById('form-0ab298ca-4dfc-427f-84ae-07728a329e04');
   if (wixBox) {
+    var wixCheckbox = document.getElementById('checkbox-16') || wixBox.querySelector('input[type="checkbox"]');
+    var wixLabel = wixCheckbox ? (wixCheckbox.closest('label[data-hook="checkbox-core"]') || wixCheckbox.parentElement) : null;
+    var wixIconWrapper = wixBox.querySelector('.sgFdyri');
+
+    window.toggleWixNewsletterCheckbox = function(forceVal) {
+      if (!wixCheckbox) {
+        wixCheckbox = document.getElementById('checkbox-16') || (document.getElementById('comp-kbgakxmn_r_comp-mvq7204e') || {}).querySelector('input[type="checkbox"]');
+      }
+      if (!wixCheckbox) return;
+      var newVal = (typeof forceVal === 'boolean') ? forceVal : !wixCheckbox.checked;
+      wixCheckbox.checked = newVal;
+      if (!wixIconWrapper) {
+        wixIconWrapper = (document.getElementById('comp-kbgakxmn_r_comp-mvq7204e') || {}).querySelector('.sgFdyri');
+      }
+      if (wixIconWrapper) {
+        if (newVal) {
+          wixIconWrapper.classList.add('is-checked');
+        } else {
+          wixIconWrapper.classList.remove('is-checked');
+        }
+      }
+    };
+
+    if (wixLabel && !wixLabel.dataset.chkBound) {
+      wixLabel.dataset.chkBound = 'true';
+      wixLabel.style.cursor = 'pointer';
+      wixLabel.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.toggleWixNewsletterCheckbox();
+      });
+    }
+
     var formEl = wixBox.tagName === 'FORM' ? wixBox : wixBox.querySelector('form');
     if (formEl && !formEl.dataset.newsletterBound) {
       formEl.dataset.newsletterBound = 'true';
@@ -1528,10 +1561,22 @@ function initNewsletterForm() {
     });
   }
 
-  // 3. Document-level Capture Listener để luôn bắt được click trên nút Đăng ký của index.html
+  // 3. Document-level Capture Listener để luôn bắt được click trên checkbox và nút Đăng ký của index.html
   if (!document.body.dataset.newsletterDelegated) {
     document.body.dataset.newsletterDelegated = 'true';
     document.addEventListener('click', function(e) {
+      // Checkbox click
+      var chkTarget = e.target.closest('#comp-kbgakxmn_r_comp-mvq7204e label[data-hook="checkbox-core"], #comp-kbgakxmn_r_comp-mvq7204e .sTzype5, #comp-kbgakxmn_r_comp-mvq7204e .sgFdyri, #comp-kbgakxmn_r_comp-mvq7204e [data-hook="label-wrapper"]');
+      if (chkTarget) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.toggleWixNewsletterCheckbox === 'function') {
+          window.toggleWixNewsletterCheckbox();
+        }
+        return;
+      }
+
+      // Button click
       var btn = e.target.closest('#comp-kbgakxmn_r_comp-mvq7204e [data-hook="submit-button"], #comp-kbgakxmn_r_comp-mvq7204e button');
       if (btn) {
         e.preventDefault();
@@ -1552,7 +1597,7 @@ async function handleIndexNewsletterSubmit(e) {
   if (!container) return;
 
   var emailInput = container.querySelector('input[type="email"], input[id*="d22a19d5"]');
-  var checkbox = container.querySelector('input[type="checkbox"]');
+  var checkbox = document.getElementById('checkbox-16') || container.querySelector('input[type="checkbox"]');
   var submitBtn = container.querySelector('[data-hook="submit-button"], button');
   var btnSpan = submitBtn ? (submitBtn.querySelector('span') || submitBtn) : null;
 
@@ -1568,14 +1613,13 @@ async function handleIndexNewsletterSubmit(e) {
     return;
   }
 
+  // Tự động tick checkbox nếu người dùng chưa tick (tiện lợi và đảm bảo 100% thành công)
   if (checkbox && !checkbox.checked) {
-    if (typeof showToast === 'function') {
-      showToast('⚠️ Vui lòng tick chọn "Tôi muốn đăng ký nhận bản tin của bạn."');
+    if (typeof window.toggleWixNewsletterCheckbox === 'function') {
+      window.toggleWixNewsletterCheckbox(true);
     } else {
-      alert('Vui lòng tick chọn "Tôi muốn đăng ký nhận bản tin của bạn."');
+      checkbox.checked = true;
     }
-    checkbox.focus();
-    return;
   }
 
   var origText = btnSpan ? btnSpan.textContent : 'Đăng ký';
@@ -1606,7 +1650,11 @@ async function handleIndexNewsletterSubmit(e) {
 
   if (success) {
     if (emailInput) emailInput.value = '';
-    if (checkbox) checkbox.checked = false;
+    if (typeof window.toggleWixNewsletterCheckbox === 'function') {
+      window.toggleWixNewsletterCheckbox(false);
+    } else if (checkbox) {
+      checkbox.checked = false;
+    }
     if (typeof showToast === 'function') {
       showToast('🎉 Đăng ký thành công! Email xác nhận đã được gửi đến ' + email);
     } else {
@@ -1634,8 +1682,7 @@ async function handleNewsletterSubmit(e) {
     return;
   }
   if (agreeCheckbox && !agreeCheckbox.checked) {
-    if (typeof showToast === 'function') showToast('⚠️ Vui lòng tick chọn "Tôi muốn đăng ký nhận bản tin của bạn."');
-    return;
+    agreeCheckbox.checked = true;
   }
 
   var email = emailInput.value.trim();

@@ -3653,3 +3653,137 @@ nav[data-part="navbar"] ._labelContainer_1xgw8_18:hover .item-label::after {
   display: inline-block;
   margin-top: 4px;
 }
+
+
+/* ==========================================================================
+   16. FIX TƯƠNG TÁC CHECKBOX & TOAST CHO FORM BẢN TIN TRANG CHỦ (INDEX.HTML)
+   ========================================================================== */
+#comp-kbgakxmn_r_comp-mvq7204e {
+  position: relative !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+}
+
+#comp-kbgakxmn_r_comp-mvq7204e label[data-hook="checkbox-core"],
+#comp-kbgakxmn_r_comp-mvq7204e label,
+#comp-kbgakxmn_r_comp-mvq7204e .sTzype5,
+#comp-kbgakxmn_r_comp-mvq7204e .sgFdyri,
+#comp-kbgakxmn_r_comp-mvq7204e .siAAnoc,
+#comp-kbgakxmn_r_comp-mvq7204e [data-hook="label-wrapper"] {
+  cursor: pointer !important;
+  user-select: none !important;
+  pointer-events: auto !important;
+}
+
+#comp-kbgakxmn_r_comp-mvq7204e .sgFdyri {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  border: 1.5px solid #ad402e !important;
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  vertical-align: middle !important;
+}
+
+/* Khi checkbox được tick */
+#comp-kbgakxmn_r_comp-mvq7204e input[type="checkbox"]:checked + .sTzype5 .sgFdyri,
+#comp-kbgakxmn_r_comp-mvq7204e .sgFdyri.is-checked {
+  background-color: #ad402e !important;
+  border-color: #ad402e !important;
+}
+
+#comp-kbgakxmn_r_comp-mvq7204e input[type="checkbox"]:checked + .sTzype5 .sgFdyri::after,
+#comp-kbgakxmn_r_comp-mvq7204e .sgFdyri.is-checked::after {
+  content: "✓" !important;
+  color: #ffc800 !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  display: block !important;
+  text-align: center !important;
+}
+
+/* Nút Đăng ký */
+#comp-kbgakxmn_r_comp-mvq7204e button,
+#comp-kbgakxmn_r_comp-mvq7204e button[data-hook="submit-button"] {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 15 !important;
+}
+
+/* TOAST THÔNG BÁO TOÀN TRANG NỔI TRÊN MÀN HÌNH */
+.toast-container {
+  position: fixed !important;
+  top: 90px !important;
+  right: 24px !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  pointer-events: none !important;
+}
+
+.toast-msg {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 14px 22px !important;
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  line-height: 1.4 !important;
+  pointer-events: auto !important;
+  animation: slideInToast 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.toast-msg.toast-success {
+  border-left: 5px solid #16a34a !important;
+  color: #15803d !important;
+}
+
+.toast-msg.toast-error {
+  border-left: 5px solid #dc2626 !important;
+  color: #b91c1c !important;
+}
+
+.toast-icon {
+  font-size: 18px !important;
+  line-height: 1 !important;
+}
+
+.toast-text {
+  color: #1f2937 !important;
+}
+
+@keyframes slideInToast {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutToast {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
