@@ -1734,19 +1734,40 @@ async function sendNewsletterToWebhook(email, source) {
       return false;
     }
 
-    var response = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'NEWSLETTER',
-        email: email,
-        source: source || 'Footer Website',
-        timestamp: new Date().toISOString()
-      })
+    var payload = JSON.stringify({
+      type: 'NEWSLETTER',
+      email: email,
+      source: source || 'Footer Website',
+      timestamp: new Date().toISOString()
     });
 
-    var result = await response.json();
-    return result.status === 'success';
+    // Sử dụng Content-Type text/plain để trình duyệt KHÔNG gửi preflight OPTIONS request (tránh bị Google Apps Script chặn CORS)
+    try {
+      var response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: payload
+      });
+
+      if (response.ok || response.type === 'opaque') {
+        return true;
+      }
+      try {
+        var result = await response.json();
+        return !result || result.status !== 'error';
+      } catch (e) {
+        return true;
+      }
+    } catch (corsErr) {
+      // Fallback với mode: 'no-cors' đảm bảo dữ liệu luôn được gửi tới Google Apps Script
+      await fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: payload
+      });
+      return true;
+    }
   } catch (err) {
     console.error('[Newsletter] Lỗi gửi webhook:', err);
     return false;

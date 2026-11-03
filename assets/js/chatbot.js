@@ -545,7 +545,7 @@ async function queryOptionalAIProxy(userMessage) {
     try {
       const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${cfg.GEMINI_API_KEY}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }, mode: 'no-cors',
         body: JSON.stringify({
           system_instruction: {
             parts: [{
