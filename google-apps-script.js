@@ -335,7 +335,7 @@ function setupEmailImages() {
       var file = folder.createFile(blob);
       file.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW);
 
-      var url = "https://drive.google.com/uc?export=view&id=" + file.getId();
+      var url = "https://lh3.googleusercontent.com/d/" + file.getId() + "=s0";
       props.setProperty(item.key, url);
       Logger.log("OK: " + item.key + " = " + url);
     } catch(e) {
@@ -347,20 +347,35 @@ function setupEmailImages() {
 }
 
 // ==================== TỰ ĐỘNG GỬI EMAIL CHÀO MỪNG BẢN TIN ====================
+// Chuyển đổi link Google Drive cũ sang định dạng CDN trực tiếp của Google (lh3.googleusercontent.com/d/ID=s0)
+// Định dạng này cho phép hiển thị ảnh công khai cho mọi người nhận email mà không bị chặn xác thực
+function toDirectGoogleUrl(url) {
+  if (!url) return "";
+  var match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (match) {
+    return "https://lh3.googleusercontent.com/d/" + match[1] + "=s0";
+  }
+  var match2 = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (match2) {
+    return "https://lh3.googleusercontent.com/d/" + match2[1] + "=s0";
+  }
+  return url;
+}
+
 function sendNewsletterWelcomeEmail(recipientEmail) {
   var subject = "🌿 [THORAKAO] Khám Phá Chiến Dịch Giữ Nếp Xưa - Tỏ Nếp Mình";
 
   // Đọc URL ảnh từ Script Properties (đã được cài đặt bởi setupEmailImages())
   var props = PropertiesService.getScriptProperties();
   var CDN_FB = "https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/";
-  var LOGO    = props.getProperty("IMG_LOGO")    || (CDN_FB + "email-logo-dm-vua.png");
-  var BANNER  = props.getProperty("IMG_BANNER")  || (CDN_FB + "email-hero-banner.jpg");
-  var PRODUCT = props.getProperty("IMG_PRODUCT") || (CDN_FB + "email-product-bottle.jpg");
-  var ARTIST  = props.getProperty("IMG_ARTIST")  || (CDN_FB + "email-nghe-si-bich-hang.jpg");
-  var FB      = props.getProperty("IMG_FB")      || (CDN_FB + "email-icon-facebook.png");
-  var THREADS = props.getProperty("IMG_THREADS") || (CDN_FB + "email-icon-threads.png");
-  var TIKTOK  = props.getProperty("IMG_TIKTOK")  || (CDN_FB + "email-icon-tiktok.png");
-  var WEB     = props.getProperty("IMG_WEB")     || (CDN_FB + "email-icon-web.png");
+  var LOGO    = toDirectGoogleUrl(props.getProperty("IMG_LOGO"))    || (CDN_FB + "email-logo-dm-vua.png");
+  var BANNER  = toDirectGoogleUrl(props.getProperty("IMG_BANNER"))  || (CDN_FB + "email-hero-banner.jpg");
+  var PRODUCT = toDirectGoogleUrl(props.getProperty("IMG_PRODUCT")) || (CDN_FB + "email-product-bottle.jpg");
+  var ARTIST  = toDirectGoogleUrl(props.getProperty("IMG_ARTIST"))  || (CDN_FB + "email-nghe-si-bich-hang.jpg");
+  var FB      = toDirectGoogleUrl(props.getProperty("IMG_FB"))      || (CDN_FB + "email-icon-facebook.png");
+  var THREADS = toDirectGoogleUrl(props.getProperty("IMG_THREADS")) || (CDN_FB + "email-icon-threads.png");
+  var TIKTOK  = toDirectGoogleUrl(props.getProperty("IMG_TIKTOK"))  || (CDN_FB + "email-icon-tiktok.png");
+  var WEB     = toDirectGoogleUrl(props.getProperty("IMG_WEB"))     || (CDN_FB + "email-icon-web.png");
 
   var htmlTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en"><head><!--[if !mso]><!--><style type="text/css" hs-webfonts="true">@font-face{font-family:'Lato';font-style:normal;font-weight:100;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/100.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:100;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/100italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:300;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/300.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:300;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/300italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:400;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/regular.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:400;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:700;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/700.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:700;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/700italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:900;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/900.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:900;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/900italic.woff2') format('woff2');}</style><!--<![endif]-->
     <title>KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]</title>
