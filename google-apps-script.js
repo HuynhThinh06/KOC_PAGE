@@ -37,7 +37,7 @@ function doGet(e) {
   return ContentService
     .createTextOutput(JSON.stringify({ 
       status: "online", 
-      version: "v7-cache-busted-ghpages",
+      version: "v8-anti-spam-clean",
       imageHost: "https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/",
       imgCount: imgs.length,
       sampleImg: imgs[0] || "",
@@ -302,14 +302,23 @@ function formatMoney(num) {
 }
 
 // ==================== TỰ ĐỘNG GỬI EMAIL CHÀO MỪNG BẢN TIN ====================
-// Sử dụng chuẩn 100% mẫu thiết kế THORAKAO của khách hàng với link ảnh v3 mới (chống cache 404 của Google Image Proxy)
+// Sử dụng chuẩn 100% mẫu thiết kế THORAKAO của khách hàng - Đã tối ưu chống rơi vào Thư rác (Anti-Spam)
 function sendNewsletterWelcomeEmail(recipientEmail) {
-  var subject = "🌿 [THORAKAO] Chào Mừng Bạn Đến Với Chiến Dịch Giữ Nếp Xưa - Tỏ Nếp Mình";
+  var subject = "Chào mừng bạn đến với Nếp Tóc Thorakao - Giữ Nếp Xưa, Tỏ Nếp Mình";
+
+  var plainTextBody = "Chào mừng bạn đến với Thorakao!\n\n"
+    + "Cùng khám phá những giá trị chăm sóc tóc thân quen được làm mới trong nhịp sống hiện đại.\n\n"
+    + "GIỮ NẾP XƯA – TỎ NẾP MÌNH (Giữ Hương Tóc Xưa, Bật Nét Sống Mới)\n"
+    + "- Bồ kết – Nét quen thuộc qua nhiều thế hệ: Bồ kết từ lâu đã gắn liền với thói quen chăm sóc tóc của người Việt. Thorakao mang đến dầu gội Bồ Kết 750ml, kết hợp nét truyền thống với sự tiện lợi trong cuộc sống hiện đại.\n"
+    + "- Thử món mẹ từng dùng: Ngày bé, có lẽ ai cũng từng được mẹ chăm sóc tóc bằng bồ kết. Với dầu gội Bồ Kết Thorakao, hương thơm thân quen ấy được tái hiện theo cách tiện lợi hơn, giúp bạn tìm lại những ký ức dịu dàng bên mẹ.\n\n"
+    + "Khám phá chiến dịch tại: https://huynhthinh06.github.io/KOC_PAGE/\n\n"
+    + "Công ty TNHH Sản Xuất Mỹ Phẩm Lan Hảo\n"
+    + "241bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP. HCM, Việt Nam | Hotline: 028 8887 3241";
 
   var htmlBody = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en"><head>
-    <title>KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]</title>
-    <meta property="og:title" content="KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]">
-    <meta name="twitter:title" content="KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]">
+    <title>Chào mừng bạn đến với Nếp Tóc Thorakao</title>
+    
+    
     
     
     
@@ -321,10 +330,10 @@ function sendNewsletterWelcomeEmail(recipientEmail) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.tk-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.tk-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.tk-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.tk-featured-image-link{border:0}.tk-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.tk-featured-image{float:none;margin:0;width:100%;max-width:100%}}.tk-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
 </style>
 
-<!-- $$__SECOND_PASS_CSS_HEAD__$$ -->
+
     <!--[if gte mso 9]>
   <xml>
     <o:OfficeDocumentSettings>
@@ -345,13 +354,13 @@ a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-b
 <!--[if mso]>
 <style type="text/css">
  body, td {font-family: Arial, Helvetica, sans-serif;}
- .hse-body-wrapper-table {background-color: #EEEEEE;}
+ .tk-body-wrapper-table {background-color: #EEEEEE;}
 </style>
 <![endif]-->
 
 <!--[if mso | IE]>
   <style type="text/css">
-    .hse-column-container { border: none !important; padding: 0 !important; }
+    .tk-column-container { border: none !important; padding: 0 !important; }
   </style>
 <![endif]-->
 
@@ -386,34 +395,34 @@ a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-b
     
 
 
-  <!--[if !((mso)|(IE))]><!-- --><style type="text/css">@media only print, only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;width:100% !important}
-.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px !important;padding-right:20px !important}
-.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd{display:table !important}
-}@media only print, only screen and (max-width:639px){.hse-border-m{border-left:1px solid #eaf0f6 !important;border-right:1px solid #eaf0f6 !important;box-sizing:border-box}
-.hse-border-bottom-m{border-bottom:1px solid #eaf0f6 !important}.hse-border-top-m{border-top:1px solid #eaf0f6 !important}
-.hse-border-top-hm{border-top:none !important}.hse-border-bottom-hm{border-bottom:none !important}
-}.moz-text-html .hse-column-container{max-width:600px !important;width:600px !important}
-.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-html .hse-section .hse-size-6{max-width:300px !important;width:300px !important}
-.moz-text-html .hse-section .hse-size-12{max-width:600px !important;width:600px !important}
-@media only print, only screen and (min-width:640px){.hse-column-container{max-width:600px !important;width:600px !important}
-.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-6{max-width:300px !important;width:300px !important}
-.hse-section .hse-size-12{max-width:600px !important;width:600px !important} }@media only print, only screen and (max-width:639px){.hse-body-wrapper-td{padding-top:20px !important}
-#section-0 .hse-column-container{padding-top:10px !important;padding-bottom:10px !important}
-#section-0 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-1 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-1 .hse-column-container{background-color:#ad402e !important} }@media only print, only screen and (max-width:639px){ #section-2 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-2 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-3 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-3 .hse-column-container{background-color:#ad402e !important} }@media only print, only screen and (max-width:639px){ #section-4 .hse-column-container{padding-top:10px !important;padding-bottom:10px !important}
-#section-4 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-5 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-5 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-6 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-6 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-7 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-7 .hse-column-container{background-color:#fff !important} }@media screen and (max-width:639px){.social-network-cell{display:inline-block}
-}@media only print, only screen and (max-width:639px){ #section-8 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-8 .hse-column-container{background-color:#ffc800 !important} }</style><!--<![endif]--><style type="text/css">#hs_body #hs_cos_wrapper_main a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !important;font-size:inherit !important;font-family:inherit !important;font-weight:inherit !important;line-height:inherit !important}
+  <!--[if !((mso)|(IE))]><!-- --><style type="text/css">@media only print, only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.tk-stretch-cta .tk-cta-img{height:auto !important;width:100% !important}
+.display_block_on_small_screens{display:block}.tk_padded{padding-left:20px !important;padding-right:20px !important}
+.tk-hm,table.tk-hm{display:none}.tk-hd{display:block !important}table.tk-hd{display:table !important}
+}@media only print, only screen and (max-width:639px){.tk-border-m{border-left:1px solid #eaf0f6 !important;border-right:1px solid #eaf0f6 !important;box-sizing:border-box}
+.tk-border-bottom-m{border-bottom:1px solid #eaf0f6 !important}.tk-border-top-m{border-top:1px solid #eaf0f6 !important}
+.tk-border-top-hm{border-top:none !important}.tk-border-bottom-hm{border-bottom:none !important}
+}.moz-text-html .tk-column-container{max-width:600px !important;width:600px !important}
+.moz-text-html .tk-column{display:table-cell;vertical-align:top}.moz-text-html .tk-section .tk-size-6{max-width:300px !important;width:300px !important}
+.moz-text-html .tk-section .tk-size-12{max-width:600px !important;width:600px !important}
+@media only print, only screen and (min-width:640px){.tk-column-container{max-width:600px !important;width:600px !important}
+.tk-column{display:table-cell;vertical-align:top}.tk-section .tk-size-6{max-width:300px !important;width:300px !important}
+.tk-section .tk-size-12{max-width:600px !important;width:600px !important} }@media only print, only screen and (max-width:639px){.tk-body-wrapper-td{padding-top:20px !important}
+#section-0 .tk-column-container{padding-top:10px !important;padding-bottom:10px !important}
+#section-0 .tk-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-1 .tk-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-1 .tk-column-container{background-color:#ad402e !important} }@media only print, only screen and (max-width:639px){ #section-2 .tk-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-2 .tk-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-3 .tk-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-3 .tk-column-container{background-color:#ad402e !important} }@media only print, only screen and (max-width:639px){ #section-4 .tk-column-container{padding-top:10px !important;padding-bottom:10px !important}
+#section-4 .tk-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-5 .tk-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-5 .tk-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-6 .tk-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-6 .tk-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-7 .tk-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-7 .tk-column-container{background-color:#fff !important} }@media screen and (max-width:639px){.social-network-cell{display:inline-block}
+}@media only print, only screen and (max-width:639px){ #section-8 .tk-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-8 .tk-column-container{background-color:#ffc800 !important} }</style><!--<![endif]--><style type="text/css">#tk_body #tk_wrapper_main a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !important;font-size:inherit !important;font-family:inherit !important;font-weight:inherit !important;line-height:inherit !important}
 a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-smoothing:grayscale}
 table{border-spacing:0;mso-table-lspace:0;mso-table-rspace:0}table,td{border-collapse:collapse}
 img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exactly}
 .ShadowHTML p,.sh-modified-inline p{margin:0}</style></head>
-  <body id="hs_body" bgcolor="#EEEEEE" style="margin:0 !important; padding:0 !important; font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
+  <body id="tk_body" bgcolor="#EEEEEE" style="margin:0 !important; padding:0 !important; font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
     
     
 <!--[if gte mso 9]>
@@ -422,15 +431,15 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 </v:background>
 <![endif]-->
 
-    <div class="hse-body-background" lang="en" style="background-color:#eeeeee" bgcolor="#eeeeee">
-      <table role="presentation" class="hse-body-wrapper-table" cellpadding="0" cellspacing="0" style="margin:0; padding:0; width:100% !important; min-width:320px !important; height:100% !important" width="100%" height="100%">
+    <div class="tk-body-background" lang="en" style="background-color:#eeeeee" bgcolor="#eeeeee">
+      <table role="presentation" class="tk-body-wrapper-table" cellpadding="0" cellspacing="0" style="margin:0; padding:0; width:100% !important; min-width:320px !important; height:100% !important" width="100%" height="100%">
         <tbody><tr>
-          <td class="hse-body-wrapper-td" valign="top" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding-top:20px">
-            <div id="hs_cos_wrapper_main" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_dnd_area" style="color: inherit; font-size: inherit; line-height: inherit;">  <div id="section-0" class="hse-section hse-section-first" style="padding-left:10px; padding-right:10px">
+          <td class="tk-body-wrapper-td" valign="top" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding-top:20px">
+            <div id="tk_wrapper_main" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_dnd_area" style="color: inherit; font-size: inherit; line-height: inherit;">  <div id="section-0" class="tk-section tk-section-first" style="padding-left:10px; padding-right:10px">
 
     
     
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#FFFFFF; padding-bottom:10px; padding-top:10px" bgcolor="#FFFFFF">
+      <div class="tk-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#FFFFFF; padding-bottom:10px; padding-top:10px" bgcolor="#FFFFFF">
     
     <!--[if (mso)|(IE)]>
       <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#FFFFFF">
@@ -443,8 +452,8 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
 <![endif]-->
-<div id="column-0-0" class="hse-column hse-size-12">
-  <div id="hs_cos_wrapper_module-0-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<div id="column-0-0" class="tk-column tk-size-12">
+  <div id="tk_wrapper_module-0-0-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="tk-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
@@ -462,11 +471,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </div>
    
   </div>
-  <div id="section-1" class="hse-section" style="padding-left:10px; padding-right:10px">
+  <div id="section-1" class="tk-section" style="padding-left:10px; padding-right:10px">
 
     
     
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ad402e" bgcolor="#ad402e">
+      <div class="tk-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ad402e" bgcolor="#ad402e">
     
     <!--[if (mso)|(IE)]>
       <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ad402e">
@@ -479,8 +488,8 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
 <![endif]-->
-<div id="column-1-0" class="hse-column hse-size-6">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px"><div id="hs_cos_wrapper_module-1-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="hs_cos_wrapper_module-1-0-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; line-height:150%; font-size:22px; text-align:center" align="center"><span style="color: #ffc800;">CÂU CHUYỆN BỒ KẾT</span></h2></div></div></td></tr></tbody></table>
+<div id="column-1-0" class="tk-column tk-size-6">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px"><div id="tk_wrapper_module-1-0-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="tk_wrapper_module-1-0-0_" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; line-height:150%; font-size:22px; text-align:center" align="center"><span style="color: #ffc800;">CÂU CHUYỆN BỒ KẾT</span></h2></div></div></td></tr></tbody></table>
 </div>
 <!--[if gte mso 9]></table><![endif]-->
 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -490,8 +499,8 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
 <![endif]-->
-<div id="column-1-1" class="hse-column hse-size-6">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px"><div id="hs_cos_wrapper_module-1-1-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="hs_cos_wrapper_module-1-1-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; line-height:150%; font-size:22px; text-align:center" align="center"><span style="color: #ffc800;">KHÁM PHÁ CHIẾN DỊCH</span></h2></div></div></td></tr></tbody></table>
+<div id="column-1-1" class="tk-column tk-size-6">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px"><div id="tk_wrapper_module-1-1-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="tk_wrapper_module-1-1-0_" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; line-height:150%; font-size:22px; text-align:center" align="center"><span style="color: #ffc800;">KHÁM PHÁ CHIẾN DỊCH</span></h2></div></div></td></tr></tbody></table>
 </div>
 <!--[if gte mso 9]></table><![endif]-->
 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -501,11 +510,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </div>
    
   </div>
-  <div id="section-2" class="hse-section" style="padding-left:10px; padding-right:10px">
+  <div id="section-2" class="tk-section" style="padding-left:10px; padding-right:10px">
 
     
     
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+      <div class="tk-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
     
     <!--[if (mso)|(IE)]>
       <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
@@ -518,8 +527,8 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
 <![endif]-->
-<div id="column-2-0" class="hse-column hse-size-12">
-  <div id="hs_cos_wrapper_module-2-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<div id="column-2-0" class="tk-column tk-size-12">
+  <div id="tk_wrapper_module-2-0-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="tk-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
@@ -537,11 +546,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </div>
    
   </div>
-  <div id="section-3" class="hse-section" style="padding-left:10px; padding-right:10px">
+  <div id="section-3" class="tk-section" style="padding-left:10px; padding-right:10px">
 
     
     
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ad402e" bgcolor="#ad402e">
+      <div class="tk-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ad402e" bgcolor="#ad402e">
     
     <!--[if (mso)|(IE)]>
       <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ad402e">
@@ -554,8 +563,8 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
 <![endif]-->
-<div id="column-3-0" class="hse-column hse-size-12">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-3-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="hs_cos_wrapper_module-3-0-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h1 style="margin:0; line-height:150%; font-size:28px; text-align:center" align="center"><span style="color: #ffc800;">GIỮ NẾP XƯA – TỎ NẾP MÌNH</span></h1>
+<div id="column-3-0" class="tk-column tk-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="tk_wrapper_module-3-0-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="tk_wrapper_module-3-0-0_" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h1 style="margin:0; line-height:150%; font-size:28px; text-align:center" align="center"><span style="color: #ffc800;">GIỮ NẾP XƯA – TỎ NẾP MÌNH</span></h1>
 <h3 style="font-size:17px; margin:0; line-height:150%; text-align:center" align="center"><span style="color: #ffc800;">Giữ Hương Tóc Xưa, Bật Nét Sống Mới</span></h3></div></div></td></tr></tbody></table>
 </div>
 <!--[if gte mso 9]></table><![endif]-->
@@ -566,11 +575,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </div>
    
   </div>
-  <div id="section-4" class="hse-section" style="padding-left:10px; padding-right:10px">
+  <div id="section-4" class="tk-section" style="padding-left:10px; padding-right:10px">
 
     
     
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff; padding-bottom:10px; padding-top:10px" bgcolor="#ffffff">
+      <div class="tk-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff; padding-bottom:10px; padding-top:10px" bgcolor="#ffffff">
     
     <!--[if (mso)|(IE)]>
       <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
@@ -583,10 +592,10 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
 <![endif]-->
-<div id="column-4-0" class="hse-column hse-size-12">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-4-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="hs_cos_wrapper_module-4-0-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; font-size:28px; line-height:150%; text-align:center" align="center"><span style="color: #000000;">Chào mừng bạn đến với Thorakao!</span></h2>
+<div id="column-4-0" class="tk-column tk-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="tk_wrapper_module-4-0-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="tk_wrapper_module-4-0-0_" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; font-size:28px; line-height:150%; text-align:center" align="center"><span style="color: #000000;">Chào mừng bạn đến với Thorakao!</span></h2>
 <p style="line-height:150%; text-align:center" align="center"><span style="color: #000000;">Cùng khám phá những giá trị chăm sóc tóc thân quen được làm mới trong nhịp sống hiện đại.</span></p></div></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 40px"><div id="hs_cos_wrapper_module-4-0-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 40px"><div id="tk_wrapper_module-4-0-1" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;">
     <tbody><tr>
       <td align="center" valign="middle" bgcolor="#ffc800" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; border-radius:0px; cursor:auto; background-color:#ffc800; mso-padding-alt:12px 18px">
         <a href="https://huynhthinh06.github.io/KOC_PAGE/" target="_blank" style="color:#00a4bd; font-size:21px; font-family:Helvetica,Arial,sans-serif; Margin:0; text-transform:none; letter-spacing:0px; text-decoration:none; padding:12px 18px; display:block">
@@ -604,11 +613,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </div>
    
   </div>
-  <div id="section-5" class="hse-section" style="padding-left:10px; padding-right:10px">
+  <div id="section-5" class="tk-section" style="padding-left:10px; padding-right:10px">
 
     
     
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+      <div class="tk-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
     
     <!--[if (mso)|(IE)]>
       <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
@@ -621,8 +630,8 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
 <![endif]-->
-<div id="column-5-0" class="hse-column hse-size-12">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-5-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="hs_cos_wrapper_module-5-0-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h1 style="margin:0; line-height:150%; font-size:28px; text-align:center" align="center"><span style="color: #ad402e;">CÙNG THORAKAO KHÁM PHÁ</span></h1></div></div></td></tr></tbody></table>
+<div id="column-5-0" class="tk-column tk-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="tk_wrapper_module-5-0-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="tk_wrapper_module-5-0-0_" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h1 style="margin:0; line-height:150%; font-size:28px; text-align:center" align="center"><span style="color: #ad402e;">CÙNG THORAKAO KHÁM PHÁ</span></h1></div></div></td></tr></tbody></table>
 </div>
 <!--[if gte mso 9]></table><![endif]-->
 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -632,11 +641,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </div>
    
   </div>
-  <div id="section-6" class="hse-section" style="padding-left:10px; padding-right:10px">
+  <div id="section-6" class="tk-section" style="padding-left:10px; padding-right:10px">
 
     
     
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+      <div class="tk-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
     
     <!--[if (mso)|(IE)]>
       <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
@@ -649,11 +658,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
 <![endif]-->
-<div id="column-6-0" class="hse-column hse-size-6">
-  <div id="hs_cos_wrapper_module-6-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<div id="column-6-0" class="tk-column tk-size-6">
+  <div id="tk_wrapper_module-6-0-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="tk-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
-      <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px 27px; font-size:0px">
+      <td class="tk_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px 27px; font-size:0px">
         <img alt="Dầu Gội Bồ Kết Thorakao 750ml" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-product-v3.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
@@ -668,9 +677,9 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
 <![endif]-->
-<div id="column-6-1" class="hse-column hse-size-6">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-6-1-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="hs_cos_wrapper_module-6-1-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; font-size:18px; line-height:150%"><span style="color: #000000;">Bồ kết – Nét quen thuộc qua nhiều thế hệ&nbsp;</span></h2></div></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:0px 20px"><div id="hs_cos_wrapper_module-6-1-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
+<div id="column-6-1" class="tk-column tk-size-6">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="tk_wrapper_module-6-1-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="tk_wrapper_module-6-1-0_" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; font-size:18px; line-height:150%"><span style="color: #000000;">Bồ kết – Nét quen thuộc qua nhiều thế hệ&nbsp;</span></h2></div></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:0px 20px"><div id="tk_wrapper_module-6-1-1" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
   <tbody><tr>
     <td align="center" style="font-family:Arial, sans-serif; color:#23496d; font-size:0; word-break:break-word">
       <p style="font-size:1px;border-top:1px dashed #23496d;width:100%;margin:0 auto;"></p>
@@ -684,7 +693,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </td>
   </tr>
 </tbody></table></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-6-1-2" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="hs_cos_wrapper_module-6-1-2_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><p style="font-size:15px; line-height:125%; text-align:left" align="left"><span style="color: #000000;">Bồ</span><span style="color: #000000;"> kết từ lâu đã gắn liền với thói quen chăm sóc tóc của người Việt. Thorakao mang đến dầu gội Bồ Kết 750ml, kết hợp nét truyền thống với sự tiện lợi trong cuộc sống hiện đại.</span>&nbsp;</p></div></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="tk_wrapper_module-6-1-2" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="tk_wrapper_module-6-1-2_" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><p style="font-size:15px; line-height:125%; text-align:left" align="left"><span style="color: #000000;">Bồ</span><span style="color: #000000;"> kết từ lâu đã gắn liền với thói quen chăm sóc tóc của người Việt. Thorakao mang đến dầu gội Bồ Kết 750ml, kết hợp nét truyền thống với sự tiện lợi trong cuộc sống hiện đại.</span>&nbsp;</p></div></div></td></tr></tbody></table>
 </div>
 <!--[if gte mso 9]></table><![endif]-->
 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -694,11 +703,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </div>
    
   </div>
-  <div id="section-7" class="hse-section" style="padding-left:10px; padding-right:10px">
+  <div id="section-7" class="tk-section" style="padding-left:10px; padding-right:10px">
 
     
     
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+      <div class="tk-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
     
     <!--[if (mso)|(IE)]>
       <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
@@ -711,11 +720,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
 <![endif]-->
-<div id="column-7-0" class="hse-column hse-size-6">
-  <div id="hs_cos_wrapper_module-7-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<div id="column-7-0" class="tk-column tk-size-6">
+  <div id="tk_wrapper_module-7-0-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="tk-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
-      <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px; font-size:0px">
+      <td class="tk_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px; font-size:0px">
         <img alt="Nghệ sĩ Bích Hằng" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-artist-v3.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
@@ -730,9 +739,9 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
 <![endif]-->
-<div id="column-7-1" class="hse-column hse-size-6">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-7-1-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="hs_cos_wrapper_module-7-1-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; font-size:18px; line-height:150%"><span style="color: #000000;">Thử </span><span style="color: #000000;">món mẹ từng dùng&nbsp;</span></h2></div></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:0px 20px"><div id="hs_cos_wrapper_module-7-1-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
+<div id="column-7-1" class="tk-column tk-size-6">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="tk_wrapper_module-7-1-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="tk_wrapper_module-7-1-0_" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><h2 style="margin:0; font-size:18px; line-height:150%"><span style="color: #000000;">Thử </span><span style="color: #000000;">món mẹ từng dùng&nbsp;</span></h2></div></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:0px 20px"><div id="tk_wrapper_module-7-1-1" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
   <tbody><tr>
     <td align="center" style="font-family:Arial, sans-serif; color:#23496d; font-size:0; word-break:break-word">
       <p style="font-size:1px;border-top:1px dashed #23496d;width:100%;margin:0 auto;"></p>
@@ -746,7 +755,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </td>
   </tr>
 </tbody></table></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-7-1-2" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="hs_cos_wrapper_module-7-1-2_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><p style="font-size:15px; line-height:125%; text-align:left" align="left"><span style="color: #000000;">Ngày bé, có lẽ ai cũng từng được mẹ chăm sóc tóc bằng bồ kết. Với dầu gội Bồ Kết Thorakao, hương thơm thân quen ấy được tái hiện theo cách tiện lợi hơn, giúp bạn tìm lại những ký ức dịu dàng bên mẹ.&nbsp;</span></p></div></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="tk_wrapper_module-7-1-2" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><div id="tk_wrapper_module-7-1-2_" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;"><p style="font-size:15px; line-height:125%; text-align:left" align="left"><span style="color: #000000;">Ngày bé, có lẽ ai cũng từng được mẹ chăm sóc tóc bằng bồ kết. Với dầu gội Bồ Kết Thorakao, hương thơm thân quen ấy được tái hiện theo cách tiện lợi hơn, giúp bạn tìm lại những ký ức dịu dàng bên mẹ.&nbsp;</span></p></div></div></td></tr></tbody></table>
 </div>
 <!--[if gte mso 9]></table><![endif]-->
 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -756,11 +765,11 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
     </div>
    
   </div>
-  <div id="section-8" class="hse-section" style="padding-left:10px; padding-right:10px">
+  <div id="section-8" class="tk-section" style="padding-left:10px; padding-right:10px">
 
     
     
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffc800" bgcolor="#ffc800">
+      <div class="tk-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffc800" bgcolor="#ffc800">
     
     <!--[if (mso)|(IE)]>
       <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffc800">
@@ -773,21 +782,21 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 <!--[if gte mso 9]>
   <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
 <![endif]-->
-<div id="column-8-0" class="hse-column hse-size-12">
-  <div id="hs_cos_wrapper_module-8-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<div id="column-8-0" class="tk-column tk-size-12">
+  <div id="tk_wrapper_module-8-0-0" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table class="tk-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
-      <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:20px 20px 10px; font-size:0px">
+      <td class="tk_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:20px 20px 10px; font-size:0px">
         <img alt="Logo Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-logo-v3.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
       </td>
     </tr>
   </tbody>
 </table></div>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:0px 20px"><div id="hs_cos_wrapper_module-8-0-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:0px 20px"><div id="tk_wrapper_module-8-0-1" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="tk_wrapper_type_social_module">
   <tbody>
     <tr>
       <td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
-        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
+        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="tk_wrapper_type_social_module_single">
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
@@ -798,7 +807,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           </tbody>
         </table>
       </td><td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
-        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
+        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="tk_wrapper_type_social_module_single">
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
@@ -809,7 +818,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           </tbody>
         </table>
       </td><td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
-        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
+        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="tk_wrapper_type_social_module_single">
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
@@ -820,7 +829,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           </tbody>
         </table>
       </td><td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
-        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
+        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="tk_wrapper_type_social_module_single">
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
@@ -836,7 +845,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
 </table>
 
 </div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-8-0-2" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table role="presentation" class="hse-footer hse-secondary" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496d; margin-bottom:0; padding:0">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="tk_wrapper_module-8-0-2" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table role="presentation" class="tk-footer tk-secondary" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496d; margin-bottom:0; padding:0">
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; text-align:center; margin-bottom:0; line-height:135%; padding:10px 20px">
@@ -844,8 +853,8 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           Công ty TNHH Sản Xuất Mỹ Phẩm Lan Hảo, 241bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP HCM,  70000, Việt Nam , 028 8887 3241
         </p>
         <p>
-          <a href="mailto:neptocthorakao@gmail.com?subject=Huy%20dang%20ky" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" target="_blank">Unsubscribe</a>
-          <a href="mailto:neptocthorakao@gmail.com?subject=Cai%20dat%20nhan%20tin" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" target="_blank">Manage preferences</a>
+          <a href="https://huynhthinh06.github.io/KOC_PAGE/#footer" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" target="_blank">Unsubscribe</a>
+          <a href="https://huynhthinh06.github.io/KOC_PAGE/#footer" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" target="_blank">Manage preferences</a>
         </p>
       </td>
     </tr>
@@ -872,8 +881,9 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   MailApp.sendEmail({
     to: recipientEmail,
     name: "Nếp Tóc Thorakao",
+    replyTo: "neptocthorakao@gmail.com",
     subject: subject,
-    htmlBody: htmlBody,
-    bcc: "neptocthorakao@gmail.com"
+    body: plainTextBody,
+    htmlBody: htmlBody
   });
 }
