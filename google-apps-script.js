@@ -37,7 +37,7 @@ function doGet(e) {
   return ContentService
     .createTextOutput(JSON.stringify({ 
       status: "online", 
-      version: "v10-gmailapp-inbox-boost",
+      version: "v11-link-neptocthorakao-com",
       imageHost: "https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/",
       imgCount: imgs.length,
       sampleImg: imgs[0] || "",
@@ -311,7 +311,7 @@ function sendNewsletterWelcomeEmail(recipientEmail) {
     + "GIỮ NẾP XƯA – TỎ NẾP MÌNH (Giữ Hương Tóc Xưa, Bật Nét Sống Mới)\n"
     + "- Bồ kết – Nét quen thuộc qua nhiều thế hệ: Bồ kết từ lâu đã gắn liền với thói quen chăm sóc tóc của người Việt. Thorakao mang đến dầu gội Bồ Kết 750ml, kết hợp nét truyền thống với sự tiện lợi trong cuộc sống hiện đại.\n"
     + "- Thử món mẹ từng dùng: Ngày bé, có lẽ ai cũng từng được mẹ chăm sóc tóc bằng bồ kết. Với dầu gội Bồ Kết Thorakao, hương thơm thân quen ấy được tái hiện theo cách tiện lợi hơn, giúp bạn tìm lại những ký ức dịu dàng bên mẹ.\n\n"
-    + "Khám phá chiến dịch tại: https://huynhthinh06.github.io/KOC_PAGE/\n\n"
+    + "Khám phá chiến dịch tại: https://neptocthorakao.com/\n\n"
     + "Công ty TNHH Sản Xuất Mỹ Phẩm Lan Hảo\n"
     + "241bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP. HCM, Việt Nam | Hotline: 028 8887 3241";
 
@@ -575,7 +575,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="tk_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 40px"><div id="tk_wrapper_module-4-0-1" class="tk_wrapper tk_wrapper_widget tk_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;">
     <tbody><tr>
       <td align="center" valign="middle" bgcolor="#ffc800" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; border-radius:0px; cursor:auto; background-color:#ffc800; mso-padding-alt:12px 18px">
-        <a href="https://huynhthinh06.github.io/KOC_PAGE/" target="_blank" style="color:#00a4bd; font-size:21px; font-family:Helvetica,Arial,sans-serif; Margin:0; text-transform:none; letter-spacing:0px; text-decoration:none; padding:12px 18px; display:block">
+        <a href="https://neptocthorakao.com/" target="_blank" style="color:#00a4bd; font-size:21px; font-family:Helvetica,Arial,sans-serif; Margin:0; text-transform:none; letter-spacing:0px; text-decoration:none; padding:12px 18px; display:block">
           <strong style="color:#ad402e;font-weight:bold;text-decoration:none;font-style:normal;">KHÁM PHÁ CHIẾN DỊCH</strong>
         </a>
       </td>
@@ -742,8 +742,8 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           Công ty TNHH Sản Xuất Mỹ Phẩm Lan Hảo, 241bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP HCM,  70000, Việt Nam , 028 8887 3241
         </p>
         <p>
-          <a href="https://huynhthinh06.github.io/KOC_PAGE/#footer" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" target="_blank">Unsubscribe</a>
-          <a href="https://huynhthinh06.github.io/KOC_PAGE/#footer" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" target="_blank">Manage preferences</a>
+          <a href="https://neptocthorakao.com/#footer" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" target="_blank">Unsubscribe</a>
+          <a href="https://neptocthorakao.com/#footer" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" target="_blank">Manage preferences</a>
         </p>
       </td>
     </tr>
