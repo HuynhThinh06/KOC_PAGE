@@ -37,7 +37,7 @@ function doGet(e) {
   return ContentService
     .createTextOutput(JSON.stringify({ 
       status: "online", 
-      version: "v9-exact-2-column-client-layout",
+      version: "v10-gmailapp-inbox-boost",
       imageHost: "https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/",
       imgCount: imgs.length,
       sampleImg: imgs[0] || "",
@@ -767,12 +767,9 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   
 </body></html>`;
 
-  MailApp.sendEmail({
-    to: recipientEmail,
+  GmailApp.sendEmail(recipientEmail, subject, plainTextBody, {
     name: "Nếp Tóc Thorakao",
     replyTo: "neptocthorakao@gmail.com",
-    subject: subject,
-    body: plainTextBody,
     htmlBody: htmlBody
   });
 }
