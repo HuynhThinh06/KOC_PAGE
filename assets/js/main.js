@@ -1497,46 +1497,144 @@ function initContactDropdown() {
 // 15. ĐĂNG KÝ BẢN TIN — GỬI EMAIL TỰ ĐỘNG QUA GOOGLE APPS SCRIPT
 // ==========================================================================
 function initNewsletterForm() {
-  // Gắn sự kiện cho tất cả form id="newsletter-form" ở các trang phụ
+  // 1. Gắn sự kiện cho tất cả form id="newsletter-form" ở các trang phụ
   document.querySelectorAll('#newsletter-form').forEach(function(form) {
     if (form.dataset.newsletterBound) return;
     form.dataset.newsletterBound = 'true';
     form.addEventListener('submit', handleNewsletterSubmit);
   });
 
-  // Gắn thêm cho nút "Đăng ký" của form Wix gốc (index.html — data-hook="submit-button")
-  var wixSubmitBtns = document.querySelectorAll('[data-hook="submit-button"]');
-  wixSubmitBtns.forEach(function(btn) {
-    if (btn.dataset.newsletterBound) return;
-    var ariaLabel = (btn.getAttribute('aria-label') || '').toLowerCase();
-    if (ariaLabel.indexOf('ng k') === -1 && ariaLabel.indexOf('dang ky') === -1 && ariaLabel.indexOf('đăng ký') === -1) return;
-    btn.dataset.newsletterBound = 'true';
-    btn.addEventListener('click', function() {
-      var formEl = btn.closest('form, fieldset, [data-hook="form-root"]');
-      if (!formEl) return;
-      var emailInput = formEl.querySelector('input[type="email"], input[inputmode="email"]');
-      if (emailInput && emailInput.value && emailInput.value.indexOf('@') !== -1) {
-        sendNewsletterToWebhook(emailInput.value.trim(), 'Footer Wix (index.html)');
-      }
+  // 2. Gắn sự kiện cho form Wix gốc ở trang chủ (index.html)
+  var wixBox = document.getElementById('comp-kbgakxmn_r_comp-mvq7204e') || document.getElementById('form-0ab298ca-4dfc-427f-84ae-07728a329e04');
+  if (wixBox) {
+    var formEl = wixBox.tagName === 'FORM' ? wixBox : wixBox.querySelector('form');
+    if (formEl && !formEl.dataset.newsletterBound) {
+      formEl.dataset.newsletterBound = 'true';
+      formEl.addEventListener('submit', function(e) {
+        e.preventDefault();
+        handleIndexNewsletterSubmit(e);
+      });
+    }
+
+    var submitBtns = wixBox.querySelectorAll('[data-hook="submit-button"], button');
+    submitBtns.forEach(function(btn) {
+      if (btn.dataset.newsletterBound) return;
+      btn.dataset.newsletterBound = 'true';
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleIndexNewsletterSubmit(e);
+      });
     });
-  });
+  }
+
+  // 3. Document-level Capture Listener để luôn bắt được click trên nút Đăng ký của index.html
+  if (!document.body.dataset.newsletterDelegated) {
+    document.body.dataset.newsletterDelegated = 'true';
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('#comp-kbgakxmn_r_comp-mvq7204e [data-hook="submit-button"], #comp-kbgakxmn_r_comp-mvq7204e button');
+      if (btn) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleIndexNewsletterSubmit(e);
+      }
+    }, true);
+  }
+}
+
+async function handleIndexNewsletterSubmit(e) {
+  if (e && typeof e.preventDefault === 'function') {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  var container = document.getElementById('comp-kbgakxmn_r_comp-mvq7204e') || document.getElementById('form-0ab298ca-4dfc-427f-84ae-07728a329e04');
+  if (!container) return;
+
+  var emailInput = container.querySelector('input[type="email"], input[id*="d22a19d5"]');
+  var checkbox = container.querySelector('input[type="checkbox"]');
+  var submitBtn = container.querySelector('[data-hook="submit-button"], button');
+  var btnSpan = submitBtn ? (submitBtn.querySelector('span') || submitBtn) : null;
+
+  var email = emailInput ? emailInput.value.trim() : '';
+
+  if (!email || email.indexOf('@') === -1) {
+    if (typeof showToast === 'function') {
+      showToast('⚠️ Vui lòng nhập địa chỉ email hợp lệ!');
+    } else {
+      alert('Vui lòng nhập địa chỉ email hợp lệ!');
+    }
+    if (emailInput) emailInput.focus();
+    return;
+  }
+
+  if (checkbox && !checkbox.checked) {
+    if (typeof showToast === 'function') {
+      showToast('⚠️ Vui lòng tick chọn "Tôi muốn đăng ký nhận bản tin của bạn."');
+    } else {
+      alert('Vui lòng tick chọn "Tôi muốn đăng ký nhận bản tin của bạn."');
+    }
+    checkbox.focus();
+    return;
+  }
+
+  var origText = btnSpan ? btnSpan.textContent : 'Đăng ký';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    if (btnSpan) btnSpan.textContent = 'Đang gửi...';
+    submitBtn.style.opacity = '0.7';
+  }
+
+  var success = await sendNewsletterToWebhook(email, 'Footer Website (Trang chủ)');
+
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = '1';
+    if (success) {
+      if (btnSpan) btnSpan.textContent = '✓ Đã đăng ký!';
+      submitBtn.style.backgroundColor = '#16a34a';
+      submitBtn.style.color = '#ffffff';
+      setTimeout(function() {
+        if (btnSpan) btnSpan.textContent = origText;
+        submitBtn.style.backgroundColor = '';
+        submitBtn.style.color = '';
+      }, 5000);
+    } else {
+      if (btnSpan) btnSpan.textContent = origText;
+    }
+  }
+
+  if (success) {
+    if (emailInput) emailInput.value = '';
+    if (checkbox) checkbox.checked = false;
+    if (typeof showToast === 'function') {
+      showToast('🎉 Đăng ký thành công! Email xác nhận đã được gửi đến ' + email);
+    } else {
+      alert('Đăng ký thành công! Email xác nhận đã được gửi.');
+    }
+  } else {
+    if (typeof showToast === 'function') {
+      showToast('❌ Có lỗi xảy ra, vui lòng thử lại sau!');
+    } else {
+      alert('Có lỗi xảy ra, vui lòng thử lại sau.');
+    }
+  }
 }
 
 async function handleNewsletterSubmit(e) {
-  e.preventDefault();
-  // Support both event listener (e.target = form) and inline onsubmit (e.target = form)
-  var form = e.target || document.getElementById('newsletter-form');
+  if (e && typeof e.preventDefault === 'function') e.preventDefault();
+  var form = (e && e.target) ? e.target : document.getElementById('newsletter-form');
   if (!form) return;
   var emailInput = form.querySelector('#newsletter-email');
   var agreeCheckbox = form.querySelector('#newsletter-agree');
   var submitBtn = form.querySelector('.wix-footer-submit-btn, button[type="submit"]');
 
   if (!emailInput || !emailInput.value.trim()) {
-    if (typeof showToast === 'function') showToast('Vui lòng nhập địa chỉ email của bạn!');
+    if (typeof showToast === 'function') showToast('⚠️ Vui lòng nhập địa chỉ email của bạn!');
     return;
   }
   if (agreeCheckbox && !agreeCheckbox.checked) {
-    if (typeof showToast === 'function') showToast('Vui lòng đồng ý nhận bản tin!');
+    if (typeof showToast === 'function') showToast('⚠️ Vui lòng tick chọn "Tôi muốn đăng ký nhận bản tin của bạn."');
     return;
   }
 
@@ -1559,7 +1657,7 @@ async function handleNewsletterSubmit(e) {
         submitBtn.textContent = 'Đăng ký';
         submitBtn.style.background = '';
         submitBtn.style.color = '';
-      }, 4000);
+      }, 5000);
     } else {
       submitBtn.textContent = 'Đăng ký';
     }
@@ -1569,7 +1667,7 @@ async function handleNewsletterSubmit(e) {
     emailInput.value = '';
     if (agreeCheckbox) agreeCheckbox.checked = false;
     if (typeof showToast === 'function') {
-      showToast('🎉 Đăng ký thành công! Email xác nhận đã được gửi đến hộp thư của bạn.');
+      showToast('🎉 Đăng ký thành công! Email xác nhận đã được gửi đến ' + email);
     }
   } else {
     if (typeof showToast === 'function') {
@@ -1610,4 +1708,5 @@ async function sendNewsletterToWebhook(email, source) {
 
 window.initNewsletterForm = initNewsletterForm;
 window.handleNewsletterSubmit = handleNewsletterSubmit;
+window.handleIndexNewsletterSubmit = handleIndexNewsletterSubmit;
 window.sendNewsletterToWebhook = sendNewsletterToWebhook;
