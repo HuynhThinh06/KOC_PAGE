@@ -32,11 +32,15 @@ function getGeminiApiKey() {
 
 // ==================== HÀM TIẾP NHẬN YÊU CẦU GET ====================
 function doGet(e) {
+  var fnStr = typeof sendNewsletterWelcomeEmail === "function" ? sendNewsletterWelcomeEmail.toString() : "";
+  var imgs = fnStr.match(/src="([^"]+)"/g) || [];
   return ContentService
     .createTextOutput(JSON.stringify({ 
       status: "online", 
-      version: "v6-github-pages-direct",
+      version: "v7-cache-busted-ghpages",
       imageHost: "https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/",
+      imgCount: imgs.length,
+      sampleImg: imgs[0] || "",
       message: "Webhook Nếp Tóc Thorakao đang hoạt động!", 
       features: ["ORDER", "CONTACT", "NEWSLETTER", "CHATBOT_AI"],
       geminiConfigured: !!getGeminiApiKey()
@@ -298,9 +302,9 @@ function formatMoney(num) {
 }
 
 // ==================== TỰ ĐỘNG GỬI EMAIL CHÀO MỪNG BẢN TIN ====================
-// Sử dụng chuẩn 100% mẫu thiết kế THORAKAO của khách hàng với link ảnh trực tiếp từ GitHub Pages CDN
+// Sử dụng chuẩn 100% mẫu thiết kế THORAKAO của khách hàng với link ảnh v3 mới (chống cache 404 của Google Image Proxy)
 function sendNewsletterWelcomeEmail(recipientEmail) {
-  var subject = "🌿 [THORAKAO] Khám Phá Chiến Dịch Giữ Nếp Xưa - Tỏ Nếp Mình";
+  var subject = "🌿 [THORAKAO] Chào Mừng Bạn Đến Với Chiến Dịch Giữ Nếp Xưa - Tỏ Nếp Mình";
 
   var htmlBody = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en"><head>
     <title>KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]</title>
@@ -444,7 +448,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="Logo Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
+        <img alt="Logo Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-logo-v3.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
       </td>
     </tr>
   </tbody>
@@ -519,7 +523,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="Banner Chiến Dịch Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-hero-banner.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="600" align="middle">
+        <img alt="Banner Chiến Dịch Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-banner-v3.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="600" align="middle">
       </td>
     </tr>
   </tbody>
@@ -650,7 +654,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px 27px; font-size:0px">
-        <img alt="Dầu Gội Bồ Kết Thorakao 750ml" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-product-bottle.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
+        <img alt="Dầu Gội Bồ Kết Thorakao 750ml" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-product-v3.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
   </tbody>
@@ -712,7 +716,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px; font-size:0px">
-        <img alt="Nghệ sĩ Bích Hằng" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-nghe-si-bich-hang.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
+        <img alt="Nghệ sĩ Bích Hằng" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-artist-v3.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
   </tbody>
@@ -774,7 +778,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:20px 20px 10px; font-size:0px">
-        <img alt="Logo Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
+        <img alt="Logo Thorakao" src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-logo-v3.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
       </td>
     </tr>
   </tbody>
@@ -787,7 +791,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.facebook.com/neptoc.thorakao/" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HXv5J68N" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-icon-facebook.png" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.facebook.com/neptoc.thorakao/" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HXv5J68N" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-fb-v3.png" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -798,7 +802,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.threads.com/@neptoc.thorakao" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HgASA4bm" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-icon-threads.png" alt="Threads" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.threads.com/@neptoc.thorakao" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HgASA4bm" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-threads-v3.png" alt="Threads" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -809,7 +813,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.tiktok.com/@neptoc.thorakao" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="OuuCU9WU" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-icon-tiktok.png" alt="TikTok" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.tiktok.com/@neptoc.thorakao" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="OuuCU9WU" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-tiktok-v3.png" alt="TikTok" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -820,7 +824,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://thorakao.com/" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="8lqLIaiU" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/email-icon-web.png" alt="Website" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://thorakao.com/" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="8lqLIaiU" target="_blank"><img src="https://huynhthinh06.github.io/KOC_PAGE/assets/images/email/tk-web-v3.png" alt="Website" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
