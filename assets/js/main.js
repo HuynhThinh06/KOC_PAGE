@@ -16,6 +16,7 @@ function initApp() {
   updateHeaderCartCount();
   initButtonHoverEffects();
   initContactDropdown();
+  initNewsletterForm();
 }
 
 if (document.readyState === 'loading') {
@@ -1490,3 +1491,120 @@ function initContactDropdown() {
     }
   });
 }
+
+
+// ==========================================================================
+// 15. ĐĂNG KÝ BẢN TIN — GỬI EMAIL TỰ ĐỘNG QUA GOOGLE APPS SCRIPT
+// ==========================================================================
+function initNewsletterForm() {
+  // Gắn sự kiện cho tất cả form id="newsletter-form" ở các trang phụ
+  document.querySelectorAll('#newsletter-form').forEach(function(form) {
+    if (form.dataset.newsletterBound) return;
+    form.dataset.newsletterBound = 'true';
+    form.addEventListener('submit', handleNewsletterSubmit);
+  });
+
+  // Gắn thêm cho nút "Đăng ký" của form Wix gốc (index.html — data-hook="submit-button")
+  var wixSubmitBtns = document.querySelectorAll('[data-hook="submit-button"]');
+  wixSubmitBtns.forEach(function(btn) {
+    if (btn.dataset.newsletterBound) return;
+    var ariaLabel = (btn.getAttribute('aria-label') || '').toLowerCase();
+    if (ariaLabel.indexOf('ng k') === -1 && ariaLabel.indexOf('dang ky') === -1 && ariaLabel.indexOf('đăng ký') === -1) return;
+    btn.dataset.newsletterBound = 'true';
+    btn.addEventListener('click', function() {
+      var formEl = btn.closest('form, fieldset, [data-hook="form-root"]');
+      if (!formEl) return;
+      var emailInput = formEl.querySelector('input[type="email"], input[inputmode="email"]');
+      if (emailInput && emailInput.value && emailInput.value.indexOf('@') !== -1) {
+        sendNewsletterToWebhook(emailInput.value.trim(), 'Footer Wix (index.html)');
+      }
+    });
+  });
+}
+
+async function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  var form = e.target;
+  var emailInput = form.querySelector('#newsletter-email');
+  var agreeCheckbox = form.querySelector('#newsletter-agree');
+  var submitBtn = form.querySelector('.wix-footer-submit-btn, button[type="submit"]');
+
+  if (!emailInput || !emailInput.value.trim()) {
+    if (typeof showToast === 'function') showToast('Vui lòng nhập địa chỉ email của bạn!');
+    return;
+  }
+  if (agreeCheckbox && !agreeCheckbox.checked) {
+    if (typeof showToast === 'function') showToast('Vui lòng đồng ý nhận bản tin!');
+    return;
+  }
+
+  var email = emailInput.value.trim();
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Đang gửi...';
+  }
+
+  var success = await sendNewsletterToWebhook(email, 'Footer Website');
+
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    if (success) {
+      submitBtn.textContent = '✓ Đã đăng ký!';
+      submitBtn.style.background = '#16a34a';
+      submitBtn.style.color = '#ffffff';
+      setTimeout(function() {
+        submitBtn.textContent = 'Đăng ký';
+        submitBtn.style.background = '';
+        submitBtn.style.color = '';
+      }, 4000);
+    } else {
+      submitBtn.textContent = 'Đăng ký';
+    }
+  }
+
+  if (success) {
+    emailInput.value = '';
+    if (agreeCheckbox) agreeCheckbox.checked = false;
+    if (typeof showToast === 'function') {
+      showToast('🎉 Đăng ký thành công! Email xác nhận đã được gửi đến hộp thư của bạn.');
+    }
+  } else {
+    if (typeof showToast === 'function') {
+      showToast('Có lỗi xảy ra, vui lòng thử lại sau hoặc liên hệ hotline 028 8887 3241.');
+    }
+  }
+}
+
+async function sendNewsletterToWebhook(email, source) {
+  try {
+    var webhookUrl = (typeof THORAKAO_CONFIG !== 'undefined' && THORAKAO_CONFIG.GOOGLE_SHEET_WEBHOOK_URL)
+      ? THORAKAO_CONFIG.GOOGLE_SHEET_WEBHOOK_URL
+      : (typeof GOOGLE_SHEET_WEBHOOK_URL !== 'undefined' ? GOOGLE_SHEET_WEBHOOK_URL : null);
+
+    if (!webhookUrl) {
+      console.warn('[Newsletter] Chưa cấu hình GOOGLE_SHEET_WEBHOOK_URL');
+      return false;
+    }
+
+    var response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'NEWSLETTER',
+        email: email,
+        source: source || 'Footer Website',
+        timestamp: new Date().toISOString()
+      })
+    });
+
+    var result = await response.json();
+    return result.status === 'success';
+  } catch (err) {
+    console.error('[Newsletter] Lỗi gửi webhook:', err);
+    return false;
+  }
+}
+
+window.initNewsletterForm = initNewsletterForm;
+window.sendNewsletterToWebhook = sendNewsletterToWebhook;
