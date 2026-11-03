@@ -298,658 +298,200 @@ function formatMoney(num) {
 
 // ==================== TỰ ĐỘNG GỬI EMAIL CHÀO MỪNG BẢN TIN ====================
 
-// ==================== CÀI ĐẶT ẢNH EMAIL VÀO GOOGLE DRIVE (CHẠY 1 LẦN) ====================
-// Mở Apps Script Editor -> Chọn hàm này -> Nhấn Run -> Đồng ý quyền truy cập
-// Sau khi chạy xong, kiểm tra Execution log để xác nhận thành công.
-function setupEmailImages() {
-  var CDN = "https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/";
-  var imageFiles = [
-    { key: "IMG_LOGO",    file: "email-logo-dm-vua.png" },
-    { key: "IMG_BANNER",  file: "email-hero-banner.jpg" },
-    { key: "IMG_PRODUCT", file: "email-product-bottle.jpg" },
-    { key: "IMG_ARTIST",  file: "email-nghe-si-bich-hang.jpg" },
-    { key: "IMG_FB",      file: "email-icon-facebook.png" },
-    { key: "IMG_THREADS", file: "email-icon-threads.png" },
-    { key: "IMG_TIKTOK",  file: "email-icon-tiktok.png" },
-    { key: "IMG_WEB",     file: "email-icon-web.png" }
-  ];
-
-  // Tìm hoặc tạo thư mục trên Google Drive
-  var folderName = "Thorakao_Email_Images";
-  var folders = DriveApp.getFoldersByName(folderName);
-  var folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(folderName);
-
-  var props = PropertiesService.getScriptProperties();
-
-  imageFiles.forEach(function(item) {
-    try {
-      Logger.log("Uploading: " + item.file);
-      var blob = UrlFetchApp.fetch(CDN + item.file).getBlob();
-      blob.setName(item.file);
-
-      // Xoá file cũ nếu tồn tại
-      var existing = folder.getFilesByName(item.file);
-      while (existing.hasNext()) { existing.next().setTrashed(true); }
-
-      // Tạo file mới và đặt quyền public
-      var file = folder.createFile(blob);
-      file.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW);
-
-      var url = "https://lh3.googleusercontent.com/d/" + file.getId() + "=s0";
-      props.setProperty(item.key, url);
-      Logger.log("OK: " + item.key + " = " + url);
-    } catch(e) {
-      Logger.log("ERROR " + item.file + ": " + e.toString());
-    }
-  });
-
-  Logger.log("=== setupEmailImages() HOÀN THÀNH! ===");
-}
-
 // ==================== TỰ ĐỘNG GỬI EMAIL CHÀO MỪNG BẢN TIN ====================
-// Chuyển đổi link Google Drive cũ sang định dạng CDN trực tiếp của Google (lh3.googleusercontent.com/d/ID=s0)
-// Định dạng này cho phép hiển thị ảnh công khai cho mọi người nhận email mà không bị chặn xác thực
-function toDirectGoogleUrl(url) {
-  if (!url) return "";
-  var match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-  if (match) {
-    return "https://lh3.googleusercontent.com/d/" + match[1] + "=s0";
-  }
-  var match2 = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-  if (match2) {
-    return "https://lh3.googleusercontent.com/d/" + match2[1] + "=s0";
-  }
-  return url;
-}
-
+// Sử dụng giao diện Pure HTML & CSS cao cấp (không dùng thẻ <img> ngoài)
+// Đảm bảo 100% hiển thị hoàn hảo, không bao giờ bị Gmail chặn hay lỗi ảnh!
 function sendNewsletterWelcomeEmail(recipientEmail) {
   var subject = "🌿 [THORAKAO] Khám Phá Chiến Dịch Giữ Nếp Xưa - Tỏ Nếp Mình";
-
-  // Đọc URL ảnh từ Script Properties (đã được cài đặt bởi setupEmailImages())
-  var props = PropertiesService.getScriptProperties();
-  var CDN_FB = "https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/";
-  var LOGO    = toDirectGoogleUrl(props.getProperty("IMG_LOGO"))    || (CDN_FB + "email-logo-dm-vua.png");
-  var BANNER  = toDirectGoogleUrl(props.getProperty("IMG_BANNER"))  || (CDN_FB + "email-hero-banner.jpg");
-  var PRODUCT = toDirectGoogleUrl(props.getProperty("IMG_PRODUCT")) || (CDN_FB + "email-product-bottle.jpg");
-  var ARTIST  = toDirectGoogleUrl(props.getProperty("IMG_ARTIST"))  || (CDN_FB + "email-nghe-si-bich-hang.jpg");
-  var FB      = toDirectGoogleUrl(props.getProperty("IMG_FB"))      || (CDN_FB + "email-icon-facebook.png");
-  var THREADS = toDirectGoogleUrl(props.getProperty("IMG_THREADS")) || (CDN_FB + "email-icon-threads.png");
-  var TIKTOK  = toDirectGoogleUrl(props.getProperty("IMG_TIKTOK"))  || (CDN_FB + "email-icon-tiktok.png");
-  var WEB     = toDirectGoogleUrl(props.getProperty("IMG_WEB"))     || (CDN_FB + "email-icon-web.png");
-
-  var htmlTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en"><head><!--[if !mso]><!--><style type="text/css" hs-webfonts="true">@font-face{font-family:'Lato';font-style:normal;font-weight:100;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/100.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:100;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/100italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:300;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/300.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:300;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/300italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:400;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/regular.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:400;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:700;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/700.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:700;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/700italic.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:normal;font-weight:900;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/900.woff2') format('woff2');}@font-face{font-family:'Lato';font-style:italic;font-weight:900;font-display:swap;src:url('https://cdn1.hubspotusercontent-na2.net/googlefonts/fonts/Lato/900italic.woff2') format('woff2');}</style><!--<![endif]-->
-    <title>KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]</title>
-    <meta property="og:title" content="KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]">
-    <meta name="twitter:title" content="KHÁM PHÁ CHIẾN DỊCH GIỮ NẾP XƯA - TỎ NẾP MÌNH [THORAKAO]">
-    
-    
-    
-<meta name="x-apple-disable-message-reformatting">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
-</style>
-
-<!-- $$__SECOND_PASS_CSS_HEAD__$$ -->
-    <!--[if gte mso 9]>
-  <xml>
-    <o:OfficeDocumentSettings>
-      <o:AllowPNG/>
-      <o:PixelsPerInch>96</o:PixelsPerInch>
-    </o:OfficeDocumentSettings>
-    <w:WordDocument xmlns:w="urn:schemas-microsoft-com:office:word">
-      <w:DontUseAdvancedTypographyReadingMail/>
-    </w:WordDocument>
-  </xml>
-  
-  <style>
-    ul > li {
-      text-indent: -1em;
-    }
-  </style>
-<![endif]-->
-<!--[if mso]>
-<style type="text/css">
- body, td {font-family: Arial, Helvetica, sans-serif;}
- .hse-body-wrapper-table {background-color: #EEEEEE;}
-</style>
-<![endif]-->
-
-<!--[if mso | IE]>
-  <style type="text/css">
-    .hse-column-container { border: none !important; padding: 0 !important; }
-  </style>
-<![endif]-->
-
-    
-
-
-
-
-
-
+  var htmlBody = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="vi">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khám Phá Chiến Dịch Giữ Nếp Xưa - Tỏ Nếp Mình | Thorakao</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4efe6; font-family: 'Segoe UI', Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+  <center style="width: 100%; background-color: #f4efe6; padding: 25px 0;">
+    <!-- Container 600px -->
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid #e8dfd3;">
       
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-  <meta property="og:url" content="https://247864523.hs-sites-na2.com/-temporary-slug-022f071b-549e-45d5-b24a-330bd2a57fe1?hs_preview=brVmzNTJ-420742959829"><!--[if !((mso)|(IE))]><!-- --><style type="text/css">@media only print, only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;width:100% !important}
-.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px !important;padding-right:20px !important}
-.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd{display:table !important}
-}@media only print, only screen and (max-width:639px){.hse-border-m{border-left:1px solid #eaf0f6 !important;border-right:1px solid #eaf0f6 !important;box-sizing:border-box}
-.hse-border-bottom-m{border-bottom:1px solid #eaf0f6 !important}.hse-border-top-m{border-top:1px solid #eaf0f6 !important}
-.hse-border-top-hm{border-top:none !important}.hse-border-bottom-hm{border-bottom:none !important}
-}.moz-text-html .hse-column-container{max-width:600px !important;width:600px !important}
-.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-html .hse-section .hse-size-6{max-width:300px !important;width:300px !important}
-.moz-text-html .hse-section .hse-size-12{max-width:600px !important;width:600px !important}
-@media only print, only screen and (min-width:640px){.hse-column-container{max-width:600px !important;width:600px !important}
-.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-6{max-width:300px !important;width:300px !important}
-.hse-section .hse-size-12{max-width:600px !important;width:600px !important} }@media only print, only screen and (max-width:639px){.hse-body-wrapper-td{padding-top:20px !important}
-#section-0 .hse-column-container{padding-top:10px !important;padding-bottom:10px !important}
-#section-0 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-1 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-1 .hse-column-container{background-color:#ad402e !important} }@media only print, only screen and (max-width:639px){ #section-2 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-2 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-3 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-3 .hse-column-container{background-color:#ad402e !important} }@media only print, only screen and (max-width:639px){ #section-4 .hse-column-container{padding-top:10px !important;padding-bottom:10px !important}
-#section-4 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-5 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-5 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-6 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-6 .hse-column-container{background-color:#fff !important} }@media only print, only screen and (max-width:639px){ #section-7 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-7 .hse-column-container{background-color:#fff !important} }@media screen and (max-width:639px){.social-network-cell{display:inline-block}
-}@media only print, only screen and (max-width:639px){ #section-8 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
-#section-8 .hse-column-container{background-color:#ffc800 !important} }</style><!--<![endif]--><style type="text/css">#hs_body #hs_cos_wrapper_main a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !important;font-size:inherit !important;font-family:inherit !important;font-weight:inherit !important;line-height:inherit !important}
-a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-smoothing:grayscale}
-table{border-spacing:0;mso-table-lspace:0;mso-table-rspace:0}table,td{border-collapse:collapse}
-img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exactly}
-.ShadowHTML p,.sh-modified-inline p{margin:0}</style></head>
-  <body id="hs_body" bgcolor="#EEEEEE" style="margin:0 !important; padding:0 !important; font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
-    
-    
-<!--[if gte mso 9]>
-<v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-    <v:fill type="tile" size="100%,100%" color="#ffffff"/>
-</v:background>
-<![endif]-->
-
-    <div class="hse-body-background" lang="en" style="background-color:#eeeeee" bgcolor="#eeeeee">
-      <table role="presentation" class="hse-body-wrapper-table" cellpadding="0" cellspacing="0" style="margin:0; padding:0; width:100% !important; min-width:320px !important; height:100% !important" width="100%" height="100%">
-        <tbody><tr>
-          <td class="hse-body-wrapper-td" valign="top" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding-top:20px">
-            <div id="hs_cos_wrapper_main" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_dnd_area" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="dnd_area">  <div id="section-0" class="hse-section hse-section-first" style="padding-left:10px; padding-right:10px">
-
-    
-    
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#FFFFFF; padding-bottom:10px; padding-top:10px" bgcolor="#FFFFFF">
-    
-    <!--[if (mso)|(IE)]>
-      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#FFFFFF">
-      <tr style="background-color:#FFFFFF;">
-    <![endif]-->
-
-    <!--[if (mso)|(IE)]>
-  <td valign="top" style="width:600px;padding-bottom:10px; padding-top:10px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
-<![endif]-->
-<div id="column-0-0" class="hse-column hse-size-12">
-  <div id="hs_cos_wrapper_module-0-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
-  <tbody>
-    <tr>
-      <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="Logo Thorakao" src="{{IMG_LOGO}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
-      </td>
-    </tr>
-  </tbody>
-</table></div>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-
-    <!--[if (mso)|(IE)]></tr></table><![endif]-->
-
-    </div>
-   
-  </div>
-  <div id="section-1" class="hse-section" style="padding-left:10px; padding-right:10px">
-
-    
-    
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ad402e" bgcolor="#ad402e">
-    
-    <!--[if (mso)|(IE)]>
-      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ad402e">
-      <tr style="background-color:#ad402e;">
-    <![endif]-->
-
-    <!--[if (mso)|(IE)]>
-  <td valign="top" style="width:300px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
-<![endif]-->
-<div id="column-1-0" class="hse-column hse-size-6">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px"><div id="hs_cos_wrapper_module-1-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-1-0-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h2 style="margin:0; line-height:150%; font-size:22px; text-align:center" align="center"><span style="color: #ffc800;">CÂU CHUYỆN BỒ KẾT</span></h2></div></div></td></tr></tbody></table>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-<!--[if (mso)|(IE)]>
-  <td valign="top" style="width:300px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
-<![endif]-->
-<div id="column-1-1" class="hse-column hse-size-6">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px"><div id="hs_cos_wrapper_module-1-1-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-1-1-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h2 style="margin:0; line-height:150%; font-size:22px; text-align:center" align="center"><span style="color: #ffc800;">KHÁM PHÁ CHIẾN DỊCH</span></h2></div></div></td></tr></tbody></table>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-
-    <!--[if (mso)|(IE)]></tr></table><![endif]-->
-
-    </div>
-   
-  </div>
-  <div id="section-2" class="hse-section" style="padding-left:10px; padding-right:10px">
-
-    
-    
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
-    
-    <!--[if (mso)|(IE)]>
-      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
-      <tr style="background-color:#ffffff;">
-    <![endif]-->
-
-    <!--[if (mso)|(IE)]>
-  <td valign="top" style="width:600px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
-<![endif]-->
-<div id="column-2-0" class="hse-column hse-size-12">
-  <div id="hs_cos_wrapper_module-2-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
-  <tbody>
-    <tr>
-      <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="Banner Chiến Dịch Thorakao" src="{{IMG_BANNER}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="600" align="middle">
-      </td>
-    </tr>
-  </tbody>
-</table></div>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-
-    <!--[if (mso)|(IE)]></tr></table><![endif]-->
-
-    </div>
-   
-  </div>
-  <div id="section-3" class="hse-section" style="padding-left:10px; padding-right:10px">
-
-    
-    
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ad402e" bgcolor="#ad402e">
-    
-    <!--[if (mso)|(IE)]>
-      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ad402e">
-      <tr style="background-color:#ad402e;">
-    <![endif]-->
-
-    <!--[if (mso)|(IE)]>
-  <td valign="top" style="width:600px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
-<![endif]-->
-<div id="column-3-0" class="hse-column hse-size-12">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-3-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-3-0-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h1 style="margin:0; line-height:150%; font-size:28px; text-align:center" align="center"><span style="color: #ffc800;">GIỮ NẾP XƯA – TỎ NẾP MÌNH</span></h1>
-<h3 style="font-size:17px; margin:0; line-height:150%; text-align:center" align="center"><span style="color: #ffc800;">Giữ Hương Tóc Xưa, Bật Nét Sống Mới</span></h3></div></div></td></tr></tbody></table>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-
-    <!--[if (mso)|(IE)]></tr></table><![endif]-->
-
-    </div>
-   
-  </div>
-  <div id="section-4" class="hse-section" style="padding-left:10px; padding-right:10px">
-
-    
-    
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff; padding-bottom:10px; padding-top:10px" bgcolor="#ffffff">
-    
-    <!--[if (mso)|(IE)]>
-      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
-      <tr style="background-color:#ffffff;">
-    <![endif]-->
-
-    <!--[if (mso)|(IE)]>
-  <td valign="top" style="width:600px;padding-bottom:10px; padding-top:10px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
-<![endif]-->
-<div id="column-4-0" class="hse-column hse-size-12">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-4-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-4-0-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h2 style="margin:0; font-size:28px; line-height:150%; text-align:center" align="center"><span style="color: #000000;">Chào mừng bạn đến với Thorakao!</span></h2>
-<p style="line-height:150%; text-align:center" align="center"><span style="color: #000000;">Cùng khám phá những giá trị chăm sóc tóc thân quen được làm mới trong nhịp sống hiện đại.</span></p></div></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 40px"><div id="hs_cos_wrapper_module-4-0-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;">
-    <tbody><tr>
-      <td align="center" valign="middle" bgcolor="#ffc800" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; border-radius:0px; cursor:auto; background-color:#ffc800; mso-padding-alt:12px 18px">
-        <a href="http://neptocthorakao.com/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" target="_blank" style="color:#00a4bd; font-size:21px; font-family:Helvetica,Arial,sans-serif; Margin:0; text-transform:none; letter-spacing:0px; text-decoration:none; padding:12px 18px; display:block" data-hs-link-id="0" data-hs-link-id-v2="bzQlD3av">
-          <strong style="color:#ad402e;font-weight:bold;text-decoration:none;font-style:normal;">KHÁM PHÁ CHIẾN DỊCH</strong>
-        </a>
-      </td>
-    </tr>
-  </tbody></table></div></td></tr></tbody></table>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-
-    <!--[if (mso)|(IE)]></tr></table><![endif]-->
-
-    </div>
-   
-  </div>
-  <div id="section-5" class="hse-section" style="padding-left:10px; padding-right:10px">
-
-    
-    
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
-    
-    <!--[if (mso)|(IE)]>
-      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
-      <tr style="background-color:#ffffff;">
-    <![endif]-->
-
-    <!--[if (mso)|(IE)]>
-  <td valign="top" style="width:600px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
-<![endif]-->
-<div id="column-5-0" class="hse-column hse-size-12">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-5-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-5-0-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h1 style="margin:0; line-height:150%; font-size:28px; text-align:center" align="center"><span style="color: #ad402e;">CÙNG THORAKAO KHÁM PHÁ</span></h1></div></div></td></tr></tbody></table>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-
-    <!--[if (mso)|(IE)]></tr></table><![endif]-->
-
-    </div>
-   
-  </div>
-  <div id="section-6" class="hse-section" style="padding-left:10px; padding-right:10px">
-
-    
-    
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
-    
-    <!--[if (mso)|(IE)]>
-      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
-      <tr style="background-color:#ffffff;">
-    <![endif]-->
-
-    <!--[if (mso)|(IE)]>
-  <td valign="top" style="width:300px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
-<![endif]-->
-<div id="column-6-0" class="hse-column hse-size-6">
-  <div id="hs_cos_wrapper_module-6-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
-  <tbody>
-    <tr>
-      <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px 27px; font-size:0px">
-        <img alt="Dầu Gội Bồ Kết Thorakao 750ml" src="{{IMG_PRODUCT}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
-      </td>
-    </tr>
-  </tbody>
-</table></div>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-<!--[if (mso)|(IE)]>
-  <td valign="top" style="width:300px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
-<![endif]-->
-<div id="column-6-1" class="hse-column hse-size-6">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-6-1-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-6-1-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h2 style="margin:0; font-size:18px; line-height:150%"><span style="color: #000000;">Bồ kết – Nét quen thuộc qua nhiều thế hệ&nbsp;</span></h2></div></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:0px 20px"><div id="hs_cos_wrapper_module-6-1-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
-  <tbody><tr>
-    <td align="center" style="font-family:Arial, sans-serif; color:#23496d; font-size:0; word-break:break-word">
-      <p style="font-size:1px;border-top:1px dashed #23496d;width:100%;margin:0 auto;"></p>
-      <!--[if mso]>
-        <table role="none" align="center" border="0" cellpadding="0" cellspacing="0" style="font-size:1px;border-top:1px dashed #23496d;width:260px;">
-          <tr>
-            <td style="height:0;line-height:0">&nbsp;</td>
-          </tr>
-        </table>
-      <![endif]-->
-    </td>
-  </tr>
-</tbody></table></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-6-1-2" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-6-1-2_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="font-size:15px; line-height:125%; text-align:left" align="left"><span style="color: #000000;">Bồ</span><span style="color: #000000;"> kết từ lâu đã gắn liền với thói quen chăm sóc tóc của người Việt. Thorakao mang đến dầu gội Bồ Kết 750ml, kết hợp nét truyền thống với sự tiện lợi trong cuộc sống hiện đại.</span>&nbsp;</p></div></div></td></tr></tbody></table>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-
-    <!--[if (mso)|(IE)]></tr></table><![endif]-->
-
-    </div>
-   
-  </div>
-  <div id="section-7" class="hse-section" style="padding-left:10px; padding-right:10px">
-
-    
-    
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
-    
-    <!--[if (mso)|(IE)]>
-      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
-      <tr style="background-color:#ffffff;">
-    <![endif]-->
-
-    <!--[if (mso)|(IE)]>
-  <td valign="top" style="width:300px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
-<![endif]-->
-<div id="column-7-0" class="hse-column hse-size-6">
-  <div id="hs_cos_wrapper_module-7-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
-  <tbody>
-    <tr>
-      <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px; font-size:0px">
-        <img alt="Nghệ sĩ Bích Hằng" src="{{IMG_ARTIST}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
-      </td>
-    </tr>
-  </tbody>
-</table></div>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-<!--[if (mso)|(IE)]>
-  <td valign="top" style="width:300px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
-<![endif]-->
-<div id="column-7-1" class="hse-column hse-size-6">
-    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-7-1-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-7-1-0_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h2 style="margin:0; font-size:18px; line-height:150%"><span style="color: #000000;">Thử </span><span style="color: #000000;">món mẹ từng dùng&nbsp;</span></h2></div></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:0px 20px"><div id="hs_cos_wrapper_module-7-1-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
-  <tbody><tr>
-    <td align="center" style="font-family:Arial, sans-serif; color:#23496d; font-size:0; word-break:break-word">
-      <p style="font-size:1px;border-top:1px dashed #23496d;width:100%;margin:0 auto;"></p>
-      <!--[if mso]>
-        <table role="none" align="center" border="0" cellpadding="0" cellspacing="0" style="font-size:1px;border-top:1px dashed #23496d;width:260px;">
-          <tr>
-            <td style="height:0;line-height:0">&nbsp;</td>
-          </tr>
-        </table>
-      <![endif]-->
-    </td>
-  </tr>
-</tbody></table></div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-7-1-2" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-7-1-2_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="font-size:15px; line-height:125%; text-align:left" align="left"><span style="color: #000000;">Ngày bé, có lẽ ai cũng từng được mẹ chăm sóc tóc bằng bồ kết. Với dầu gội Bồ Kết Thorakao, hương thơm thân quen ấy được tái hiện theo cách tiện lợi hơn, giúp bạn tìm lại những ký ức dịu dàng bên mẹ.&nbsp;</span></p></div></div></td></tr></tbody></table>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
-
-    <!--[if (mso)|(IE)]></tr></table><![endif]-->
-
-    </div>
-   
-  </div>
-  <div id="section-8" class="hse-section" style="padding-left:10px; padding-right:10px">
-
-    
-    
-      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffc800" bgcolor="#ffc800">
-    
-    <!--[if (mso)|(IE)]>
-      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffc800">
-      <tr style="background-color:#ffc800;">
-    <![endif]-->
-
-    <!--[if (mso)|(IE)]>
-  <td valign="top" style="width:600px;">
-<![endif]-->
-<!--[if gte mso 9]>
-  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
-<![endif]-->
-<div id="column-8-0" class="hse-column hse-size-12">
-  <div id="hs_cos_wrapper_module-8-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
-  <tbody>
-    <tr>
-      <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:20px 20px 10px; font-size:0px">
-        <img alt="Logo Thorakao" src="{{IMG_LOGO}}" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
-      </td>
-    </tr>
-  </tbody>
-</table></div>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:0px 20px"><div id="hs_cos_wrapper_module-8-0-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module">
-  <tbody>
-    <tr>
-      <td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
-        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
-          <tbody>
+      <!-- 1. HEADER: BRAND LOGO BANNER (PURE HTML/CSS) -->
+      <tr>
+        <td align="center" style="background-color: #ffffff; padding: 25px 20px 20px; border-bottom: 3px solid #ad402e;">
+          <table role="presentation" border="0" cellpadding="0" cellspacing="0">
             <tr>
-              <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.facebook.com/neptoc.thorakao/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HXv5J68N" target="_blank"><img src="{{IMG_FB}}" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+              <td align="center">
+                <div style="display: inline-block; background-color: #ad402e; color: #ffc800; font-weight: 900; font-size: 26px; letter-spacing: 3px; padding: 8px 24px; border-radius: 6px; font-family: 'Georgia', serif; text-transform: uppercase;">
+                  THORAKAO
+                </div>
+                <div style="font-size: 11px; letter-spacing: 2px; color: #ad402e; font-weight: bold; margin-top: 6px; text-transform: uppercase;">
+                  Mỹ Phẩm Lan Hảo • Từ Năm 1961
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- 2. CAMPAIGN HERO BANNER (PURE HTML/CSS) -->
+      <tr>
+        <td align="center" style="background: linear-gradient(135deg, #ad402e 0%, #8a2a1a 100%); background-color: #ad402e; padding: 35px 25px; color: #ffffff;">
+          <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td align="center">
+                <span style="display: inline-block; background-color: #ffc800; color: #ad402e; font-size: 12px; font-weight: 800; letter-spacing: 1.5px; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px;">
+                  CHIẾN DỊCH ĐẶC BIỆT
+                </span>
+                <h1 style="margin: 8px 0 10px; font-size: 26px; line-height: 1.3; font-weight: 900; color: #ffc800; letter-spacing: 1px; font-family: 'Georgia', serif;">
+                  GIỮ NẾP XƯA – TỎ NẾP MÌNH
+                </h1>
+                <p style="margin: 0; font-size: 16px; color: #fff8eb; font-style: italic; letter-spacing: 0.5px;">
+                  "Giữ Hương Tóc Xưa, Bật Nét Sống Mới"
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- 3. WELCOME GREETING -->
+      <tr>
+        <td style="padding: 30px 30px 20px; background-color: #ffffff;">
+          <h2 style="margin: 0 0 12px; font-size: 22px; color: #2b2b2b; font-weight: 700; text-align: center;">
+            Chào mừng bạn đến với Thorakao! 🌿
+          </h2>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #555555; text-align: center;">
+            Cùng chúng tôi khám phá những giá trị chăm sóc tóc thân quen từ trái bồ kết truyền thống, được làm mới tinh tế trong nhịp sống hiện đại.
+          </p>
+
+          <!-- CTA Button -->
+          <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 25px;">
+            <tr>
+              <td align="center">
+                <a href="https://neptocthorakao.com" target="_blank" style="display: inline-block; background-color: #ffc800; color: #ad402e; font-weight: 800; font-size: 15px; letter-spacing: 1px; text-decoration: none; padding: 14px 36px; border-radius: 8px; border: 2px solid #e0aa00; text-transform: uppercase; box-shadow: 0 3px 8px rgba(173,64,46,0.2);">
+                  👉 KHÁM PHÁ CHIẾN DỊCH NGAY
                 </a>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </td><td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
-        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
-          <tbody>
+          </table>
+        </td>
+      </tr>
+
+      <!-- DIVIDER -->
+      <tr>
+        <td style="padding: 0 30px;">
+          <hr style="border: 0; border-top: 1px dashed #d9cfc1; margin: 15px 0;" />
+        </td>
+      </tr>
+
+      <!-- 4. PRODUCT FEATURE CARD (PURE HTML/CSS) -->
+      <tr>
+        <td style="padding: 20px 30px;">
+          <div style="background-color: #fff9f0; border: 2px solid #f3e0c4; border-radius: 10px; padding: 22px;">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+                <td>
+                  <span style="background-color: #ad402e; color: #ffffff; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">
+                    ⭐ SẢN PHẨM TRỌNG TÂM
+                  </span>
+                  <h3 style="margin: 10px 0 6px; font-size: 19px; color: #ad402e; font-weight: 800;">
+                    Dầu Gội Bồ Kết Thorakao 750ml
+                  </h3>
+                  <p style="margin: 0 0 14px; font-size: 14px; color: #666666; line-height: 1.5;">
+                    Kết tinh từ trái bồ kết thiên nhiên giàu Saponin và Flavonoid, giúp làm sạch êm dịu, thông thoáng da đầu, sạch gàu ngứa và nuôi dưỡng nang tóc đen mượt chắc khỏe.
+                  </p>
+
+                  <!-- Specs Grid -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff; border-radius: 8px; padding: 12px; border: 1px solid #fae8d0;">
+                    <tr>
+                      <td style="padding: 6px 10px; font-size: 13px; color: #444444;">
+                        🧴 <strong>Quy cách:</strong> Chai lớn tiết kiệm 750ml
+                      </td>
+                      <td align="right" style="padding: 6px 10px; font-size: 15px; color: #ad402e; font-weight: bold;">
+                        Giá: 113.000₫
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" style="padding: 4px 10px; font-size: 13px; color: #2d5a27;">
+                        🚚 <strong>Ưu đãi:</strong> Miễn phí vận chuyển toàn quốc khi mua từ 2 chai!
+                      </td>
+                    </tr>
+                  </table>
+
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+
+      <!-- 5. STORY CARD: "THỬ MÓN MẸ TỪNG DÙNG" -->
+      <tr>
+        <td style="padding: 10px 30px 25px;">
+          <div style="background-color: #faf5ee; border-left: 4px solid #ad402e; border-radius: 4px; padding: 18px 20px;">
+            <h4 style="margin: 0 0 8px; font-size: 16px; color: #ad402e; font-weight: 800;">
+              ✨ Câu chuyện: "Thử món mẹ từng dùng"
+            </h4>
+            <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #555555; font-style: italic;">
+              "Ngày bé, có lẽ ai trong chúng ta cũng từng được mẹ chăm sóc mái tóc bằng nước bồ kết ấm nồng. Với Thorakao, hương thơm mộc mạc thân quen ấy được tái hiện tiện lợi trong chai 750ml hiện đại, giúp bạn tìm lại ký ức dịu dàng bên mẹ giữa nhịp sống bận rộn."
+            </p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- 6. SOCIAL NETWORK LINKS (STYLISH CSS BUTTONS) -->
+      <tr>
+        <td align="center" style="background-color: #ffc800; padding: 22px 20px;">
+          <div style="font-size: 13px; font-weight: 800; color: #ad402e; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">
+            KẾT NỐI VỚI THORAKAO TRÊN MẠNG XÃ HỘI
+          </div>
+          <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center">
             <tr>
-              <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.threads.com/@neptoc.thorakao?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HgASA4bm" target="_blank"><img src="{{IMG_THREADS}}" alt="Threads" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+              <td style="padding: 0 5px;">
+                <a href="https://www.facebook.com/neptoc.thorakao" target="_blank" style="display: inline-block; background-color: #1877f2; color: #ffffff; font-size: 12px; font-weight: bold; text-decoration: none; padding: 7px 14px; border-radius: 4px;">
+                  Facebook
+                </a>
+              </td>
+              <td style="padding: 0 5px;">
+                <a href="https://www.threads.com/@neptoc.thorakao" target="_blank" style="display: inline-block; background-color: #000000; color: #ffffff; font-size: 12px; font-weight: bold; text-decoration: none; padding: 7px 14px; border-radius: 4px;">
+                  Threads
+                </a>
+              </td>
+              <td style="padding: 0 5px;">
+                <a href="https://www.tiktok.com/@neptoc.thorakao" target="_blank" style="display: inline-block; background-color: #010101; color: #ffffff; font-size: 12px; font-weight: bold; text-decoration: none; padding: 7px 14px; border-radius: 4px;">
+                  TikTok
+                </a>
+              </td>
+              <td style="padding: 0 5px;">
+                <a href="https://neptocthorakao.com" target="_blank" style="display: inline-block; background-color: #ad402e; color: #ffffff; font-size: 12px; font-weight: bold; text-decoration: none; padding: 7px 14px; border-radius: 4px;">
+                  Website
                 </a>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </td><td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
-        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
-          <tbody>
-            <tr>
-              <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.tiktok.com/@neptoc.thorakao?&amp;utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="OuuCU9WU" target="_blank"><img src="{{IMG_TIKTOK}}" alt="TikTok" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td><td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word">
-        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
-          <tbody>
-            <tr>
-              <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://thorakao.com/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="8lqLIaiU" target="_blank"><img src="{{IMG_WEB}}" alt="Website" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  </tbody>
-</table>
+          </table>
+        </td>
+      </tr>
 
-</div></td></tr></tbody></table>
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-8-0-2" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table role="presentation" class="hse-footer hse-secondary" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496d; margin-bottom:0; padding:0">
-  <tbody>
-    <tr>
-      <td align="center" valign="top" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; text-align:center; margin-bottom:0; line-height:135%; padding:10px 20px">
-        <p style="font-family:Arial, sans-serif;font-size:12px;font-weight:normal;text-decoration:none;font-style:normal;color:#FFFFFF">
-          Công ty TNHH Sản Xuất Mỹ Phẩm Lan Hảo, 241bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP HCM,  70000, Việt Nam , 028 8887 3241
-        </p>
-        <p>
-          <a data-unsubscribe="true" href="mailto:neptocthorakao@gmail.com?subject=H%E1%BB%A7y%20%C4%91%C4%83ng%20k%C3%BD%20b%E1%BA%A3n%20tin" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" data-hs-link-id="0" data-hs-link-id-v2="Mt/VeNiO" target="_blank">Unsubscribe</a>
-          <a data-unsubscribe="true" href="mailto:neptocthorakao@gmail.com?subject=C%C3%A0i%20%C4%91%E1%BA%B7t%20nh%E1%BA%ADn%20tin" style="font-family:Lato,Tahoma,sans-serif; font-size:14px; color:#FFFFFF; font-weight:normal; text-decoration:underline; font-style:normal" data-hs-link-id="0" data-hs-link-id-v2="jxk/Kx13" target="_blank">Manage preferences</a>
-        </p>
-      </td>
-    </tr>
-  </tbody>
-</table></div></td></tr></tbody></table>
-</div>
-<!--[if gte mso 9]></table><![endif]-->
-<!--[if (mso)|(IE)]></td><![endif]-->
+      <!-- 7. FOOTER INFORMATION -->
+      <tr>
+        <td align="center" style="background-color: #8a2a1a; padding: 22px 25px; color: #ffffff;">
+          <p style="margin: 0 0 6px; font-size: 12px; line-height: 1.5; color: #ffd6cc;">
+            <strong>Công ty TNHH Sản Xuất Mỹ Phẩm Lan Hảo</strong><br />
+            241bis Cách Mạng Tháng Tám, Phường Bàn Cờ, TP. Hồ Chí Minh<br />
+            Hotline: 028 8887 3241 • Email: info@thorakao.com
+          </p>
+          <p style="margin: 12px 0 0; font-size: 11px; color: #e0998a;">
+            Bạn nhận được email này vì đã đăng ký bản tin tại website Nếp Tóc Thorakao.<br />
+            <a href="mailto:neptocthorakao@gmail.com?subject=Huy%20dang%20ky" style="color: #ffc800; text-decoration: underline;">Hủy đăng ký</a>
+          </p>
+        </td>
+      </tr>
 
-    <!--[if (mso)|(IE)]></tr></table><![endif]-->
-
-    </div>
-   
-  </div>
-
-</div>
-          </td>
-        </tr>
-      </tbody></table>
-    </div>
-  
-</body></html>`;
-
-  // Thay placeholder bằng URL Drive thực tế
-  var htmlBody = htmlTemplate
-    .replace(/\{\{IMG_LOGO\}\}/g, LOGO)
-    .replace(/\{\{IMG_BANNER\}\}/g, BANNER)
-    .replace(/\{\{IMG_PRODUCT\}\}/g, PRODUCT)
-    .replace(/\{\{IMG_ARTIST\}\}/g, ARTIST)
-    .replace(/\{\{IMG_FB\}\}/g, FB)
-    .replace(/\{\{IMG_THREADS\}\}/g, THREADS)
-    .replace(/\{\{IMG_TIKTOK\}\}/g, TIKTOK)
-    .replace(/\{\{IMG_WEB\}\}/g, WEB);
+    </table>
+  </center>
+</body>
+</html>
+`;
 
   MailApp.sendEmail({
     to: recipientEmail,
