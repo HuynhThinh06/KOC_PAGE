@@ -442,7 +442,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="Bộ_nhận_diện_DM_VUA_ĐẦU_BẾT-removebg-preview" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
+        <img alt="Bộ_nhận_diện_DM_VUA_ĐẦU_BẾT-removebg-preview" src="https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
       </td>
     </tr>
   </tbody>
@@ -517,7 +517,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:0px; font-size:0px">
-        <img alt="1793641077815_1928796566126921533_2455810995624308717_392ae274f00b8615c76154c1687162d8" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-hero-banner.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="600" align="middle">
+        <img alt="1793641077815_1928796566126921533_2455810995624308717_392ae274f00b8615c76154c1687162d8" src="https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/email-hero-banner.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="600" align="middle">
       </td>
     </tr>
   </tbody>
@@ -648,7 +648,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px 27px; font-size:0px">
-        <img alt="JbE9aCOzeXmlaKgOQrhAoHbouL_hFm_sW3mLy-1S8Jpy9GHY4zTK8QDVG31SVpBe3uIjXcfRNpI5T5LzCYhxnvJ7dscKvXIMWSEO8jDOpVrZ5zqIzF4CgkSHBX7_2MWYMkQhHumWAmJ1-RasspE5_Sb6wx2kgjqod02z3l8ExSPjn0HUmSQ_FuSt1W8QTwUq" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-product-bottle.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
+        <img alt="JbE9aCOzeXmlaKgOQrhAoHbouL_hFm_sW3mLy-1S8Jpy9GHY4zTK8QDVG31SVpBe3uIjXcfRNpI5T5LzCYhxnvJ7dscKvXIMWSEO8jDOpVrZ5zqIzF4CgkSHBX7_2MWYMkQhHumWAmJ1-RasspE5_Sb6wx2kgjqod02z3l8ExSPjn0HUmSQ_FuSt1W8QTwUq" src="https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/email-product-bottle.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
   </tbody>
@@ -710,7 +710,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:10px 20px; font-size:0px">
-        <img alt="nghe-si-bich-hang1-1643171295" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-nghe-si-bich-hang.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
+        <img alt="nghe-si-bich-hang1-1643171295" src="https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/email-nghe-si-bich-hang.jpg" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="260" align="middle">
       </td>
     </tr>
   </tbody>
@@ -772,7 +772,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
   <tbody>
     <tr>
       <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align:center; padding:20px 20px 10px; font-size:0px">
-        <img alt="Bộ_nhận_diện_DM_VUA_ĐẦU_BẾT-removebg-preview" src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
+        <img alt="Bộ_nhận_diện_DM_VUA_ĐẦU_BẾT-removebg-preview" src="https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/email-logo-dm-vua.png" style="outline:none; text-decoration:none; max-width:100%; font-size:16px" width="271" align="middle">
       </td>
     </tr>
   </tbody>
@@ -785,7 +785,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.facebook.com/neptoc.thorakao/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HXv5J68N" target="_blank"><img src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-icon-facebook.png" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.facebook.com/neptoc.thorakao/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HXv5J68N" target="_blank"><img src="https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/email-icon-facebook.png" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -796,7 +796,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.threads.com/@neptoc.thorakao?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HgASA4bm" target="_blank"><img src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-icon-threads.png" alt="logo-threads-vector-2-05-removebg-preview" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.threads.com/@neptoc.thorakao?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="HgASA4bm" target="_blank"><img src="https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/email-icon-threads.png" alt="logo-threads-vector-2-05-removebg-preview" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -807,7 +807,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://www.tiktok.com/@neptoc.thorakao?&amp;utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="OuuCU9WU" target="_blank"><img src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-icon-tiktok.png" alt="TikTok" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://www.tiktok.com/@neptoc.thorakao?&amp;utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="OuuCU9WU" target="_blank"><img src="https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/email-icon-tiktok.png" alt="TikTok" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
@@ -818,7 +818,7 @@ img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exa
           <tbody>
             <tr>
               <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
-                <a href="https://thorakao.com/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="8lqLIaiU" target="_blank"><img src="https://raw.githubusercontent.com/HuynhThinh06/KOC_PAGE/main/assets/images/email/email-icon-web.png" alt="Website" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                <a href="https://thorakao.com/?utm_source=hs_email&amp;utm_medium=email&amp;_hsenc=p2ANqtz-8HELdbWdBAaguYhGkR5a22jAcs8YkLtOLW5v4cCmyW7oU4UnxB5BNadwmT8joUiP2lv-yH" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="8lqLIaiU" target="_blank"><img src="https://cdn.jsdelivr.net/gh/HuynhThinh06/KOC_PAGE@main/assets/images/email/email-icon-web.png" alt="Website" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
                 </a>
               </td>
             </tr>
